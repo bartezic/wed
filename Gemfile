@@ -43,9 +43,11 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+# gem 'batch_translations'
+
+gem 'simple_form'
 gem "haml-rails"
-gem 'activeadmin',  github: 'gregbell/active_admin', 
-                    branch: 'rails4'
+gem 'paperclip'
 gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails',
                               github: 'anjlab/bootstrap-rails',
                               branch: '3.0.0'

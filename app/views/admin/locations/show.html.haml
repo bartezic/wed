@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @location.name
+%p
+  %b Slug:
+  = @location.slug
+
+= link_to 'Edit', edit_admin_location_path(@location)
+\|
+= link_to 'Back', admin_locations_path

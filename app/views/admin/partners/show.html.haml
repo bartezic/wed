@@ -1,0 +1,51 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @partner.name
+%p
+  %b Description:
+  = @partner.description
+%p
+  %b Info:
+  = @partner.info
+%p
+  %b Price:
+  = @partner.price
+%p
+  %b Location:
+  = @partner.location_id
+%p
+  %b Site:
+  = @partner.site
+%p
+  %b Email:
+  = @partner.email
+%p
+  %b Phone:
+  = @partner.phone
+%p
+  %b Active:
+  = @partner.active
+%p
+  %b Premium:
+  = @partner.premium
+%p
+  %b Premium to:
+  = @partner.premium_to
+%p
+  %b Cover:
+  = image_tag @partner.avatar(:thumb_250)
+%p
+  %b Rating:
+  = @partner.rating
+%p
+  %b Encrypted password:
+  = @partner.encrypted_password
+%p
+  %b Slug:
+  = @partner.slug
+
+= link_to 'Edit', edit_admin_partner_path(@partner)
+\|
+= link_to 'Back', admin_partners_path

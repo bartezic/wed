@@ -1,0 +1,16 @@
+= simple_form_for [:admin, @location] do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :slug
+  
+    %h2 Ukrainian
+    - f.globalize_fields_for :uk do |l|
+      = l.input :name
+    
+    %h2 Russian
+    - f.globalize_fields_for :ru do |l|
+      = l.input :name
+
+  .actions
+    = f.button :submit
