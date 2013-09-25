@@ -1,0 +1,24 @@
+%h1 Listing admin_users
+
+.table-responsive
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Name
+        %th Avatar
+        %th Email
+        %th Actions
+    %tbody
+      - @admin_users.each do |admin_user|
+        %tr
+          %td= admin_user.name
+          %td= image_tag admin_user.avatar(:thumb_100)
+          %td= admin_user.email
+          %td
+            = link_to 'Show', [:admin, admin_user]
+            = link_to 'Edit', edit_admin_admin_user_path(admin_user)
+            = link_to 'Destroy', [:admin, admin_user], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Admin user', new_admin_admin_user_path

@@ -10,7 +10,19 @@
     / Wrap all page content here
     #wrap
       / Fixed navbar
-      .navbar.navbar-default.navbar-fixed-top.navbar-inverse
+      .navbar.navbar-default.navbar-fixed-top
+        .container.top-nav
+          .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+          .navbar-collapse.collapse
+            %ul.nav.navbar-nav
+
+            %ul.nav.navbar-nav.navbar-right
+              %li.locale{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
+              %li.locale{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
         .container
           .navbar-header
             %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
@@ -20,12 +32,15 @@
             %a.navbar-brand{href: "/"} Project name
           .navbar-collapse.collapse
             %ul.nav.navbar-nav
+              %li{class: request.path == admin_admin_users_path && 'active'}
+                %a{href: admin_admin_users_path} Admins
               %li{class: request.path == admin_partners_path && 'active'}
                 %a{href: admin_partners_path} Partners
               %li{class: request.path == admin_categories_path && 'active'}
                 %a{href: admin_categories_path} Categories
               %li{class: request.path == admin_locations_path && 'active'}
                 %a{href: admin_locations_path} Locations
+            %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
                   Dropdown
@@ -43,9 +58,14 @@
                     %a{href: "#"} Separated link
                   %li
                     %a{href: "#"} One more separated link
-            %ul.nav.navbar-nav.navbar-right
-              %li.locale{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
-              %li.locale{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                  = current_admin_user.email 
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{href: "/admin"} На сайт
+                  %li= link_to 'Вийти', destroy_admin_user_session_path, { method: :delete }
             /.nav-collapse
       / Begin page content
       .container

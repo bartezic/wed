@@ -1,20 +1,20 @@
 %h1 Listing locations
 
-%table
-  %tr
-    %th Name
-    %th Slug
-    %th
-    %th
-    %th
-
-  - @locations.each do |location|
+.table-responsive
+  %table.table.table-bordered.table-striped
     %tr
-      %td= location.name
-      %td= location.slug
-      %td= link_to 'Show', [:admin, location]
-      %td= link_to 'Edit', admin_edit_location_path(location)
-      %td= link_to 'Destroy', [:admin, location], :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th Name
+      %th Slug
+      %th Actions
+
+    - @locations.each do |location|
+      %tr
+        %td= location.name
+        %td= location.slug
+        %td
+          = link_to 'Show', [:admin, location]
+          = link_to 'Edit', edit_admin_location_path(location)
+          = link_to 'Destroy', [:admin, location], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

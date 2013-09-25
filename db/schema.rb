@@ -11,9 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130920145414) do
+ActiveRecord::Schema.define(version: 20130924104538) do
+
+  create_table "admin_user_translations", force: true do |t|
+    t.integer  "admin_user_id", null: false
+    t.string   "locale",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  add_index "admin_user_translations", ["admin_user_id"], name: "index_admin_user_translations_on_admin_user_id", using: :btree
+  add_index "admin_user_translations", ["locale"], name: "index_admin_user_translations_on_locale", using: :btree
 
   create_table "admin_users", force: true do |t|
+    t.string   "name"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "avatar_remote_url"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -40,6 +57,14 @@ ActiveRecord::Schema.define(version: 20130920145414) do
   end
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
+
+  create_table "categories_partners", id: false, force: true do |t|
+    t.integer "partner_id",  null: false
+    t.integer "category_id", null: false
+  end
+
+  add_index "categories_partners", ["category_id", "partner_id"], name: "index_categories_partners_on_category_id_and_partner_id", using: :btree
+  add_index "categories_partners", ["partner_id", "category_id"], name: "index_categories_partners_on_partner_id_and_category_id", using: :btree
 
   create_table "category_translations", force: true do |t|
     t.integer  "category_id", null: false
@@ -73,15 +98,22 @@ ActiveRecord::Schema.define(version: 20130920145414) do
 
   add_index "locations", ["slug"], name: "index_locations_on_slug", unique: true, using: :btree
 
+  create_table "locations_partners", id: false, force: true do |t|
+    t.integer "partner_id",  null: false
+    t.integer "location_id", null: false
+  end
+
+  add_index "locations_partners", ["location_id", "partner_id"], name: "index_locations_partners_on_location_id_and_partner_id", using: :btree
+  add_index "locations_partners", ["partner_id", "location_id"], name: "index_locations_partners_on_partner_id_and_location_id", using: :btree
+
   create_table "partner_translations", force: true do |t|
-    t.integer  "partner_id",         null: false
-    t.string   "locale",             null: false
+    t.integer  "partner_id",  null: false
+    t.string   "locale",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
     t.text     "description"
     t.text     "info"
-    t.string   "encrypted_password"
   end
 
   add_index "partner_translations", ["locale"], name: "index_partner_translations_on_locale", using: :btree
@@ -94,7 +126,6 @@ ActiveRecord::Schema.define(version: 20130920145414) do
     t.integer  "price"
     t.integer  "location_id"
     t.string   "site"
-    t.string   "email"
     t.string   "phone"
     t.boolean  "active"
     t.boolean  "premium"
@@ -103,13 +134,26 @@ ActiveRecord::Schema.define(version: 20130920145414) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "avatar_remote_url"
     t.integer  "rating"
-    t.string   "encrypted_password"
     t.string   "slug"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "partners", ["email"], name: "index_partners_on_email", unique: true, using: :btree
+  add_index "partners", ["location_id"], name: "index_partners_on_location_id", using: :btree
+  add_index "partners", ["reset_password_token"], name: "index_partners_on_reset_password_token", unique: true, using: :btree
   add_index "partners", ["slug"], name: "index_partners_on_slug", unique: true, using: :btree
 
 end

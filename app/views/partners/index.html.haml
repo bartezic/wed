@@ -1,0 +1,47 @@
+%h1 Listing partners
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Info
+    %th Price
+    %th Location
+    %th Site
+    %th Email
+    %th Phone
+    %th Active
+    %th Premium
+    %th Premium to
+    %th Cover
+    %th Rating
+    %th Encrypted password
+    %th Slug
+    %th
+    %th
+    %th
+
+  - @partners.each do |partner|
+    %tr
+      %td= partner.name
+      %td= partner.description
+      %td= partner.info
+      %td= partner.price
+      %td= partner.location_id
+      %td= partner.site
+      %td= partner.email
+      %td= partner.phone
+      %td= partner.active
+      %td= partner.premium
+      %td= partner.premium_to
+      %td= image_tag partner.avatar(:thumb_250)
+      %td= partner.rating
+      %td= partner.encrypted_password
+      %td= partner.slug
+      %td= link_to 'Show', [:admin, partner]
+      %td= link_to 'Edit', edit_admin_partner_path(partner)
+      %td= link_to 'Destroy', [:admin, partner], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Partner', new_admin_partner_path

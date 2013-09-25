@@ -1,15 +1,20 @@
 Wed::Application.routes.draw do
   namespace :admin do
-    resources :partners
+    concern :importable do
+      get 'import', on: :collection
+    end
+    resources :partners, concerns: :importable
     resources :locations
-    resources :categories
+    resources :categories, concerns: :importable
+    resources :admin_users
     root 'static#home'
   end
 
   resources :categories, path: :posluhy, only: [:show]
+  resources :partners
 
-  devise_for :admin_users, :path => "auth"
-  devise_for :partners, :path => "auth"
+  devise_for :admin_users, path: :admin_auth
+  devise_for :partners, path: :auth
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

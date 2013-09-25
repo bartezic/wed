@@ -1,46 +1,39 @@
 %h1 Listing partners
 
-%table
-  %tr
-    %th Name
-    %th Description
-    %th Info
-    %th Price
-    %th Location
-    %th Site
-    %th Email
-    %th Phone
-    %th Active
-    %th Premium
-    %th Premium to
-    %th Cover
-    %th Rating
-    %th Encrypted password
-    %th Slug
-    %th
-    %th
-    %th
-
-  - @partners.each do |partner|
-    %tr
-      %td= partner.name
-      %td= partner.description
-      %td= partner.info
-      %td= partner.price
-      %td= partner.location_id
-      %td= partner.site
-      %td= partner.email
-      %td= partner.phone
-      %td= partner.active
-      %td= partner.premium
-      %td= partner.premium_to
-      %td= image_tag partner.avatar(:thumb_250)
-      %td= partner.rating
-      %td= partner.encrypted_password
-      %td= partner.slug
-      %td= link_to 'Show', [:admin, partner]
-      %td= link_to 'Edit', edit_admin_partner_path(partner)
-      %td= link_to 'Destroy', [:admin, partner], :method => :delete, :data => { :confirm => 'Are you sure?' }
+.table-responsive
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Name
+        %th Cover
+        %th Description
+        %th Info
+        %th Price
+        %th Location
+        %th Site
+        %th Email
+        %th Phone
+        %th Active
+        %th Rating
+        %th Actions
+    %tbody
+      - @partners.each do |partner|
+        %tr{ class: partner.premium && 'warning' }
+          %td= partner.name
+          %td= image_tag partner.avatar(:thumb_100)
+          %td= partner.description && partner.description.truncate(30)
+          %td= partner.info && partner.info.truncate(30)
+          %td= partner.price
+          %td= partner.location.try(:name)
+          %td= partner.site
+          %td= partner.email
+          %td= partner.phone
+          %td= partner.active
+          %td= partner.rating
+          %td
+            = link_to 'Show', [:admin, partner]
+            = link_to 'Edit', edit_admin_partner_path(partner)
+            = link_to 'Destroy', [:admin, partner], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

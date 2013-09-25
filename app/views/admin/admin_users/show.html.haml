@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @admin_user.name
+%p
+  %b Email:
+  = @admin_user.email
+%p
+  %b Avatar:
+  = @admin_user.avatar
+%p
+  %b Avatar remote url:
+  = @admin_user.avatar_remote_url
+
+= link_to 'Edit', edit_admin_admin_user_path(@admin_user)
+\|
+= link_to 'Back', admin_admin_users_path

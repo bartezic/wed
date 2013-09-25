@@ -11,6 +11,19 @@
     #wrap
       / Fixed navbar
       .navbar.navbar-default.navbar-fixed-top
+        .container.top-nav
+          .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+          .navbar-collapse.collapse
+            %ul.nav.navbar-nav
+
+            %ul.nav.navbar-nav.navbar-right
+              %li.locale{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
+              %li.locale{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
+            /.nav-collapse
         .container
           .navbar-header
             %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
@@ -25,44 +38,32 @@
               - if admin_user_signed_in?
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                    = "Ви ввійшли як #{current_admin_user.email}" 
+                    = current_admin_user.email 
                     %b.caret
                   %ul.dropdown-menu
                     %li
                       %a{href: "/admin"} Адмінка
-                    %li= link_to 'Вийти', destroy_admin_user_session_path
+                    %li= link_to 'Вийти', destroy_admin_user_session_path, { method: :delete }
               - elsif partner_signed_in?
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
                     Ви ввійшли як
-                    = link_to current_partner.name, current_partner, { class: 'navbar-link' } 
+                    = current_partner.name
                     %b.caret
                   %ul.dropdown-menu
-                    %li
-                      %a{href: "/cadinet"} To Cabinet
-                    %li= link_to 'Вийти', destroy_partner_session_path
+                    %li= link_to 'To Cabinet', current_partner
+                    %li= link_to 'Вийти', destroy_partner_session_path, { method: :delete }
               - else
-                %button.btn.btn-default.navbar-btn{ type: :button } Ввійти
+                %button.btn.btn-default.navbar-btn{ type: :button, data:{ toggle: :modal, target: :'#modal-login'} } Ввійти
                 %button.btn.btn-default.navbar-btn{ type: :button } Стати партнером
             /.nav-collapse
       / Begin page content
       .container
         .row
-          .col-md-12
-            %ol.breadcrumb
-              %li
-                %a{ href: "#" } Home
-              %li
-                %a{ href: "#"} Library
-              %li.active Data
-        .row
           .col-md-3
             %ul.nav.nav-pills.nav-stacked
               - Category.all.each do |category|
-                %li= link_to raw("#{category.name} <span class='badge pull-right'>42</span>"), category
-            .btn-group.btn-group-justified
-              = link_to "Укр", "?locale=uk", { class: "btn btn-default #{locale == :uk && 'active'}", type: :button, data: { locale: :uk } }
-              = link_to "Рус", "?locale=ru", { class: "btn btn-default #{locale == :ru && 'active'}", type: :button, data: { locale: :ru } }
+                %li= link_to raw("#{category.name} <span class='badge pull-right'>#{category.partners.count}</span>"), category
           .col-md-9
             = yield
     #footer
@@ -70,3 +71,5 @@
         %p.text-muted.credit
           Розробка:
           %a{href: "http://martinbean.co.uk"} Олексин Віктор
+
+    = render 'shared/popups'

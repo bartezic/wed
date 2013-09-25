@@ -15,3 +15,13 @@
 //= require turbolinks
 //= require twitter/bootstrap
 //= require_tree .
+
+function ready () {
+  $('#myTab a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

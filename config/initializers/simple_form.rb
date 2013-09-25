@@ -29,10 +29,10 @@ SimpleForm.setup do |config|
   # config.error_notification_id = nil
 
   # You can wrap all inputs in a pre-defined tag.
-  # config.wrapper_tag = :div
+  config.wrapper_tag = :div
 
   # CSS class to add to all wrapper tags.
-  # config.wrapper_class = :input
+  config.wrapper_class = 'form-group'
 
   # CSS class to add to the wrapper if the field has errors.
   # config.wrapper_error_class = :field_with_errors
@@ -41,7 +41,7 @@ SimpleForm.setup do |config|
   # config.collection_wrapper_tag = nil
 
   # You can wrap each item in a collection of radio/check boxes with a tag, defaulting to span.
-  # config.item_wrapper_tag = :span
+  # config.item_wrapper_tag = :div
 
   # Series of attempts to detect a default label method for collection.
   # config.collection_label_methods = [ :to_label, :name, :title, :to_s ]
@@ -90,4 +90,8 @@ SimpleForm.setup do |config|
 
   # When false, do not use translations for labels, hints or placeholders.
   # config.translate = true
+
+  # config.form_class = "form-horizontal"
+  config.label_class = "control-label"
+  # config.input_class = "form-control" #not yet supported
 end
