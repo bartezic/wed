@@ -9,11 +9,11 @@ class AdminUser < ActiveRecord::Base
   has_attached_file :avatar,
     :styles => { 
       :thumb_100 => ['100x100#', :jpg],
-      :thumb_250 => ['250x250#', :jpg]
+      :thumb_220 => ['220x220#', :jpg]
     },
     :convert_options => { 
       :thumb_100 => "-interlace Plane",
-      :thumb_250 => "-interlace Plane"
+      :thumb_220 => "-interlace Plane"
     },
     :default_url => "/assets/ph/:attachment_:style.gif", 
     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",

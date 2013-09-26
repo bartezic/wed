@@ -5,10 +5,10 @@
   = @partner.name
 %p
   %b Description:
-  = @partner.description
+  = raw @partner.description
 %p
   %b Info:
-  = @partner.info
+  = raw @partner.info
 %p
   %b Price:
   = @partner.price
@@ -35,7 +35,7 @@
   = @partner.premium_to
 %p
   %b Cover:
-  = image_tag @partner.avatar(:thumb_250)
+  = image_tag @partner.avatar(:thumb_220)
 %p
   %b Rating:
   = @partner.rating

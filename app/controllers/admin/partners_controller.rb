@@ -62,7 +62,77 @@ module Admin
       end
     end
 
+    # GET /desks/import
+    def import
+      locale = I18n.locale
+      I18n.locale = :uk
+      categories = Category.all
+      {'Фотографи' => 'photographer'}.each do |key, val|
+        url = "http://odnalubov.com/#{val}"
+        res = RestClient.get(url)
+
+        category_ids = categories.map{ |i| i.id if i.name == key}
+        
+        Nokogiri::HTML.parse(res,nil,'windows-1251').xpath("//ul[@id='applications']/li/a").first(5).each do |person|
+          href = person.attributes['href'].to_s
+          res1 = RestClient.get(make_absolute(href, url))
+          avatar = "http://odnalubov.com/userprofile/avatars/#{href}.jpg"
+          videos = "http://odnalubov.com/userprofile/videos/#{href}/playlist.txt"
+          photos = RestClient.get("http://odnalubov.com/userprofile/manage_profile/get_photos.php?user_id=#{href}&start=")
+          if !JSON.parse(photos)['nextStart'].empty?
+            photos = RestClient.get("http://odnalubov.com/userprofile/manage_profile/get_photos.php?user_id=#{href}&start=#{JSON.parse(photos)['nextStart']}")
+          end
+          photos = JSON.parse(photos)['files'].map{ |p| "http://odnalubov.com/userprofile/photos/1170790/#{p}"}
+          content = Nokogiri::HTML.parse(res1,nil,'windows-1251').xpath("//td[@class='main-bg']/table")
+          if content
+            price = content[2].search("//span[@class='fs15px']").first.content.strip
+            name = content[2].search("//td/span/font[@face='Tahoma']").first.content.strip.gsub(/[\r\n]+/, '<br>')
+            description = content[2].css("td span").last.content.strip.gsub(/[\r\n]+/, '<br>')
+            #callendar = content[4]
+            info = content.xpath("//td[@class='serch33']").first
+            info = info.content.strip.gsub(/[\r\n]+/, '<br>') if info
+            I18n.locale = :uk
+            temp = Partner.new(
+              name: name, 
+              description: description, 
+              info: info, 
+              price: price, 
+              active: true, 
+              category_ids: category_ids, 
+              avatar_remote_url: avatar,
+              email: "demo_#{Time.now.to_i}@demo.com",
+              password: 'password',
+              password_confirmation: 'password'
+            )
+            temp.save
+            I18n.locale = :ru
+            temp.update(name: translate_API(name), description: translate_API(description, 'html'), info: translate_API(info,'html'))
+          end
+        end
+      end
+
+      I18n.locale = locale
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.json { head :no_content }
+      end
+    end
+
     private
+      def translate_API(text, type = 'plain')
+        res = RestClient.post('https://translate.yandex.net/api/v1.5/tr.json/translate', { 
+          key: 'trnsl.1.1.20130628T094430Z.e271ab766a48ca42.a64b41ec92ce0dbec000a18165f1a02d3d28374e',
+          lang: 'uk-ru',
+          text: text.to_s,
+          format: type
+        })
+        JSON.parse(res)['text'][0]
+      end
+
+      def make_absolute( href, root )
+        URI.parse(root).merge(URI.parse(href)).to_s
+      end
+
       # Use callbacks to share common setup or constraints between actions.
       def set_partner
         @partner = Partner.friendly.find(params[:id])
@@ -73,8 +143,8 @@ module Admin
         params.require(:partner).permit(
           :name, :description, :info, :price, :location_id, 
           :site, :email, :phone, :active, :premium, :premium_to, 
-          :avatar, :rating, :slug, :password, :password_confirmation, 
-          :category_ids => [], :location_ids => []
+          :avatar, :rating, :slug, :password, :password_confirmation,
+          :avatar_remote_url, :category_ids => [], :location_ids => []
         )
       end
 

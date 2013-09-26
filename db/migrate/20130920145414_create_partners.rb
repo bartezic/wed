@@ -8,12 +8,12 @@ class CreatePartners < ActiveRecord::Migration
       t.references  :location, index: true
       t.string      :site
       t.string      :phone
-      t.boolean     :active
-      t.boolean     :premium
+      t.boolean     :active, default: false
+      t.boolean     :premium, default: false
       t.date        :premium_to
       t.attachment  :avatar
       t.string      :avatar_remote_url
-      t.integer     :rating
+      t.integer     :rating, default: 0
       t.string      :slug
 
       # Database authenticatable
