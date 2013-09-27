@@ -1,0 +1,12 @@
+= simple_form_for([:admin, @gallery]) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :name
+    = f.input :description
+    = f.input :rating
+    = f.association :partner
+    = f.input :slug
+
+  .actions
+    = f.button :submit

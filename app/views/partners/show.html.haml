@@ -35,7 +35,7 @@
   = @partner.premium_to
 %p
   %b Cover:
-  = image_tag @partner.avatar(:thumb_250)
+  = image_tag @partner.avatar(:thumb_220)
 %p
   %b Rating:
   = @partner.rating
@@ -45,6 +45,13 @@
 %p
   %b Slug:
   = @partner.slug
+%p
+  %b Galleries:
+  - @partner.galleries.each do |gallery|
+    %p
+      = gallery.name
+      - gallery.photos.each do |photo|
+        = link_to image_tag(photo.asset(:thumb_150)), photo.asset(:original)
 
 = link_to 'Edit', edit_admin_partner_path(@partner)
 \|

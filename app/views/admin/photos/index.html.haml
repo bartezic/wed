@@ -1,0 +1,24 @@
+%h1 Listing photos
+
+.table-responsive
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Asset
+        %th Rating
+        %th Gallery
+        %th Actions
+    %tbody
+      - @photos.each do |photo|
+        %tr
+          %td= image_tag photo.asset(:thumb_150)
+          %td= photo.rating
+          %td= link_to(photo.gallery.name, [:admin, photo.gallery]) if photo.gallery
+          %td
+            = link_to 'Show', [:admin, photo]
+            = link_to 'Edit', edit_admin_photo_path(photo)
+            = link_to 'Destroy', [:admin, photo], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Photo', new_admin_photo_path

@@ -1,54 +1,90 @@
-class PartnersController < InheritedResources::Base 
+class PartnersController < ApplicationController
+  before_action :set_partner, only: [:show, :edit, :update, :destroy]
+
+  # GET /desks
+  # GET /desks.json
+  def index
+    @partners = Partner.all
+  end
+
+  # GET /desks/1
+  # GET /desks/1.json
   def show
-    @partner = Partner.friendly.find(params[:id])
   end
 
+  # GET /desks/new
+  def new
+    @partner = Partner.new
+  end
+
+  # GET /desks/1/edit
   def edit
-    @partner = Partner.friendly.find(params[:id])
   end
 
-  def update
-    @partner = Partner.friendly.find(params[:id])
-    update_translations
-    redirect_to [:admin, @partner]
-  end
-
+  # POST /desks
+  # POST /desks.json
   def create
-    @partner = Partner.create(partner_params)
-    @partner.save
-    update_translations
-    redirect_to [:admin, @partner]
-  end
-
-  def destroy
-    @partner = Partner.friendly.find(params[:id])
-    @partner.destroy
+    @partner = Partner.new(partner_params)
 
     respond_to do |format|
-      format.html { redirect_to admin_partners_path }
+      if @partner.save && update_translations
+        format.html { redirect_to @partner, notice: 'Partner was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @partner }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @partner.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /desks/1
+  # PATCH/PUT /desks/1.json
+  def update
+    respond_to do |format|
+      if @partner.update(partner_params) && update_translations
+        format.html { redirect_to @partner, notice: 'Partner was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @partner.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /desks/1
+  # DELETE /desks/1.json
+  def destroy
+    @partner.destroy
+    respond_to do |format|
+      format.html { redirect_to partners_url }
       format.json { head :no_content }
     end
   end
 
   private
-
-  def partner_params
-    params[:partner].permit(
-      :name, :description, :info, :price, :location_id, 
-      :site, :email, :phone, :active, :premium, :premium_to, 
-      :avatar, :rating, :encrypted_password, :slug
-    )
-  end
-
-  def update_translations
-    params[:partner][:translations].values.each do |translation|
-      I18n.locale = translation['locale'].to_sym
-      @partner.update({
-        name: translation['name'],
-        description: translation['description'],
-        info: translation['info'],
-        encrypted_password: translation['encrypted_password']
-      })
+    # Use callbacks to share common setup or constraints between actions.
+    def set_partner
+      @partner = Partner.friendly.find(params[:id])
     end
-  end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def partner_params
+      params.require(:partner).permit(
+        :name, :description, :info, :price, :location_id, 
+        :site, :email, :phone, :active, :premium, :premium_to, 
+        :avatar, :rating, :slug, :password, :password_confirmation,
+        :avatar_remote_url, :category_ids => [], :location_ids => []
+      )
+    end
+
+    def update_translations
+      params[:partner][:translations].values.each do |translation|
+        I18n.locale = translation['locale'].to_sym
+        @partner.update({
+          name: translation['name'],
+          description: translation['description'],
+          info: translation['info']
+        })
+      end
+    end
 end

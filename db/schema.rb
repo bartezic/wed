@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924104538) do
+ActiveRecord::Schema.define(version: 20130927152102) do
 
   create_table "admin_user_translations", force: true do |t|
     t.integer  "admin_user_id", null: false
@@ -77,6 +77,44 @@ ActiveRecord::Schema.define(version: 20130924104538) do
 
   add_index "category_translations", ["category_id"], name: "index_category_translations_on_category_id", using: :btree
   add_index "category_translations", ["locale"], name: "index_category_translations_on_locale", using: :btree
+
+  create_table "days", force: true do |t|
+    t.date     "day_of_life"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "days_partners", id: false, force: true do |t|
+    t.integer "partner_id", null: false
+    t.integer "day_id",     null: false
+  end
+
+  add_index "days_partners", ["partner_id", "day_id"], name: "index_days_partners_on_partner_id_and_day_id", using: :btree
+
+  create_table "galleries", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "rating"
+    t.integer  "partner_id"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "galleries", ["partner_id"], name: "index_galleries_on_partner_id", using: :btree
+  add_index "galleries", ["slug"], name: "index_galleries_on_slug", unique: true, using: :btree
+
+  create_table "gallery_translations", force: true do |t|
+    t.integer  "gallery_id",  null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.text     "description"
+  end
+
+  add_index "gallery_translations", ["gallery_id"], name: "index_gallery_translations_on_gallery_id", using: :btree
+  add_index "gallery_translations", ["locale"], name: "index_gallery_translations_on_locale", using: :btree
 
   create_table "location_translations", force: true do |t|
     t.integer  "location_id", null: false
@@ -155,5 +193,19 @@ ActiveRecord::Schema.define(version: 20130924104538) do
   add_index "partners", ["location_id"], name: "index_partners_on_location_id", using: :btree
   add_index "partners", ["reset_password_token"], name: "index_partners_on_reset_password_token", unique: true, using: :btree
   add_index "partners", ["slug"], name: "index_partners_on_slug", unique: true, using: :btree
+
+  create_table "photos", force: true do |t|
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.string   "asset_remote_url"
+    t.integer  "rating"
+    t.integer  "gallery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photos", ["gallery_id"], name: "index_photos_on_gallery_id", using: :btree
 
 end

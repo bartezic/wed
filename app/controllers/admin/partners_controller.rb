@@ -66,31 +66,52 @@ module Admin
     def import
       locale = I18n.locale
       I18n.locale = :uk
-      categories = Category.all
-      {'Фотографи' => 'photographer'}.each do |key, val|
+      cats = Category.all
+      {
+        'Фотографи' => 'photographer',
+        'Відеозйомка' => 'videos',
+        'Ведучі' => 'leading',
+        'Музиканти' => 'musicians',
+        'Артисти' => 'singersandbands',
+        'Шоу-програма' => 'showprogram',
+        'Візажисти' => 'makeup',
+        'Координатори' => 'coordinator',
+        'Флористика' => 'floral',
+        'Декорування' => 'decorators',
+        'Виїзна церемонія' => 'bceremony',
+        'Кейтерінг' => 'catering'
+      }.each do |key, val|
         url = "http://odnalubov.com/#{val}"
         res = RestClient.get(url)
-
-        category_ids = categories.map{ |i| i.id if i.name == key}
-        
-        Nokogiri::HTML.parse(res,nil,'windows-1251').xpath("//ul[@id='applications']/li/a").first(5).each do |person|
+        Nokogiri::HTML.parse(res,nil,'windows-1251').xpath("//ul[@id='applications']/li/a").each do |person|
           href = person.attributes['href'].to_s
           res1 = RestClient.get(make_absolute(href, url))
-          avatar = "http://odnalubov.com/userprofile/avatars/#{href}.jpg"
-          videos = "http://odnalubov.com/userprofile/videos/#{href}/playlist.txt"
+          avatar = "http://odnalubov.com/userprofile/avatars#{href}.jpg"
+          videos = "http://odnalubov.com/userprofile/videos#{href}/playlist.txt"
           photos = RestClient.get("http://odnalubov.com/userprofile/manage_profile/get_photos.php?user_id=#{href}&start=")
           if !JSON.parse(photos)['nextStart'].empty?
             photos = RestClient.get("http://odnalubov.com/userprofile/manage_profile/get_photos.php?user_id=#{href}&start=#{JSON.parse(photos)['nextStart']}")
           end
-          photos = JSON.parse(photos)['files'].map{ |p| "http://odnalubov.com/userprofile/photos/1170790/#{p}"}
+          photos = JSON.parse(photos)['files'].map{ |p| { asset_remote_url: "http://odnalubov.com/userprofile/photos#{href}/#{p}" }}
+          p photos
           content = Nokogiri::HTML.parse(res1,nil,'windows-1251').xpath("//td[@class='main-bg']/table")
           if content
             price = content[2].search("//span[@class='fs15px']").first.content.strip
             name = content[2].search("//td/span/font[@face='Tahoma']").first.content.strip.gsub(/[\r\n]+/, '<br>')
             description = content[2].css("td span").last.content.strip.gsub(/[\r\n]+/, '<br>')
-            #callendar = content[4]
+            
+            # days
+            day_ids = []
+            content[4].css('td.cal1').each_with_index do |month, index|
+              arr = month.css('span').last.content.gsub(/[^\d]/, ',').split(',')
+              arr.delete('')
+              day_ids << Day.where(day_of_life: arr.map { |e| "2013-#{index+1}-#{e}" }).pluck(:id)
+            end
+
+            # info
             info = content.xpath("//td[@class='serch33']").first
             info = info.content.strip.gsub(/[\r\n]+/, '<br>') if info
+            
             I18n.locale = :uk
             temp = Partner.new(
               name: name, 
@@ -98,15 +119,25 @@ module Admin
               info: info, 
               price: price, 
               active: true, 
-              category_ids: category_ids, 
+              day_ids: day_ids.flatten,
+              category_ids: cats.map{ |i| i.id if i.name == key },
               avatar_remote_url: avatar,
               email: "demo_#{Time.now.to_i}@demo.com",
+              galleries_attributes: [{
+                name: "demo_#{Time.now.to_i}_gallery",
+                photos_attributes: photos
+              }],
               password: 'password',
               password_confirmation: 'password'
             )
             temp.save
+
             I18n.locale = :ru
-            temp.update(name: translate_API(name), description: translate_API(description, 'html'), info: translate_API(info,'html'))
+            temp.update(
+              name: translate_API(name), 
+              description: translate_API(description, 'html'), 
+              info: translate_API(info,'html')
+            )
           end
         end
       end

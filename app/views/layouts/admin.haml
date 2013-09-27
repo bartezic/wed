@@ -40,6 +40,10 @@
                 %a{href: admin_categories_path} Categories
               %li{class: request.path == admin_locations_path && 'active'}
                 %a{href: admin_locations_path} Locations
+              %li{class: request.path == admin_galleries_path && 'active'}
+                %a{href: admin_galleries_path} Galleries
+              %li{class: request.path == admin_photos_path && 'active'}
+                %a{href: admin_photos_path} Photos
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}

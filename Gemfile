@@ -49,7 +49,6 @@ gem 'devise'
 gem 'simple_form'
 gem "haml-rails"
 gem 'paperclip'
-gem 'inherited_resources'
 gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails',
                               github: 'anjlab/bootstrap-rails',
                               branch: '3.0.0'

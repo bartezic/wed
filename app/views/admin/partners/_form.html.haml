@@ -25,6 +25,7 @@
       = f.association :location,        input_html: { class: 'form-control' }
       = f.association :locations,       input_html: { class: 'form-control' }
       = f.association :categories,      input_html: { class: 'form-control' }
+      = f.association :days,            input_html: { class: 'form-control' }
 
     .col-lg-6
       = f.input :slug,                  input_html: { class: 'form-control' }
@@ -35,7 +36,7 @@
       = f.input :premium
       = f.input :premium_to
       = f.input :rating,                input_html: { class: 'form-control' }
-      = f.input :password,              input_html: { class: 'form-control' }
-      = f.input :password_confirmation, input_html: { class: 'form-control' }
+      /= f.input :password,              input_html: { class: 'form-control' }
+      /= f.input :password_confirmation, input_html: { class: 'form-control' }
 
   = f.button :submit, class: 'btn btn-primary'

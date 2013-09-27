@@ -4,14 +4,18 @@ Wed::Application.routes.draw do
       get 'import', on: :collection
     end
     resources :partners, concerns: :importable
-    resources :locations
     resources :categories, concerns: :importable
+    resources :locations
+    resources :photos
+    resources :galleries
     resources :admin_users
     root 'static#home'
   end
 
   resources :categories, path: :posluhy, only: [:show]
   resources :partners
+  resources :photos
+  resources :galleries
 
   devise_for :admin_users, path: :admin_auth
   devise_for :partners, path: :auth

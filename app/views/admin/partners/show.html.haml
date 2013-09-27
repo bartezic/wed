@@ -9,12 +9,30 @@
 %p
   %b Info:
   = raw @partner.info
+
+- if @partner.categories.any?
+  %p
+    %b Категорія:
+    = raw @partner.categories.map{ |e| link_to(e.name, e) }.join(', ')
+
+- if @partner.locations.any?
+  %p
+    %b Працює у:
+    = raw @partner.locations.map{ |e| link_to(e.name, e) }.join(', ')
+
+- if @partner.location
+  %p
+    %b Живе у:
+    = link_to @partner.location.name, @partner.location
+
+- if @partner.days.any?
+  %p 
+    %b Календар зайнятих дат:
+  = raw full_year_callendar(@partner.calendar)
+
 %p
   %b Price:
   = @partner.price
-%p
-  %b Location:
-  = @partner.location_id
 %p
   %b Site:
   = @partner.site
@@ -40,11 +58,15 @@
   %b Rating:
   = @partner.rating
 %p
-  %b Encrypted password:
-  = @partner.encrypted_password
-%p
   %b Slug:
   = @partner.slug
+%p
+  %b Galleries:
+  - @partner.galleries.each do |gallery|
+    %p
+      = gallery.name
+      - gallery.photos.each do |photo|
+        = link_to image_tag(photo.asset(:thumb_150)), photo.asset(:original)
 
 = link_to 'Edit', edit_admin_partner_path(@partner)
 \|
