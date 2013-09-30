@@ -1,4 +1,8 @@
 ru:
+  login_form:
+    title: 'Форма входа'
+    partner: Партнер
+    admin: Админ
   translation:
     ru: Русский
     uk: Украинский

@@ -13,7 +13,7 @@ class Photo < ActiveRecord::Base
     :url => "/system/:attachment/:id/:style/:filename"
 
   before_save :upload_asset_from_remote_url
-  # before_save :change_file_name
+  before_save :change_file_name
 
   def upload_asset_from_remote_url
     self.asset = open(asset_remote_url) if asset_remote_url.present?
@@ -21,15 +21,12 @@ class Photo < ActiveRecord::Base
   rescue OpenURI::HTTPError
   end
 
-  def normalize_friendly_id(input)
-    input.to_s.to_slug.normalize(transliterations: :ukrainian).to_s
+  def change_file_name
+    gal = self.gallery
+    part = gal.partner
+    p gal.inspect
+    p part.inspect
+    extension = File.extname(asset_remote_url.present? ? asset_remote_url : asset_file_name).gsub(/^\.+/, '')
+    asset.instance_write(:file_name, "#{gal ? gal.slug : 'portfolio'}.#{extension}")
   end
-
-  # def change_file_name
-  #   cat = self.categories.first
-  #   extension = File.extname(avatar_remote_url.present? ? avatar_remote_url : avatar_file_name).gsub(/^\.+/, '')
-  #   name = self.name.to_slug.normalize(transliterations: :ukrainian).to_s
-  #   name = "#{name}_#{cat.slug}" if cat
-  #   avatar.instance_write(:file_name, "#{name}.#{extension}")
-  # end
 end

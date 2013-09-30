@@ -3,13 +3,13 @@
     .modal-content
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
-        %h4.modal-title Login
+        %h4.modal-title= t 'login_form.title'
       .modal-body
         %ul#myTab.nav.nav-tabs
           %li.active
-            %a{href: "#partner"} Партнер
+            %a{href: "#partner"}= t 'login_form.partner'
           %li
-            %a{href: "#admin"} Адмін
+            %a{href: "#admin"}= t 'login_form.admin'
         .tab-content
           #partner.tab-pane.active
             = simple_form_for(Partner.new, as: :partner, url: session_path(:partner), html: {class: '', role: :form}) do |f|
