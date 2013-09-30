@@ -1,10 +1,7 @@
 Wed::Application.routes.draw do
   namespace :admin do
-    concern :importable do
-      get 'import', on: :collection
-    end
-    resources :partners, concerns: :importable
-    resources :categories, concerns: :importable
+    resources :partners
+    resources :categories
     resources :locations
     resources :photos
     resources :galleries

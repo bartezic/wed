@@ -62,34 +62,6 @@ module Admin
       end
     end
 
-    # GET /desks/import
-    def import
-      res = RestClient.get('http://odnalubov.com/')
-      locale = I18n.locale
-      Nokogiri::HTML.parse(res,nil,'windows-1251').xpath("//div[@id='navigation']/ul/li/a[@class='side']").each do |cat|
-        slug = cat.attributes['href'].to_s
-        uk = cat.search('span').last.content.to_s
-        res = RestClient.post('https://translate.yandex.net/api/v1.5/tr.json/translate', { 
-          key: 'trnsl.1.1.20130628T094430Z.e271ab766a48ca42.a64b41ec92ce0dbec000a18165f1a02d3d28374e',
-          lang: 'uk-ru',
-          text: uk.to_s,
-          format: 'plain'
-        })
-        ru = JSON.parse(res)['text'][0]
-        
-        I18n.locale = :uk
-        temp = Category.new(name: uk, name_sing: uk)
-        temp.save
-        I18n.locale = :ru
-        temp.update(name: ru, name_sing: ru)
-      end
-      I18n.locale = locale
-      respond_to do |format|
-        format.html { redirect_to :back }
-        format.json { head :no_content }
-      end
-    end
-
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_category

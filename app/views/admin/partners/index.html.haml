@@ -4,6 +4,7 @@
   %table.table.table-bordered.table-striped
     %thead
       %tr
+        %th ID
         %th Name
         %th Cover
         %th Description
@@ -19,6 +20,7 @@
     %tbody
       - @partners.each do |partner|
         %tr{ class: partner.premium && 'warning' }
+          %td= partner.id
           %td= partner.name
           %td= image_tag partner.avatar(:thumb_100)
           %td= partner.description && partner.description.truncate(30)
@@ -38,4 +40,3 @@
 %br
 
 = link_to 'New Partner', new_admin_partner_path
-= link_to 'Import from odna lubov', import_admin_partners_path

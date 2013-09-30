@@ -17,3 +17,5 @@
 
 Ignore paperclip images
 /public/system
+
+/config/database.yml
