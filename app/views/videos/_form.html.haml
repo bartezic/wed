@@ -1,0 +1,13 @@
+= simple_form_for(@video) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :name
+    = f.input :description
+    = f.input :asset
+    = f.input :asset_remote_url
+    = f.input :rating
+    = f.association :partner
+
+  .actions
+    = f.button :submit

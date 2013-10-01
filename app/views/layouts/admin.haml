@@ -29,7 +29,7 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            %a.navbar-brand{href: "/"} Project name
+            %a.navbar-brand{href: "/"} Logo
           .navbar-collapse.collapse
             %ul.nav.navbar-nav
               %li{class: request.path == admin_admin_users_path && 'active'}
@@ -44,6 +44,8 @@
                 %a{href: admin_galleries_path} Galleries
               %li{class: request.path == admin_photos_path && 'active'}
                 %a{href: admin_photos_path} Photos
+              %li{class: request.path == admin_videos_path && 'active'}
+                %a{href: admin_videos_path} Videos
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}

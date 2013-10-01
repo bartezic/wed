@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130927152102) do
+ActiveRecord::Schema.define(version: 20131001085051) do
 
   create_table "admin_user_translations", force: true do |t|
     t.integer  "admin_user_id", null: false
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20130927152102) do
   create_table "galleries", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "rating",      default: 0
+    t.integer  "rating"
     t.integer  "partner_id"
     t.string   "slug"
     t.datetime "created_at"
@@ -165,22 +165,22 @@ ActiveRecord::Schema.define(version: 20130927152102) do
     t.integer  "location_id"
     t.string   "site"
     t.string   "phone"
-    t.boolean  "active",                 default: false
-    t.boolean  "premium",                default: false
+    t.boolean  "active"
+    t.boolean  "premium"
     t.date     "premium_to"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "avatar_remote_url"
-    t.integer  "rating",                 default: 0
+    t.integer  "rating"
     t.string   "slug"
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -200,12 +200,40 @@ ActiveRecord::Schema.define(version: 20130927152102) do
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
     t.string   "asset_remote_url"
-    t.integer  "rating",             default: 0
+    t.integer  "rating"
     t.integer  "gallery_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "photos", ["gallery_id"], name: "index_photos_on_gallery_id", using: :btree
+
+  create_table "video_translations", force: true do |t|
+    t.integer  "video_id",    null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.text     "description"
+  end
+
+  add_index "video_translations", ["locale"], name: "index_video_translations_on_locale", using: :btree
+  add_index "video_translations", ["video_id"], name: "index_video_translations_on_video_id", using: :btree
+
+  create_table "videos", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.string   "asset_remote_url"
+    t.integer  "rating",             default: 0
+    t.integer  "partner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "videos", ["partner_id"], name: "index_videos_on_partner_id", using: :btree
 
 end

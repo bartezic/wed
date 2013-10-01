@@ -4,6 +4,7 @@ Wed::Application.routes.draw do
     resources :categories
     resources :locations
     resources :photos
+    resources :videos
     resources :galleries
     resources :admin_users
     root 'static#home'
@@ -12,6 +13,7 @@ Wed::Application.routes.draw do
   resources :categories, path: :posluhy, only: [:show]
   resources :partners
   resources :photos
+  resources :videos
   resources :galleries
 
   devise_for :admin_users, path: :admin_auth
