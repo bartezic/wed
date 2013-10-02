@@ -58,6 +58,7 @@ gem 'globalize3', github: 'svenfuchs/globalize3', branch: 'rails4'
 gem 'paper_trail', github: 'airblade/paper_trail', branch: 'master'
 gem 'friendly_id', '5.0.0.beta4'
 gem 'babosa'
+gem 'kaminari'
 
 # For importing
 gem 'rest-client'

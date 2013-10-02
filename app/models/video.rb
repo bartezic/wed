@@ -6,7 +6,6 @@ class Video < ActiveRecord::Base
     :styles => {
       :medium_mp4 => { :geometry => "640x480", :format => 'mp4' },
       :medium_webm => { :geometry => "640x480", :format => 'webm' },
-      :medium_ogg => { :geometry => "640x480", :format => 'ogg' },
       :thumb => { :geometry => "100x100#", :format => 'jpg', :time => 10 }
     }, 
     :default_url => "/assets/ph/:attachment_:style.gif", 

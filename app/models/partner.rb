@@ -8,7 +8,7 @@ class Partner < ActiveRecord::Base
   has_and_belongs_to_many :days,       :join_table => :days_partners
 
   accepts_nested_attributes_for :galleries
-
+  paginates_per 36
   translates :name, :description, :info
   
   devise :database_authenticatable, 

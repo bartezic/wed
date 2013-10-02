@@ -62,7 +62,7 @@
         .row
           .col-md-3
             %ul.nav.nav-pills.nav-stacked
-              - Category.all.each do |category|
+              - Category.includes(:translations).each do |category|
                 %li= link_to raw("#{category.name} <span class='badge pull-right'>#{category.partners.count}</span>"), category
           .col-md-9
             = yield
