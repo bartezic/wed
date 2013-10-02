@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require twitter/bootstrap
+//= require photobox
 //= require_tree .
 
 function ready () {
@@ -21,6 +22,10 @@ function ready () {
     e.preventDefault()
     $(this).tab('show')
   })
+  var galleries = $('.gallery');
+  if(galleries.length){
+    galleries.photobox('a');
+  }
 };
 
 $(document).ready(ready);
