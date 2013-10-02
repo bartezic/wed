@@ -64,7 +64,7 @@
 	#pbOverlay.hide .wrapper > *{ transform:scale(1.2); -webkit-transform:scale(1.2); transform:none\9; opacity:0; -webkit-transition:.4s ease-in; -ms-transition:.4s ease-in; transition:.4s ease-in; }
 
 /*-- close button --*/
-#pbCloseBtn, #pbAutoplayBtn{ position:absolute; top:-50px; right:-50px; z-index:999; display:block; padding:0 0 20px 20px; text-align:center; cursor:pointer; color:#FFF; transition:.3s .3s ease-out; -webkit-transition:.2s .3s ease-out; }
+#pbCloseBtn, #pbAutoplayBtn{ position:absolute; top:-50px; right:-50px; z-index:999; display:block; padding:0 0 20px 20px; text-align:center; cursor:pointer; color:#FFF; transition:.3s .3s ease-out; -webkit-transition:.2s .3s ease-out;}
 .hide #pbCloseBtn{ top:-50px; right:-50px; }
 .on #pbCloseBtn{ top:-2px; right:-2px; }
 
