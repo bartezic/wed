@@ -19,6 +19,16 @@ module ApplicationHelper
     end
     p << '</tbody></table>'  
   end
+
+  def get_video_link(video)
+    if video.link.include? 'youtube'
+      "http://www.youtube.com/embed/#{video.link.split('=').last}"
+    elsif video.link.include? 'youtu.be'
+      "http://www.youtube.com/embed/#{video.link.split('/').last}"
+    elsif video.link.include? 'vimeo'
+      "http://player.vimeo.com/video/#{video.link.split('/').last}"
+    end
+  end
 end
 
 module ActionView

@@ -8,14 +8,24 @@
   = @video.description
 %p
   %b Asset:
-  = @video.asset
+  = image_tag @video.cover(:original)
 %p
   %b Rating:
   = @video.rating
-%p
-  %b Partner:
-  = @video.partner
 
+- if @video.partner
+  %p
+    %b Partner:
+    = link_to @video.partner.name, @video.partner
+
+- if @video.link
+  %p 
+    - if @video.link.include? 'youtube'
+      %iframe{:allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "0", :height => "430", :src => "http://www.youtube.com/embed/#{@video.link.split('=').last}", :title => "YouTube video player", :width => "640"}
+    - elsif @video.link.include? 'youtu.be'
+      %iframe{:allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "0", :height => "430", :src => "http://www.youtube.com/embed/#{@video.link.split('/').last}", :title => "YouTube video player", :width => "640"}
+    - elsif @video.link.include? 'vimeo'
+      %iframe{ src: "//player.vimeo.com/video/#{@video.link.split('/').last}", width: 700, height: 381, frameborder: 0, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true}
 = link_to 'Edit', edit_admin_video_path(@video)
 \|
 = link_to 'Back', admin_videos_path

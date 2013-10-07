@@ -5,7 +5,7 @@ module Admin
     # GET /photos
     # GET /photos.json
     def index
-      @photos = Photo.includes(gallery: :translations).page params[:page]
+      @photos = Photo.includes(gallery: :translations).page(params[:page])
     end
 
     # GET /photos/1

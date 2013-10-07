@@ -2,6 +2,7 @@ class Partner < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
   belongs_to :location
+  has_many :videos
   has_many :galleries
   has_and_belongs_to_many :locations,  :join_table => :locations_partners
   has_and_belongs_to_many :categories, :join_table => :categories_partners

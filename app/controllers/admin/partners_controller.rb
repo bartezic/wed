@@ -5,7 +5,7 @@ module Admin
     # GET /desks
     # GET /desks.json
     def index
-      @partners = Partner.all
+      @partners = Partner.includes(:translations).page(params[:page]).per(25)
     end
 
     # GET /desks/1

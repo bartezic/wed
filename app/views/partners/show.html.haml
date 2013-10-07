@@ -62,6 +62,11 @@
       %div.gallery
         - gallery.photos.each do |photo|
           = link_to image_tag(photo.asset(:thumb_150)), photo.asset(:original)
+  %dt Відео
+  %dd.gallery
+    - @partner.videos.each do |video|
+      - if video.link
+        %span.video= link_to image_tag(video.cover(:thumb_150), { alt: video.name }), get_video_link(video), {rel: 'video'}
 
 = link_to 'Edit', edit_admin_partner_path(@partner)
 \|

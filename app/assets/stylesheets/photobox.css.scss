@@ -10,7 +10,7 @@
 	transition:opacity 300ms ease;
 }
 #pbOverlay.msie{ background-color:rgba(0,0,0,.6); }
-#pbOverlay.msie.pbLoading .wrapper{ background:url('../images/loading.gif') no-repeat center center; }
+#pbOverlay.msie.pbLoading .wrapper{ background:url('loading.gif') no-repeat center center; }
 
 @keyframes pbLoaderFrames{ 50%{ height:5px; } }
 @-webkit-keyframes pbLoaderFrames{ 50%{ height:5px; } }
@@ -64,13 +64,31 @@
 	#pbOverlay.hide .wrapper > *{ transform:scale(1.2); -webkit-transform:scale(1.2); transform:none\9; opacity:0; -webkit-transition:.4s ease-in; -ms-transition:.4s ease-in; transition:.4s ease-in; }
 
 /*-- close button --*/
-#pbCloseBtn, #pbAutoplayBtn{ position:absolute; top:-50px; right:-50px; z-index:999; display:block; padding:0 0 20px 20px; text-align:center; cursor:pointer; color:#FFF; transition:.3s .3s ease-out; -webkit-transition:.2s .3s ease-out;}
+#pbCloseBtn, #pbAutoplayBtn{ position:absolute; top:-50px; right:-50px; z-index:999; display:block; padding:0 0 20px 20px; text-align:center; cursor:pointer; color:#FFF; transition:.3s .3s ease-out; -webkit-transition:.2s .3s ease-out; }
 .hide #pbCloseBtn{ top:-50px; right:-50px; }
 .on #pbCloseBtn{ top:-2px; right:-2px; }
 
 #pbCloseBtn:before{ content:'\00D7'; font-weight:bold; }
-#pbCloseBtn:before, #pbAutoplayBtn:before{ display:inline-block; height:35px; width:35px; padding:8px 8px 12px 12px; font-size:2em; opacity:0.8; line-height:.7; vertical-align:middle; background:rgba(255,255,255,0.2); border-radius:0 0 0 70px; transition:0.1s ease-out; -webkit-transition:0.1s ease-out; }
-#pbCloseBtn:hover:before{ padding:15px 10px 24px 24px; background:rgba(255,100,100,.4); }
+#pbCloseBtn:before, #pbAutoplayBtn:before{ 
+	display:inline-block; 
+	height:55px; 
+	width:55px; 
+	padding:8px 8px 12px 12px; 
+	font-size:2em; 
+	opacity:0.8; 
+	line-height:.7; 
+	vertical-align:middle; 
+	background:rgba(255,255,255,0.2); 
+	border-radius:0 0 0 70px; 
+	transition:0.1s ease-out; 
+	-webkit-transition:0.1s ease-out; 
+}
+#pbCloseBtn:hover:before{ 
+	height:74px; 
+	width:70px; 
+	padding:15px 10px 24px 24px; 
+	background:rgba(255,100,100,.4); 
+}
 
 /*-- autoplay controller --*/
 #pbAutoplayBtn{ display:none; right:auto; left:-50px; padding:0; width:50px; height:50px; font-size:13px; }

@@ -223,11 +223,12 @@ ActiveRecord::Schema.define(version: 20131001085051) do
   create_table "videos", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "asset_file_name"
-    t.string   "asset_content_type"
-    t.integer  "asset_file_size"
-    t.datetime "asset_updated_at"
-    t.string   "asset_remote_url"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
+    t.string   "cover_remote_url"
+    t.string   "link"
     t.integer  "rating",             default: 0
     t.integer  "partner_id"
     t.datetime "created_at"

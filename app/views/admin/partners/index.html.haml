@@ -36,7 +36,8 @@
             = link_to 'Show', [:admin, partner]
             = link_to 'Edit', edit_admin_partner_path(partner)
             = link_to 'Destroy', [:admin, partner], :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+%br
+= paginate @partners
 %br
 
 = link_to 'New Partner', new_admin_partner_path
