@@ -51,7 +51,7 @@
                     = current_partner.name
                     %b.caret
                   %ul.dropdown-menu
-                    %li= link_to 'To Cabinet', current_partner
+                    %li= link_to 'Кабінет', [:cabinet, current_partner]
                     %li= link_to 'Вийти', destroy_partner_session_path, { method: :delete }
               - else
                 %button.btn.btn-default.navbar-btn{ type: :button, data:{ toggle: :modal, target: :'#modal-login'} } Ввійти

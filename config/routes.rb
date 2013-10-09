@@ -1,6 +1,14 @@
 Wed::Application.routes.draw do
   namespace :admin do
     resources :partners
+    resources :photos
+    resources :videos
+    resources :galleries
+    root 'static#home'
+  end
+
+  namespace :cabinet do
+    resources :partners
     resources :categories
     resources :locations
     resources :photos
