@@ -1,41 +1,14 @@
 module Cabinet
   class PartnersController < BaseController
-    before_action :set_partner, only: [:show, :edit, :update, :destroy]
-
-    # GET /desks
-    # GET /desks.json
-    def index
-      @partners = Partner.includes(:translations).page(params[:page]).per(25)
-    end
+    before_action :set_partner, only: [:show, :edit, :update]
 
     # GET /desks/1
     # GET /desks/1.json
     def show
     end
 
-    # GET /desks/new
-    def new
-      @partner = Partner.new
-    end
-
     # GET /desks/1/edit
     def edit
-    end
-
-    # POST /desks
-    # POST /desks.json
-    def create
-      @partner = Partner.new(partner_params)
-
-      respond_to do |format|
-        if @partner.save && update_translations
-          format.html { redirect_to [:cabinet, @partner], notice: 'Partner was successfully created.' }
-          format.json { render action: 'show', status: :created, location: @partner }
-        else
-          format.html { render action: 'new' }
-          format.json { render json: @partner.errors, status: :unprocessable_entity }
-        end
-      end
     end
 
     # PATCH/PUT /desks/1
@@ -52,20 +25,10 @@ module Cabinet
       end
     end
 
-    # DELETE /desks/1
-    # DELETE /desks/1.json
-    def destroy
-      @partner.destroy
-      respond_to do |format|
-        format.html { redirect_to cabinet_partners_url }
-        format.json { head :no_content }
-      end
-    end
-
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_partner
-        @partner = Partner.friendly.find(params[:id])
+        @partner = current_partner
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.

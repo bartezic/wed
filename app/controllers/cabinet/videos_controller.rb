@@ -25,7 +25,7 @@ module Cabinet
     # POST /videos
     # POST /videos.json
     def create
-      @video = Video.new(video_params)
+      @video = current_partner.videos.build(video_params)
 
       respond_to do |format|
         if @video.save && update_translations
@@ -70,7 +70,7 @@ module Cabinet
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def video_params
-        params.require(:video).permit(:name, :description, :cover, :cover_remote_url, :link, :rating, :partner_id)
+        params.require(:video).permit(:name, :description :link)
       end
 
       def update_translations

@@ -19,15 +19,15 @@
 
   - if @partner.categories.any?
     %dt Категорія
-    %dd= raw @partner.categories.map{ |e| link_to(e.name, [:cabinet,e]) }.join(', ')
+    %dd= raw @partner.categories.map{ |e| link_to(e.name, e) }.join(', ')
   
   - if @partner.location 
     %dt Живе
-    %dd= link_to @partner.location.name, [:cabinet, @partner.location]
+    %dd= link_to @partner.location.name, @partner.location
   
   - if @partner.locations.any?
     %dt Працює
-    %dd= raw @partner.locations.map{ |e| link_to(e.name, [:cabinet,e]) }.join(', ')
+    %dd= raw @partner.locations.map{ |e| link_to(e.name, e) }.join(', ')
 
   - if @partner.days.any?
     %dt Календар зайнятості
@@ -65,8 +65,7 @@
   %dt Відео
   %dd
     - @partner.videos.each do |video|
-      = link_to(image_tag(video.cover(:thumb_150), { alt: video.name }), [:cabinet, video]) if video.link
+      = link_to(image_tag(get_video_cover(video), { alt: video.name }), [:cabinet, video]) if video.link
 
 
 = link_to 'Edit', edit_cabinet_partner_path(@partner), class: 'btn btn-default' 
-= link_to 'Back', cabinet_partners_path, class: 'btn btn-default' 

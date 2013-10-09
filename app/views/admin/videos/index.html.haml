@@ -8,7 +8,6 @@
         %th Name
         %th Description
         %th Cover
-        %th cover_remote_url
         %th Rating
         %th Link
         %th Partner
@@ -19,8 +18,7 @@
           %td= video.id
           %td= video.name
           %td= video.description
-          %td= image_tag video.cover(:thumb_150)
-          %td= video.cover_remote_url
+          %td= image_tag get_video_cover(video, :medium)
           %td= video.rating
           %td= video.link
           %td= link_to(video.partner.name, [:admin, video.partner]) if video.partner

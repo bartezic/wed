@@ -25,10 +25,10 @@ module Cabinet
     # POST /galleries
     # POST /galleries.json
     def create
-      @gallery = Gallery.new(gallery_params)
+      @gallery = current_partner.galleries.build(gallery_params)
 
       respond_to do |format|
-        if @gallery.save
+        if @gallery.save && update_translations
           format.html { redirect_to [:cabinet, @gallery], notice: 'Gallery was successfully created.' }
           format.json { render action: 'show', status: :created, location: @gallery }
         else
@@ -42,7 +42,7 @@ module Cabinet
     # PATCH/PUT /galleries/1.json
     def update
       respond_to do |format|
-        if @gallery.update(gallery_params)
+        if @gallery.update(gallery_params) && update_translations
           format.html { redirect_to [:cabinet, @gallery], notice: 'Gallery was successfully updated.' }
           format.json { head :no_content }
         else
@@ -70,7 +70,17 @@ module Cabinet
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def gallery_params
-        params.require(:gallery).permit(:name, :description, :partner_id, :slug)
+        params.require(:gallery).permit(:name, :description, :rating, :slug)
+      end
+
+      def update_translations
+        params[:gallery][:translations].values.each do |translation|
+          I18n.locale = translation['locale'].to_sym
+          @gallery.update({
+            name: translation['name'],
+            description: translation['description']
+          })
+        end
       end
     end
 end

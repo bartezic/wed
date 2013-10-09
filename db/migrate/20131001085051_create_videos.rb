@@ -3,8 +3,6 @@ class CreateVideos < ActiveRecord::Migration
     create_table :videos do |t|
       t.string :name
       t.text :description
-      t.attachment :cover
-      t.string :cover_remote_url
       t.string :link
       t.integer :rating, default: 0
       t.references :partner, index: true

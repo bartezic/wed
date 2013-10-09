@@ -70,7 +70,7 @@ module Admin
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def video_params
-        params.require(:video).permit(:name, :description, :cover, :cover_remote_url, :link, :rating, :partner_id)
+        params.require(:video).permit(:name, :description, :link, :rating, :partner_id)
       end
 
       def update_translations

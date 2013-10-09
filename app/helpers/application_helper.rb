@@ -29,6 +29,34 @@ module ApplicationHelper
       "http://player.vimeo.com/video/#{video.link.split('/').last}"
     end
   end
+
+  def get_video_cover(video, size = :medium)
+    sizes = {
+      youtube: {
+        small: :default,
+        medium: :mqdefault,
+        large: :hqdefault,
+        big: :sddefault
+      },
+      vimeo: {
+        small: :thumbnail_small,
+        medium: :thumbnail_medium,
+        large: :thumbnail_large,
+        big: :thumbnail_large
+      }
+    }
+
+    if video.link.include? 'youtube'
+      "http://img.youtube.com/vi/#{video.link.split('=').last}/#{sizes[:youtube][size]}.jpg"
+      #"https://gdata.youtube.com/feeds/api/videos/#{video.link.split('=').last}?v=2&alt=jsonc"
+    elsif video.link.include? 'youtu.be'
+      "http://img.youtube.com/vi/#{video.link.split('/').last}/#{sizes[:youtube][size]}.jpg"
+      #"https://gdata.youtube.com/feeds/api/videos/#{video.link.split('/').last}?v=2&alt=jsonc"
+    elsif video.link.include? 'vimeo'
+      res = RestClient.get("http://vimeo.com/api/v2/video/#{video.link.split('/').last}.json")
+      JSON.parse(res).first[sizes[:vimeo][size].to_s]
+    end
+  end
 end
 
 module ActionView

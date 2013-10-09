@@ -7,9 +7,6 @@
   %dt Description
   %dd= @gallery.description
 
-  %dt Partner
-  %dd= link_to(@gallery.partner.name, [:cabinet, @gallery.partner]) if @gallery.partner
-
   %dt Photos
   %dd
     - @gallery.photos.each do |photo|
