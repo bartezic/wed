@@ -5,9 +5,9 @@
     .col-lg-6
       %ul#myTab.nav.nav-tabs
         %li.active
-          %a{href: "#locale-uk"} Українська
+          %a{href: "#locale-uk"}= t 'translation.uk'
         %li
-          %a{href: "#locale-ru"} Російська
+          %a{href: "#locale-ru"}= t 'translation.ru'
       .tab-content
         #locale-uk.tab-pane.active
           - f.globalize_fields_for :uk do |l|

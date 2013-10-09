@@ -1,4 +1,22 @@
 uk:
+  admin:
+    menu:
+      admins: Адміни
+      partners: Партнери
+      categories: Категорії
+      locations: Місця
+      galleries: Галереї
+      photos: Фото
+      videos: Відео
+    general:
+    admin_users:
+    categories:
+    galleries:
+    locations:
+    partners:
+    photos:
+    static:
+    videos:
   login_form:
     title: 'Форма входу'
     partner: Партнер
