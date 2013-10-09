@@ -1,0 +1,42 @@
+= simple_form_for [:cabinet, @partner] do |f|
+  = f.error_notification
+  .row
+    .col-lg-6
+      %ul#myTab.nav.nav-tabs
+        %li.active
+          %a{href: "#locale-uk"} Українська
+        %li
+          %a{href: "#locale-ru"} Російська
+      .tab-content
+        #locale-uk.tab-pane.active
+          - f.globalize_fields_for :uk do |l|
+            = l.input :name,            input_html: { class: 'form-control' }
+            = l.input :description,     input_html: { class: 'form-control' }, as: :text
+            = l.input :info,            input_html: { class: 'form-control' }, as: :text
+        #locale-ru.tab-pane
+          - f.globalize_fields_for :ru do |l|
+            = l.input :name,            input_html: { class: 'form-control' }
+            = l.input :description,     input_html: { class: 'form-control' }, as: :text
+            = l.input :info,            input_html: { class: 'form-control' }, as: :text
+            
+      = f.input :avatar,                input_html: { class: 'form-control' }
+      = f.input :avatar_remote_url,     input_html: { class: 'form-control' } 
+      = f.input :price,                 input_html: { class: 'form-control' }
+      = f.association :location,        input_html: { class: 'form-control' }
+      = f.association :locations,       input_html: { class: 'form-control' }
+      = f.association :categories,      input_html: { class: 'form-control' }
+      = f.association :days,            input_html: { class: 'form-control' }
+
+    .col-lg-6
+      = f.input :slug,                  input_html: { class: 'form-control' }
+      = f.input :site,                  input_html: { class: 'form-control' }
+      = f.input :email,                 input_html: { class: 'form-control' }
+      = f.input :phone,                 input_html: { class: 'form-control' }
+      = f.input :active
+      = f.input :premium
+      = f.input :premium_to
+      = f.input :rating,                input_html: { class: 'form-control' }
+      /= f.input :password,              input_html: { class: 'form-control' }
+      /= f.input :password_confirmation, input_html: { class: 'form-control' }
+
+  = f.button :submit, class: 'btn btn-default'

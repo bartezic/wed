@@ -1,0 +1,72 @@
+%p#notice= notice
+
+= image_tag @partner.avatar(:thumb_220)
+
+%dl.partner
+  %dt Ім'я
+  %dd= @partner.name
+
+  - if @partner.description
+    %dt Опис
+    %dd= raw @partner.description
+    
+  - if @partner.info
+    %dt Інформація
+    %dd= raw @partner.info
+
+  %dt Ціна
+  %dd= "Від #{@partner.price} $"
+
+  - if @partner.categories.any?
+    %dt Категорія
+    %dd= raw @partner.categories.map{ |e| link_to(e.name, [:cabinet,e]) }.join(', ')
+  
+  - if @partner.location 
+    %dt Живе
+    %dd= link_to @partner.location.name, [:cabinet, @partner.location]
+  
+  - if @partner.locations.any?
+    %dt Працює
+    %dd= raw @partner.locations.map{ |e| link_to(e.name, [:cabinet,e]) }.join(', ')
+
+  - if @partner.days.any?
+    %dt Календар зайнятості
+    %dd= raw full_year_callendar(@partner.calendar)
+
+  %dt Сайт
+  %dd= @partner.site
+
+  %dt Email
+  %dd= @partner.email
+  
+  %dt Телефон
+  %dd= @partner.phone
+
+  %dt Активний
+  %dd= @partner.active
+  
+  %dt Рейтинг
+  %dd= @partner.rating
+  
+  %dt Преміум
+  %dd= @partner.premium
+
+  - if @partner.premium
+    %dt Преміум до
+    %dd= @partner.premium_to
+
+  %dt Галареї
+  %dd  
+    - @partner.galleries.each do |gallery|
+      %div= gallery.name
+      %div
+        - gallery.photos.each do |photo|
+          = link_to image_tag(photo.asset(:thumb_150)), [:cabinet, photo]
+  %dt Відео
+  %dd
+    - @partner.videos.each do |video|
+      = link_to(image_tag(video.cover(:thumb_150), { alt: video.name }), [:cabinet, video]) if video.link
+
+
+= link_to 'Edit', edit_cabinet_partner_path(@partner), class: 'btn btn-default' 
+= link_to 'Back', cabinet_partners_path, class: 'btn btn-default' 

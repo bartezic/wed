@@ -1,0 +1,42 @@
+%h1 Listing partners
+
+.table-responsive
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Id
+        %th Name
+        %th Cover
+        %th Description
+        %th Info
+        %th Price
+        %th Location
+        %th Site
+        %th Email
+        %th Phone
+        %th Active
+        %th Rating
+        %th Actions
+    %tbody
+      - @partners.each do |partner|
+        %tr{ class: partner.premium && 'warning' }
+          %td= partner.id
+          %td= partner.name
+          %td= image_tag partner.avatar(:thumb_100)
+          %td= partner.description && partner.description.truncate(30)
+          %td= partner.info && partner.info.truncate(30)
+          %td= partner.price
+          %td= partner.location.try(:name)
+          %td= partner.site
+          %td= partner.email
+          %td= partner.phone
+          %td= partner.active
+          %td= partner.rating
+          %td
+            = link_to 'Show', [:cabinet, partner]
+            = link_to 'Edit', edit_cabinet_partner_path(partner)
+            = link_to 'Destroy', [:cabinet, partner], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= paginate @partners
+%br
+= link_to 'New Partner', new_cabinet_partner_path, class: 'btn btn-default' 

@@ -1,0 +1,9 @@
+= simple_form_for([:cabinet, @photo]) do |f|
+  = f.error_notification
+
+  = f.input :asset,            input_html: { class: 'form-control' }
+  = f.input :asset_remote_url, input_html: { class: 'form-control' }
+  = f.input :rating,           input_html: { class: 'form-control' }
+  = f.association :gallery,    input_html: { class: 'form-control' }
+
+  = f.button :submit, class: 'btn btn-default'

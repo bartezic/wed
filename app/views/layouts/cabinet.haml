@@ -1,0 +1,62 @@
+!!!
+%html
+  %head
+    %title Wed
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+
+    / Wrap all page content here
+    #wrap
+      / Fixed navbar
+      .navbar.navbar-default.navbar-fixed-top
+        .container.top-nav
+          .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+          .navbar-collapse.collapse
+            %ul.nav.navbar-nav
+
+            %ul.nav.navbar-nav.navbar-right
+              %li.locale{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
+              %li.locale{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
+        .container
+          .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.navbar-brand{href: "/cabinet"} Logo
+          .navbar-collapse.collapse
+            %ul.nav.navbar-nav
+              %li{class: request.path == cabinet_partners_path && 'active'}
+                %a{href: cabinet_partners_path} Partners
+              %li{class: request.path == cabinet_galleries_path && 'active'}
+                %a{href: cabinet_galleries_path} Galleries
+              %li{class: request.path == cabinet_photos_path && 'active'}
+                %a{href: cabinet_photos_path} Photos
+              %li{class: request.path == cabinet_videos_path && 'active'}
+                %a{href: cabinet_videos_path} Videos
+            %ul.nav.navbar-nav.navbar-right
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                  = current_partner.email 
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{href: "/"} На сайт
+                  %li= link_to 'Вийти', destroy_partner_session_path, { method: :delete }
+            /.nav-collapse
+      / Begin page content
+      .container
+        .row
+          .col-md-12
+            = yield
+    #footer
+      .container
+        %p.text-muted.credit
+          Розробка:
+          %a{href: "http://martinbean.co.uk"} Олексин Віктор

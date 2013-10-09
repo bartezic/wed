@@ -1,0 +1,34 @@
+%h1 Listing videos
+
+.table-responsive
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Id
+        %th Name
+        %th Description
+        %th Cover
+        %th cover_remote_url
+        %th Rating
+        %th Link
+        %th Partner
+        %th Actions
+    %tbody
+      - @videos.each do |video|
+        %tr
+          %td= video.id
+          %td= video.name
+          %td= video.description
+          %td= image_tag video.cover(:thumb_150)
+          %td= video.cover_remote_url
+          %td= video.rating
+          %td= video.link
+          %td= link_to(video.partner.name, [:cabinet, video.partner]) if video.partner
+          %td
+            = link_to 'Show', [:cabinet, video]
+            = link_to 'Edit', edit_cabinet_video_path(video)
+            = link_to 'Destroy', [:cabinet, video], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= paginate @videos
+%br
+= link_to 'New Video', new_cabinet_video_path, class: 'btn btn-default'
