@@ -1,73 +1,72 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @partner.name
-%p
-  %b Description:
-  = raw @partner.description
-%p
-  %b Info:
-  = raw @partner.info
+= image_tag @partner.avatar(:thumb_220)
 
-- if @partner.categories.any?
-  %p
-    %b Категорія:
-    = raw @partner.categories.map{ |e| link_to(e.name, e) }.join(', ')
+%dl.partner
+  %dt Ім'я
+  %dd= @partner.name
 
-- if @partner.locations.any?
-  %p
-    %b Працює у:
-    = raw @partner.locations.map{ |e| link_to(e.name, e) }.join(', ')
+  - if @partner.description
+    %dt Опис
+    %dd= raw @partner.description
+    
+  - if @partner.info
+    %dt Інформація
+    %dd= raw @partner.info
 
-- if @partner.location
-  %p
-    %b Живе у:
-    = link_to @partner.location.name, @partner.location
+  %dt Ціна
+  %dd= "Від #{@partner.price} $"
 
-- if @partner.days.any?
-  %p 
-    %b Календар зайнятих дат:
-  = raw full_year_callendar(@partner.calendar)
+  - if @partner.categories.any?
+    %dt Категорія
+    %dd= raw @partner.categories.map{ |e| link_to(e.name, [:admin,e]) }.join(', ')
+  
+  - if @partner.location 
+    %dt Живе
+    %dd= link_to @partner.location.name, [:admin, @partner.location]
+  
+  - if @partner.locations.any?
+    %dt Працює
+    %dd= raw @partner.locations.map{ |e| link_to(e.name, [:admin,e]) }.join(', ')
 
-%p
-  %b Price:
-  = @partner.price
-%p
-  %b Site:
-  = @partner.site
-%p
-  %b Email:
-  = @partner.email
-%p
-  %b Phone:
-  = @partner.phone
-%p
-  %b Active:
-  = @partner.active
-%p
-  %b Premium:
-  = @partner.premium
-%p
-  %b Premium to:
-  = @partner.premium_to
-%p
-  %b Cover:
-  = image_tag @partner.avatar(:thumb_220)
-%p
-  %b Rating:
-  = @partner.rating
-%p
-  %b Slug:
-  = @partner.slug
-%p
-  %b Galleries:
-  - @partner.galleries.each do |gallery|
-    %p
-      = gallery.name
-      - gallery.photos.each do |photo|
-        = link_to image_tag(photo.asset(:thumb_150)), photo.asset(:original)
+  - if @partner.days.any?
+    %dt Календар зайнятості
+    %dd= raw full_year_callendar(@partner.calendar)
 
-= link_to 'Edit', edit_admin_partner_path(@partner)
-\|
-= link_to 'Back', admin_partners_path
+  %dt Сайт
+  %dd= @partner.site
+
+  %dt Email
+  %dd= @partner.email
+  
+  %dt Телефон
+  %dd= @partner.phone
+
+  %dt Активний
+  %dd= @partner.active
+  
+  %dt Рейтинг
+  %dd= @partner.rating
+  
+  %dt Преміум
+  %dd= @partner.premium
+
+  - if @partner.premium
+    %dt Преміум до
+    %dd= @partner.premium_to
+
+  %dt Галареї
+  %dd  
+    - @partner.galleries.each do |gallery|
+      %div= gallery.name
+      %div
+        - gallery.photos.each do |photo|
+          = link_to image_tag(photo.asset(:thumb_150)), [:admin, photo]
+  %dt Відео
+  %dd
+    - @partner.videos.each do |video|
+      = link_to(image_tag(video.cover(:thumb_150), { alt: video.name }), [:admin, video]) if video.link
+
+
+= link_to 'Edit', edit_admin_partner_path(@partner), class: 'btn btn-default' 
+= link_to 'Back', admin_partners_path, class: 'btn btn-default' 

@@ -1,23 +1,26 @@
 %h1 Listing galleries
 
-%table
-  %tr
-    %th Name
-    %th Description
-    %th Partner
-    %th
-    %th
-    %th
+.table-responsive
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Id
+        %th Name
+        %th Description
+        %th Partner
+        %th Actions
+    %tbody
+      - @galleries.each do |gallery|
+        %tr
+          %td= gallery.id
+          %td= gallery.name
+          %td= gallery.description
+          %td= link_to(gallery.partner.name, [:admin, gallery.partner]) if gallery.partner
+          %td
+            = link_to 'Show', [:admin, gallery]
+            = link_to 'Edit', edit_admin_gallery_path(gallery)
+            = link_to 'Destroy', [:admin, gallery], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-  - @galleries.each do |gallery|
-    %tr
-      %td= gallery.name
-      %td= gallery.description
-      %td= gallery.partner
-      %td= link_to 'Show', [:admin, gallery]
-      %td= link_to 'Edit', edit_admin_gallery_path(gallery)
-      %td= link_to 'Destroy', [:admin, gallery], :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+= paginate @galleries
 %br
-
-= link_to 'New Gallery', new_admin_gallery_path
+= link_to 'New Gallery', new_admin_gallery_path, class: 'btn btn-default' 

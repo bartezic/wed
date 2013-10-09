@@ -4,6 +4,7 @@
   %table.table.table-bordered.table-striped
     %thead
       %tr
+        %th Id
         %th Name
         %th Description
         %th Cover
@@ -15,20 +16,19 @@
     %tbody
       - @videos.each do |video|
         %tr
+          %td= video.id
           %td= video.name
           %td= video.description
           %td= image_tag video.cover(:thumb_150)
           %td= video.cover_remote_url
           %td= video.rating
           %td= video.link
-          %td
-            - if video.partner
-              = link_to video.partner.name, video.partner
+          %td= link_to(video.partner.name, [:admin, video.partner]) if video.partner
           %td
             = link_to 'Show', [:admin, video]
             = link_to 'Edit', edit_admin_video_path(video)
             = link_to 'Destroy', [:admin, video], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
+= paginate @videos
 %br
-
-= link_to 'New Video', new_admin_video_path
+= link_to 'New Video', new_admin_video_path, class: 'btn btn-default'

@@ -11,15 +11,15 @@
       .tab-content
         #locale-uk.tab-pane.active
           - f.globalize_fields_for :uk do |l|
-            = l.input :name,            input_html: { class: 'form-control' }
-            = l.input :description,     input_html: { class: 'form-control' }, as: :text
+            = l.input :name,        input_html: { class: 'form-control' }
+            = l.input :description, input_html: { class: 'form-control' }, as: :text
         #locale-ru.tab-pane
           - f.globalize_fields_for :ru do |l|
-            = l.input :name,            input_html: { class: 'form-control' }
-            = l.input :description,     input_html: { class: 'form-control' }, as: :text
-    .col-lg-6
-      = f.input :rating
-      = f.association :partner
-      = f.input :slug
+            = l.input :name,        input_html: { class: 'form-control' }
+            = l.input :description, input_html: { class: 'form-control' }, as: :text
+    
+      = f.input :rating,            input_html: { class: 'form-control' }
+      = f.association :partner,     input_html: { class: 'form-control' }
+      = f.input :slug,              input_html: { class: 'form-control' }
 
-  = f.button :submit, class: 'btn btn-primary'
+      = f.button :submit, class: 'btn btn-default' 

@@ -5,7 +5,7 @@ module Admin
     # GET /desks
     # GET /desks.json
     def index
-      @locations = Location.all
+      @locations = Location.includes(:translations).page(params[:page]).per(25)
     end
 
     # GET /desks/1

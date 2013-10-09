@@ -1,18 +1,16 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @admin_user.name
-%p
-  %b Email:
-  = @admin_user.email
-%p
-  %b Avatar:
-  = @admin_user.avatar
-%p
-  %b Avatar remote url:
-  = @admin_user.avatar_remote_url
+= image_tag @admin_user.avatar(:thumb_100)
 
-= link_to 'Edit', edit_admin_admin_user_path(@admin_user)
-\|
-= link_to 'Back', admin_admin_users_path
+%dl
+  %dt Ім'я
+  %dd= @admin_user.name
+
+  %dt Email
+  %dd= @admin_user.email
+
+  %dt Avatar remote url
+  %dd= @admin_user.avatar_remote_url
+
+= link_to 'Edit', edit_admin_admin_user_path(@admin_user), class: 'btn btn-default'
+= link_to 'Back', admin_admin_users_path, class: 'btn btn-default'

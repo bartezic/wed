@@ -5,7 +5,7 @@ module Admin
     # GET /videos
     # GET /videos.json
     def index
-      @videos = Video.all
+      @videos = Video.includes(:translations).page(params[:page]).per(25)
     end
 
     # GET /videos/1

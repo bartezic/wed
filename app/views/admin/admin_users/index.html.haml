@@ -4,6 +4,7 @@
   %table.table.table-bordered.table-striped
     %thead
       %tr
+        %th Id
         %th Name
         %th Avatar
         %th Email
@@ -11,6 +12,7 @@
     %tbody
       - @admin_users.each do |admin_user|
         %tr
+          %td= admin_user.id
           %td= admin_user.name
           %td= image_tag admin_user.avatar(:thumb_100)
           %td= admin_user.email
@@ -19,6 +21,6 @@
             = link_to 'Edit', edit_admin_admin_user_path(admin_user)
             = link_to 'Destroy', [:admin, admin_user], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
+= paginate @admin_users
 %br
-
-= link_to 'New Admin user', new_admin_admin_user_path
+= link_to 'New Admin user', new_admin_admin_user_path, class: 'btn btn-default' 

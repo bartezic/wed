@@ -1,15 +1,14 @@
 %p#notice= notice
 
-%p
-  %b Asset:
-  = @photo.asset
-%p
-  %b Rating:
-  = @photo.rating
-%p
-  %b Gallery:
-  = @photo.gallery
+%dl
+  %dt Asset
+  %dd= image_tag @photo.asset(:original), class: 'img-responsive'
 
-= link_to 'Edit', edit_admin_photo_path(@photo)
-\|
-= link_to 'Back', admin_photos_path
+  %dt Rating
+  %dd= @photo.rating
+
+  %dt Gallery
+  %dd= link_to(@photo.gallery.name, [:admin, @photo.gallery]) if @photo.gallery
+
+= link_to 'Edit', edit_admin_photo_path(@photo), class: 'btn btn-default'
+= link_to 'Back', admin_photos_path, class: 'btn btn-default'

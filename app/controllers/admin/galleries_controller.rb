@@ -5,7 +5,7 @@ module Admin
     # GET /galleries
     # GET /galleries.json
     def index
-      @galleries = Gallery.all
+      @galleries = Gallery.includes(:translations).page(params[:page]).per(25)
     end
 
     # GET /galleries/1

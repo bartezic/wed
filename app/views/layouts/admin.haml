@@ -29,7 +29,7 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            %a.navbar-brand{href: "/"} Logo
+            %a.navbar-brand{href: "/admin"} Logo
           .navbar-collapse.collapse
             %ul.nav.navbar-nav
               %li{class: request.path == admin_admin_users_path && 'active'}
@@ -70,7 +70,7 @@
                   %b.caret
                 %ul.dropdown-menu
                   %li
-                    %a{href: "/admin"} На сайт
+                    %a{href: "/"} На сайт
                   %li= link_to 'Вийти', destroy_admin_user_session_path, { method: :delete }
             /.nav-collapse
       / Begin page content

@@ -5,7 +5,7 @@ module Admin
     # GET /admin_users
     # GET /admin_users.json
     def index
-      @admin_users = AdminUser.all
+      @admin_users = AdminUser.includes(:translations).page(params[:page]).per(25)
     end
 
     # GET /admin_users/1

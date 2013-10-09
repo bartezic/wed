@@ -1,19 +1,19 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @gallery.name
-%p
-  %b Description:
-  = @gallery.description
-%p
-  %b Partner:
-  = @gallery.partner
-%p
-  %b Photos:
-  - @gallery.photos.each do |photo|
-    = link_to image_tag(photo.asset(:thumb_150)), photo.asset(:original)
+%dl
+  %dt Name
+  %dd= @gallery.name
 
-= link_to 'Edit', edit_admin_gallery_path(@gallery)
-\|
-= link_to 'Back', admin_galleries_path
+  %dt Description
+  %dd= @gallery.description
+
+  %dt Partner
+  %dd= link_to(@gallery.partner.name, [:admin, @gallery.partner]) if @gallery.partner
+
+  %dt Photos
+  %dd
+    - @gallery.photos.each do |photo|
+      = link_to image_tag(photo.asset(:thumb_150)), [:admin, photo]
+
+= link_to 'Edit', edit_admin_gallery_path(@gallery), class: 'btn btn-default' 
+= link_to 'Back', admin_galleries_path, class: 'btn btn-default' 

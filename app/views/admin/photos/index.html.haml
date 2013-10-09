@@ -4,6 +4,7 @@
   %table.table.table-bordered.table-striped
     %thead
       %tr
+        %th Id
         %th Asset
         %th Rating
         %th Gallery
@@ -11,6 +12,7 @@
     %tbody
       - @photos.each do |photo|
         %tr
+          %td= photo.id
           %td= image_tag photo.asset(:thumb_150)
           %td= photo.rating
           %td= link_to(photo.gallery.name, [:admin, photo.gallery]) if photo.gallery
@@ -19,8 +21,6 @@
             = link_to 'Edit', edit_admin_photo_path(photo)
             = link_to 'Destroy', [:admin, photo], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
 = paginate @photos
 %br
-
-= link_to 'New Photo', new_admin_photo_path
+= link_to 'New Photo', new_admin_photo_path, class: 'btn btn-default'
