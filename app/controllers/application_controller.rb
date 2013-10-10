@@ -10,6 +10,15 @@ class ApplicationController < ActionController::Base
     I18n.locale = (session.has_key? 'locale' || !session['locale'].empty?) ? session['locale'] : I18n.default_locale
   end
 
+  def after_sign_in_path_for(resource)
+    case current_user.rolable_type
+    when "Manager"
+        return admin_root_path
+    when "Partner"
+        return cabinet_root_path
+    end
+  end
+
   protected
 
   def configure_permitted_parameters

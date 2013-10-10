@@ -17,7 +17,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: wed_development
+  database: wed2_development
   pool: 5
   username: wed
   password: wed_pas8
@@ -46,7 +46,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: wed_test
+  database: wed2_test
   pool: 5
   username: wed
   password: wed_pas8
@@ -54,7 +54,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: wed_production
+  database: wed2_production
   pool: 5
   username: wed
   password: wed_pas8

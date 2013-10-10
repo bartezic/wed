@@ -32,8 +32,8 @@
             %a.navbar-brand{href: "/admin"} Logo
           .navbar-collapse.collapse
             %ul.nav.navbar-nav
-              %li{class: request.path == admin_admin_users_path && 'active'}
-                %a{href: admin_admin_users_path}= t 'admin.menu.admins'
+              %li{class: request.path == admin_managers_path && 'active'}
+                %a{href: admin_managers_path}= t 'admin.menu.admins'
               %li{class: request.path == admin_partners_path && 'active'}
                 %a{href: admin_partners_path}= t 'admin.menu.partners' 
               %li{class: request.path == admin_categories_path && 'active'}
@@ -49,29 +49,12 @@
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                  Dropdown
-                  %b.caret
-                %ul.dropdown-menu
-                  %li
-                    %a{href: "#"} Action
-                  %li
-                    %a{href: "#"} Another action
-                  %li
-                    %a{href: "#"} Something else here
-                  %li.divider
-                  %li.dropdown-header Nav header
-                  %li
-                    %a{href: "#"} Separated link
-                  %li
-                    %a{href: "#"} One more separated link
-              %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                  = current_admin_user.email 
+                  = current_user.email 
                   %b.caret
                 %ul.dropdown-menu
                   %li
                     %a{href: "/"} На сайт
-                  %li= link_to 'Вийти', destroy_admin_user_session_path, { method: :delete }
+                  %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
             /.nav-collapse
       / Begin page content
       .container

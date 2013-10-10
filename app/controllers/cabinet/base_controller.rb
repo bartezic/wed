@@ -11,6 +11,10 @@ module Cabinet
       I18n.locale = (session.has_key? 'locale' || !session['locale'].empty?) ? session['locale'] : I18n.default_locale
     end
 
+    def authenticate_partner!
+      authenticate_user! && current_user.rolable.is_a? Partner
+    end
+
     protected
 
     def configure_permitted_parameters

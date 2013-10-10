@@ -14,7 +14,7 @@ Wed::Application.routes.draw do
     resources :photos
     resources :videos
     resources :galleries
-    resources :admin_users
+    resources :managers
     root 'static#home'
   end
 
@@ -24,8 +24,9 @@ Wed::Application.routes.draw do
   resources :videos
   resources :galleries
 
-  devise_for :admin_users, path: :admin_auth
-  devise_for :partners, path: :auth
+  devise_for :users
+  # devise_for :admins, path: :admin_auth
+  # devise_for :partners, path: :auth
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

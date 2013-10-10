@@ -50,7 +50,6 @@ gem 'devise'
 gem 'simple_form'
 gem "haml-rails"
 gem 'paperclip'
-gem 'paperclip-ffmpeg'
 gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails',
                               github: 'anjlab/bootstrap-rails',
                               branch: '3.0.0'
@@ -59,6 +58,8 @@ gem 'paper_trail', github: 'airblade/paper_trail', branch: 'master'
 gem 'friendly_id', '5.0.0.beta4'
 gem 'babosa'
 gem 'kaminari'
+gem 'letter_opener', group: :development
+
 
 # For importing
 gem 'rest-client'

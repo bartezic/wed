@@ -35,24 +35,24 @@
             %ul.nav.navbar-nav
 
             %ul.nav.navbar-nav.navbar-right
-              - if admin_user_signed_in?
+              - if user_signed_in?
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                    = current_admin_user.email 
+                    = current_user.email 
                     %b.caret
                   %ul.dropdown-menu
                     %li
                       %a{href: "/admin"} Адмінка
-                    %li= link_to 'Вийти', destroy_admin_user_session_path, { method: :delete }
-              - elsif partner_signed_in?
+                    %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
+              - elsif user_signed_in?
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
                     Ви ввійшли як
-                    = current_partner.name
+                    = current_user.name
                     %b.caret
                   %ul.dropdown-menu
                     %li= link_to 'Кабінет', [:cabinet, current_partner]
-                    %li= link_to 'Вийти', destroy_partner_session_path, { method: :delete }
+                    %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
               - else
                 %button.btn.btn-default.navbar-btn{ type: :button, data:{ toggle: :modal, target: :'#modal-login'} } Ввійти
                 %button.btn.btn-default.navbar-btn{ type: :button } Стати партнером

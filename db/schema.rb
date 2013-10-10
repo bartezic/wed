@@ -13,41 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20131001085051) do
 
-  create_table "admin_user_translations", force: true do |t|
-    t.integer  "admin_user_id", null: false
-    t.string   "locale",        null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-  end
-
-  add_index "admin_user_translations", ["admin_user_id"], name: "index_admin_user_translations_on_admin_user_id", using: :btree
-  add_index "admin_user_translations", ["locale"], name: "index_admin_user_translations_on_locale", using: :btree
-
-  create_table "admin_users", force: true do |t|
-    t.string   "name"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string   "avatar_remote_url"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
-
   create_table "categories", force: true do |t|
     t.string   "name"
     t.string   "name_sing"
@@ -89,6 +54,7 @@ ActiveRecord::Schema.define(version: 20131001085051) do
     t.integer "day_id",     null: false
   end
 
+  add_index "days_partners", ["day_id", "partner_id"], name: "index_days_partners_on_day_id_and_partner_id", using: :btree
   add_index "days_partners", ["partner_id", "day_id"], name: "index_days_partners_on_partner_id_and_day_id", using: :btree
 
   create_table "galleries", force: true do |t|
@@ -144,6 +110,23 @@ ActiveRecord::Schema.define(version: 20131001085051) do
   add_index "locations_partners", ["location_id", "partner_id"], name: "index_locations_partners_on_location_id_and_partner_id", using: :btree
   add_index "locations_partners", ["partner_id", "location_id"], name: "index_locations_partners_on_partner_id_and_location_id", using: :btree
 
+  create_table "manager_translations", force: true do |t|
+    t.integer  "manager_id", null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  add_index "manager_translations", ["locale"], name: "index_manager_translations_on_locale", using: :btree
+  add_index "manager_translations", ["manager_id"], name: "index_manager_translations_on_manager_id", using: :btree
+
+  create_table "managers", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "partner_translations", force: true do |t|
     t.integer  "partner_id",  null: false
     t.string   "locale",      null: false
@@ -165,33 +148,16 @@ ActiveRecord::Schema.define(version: 20131001085051) do
     t.integer  "location_id"
     t.string   "site"
     t.string   "phone"
-    t.boolean  "active",                 default: false
-    t.boolean  "premium",                default: false
+    t.boolean  "active",      default: false
+    t.boolean  "premium",     default: false
     t.date     "premium_to"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string   "avatar_remote_url"
-    t.integer  "rating",                 default: 0
+    t.integer  "rating",      default: 0
     t.string   "slug"
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "partners", ["email"], name: "index_partners_on_email", unique: true, using: :btree
   add_index "partners", ["location_id"], name: "index_partners_on_location_id", using: :btree
-  add_index "partners", ["reset_password_token"], name: "index_partners_on_reset_password_token", unique: true, using: :btree
   add_index "partners", ["slug"], name: "index_partners_on_slug", unique: true, using: :btree
 
   create_table "photos", force: true do |t|
@@ -208,6 +174,36 @@ ActiveRecord::Schema.define(version: 20131001085051) do
 
   add_index "photos", ["gallery_id"], name: "index_photos_on_gallery_id", using: :btree
 
+  create_table "users", force: true do |t|
+    t.integer  "rolable_id"
+    t.string   "rolable_type"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "avatar_remote_url"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
   create_table "video_translations", force: true do |t|
     t.integer  "video_id",    null: false
     t.string   "locale",      null: false
@@ -223,13 +219,8 @@ ActiveRecord::Schema.define(version: 20131001085051) do
   create_table "videos", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "cover_file_name"
-    t.string   "cover_content_type"
-    t.integer  "cover_file_size"
-    t.datetime "cover_updated_at"
-    t.string   "cover_remote_url"
     t.string   "link"
-    t.integer  "rating",             default: 0
+    t.integer  "rating",      default: 0
     t.integer  "partner_id"
     t.datetime "created_at"
     t.datetime "updated_at"

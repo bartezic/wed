@@ -5,24 +5,9 @@
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
         %h4.modal-title= t 'login_form.title'
       .modal-body
-        %ul#myTab.nav.nav-tabs
-          %li.active
-            %a{href: "#partner"}= t 'login_form.partner'
-          %li
-            %a{href: "#admin"}= t 'login_form.admin'
-        .tab-content
-          #partner.tab-pane.active
-            = simple_form_for(Partner.new, as: :partner, url: session_path(:partner), html: {class: '', role: :form}) do |f|
-              = f.error_notification
-              = f.input :email, input_html: { class: 'form-control' }
-              = f.input :password, input_html: { class: 'form-control' }
+        = simple_form_for(User.new, as: :user, url: session_path(:user), html: {class: '', role: :form}) do |f|
+          = f.error_notification
+          = f.input :email,     input_html: { class: 'form-control' }
+          = f.input :password,  input_html: { class: 'form-control' }
 
-              = f.button :submit, class: 'btn btn-default'
-          #admin.tab-pane
-            = simple_form_for(AdminUser.new, as: :admin_user, url: session_path(:admin_user), html: {class: '', role: :form}) do |f|
-              = f.error_notification
-              
-              = f.input :email, input_html: { class: 'form-control' }
-              = f.input :password, input_html: { class: 'form-control' }
-
-              = f.button :submit, class: 'btn btn-default'
+          = f.button :submit, class: 'btn btn-default'

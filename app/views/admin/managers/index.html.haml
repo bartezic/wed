@@ -1,0 +1,26 @@
+%h1 Listing managers
+
+.table-responsive
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Id
+        %th Name
+        %th Avatar
+        %th Email
+        %th Actions
+    %tbody
+      - @managers.each do |manager|
+        %tr
+          %td= manager.id
+          %td= manager.name
+          %td= image_tag manager.user.avatar(:thumb_100) if manager.user
+          %td= manager.user.email if manager.user
+          %td
+            = link_to 'Show', [:admin, manager]
+            = link_to 'Edit', edit_admin_manager_path(manager)
+            = link_to 'Destroy', [:admin, manager], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= paginate @managers
+%br
+= link_to 'New Admin user', new_admin_manager_path, class: 'btn btn-default' 
