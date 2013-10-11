@@ -1,6 +1,6 @@
 %p#notice= notice
 
-= image_tag @partner.avatar(:thumb_220)
+= image_tag @partner.user.avatar(:thumb_220)
 
 %dl.partner
   %dt Ім'я
@@ -37,7 +37,7 @@
   %dd= @partner.site
 
   %dt Email
-  %dd= @partner.email
+  %dd= @partner.user.email
   
   %dt Телефон
   %dd= @partner.phone
