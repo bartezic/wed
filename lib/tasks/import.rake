@@ -58,15 +58,18 @@ namespace :import do
             active: true, 
             day_ids: day_ids.flatten,
             category_ids: cats.map{ |i| i.id if i.name == key },
-            avatar_remote_url: avatar,
-            email: "demo_#{Time.now.to_i}@demo.com",
+            user_attributes: {
+              avatar_remote_url: avatar,
+              email: "demo_#{Time.now.to_i}@demo.com",
+              password: 'password',
+              password_confirmation: 'password'
+            },
             galleries_attributes: [{
               name: "demo_#{Time.now.to_i}_gallery",
               photos_attributes: photos
-            }],
-            password: 'password',
-            password_confirmation: 'password'
+            }]
           )
+          temp.user.skip_confirmation!
           temp.save
 
           I18n.locale = :ru
