@@ -8,6 +8,7 @@ class CreatePartners < ActiveRecord::Migration
       t.references  :location,  index: true
       t.string      :site
       t.string      :phone
+      t.hstore      :socials
       t.boolean     :active,    default: false
       t.boolean     :premium,   default: false
       t.date        :premium_to

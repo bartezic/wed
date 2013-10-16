@@ -3,10 +3,11 @@ class CreateManagers < ActiveRecord::Migration
     super
     # Create a default user
     if direction == :up
-      manager = Manager.create!(name: 'Ambar', user_attributes: { email: 'admin@example.com', password: 'password', password_confirmation: 'password'}) 
+      manager = Manager.new(name: 'Ambar', user_attributes: { email: 'admin@example.com', password: 'password', password_confirmation: 'password'}) 
       user = manager.user
       user.skip_confirmation!
       user.save
+      manager.save
     end
   end
   

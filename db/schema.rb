@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 20131001085051) do
     t.integer  "location_id"
     t.string   "site"
     t.string   "phone"
+    t.hstore   "socials"
     t.boolean  "active",      default: false
     t.boolean  "premium",     default: false
     t.date     "premium_to"
@@ -204,23 +205,9 @@ ActiveRecord::Schema.define(version: 20131001085051) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "video_translations", force: true do |t|
-    t.integer  "video_id",    null: false
-    t.string   "locale",      null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.text     "description"
-  end
-
-  add_index "video_translations", ["locale"], name: "index_video_translations_on_locale", using: :btree
-  add_index "video_translations", ["video_id"], name: "index_video_translations_on_video_id", using: :btree
-
   create_table "videos", force: true do |t|
-    t.string   "name"
-    t.text     "description"
     t.string   "link"
-    t.integer  "rating",      default: 0
+    t.integer  "rating",     default: 0
     t.integer  "partner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
