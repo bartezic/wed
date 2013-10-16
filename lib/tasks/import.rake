@@ -98,22 +98,6 @@ namespace :import do
       temp.update(name: ru, name_sing: ru)
     end
   end
-
-  desc "Add Days"
-  task : => [:environment] do
-    res = RestClient.get('http://odnalubov.com/')
-    Nokogiri::HTML.parse(res,nil,'windows-1251').xpath("//div[@id='navigation']/ul/li/a[@class='side']").each do |cat|
-      slug = cat.attributes['href'].to_s
-      uk = cat.search('span').last.content.to_s
-      ru = translate_API(uk.to_s)
-
-      I18n.locale = :uk
-      temp = Category.new(name: uk, name_sing: uk)
-      temp.save
-      I18n.locale = :ru
-      temp.update(name: ru, name_sing: ru)
-    end
-  end
 end
 
 namespace :add do 
