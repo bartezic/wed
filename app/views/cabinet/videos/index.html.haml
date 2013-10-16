@@ -5,23 +5,17 @@
     %thead
       %tr
         %th Id
-        %th Name
-        %th Description
         %th Cover
         %th Rating
         %th Link
-        %th Partner
         %th Actions
     %tbody
       - @videos.each do |video|
         %tr
           %td= video.id
-          %td= video.name
-          %td= video.description
           %td= image_tag get_video_cover(video, :medium)
           %td= video.rating
           %td= video.link
-          %td= link_to(video.partner.name, [:cabinet, video.partner]) if video.partner
           %td
             = link_to 'Show', [:cabinet, video]
             = link_to 'Edit', edit_cabinet_video_path(video)

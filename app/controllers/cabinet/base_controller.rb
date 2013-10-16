@@ -12,7 +12,11 @@ module Cabinet
     end
 
     def authenticate_partner!
-      authenticate_user! && current_user.rolable.is_a? Partner
+      authenticate_user! && current_user.rolable.is_a?(Partner)
+    end
+
+    def current_partner
+      current_user.rolable
     end
 
     protected

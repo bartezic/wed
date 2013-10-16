@@ -2,8 +2,6 @@
 
 %table
   %tr
-    %th Name
-    %th Description
     %th Rating
     %th Partner
     %th
@@ -12,8 +10,6 @@
 
   - @videos.each do |video|
     %tr
-      %td= video.name
-      %td= video.description
       %td= video.rating
       %td= video.partner
       %td= link_to 'Show', video

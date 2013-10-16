@@ -71,9 +71,8 @@ class PartnersController < ApplicationController
     def partner_params
       params.require(:partner).permit(
         :name, :description, :info, :price, :location_id, 
-        :site, :email, :phone, :active, :premium, :premium_to, 
-        :avatar, :rating, :slug, :password, :password_confirmation,
-        :avatar_remote_url, :category_ids => [], :location_ids => []
+        :site, :phone, category_ids: [], location_ids: [], 
+        user_attributes: [:id, :email, :avatar, :avatar_remote_url, :password, :password_confirmation]
       )
     end
 

@@ -57,6 +57,10 @@ module ApplicationHelper
       JSON.parse(res).first[sizes[:vimeo][size].to_s]
     end
   end
+
+  def current_partner
+    current_user.rolable
+  end
 end
 
 module ActionView

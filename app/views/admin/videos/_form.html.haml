@@ -2,21 +2,6 @@
   = f.error_notification
   .row
     .col-lg-6
-      %ul#myTab.nav.nav-tabs
-        %li.active
-          %a{href: "#locale-uk"}= t 'translation.uk'
-        %li
-          %a{href: "#locale-ru"}= t 'translation.ru'
-      .tab-content
-        #locale-uk.tab-pane.active
-          - f.globalize_fields_for :uk do |l|
-            = l.input :name,           input_html: { class: 'form-control' }
-            = l.input :description,     input_html: { class: 'form-control' }, as: :text
-        #locale-ru.tab-pane
-          - f.globalize_fields_for :ru do |l|
-            = l.input :name,        input_html: { class: 'form-control' }
-            = l.input :description, input_html: { class: 'form-control' }, as: :text
-
       = f.input :link,              input_html: { class: 'form-control' }
       = f.input :rating,            input_html: { class: 'form-control' }
       = f.association :partner,     input_html: { class: 'form-control' }

@@ -17,10 +17,12 @@ uk:
     photos:
     static:
     videos:
+  signup_form:
+    title: Форма реєстрації
+    submit: Зареєструватись
   login_form:
-    title: 'Форма входу'
-    partner: Партнер
-    admin: Адмін
+    title: Форма входу
+    submit: Ввійти
   translation:
     ru: Російська
     uk: Українська

@@ -1,17 +1,8 @@
 %p#notice= notice
 
 %dl
-  %dt Name
-  %dd= @video.name
-
-  %dt Description
-  %dd= @video.description
-
   %dt Rating
   %dd= @video.rating
-
-  %dt Partner
-  %dd= link_to(@video.partner.name, [:cabinet, @video.partner]) if @video.partner
 
   %dt Video
   %dd

@@ -39,11 +39,11 @@
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                  = current_partner.email 
+                  = current_user.email 
                   %b.caret
                 %ul.dropdown-menu
                   %li= link_to 'На сайт', root_path
-                  %li= link_to 'Вийти', destroy_partner_session_path, { method: :delete }
+                  %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
             /.nav-collapse
       / Begin page content
       .container

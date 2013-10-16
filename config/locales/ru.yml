@@ -1,8 +1,10 @@
 ru:
+  signup_form:
+    title: Форма регистрации
+    submit: Зарегистрироваться
   login_form:
-    title: 'Форма входа'
-    partner: Партнер
-    admin: Админ
+    title: Форма входа
+    submit: Войти
   translation:
     ru: Русский
     uk: Украинский

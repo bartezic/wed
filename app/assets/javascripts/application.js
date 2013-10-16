@@ -23,7 +23,7 @@ function ready () {
     $(this).tab('show')
   })
   var galleries = $('.gallery');
-  if(galleries.length){
+  if(galleries.length !== 0){
     galleries.photobox('a');
   }
 };

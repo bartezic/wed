@@ -5,8 +5,6 @@
     %thead
       %tr
         %th Id
-        %th Name
-        %th Description
         %th Cover
         %th Rating
         %th Link
@@ -16,8 +14,6 @@
       - @videos.each do |video|
         %tr
           %td= video.id
-          %td= video.name
-          %td= video.description
           %td= image_tag get_video_cover(video, :medium)
           %td= video.rating
           %td= video.link

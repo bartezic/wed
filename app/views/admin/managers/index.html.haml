@@ -14,8 +14,8 @@
         %tr
           %td= manager.id
           %td= manager.name
-          %td= image_tag manager.user.avatar(:thumb_100) if manager.user
-          %td= manager.user.email if manager.user
+          %td= image_tag manager.user.avatar(:thumb_100)
+          %td= manager.user.email
           %td
             = link_to 'Show', [:admin, manager]
             = link_to 'Edit', edit_admin_manager_path(manager)

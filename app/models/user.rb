@@ -34,4 +34,12 @@ class User < ActiveRecord::Base
   #   name = title.to_slug.normalize(transliterations: :ukrainian).to_s
   #   asset.instance_write(:file_name, "#{name}.#{extension}")
   # end
+
+  def is_partner?
+    rolable_type == 'Partner'
+  end
+
+  def is_manager?
+    rolable_type == 'Manager'
+  end
 end

@@ -33,7 +33,17 @@
             %a.navbar-brand{href: "/"} Logo
           .navbar-collapse.collapse
             %ul.nav.navbar-nav
-
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                  Послуги
+                  %b.caret
+                %ul.dropdown-menu
+                  - Category.includes(:translations).each do |category|
+                    %li= link_to raw("#{category.name} <span class='badge pull-right'>#{category.partners.count}</span>"), category
+                  %li.divider
+                  %li.dropdown-header Додатково
+                  %li
+                    %a{href: "#"} Залишити заявку
             %ul.nav.navbar-nav.navbar-right
               - if user_signed_in?
                 %li.dropdown
@@ -41,35 +51,24 @@
                     = current_user.email 
                     %b.caret
                   %ul.dropdown-menu
-                    %li
-                      %a{href: "/admin"} Адмінка
-                    %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
-              - elsif user_signed_in?
-                %li.dropdown
-                  %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                    Ви ввійшли як
-                    = current_user.name
-                    %b.caret
-                  %ul.dropdown-menu
-                    %li= link_to 'Кабінет', [:cabinet, current_partner]
+                    - if current_user.is_manager?
+                      %li= link_to 'Адмінка', admin_root_path
+                    - elsif current_user.is_partner?
+                      %li= link_to 'Кабінет', [:cabinet, current_user.rolable]
                     %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
               - else
-                %button.btn.btn-default.navbar-btn{ type: :button, data:{ toggle: :modal, target: :'#modal-login'} } Ввійти
-                %button.btn.btn-default.navbar-btn{ type: :button } Стати партнером
+                %button.btn.btn-default.navbar-btn{type: :button, data:{toggle: :modal, target: :'#modal-login'}}= t('login_form.submit')
+                %button.btn.btn-default.navbar-btn{type: :button, data:{toggle: :modal, target: :'#modal-signup'}}= t('signup_form.submit')
             /.nav-collapse
       / Begin page content
       .container
         .row
-          .col-md-3
-            %ul.nav.nav-pills.nav-stacked
-              - Category.includes(:translations).each do |category|
-                %li= link_to raw("#{category.name} <span class='badge pull-right'>#{category.partners.count}</span>"), category
-          .col-md-9
+          .col-lg-12
             = yield
     #footer
       .container
         %p.text-muted.credit
           Розробка:
-          %a{href: "http://martinbean.co.uk"} Олексин Віктор
+          %a{href: "http://www.linkedin.com/in/bartezic/en"} Олексин Віктор
 
     = render 'shared/popups'

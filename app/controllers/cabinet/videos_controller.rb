@@ -5,7 +5,7 @@ module Cabinet
     # GET /videos
     # GET /videos.json
     def index
-      @videos = current_partner.videos.includes(:translations).page(params[:page]).per(25)
+      @videos = current_partner.videos.page(params[:page]).per(25)
     end
 
     # GET /videos/1
@@ -28,7 +28,7 @@ module Cabinet
       @video = current_partner.videos.build(video_params)
 
       respond_to do |format|
-        if @video.save && update_translations
+        if @video.save
           format.html { redirect_to [:cabinet, @video], notice: 'Video was successfully created.' }
           format.json { render action: 'show', status: :created, location: @video }
         else
@@ -42,7 +42,7 @@ module Cabinet
     # PATCH/PUT /videos/1.json
     def update
       respond_to do |format|
-        if @video.update(video_params) && update_translations
+        if @video.update(video_params)
           format.html { redirect_to [:cabinet, @video], notice: 'Video was successfully updated.' }
           format.json { head :no_content }
         else
@@ -57,7 +57,7 @@ module Cabinet
     def destroy
       @video.destroy
       respond_to do |format|
-        format.html { redirect_to cabinet_videos_url }
+        format.html { redirect_to :back }
         format.json { head :no_content }
       end
     end
@@ -70,17 +70,8 @@ module Cabinet
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def video_params
-        params.require(:video).permit(:name, :description :link)
+        params.require(:video).permit(:link)
       end
 
-      def update_translations
-        params[:video][:translations].values.each do |translation|
-          I18n.locale = translation['locale'].to_sym
-          @video.update({
-            name: translation['name'],
-            description: translation['description']
-          })
-        end
-      end
   end
 end

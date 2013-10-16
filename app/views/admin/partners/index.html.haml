@@ -22,13 +22,13 @@
         %tr{ class: partner.premium && 'warning' }
           %td= partner.id
           %td= partner.name
-          %td= image_tag(partner.user.avatar(:thumb_100))
+          %td= image_tag(partner.user.avatar(:thumb_100)) if partner.user
           %td= partner.description && partner.description.truncate(30)
           %td= partner.info && partner.info.truncate(30)
           %td= partner.price
           %td= partner.location.try(:name)
           %td= partner.site
-          %td= partner.user.email
+          %td= partner.user.try(:email)
           %td= partner.phone
           %td= partner.active
           %td= partner.rating
