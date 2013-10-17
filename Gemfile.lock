@@ -212,6 +212,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   letter_opener
+  mail
   nokogiri
   paper_trail!
   paperclip
