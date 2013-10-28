@@ -23,23 +23,8 @@
       .modal-body
         = simple_form_for partner do |f|
           = f.error_notification
-          %ul#myTab.nav.nav-tabs
-            %li.active= link_to t('translation.uk'), '#locale-uk'
-            %li= link_to t('translation.ru'), '#locale-ru'
-          .tab-content
-            #locale-uk.tab-pane.active
-              - f.globalize_fields_for :uk do |l|
-                = l.input :name,            input_html: { class: 'form-control' }
-            #locale-ru.tab-pane
-              - f.globalize_fields_for :ru do |l|
-                = l.input :name,            input_html: { class: 'form-control' }
-          
-          = f.association :location,        input_html: { class: 'form-control' }
-          = f.association :categories,      input_html: { class: 'form-control' }
 
           = f.simple_fields_for :user do |user|
-            = user.input :avatar,                input_html: { class: 'form-control' }
-            = user.input :avatar_remote_url,     input_html: { class: 'form-control' } 
             = user.input :email,                 input_html: { class: 'form-control' }
             = user.input :password,              input_html: { class: 'form-control' }
             = user.input :password_confirmation, input_html: { class: 'form-control' }

@@ -28,6 +28,7 @@ class PartnersController < ApplicationController
 
     respond_to do |format|
       if @partner.save && update_translations
+        sign_in(:user, @partner.user)
         format.html { redirect_to @partner, notice: 'Partner was successfully created.' }
         format.json { render action: 'show', status: :created, location: @partner }
       else
@@ -42,6 +43,7 @@ class PartnersController < ApplicationController
   def update
     respond_to do |format|
       if @partner.update(partner_params) && update_translations
+        sign_in(:user, @partner.user)
         format.html { redirect_to @partner, notice: 'Partner was successfully updated.' }
         format.json { head :no_content }
       else
@@ -77,13 +79,17 @@ class PartnersController < ApplicationController
     end
 
     def update_translations
-      params[:partner][:translations].values.each do |translation|
-        I18n.locale = translation['locale'].to_sym
-        @partner.update({
-          name: translation['name'],
-          description: translation['description'],
-          info: translation['info']
-        })
+      if params[:partner][:translations] 
+        params[:partner][:translations].values.each do |translation|
+          I18n.locale = translation['locale'].to_sym
+          @partner.update({
+            name: translation['name'],
+            description: translation['description'],
+            info: translation['info']
+          })
+        end
+      else
+        true
       end
     end
 end
