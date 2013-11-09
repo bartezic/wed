@@ -14,19 +14,18 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require twitter/bootstrap
-//= require photobox
-//= require_tree .
+//= //require photobox
 
-function ready () {
-  $('#myTab a').click(function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-  })
-  var galleries = $('.gallery');
-  if(galleries.length !== 0){
-    galleries.photobox('a');
-  }
-};
+// function ready () {
+//   $('#myTab a').click(function (e) {
+//     e.preventDefault()
+//     $(this).tab('show')
+//   })
+//   var galleries = $('.gallery');
+//   if(galleries.length !== 0){
+//     galleries.photobox('a');
+//   }
+// };
 
-$(document).ready(ready);
-$(document).on('page:load', ready);
+// $(document).ready(ready);
+// $(document).on('page:load', ready);

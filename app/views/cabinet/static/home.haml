@@ -1,1 +1,47 @@
 %h1 Кабінет
+%section.user-settings
+  %header
+    .user-avatar{style: "background-image:url('https://gravatar.com/avatar/8649c3d41ad219e97041441e0df070b8.png?s=48')"}
+    %h1 User Settings
+  .inner-wrapper
+    %section.sidebar.settings-sidebar
+      %nav
+        %ol.sections
+          %li
+            %a{href: "/user_settings/profile"}
+              Profile
+          %li
+            %a{href: "/user_settings/notifications"}
+              Notifications
+          %li
+            %a{href: "/user_settings/github_linking"}
+              GitHub Linking
+          %li
+            %a{href: "/user_settings/password"}
+              Change Password
+          %li
+            %a{href: "/user_settings/token"}
+              Login Token
+          %li
+            %a.active{href: "/user_settings/ssh_keys"}
+              SSH Keys
+    %section.settings-content.ssh_keys_settings
+      %article.setting.ssh-keys
+        %header
+          %h2 Add an SSH Key
+        .setting-details
+          %form{"accept-charset" => "UTF-8", action: "/1/keys", method: "post"}
+            %div{style: "margin:0;padding:0;display:inline"}
+              %input{name: "utf8", type: "hidden", value: "✓"}/
+              %input{name: "authenticity_token", type: "hidden", value: "jRiUlwR/SrtWQLcvUnZL7ZXXg5RY8hfbN5RzTplX7Fc="}/
+            %label{for: "keys__name"} Title
+            %input#keys__name{name: "keys[][name]", type: "text"}/
+            %label{for: "keys__pub"} Key
+            %textarea#keys__pub{name: "keys[][pub]", rows: "5"}
+            %input{name: "commit", type: "submit", value: "Add Key"}/
+      %article.setting.ssh-keys
+        %header
+          %h2
+            SSH Keys
+        .setting-details
+          .empty You don't have any SSH Key

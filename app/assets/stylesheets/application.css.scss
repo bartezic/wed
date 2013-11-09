@@ -7,15 +7,15 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require bootstrap_and_overrides
- *= require admin
- *= require cabinet
- *= require app
- *= require photobox
- *= require photobox.ie
  */
+
+@import "bourbon";
+@import "bootstrap_and_overrides";
+@import "admin";
+@import "cabinet";
+@import "app";
+@import "photobox";
+@import "photobox.ie";
  
 html,
 body {
