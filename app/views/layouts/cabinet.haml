@@ -5,24 +5,12 @@
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
-  %body
+  %body.cabinet
 
     / Wrap all page content here
     #wrap
       / Fixed navbar
-      .navbar.navbar-default.navbar-fixed-top
-        .container.top-nav
-          .navbar-header
-            %button.navbar-toggle{type: :button, data: {target: '.nc1', toggle: :collapse}}
-              %span.icon-bar
-              %span.icon-bar
-              %span.icon-bar
-          .navbar-collapse.collapse.nc1
-            %ul.nav.navbar-nav
-
-            %ul.nav.navbar-nav.navbar-right
-              %li.locale{class: locale == :uk && 'active', data: {locale: :uk}}= link_to "Укр", "?locale=uk"
-              %li.locale{class: locale == :ru && 'active', data: {locale: :ru}}= link_to "Рус", "?locale=ru"
+      .navbar.navbar-default.navbar-static-top
         .container
           .navbar-header
             %button.navbar-toggle{type: :button, data: {target: '.nc2', toggle: :collapse}}
@@ -37,6 +25,8 @@
               %li{class: request.path == cabinet_photos_path          && 'active'}= link_to 'Photos',    cabinet_photos_path
               %li{class: request.path == cabinet_videos_path          && 'active'}= link_to 'Videos',    cabinet_videos_path
             %ul.nav.navbar-nav.navbar-right
+              %li.locale{class: locale == :uk && 'active', data: {locale: :uk}}= link_to "Укр", "?locale=uk"
+              %li.locale{class: locale == :ru && 'active', data: {locale: :ru}}= link_to "Рус", "?locale=ru"
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
                   = current_user.email 

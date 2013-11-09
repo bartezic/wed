@@ -1,7 +1,7 @@
 = simple_form_for [:admin, @partner] do |f|
   = f.error_notification
   .row
-    .col-lg-6
+    .col-xs-6
       %ul#myTab.nav.nav-tabs
         %li.active= link_to t('translation.uk'), '#locale-uk'
         %li= link_to t('translation.ru'), '#locale-ru'
@@ -23,7 +23,7 @@
       = f.association :categories,      input_html: { class: 'form-control' }
       = f.association :days,            input_html: { class: 'form-control' }
 
-    .col-lg-6
+    .col-xs-6
       = f.simple_fields_for :user do |user|
         = user.input :avatar,                input_html: { class: 'form-control' }
         = user.input :avatar_remote_url,     input_html: { class: 'form-control' } 

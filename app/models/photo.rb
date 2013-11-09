@@ -24,8 +24,8 @@ class Photo < ActiveRecord::Base
   def change_file_name
     gal = self.gallery
     part = gal.partner
-    p gal.inspect
-    p part.inspect
+    # p gal.inspect
+    # p part.inspect
     extension = File.extname(asset_remote_url.present? ? asset_remote_url : asset_file_name).gsub(/^\.+/, '')
     asset.instance_write(:file_name, "#{gal ? gal.slug : 'portfolio'}.#{extension}")
   end

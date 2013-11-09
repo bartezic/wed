@@ -52,11 +52,8 @@ gem 'devise'
 gem 'simple_form'
 gem "haml-rails"
 gem 'paperclip'
-gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails',
-                              github: 'anjlab/bootstrap-rails',
-                              branch: '3.0.0'
-gem 'globalize3', github: 'svenfuchs/globalize3', branch: 'rails4'
-gem 'paper_trail', github: 'airblade/paper_trail', branch: 'master'
+gem 'anjlab-bootstrap-rails', '~> 3.0.2.0', require: 'bootstrap-rails'
+gem 'globalize', '~> 4.0.0.alpha.2'
 gem 'friendly_id', '5.0.0.beta4'
 gem 'babosa'
 gem 'kaminari'

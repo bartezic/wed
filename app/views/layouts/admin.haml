@@ -5,32 +5,16 @@
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
-  %body
+  %body.admin
 
     / Wrap all page content here
     #wrap
       / Fixed navbar
       .navbar.navbar-default.navbar-fixed-top
-        .container.top-nav
-          .navbar-header
-            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
-              %span.icon-bar
-              %span.icon-bar
-              %span.icon-bar
-          .navbar-collapse.collapse
-            %ul.nav.navbar-nav
-
-            %ul.nav.navbar-nav.navbar-right
-              %li.locale{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
-              %li.locale{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
         .container
           .navbar-header
-            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
-              %span.icon-bar
-              %span.icon-bar
-              %span.icon-bar
             %a.navbar-brand{href: "/admin"} Logo
-          .navbar-collapse.collapse
+          .navbar-collapse
             %ul.nav.navbar-nav
               %li{class: request.path == admin_managers_path && 'active'}
                 %a{href: admin_managers_path}= t 'admin.menu.admins'
@@ -47,6 +31,8 @@
               %li{class: request.path == admin_videos_path && 'active'}
                 %a{href: admin_videos_path}= t 'admin.menu.videos'
             %ul.nav.navbar-nav.navbar-right
+              %li.locale{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
+              %li.locale{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
                   = current_user.email 
@@ -58,9 +44,7 @@
             /.nav-collapse
       / Begin page content
       .container
-        .row
-          .col-md-12
-            = yield
+        = yield
     #footer
       .container
         %p.text-muted.credit

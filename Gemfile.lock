@@ -1,30 +1,3 @@
-GIT
-  remote: git://github.com/airblade/paper_trail.git
-  revision: 2c3f330521b74d6411f941cd790281dac0f9688b
-  branch: master
-  specs:
-    paper_trail (3.0.0.beta1)
-      activerecord (>= 3.0, < 5.0)
-
-GIT
-  remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: addb7143365f97f938e3bdbb2ccfc52591230eda
-  branch: 3.0.0
-  specs:
-    anjlab-bootstrap-rails (3.0.0.rc2)
-      railties (>= 3.0)
-      sass (>= 3.2)
-
-GIT
-  remote: git://github.com/svenfuchs/globalize3.git
-  revision: 82b3b36308677745b261bd147dda00ed4560a25d
-  branch: rails4
-  specs:
-    globalize3 (0.3.0)
-      activemodel (>= 4.0.0)
-      activerecord (>= 4.0.0)
-      paper_trail (~> 3.0.0.beta)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -53,6 +26,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    anjlab-bootstrap-rails (3.0.2.0)
+      railties (>= 3.0)
+      sass (>= 3.2)
     arel (4.0.0)
     atomic (1.1.14)
     babosa (0.3.11)
@@ -85,6 +61,10 @@ GEM
     execjs (2.0.1)
     friendly_id (5.0.0.beta4)
       activerecord (~> 4.0.0)
+    globalize (4.0.0.alpha.2)
+      activemodel (>= 4.0.0)
+      activerecord (>= 4.0.0)
+      paper_trail (~> 3.0.0.beta)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -127,6 +107,9 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
+    paper_trail (3.0.0.rc1)
+      activerecord (>= 3.0, < 5.0)
+      activesupport (>= 3.0, < 5.0)
     paperclip (3.5.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -200,13 +183,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  anjlab-bootstrap-rails!
+  anjlab-bootstrap-rails (~> 3.0.2.0)
   babosa
   capistrano
   coffee-rails (~> 4.0.0)
   devise
   friendly_id (= 5.0.0.beta4)
-  globalize3!
+  globalize (~> 4.0.0.alpha.2)
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
@@ -214,7 +197,6 @@ DEPENDENCIES
   letter_opener
   mail
   nokogiri
-  paper_trail!
   paperclip
   pg
   rails (= 4.0.0)

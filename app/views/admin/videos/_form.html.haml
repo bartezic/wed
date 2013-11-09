@@ -1,7 +1,7 @@
 = simple_form_for([:admin, @video]) do |f|
   = f.error_notification
   .row
-    .col-lg-6
+    .col-xs-6
       = f.input :link,              input_html: { class: 'form-control' }
       = f.input :rating,            input_html: { class: 'form-control' }
       = f.association :partner,     input_html: { class: 'form-control' }

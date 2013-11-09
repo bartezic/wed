@@ -30,7 +30,7 @@ namespace :import do
         if !JSON.parse(photos)['nextStart'].empty?
           photos = RestClient.get("http://odnalubov.com/userprofile/manage_profile/get_photos.php?user_id=#{href}&start=#{JSON.parse(photos)['nextStart']}")
         end
-        photos = JSON.parse(photos)['files'].map{ |p| { asset_remote_url: "http://odnalubov.com/userprofile/photos#{href}/#{CGI.escape(p)}" } if p}.compact
+        photos = JSON.parse(photos)['files'].map{ |p| { asset_remote_url: "http://odnalubov.com/userprofile/photos#{href}/#{CGI.escape(p)}" } if p}.first(10).compact
         content = Nokogiri::HTML.parse(res1,nil,'windows-1251').xpath("//td[@class='main-bg']/table")
         if content
           price = content[2].search("//span[@class='fs15px']").first.content.strip
