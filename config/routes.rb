@@ -4,7 +4,9 @@ Wed::Application.routes.draw do
     resources :photos
     resources :videos
     resources :galleries
-    root 'static#home'
+    get 'profile/:section' => 'partners#edit',   as: :profile
+    # put 'profile/:section' => 'partners#update', as: :update_profile
+    root 'partners#edit'
   end
 
   namespace :admin do

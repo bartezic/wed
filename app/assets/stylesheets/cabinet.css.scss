@@ -127,7 +127,7 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
 
 
 
-	section.account-settings, section.user-settings, section.repo-settings {
+	section.profile {
 	  @include box-shadow(0 3px 20px 0 rgba(0,0,0, 0.06));
 	  background-color: rgb(255,255,255);
 	  border: 1px solid $dark-blue-border-color;
@@ -144,21 +144,19 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
 		  text-shadow: $dark-text-shadow;
 	    @include border-top-radius(4px);
 	    padding: 8px 20px;
-	    h1 {
-		    color: #fff;
-		    text-shadow: $dark-text-shadow;
-		  }
 
 	    .account-avatar, .user-avatar {
-			  Іh: 24px;
+			  background-size: cover;
+			  background-repeat: no-repeat;
+			  border-radius: 15px;
+			  margin-right: 3px;
+			  height: 30px;
+			  width: 30px;
 	      @include inline-block;
-	      border-color: $dark-blue-border-color;
-	      @include box-shadow(0 1px 0 0 rgba(255,255,255, 0.2));
-	      @include box-shadow(inset 0 1px 0 0 rgba(255,255,255, 0.3));
 	      vertical-align: middle;
 	    }
 
-	    h1 {
+	    h1, h2 {
 	      color: #fff;
 	      letter-spacing: 1px;
 	      @include inline-block;
@@ -173,7 +171,7 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
 	    position: relative;
 	  }
 
-	  .sidebar.settings-sidebar {
+	  .sidebar {
 	    background: $blue-bg;
 	    border-right: 1px solid $light-blue-border-color;
 	    border-radius: 0 0 0 4px;
@@ -288,7 +286,7 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
 	    section.config-tips {
 	      margin-bottom: 50px;
 
-	      > h2 {
+	      > h2, > h3 {
 	        color: $medium-base-font-color;
 	        font-family: $serif;
 	        font-weight: normal;
@@ -315,7 +313,7 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
 	        @include clearfix;
 	        padding: 10px 15px;
 
-	        h2 {
+	        h2, h3 {
 	          float: left;
 	          margin: 0px;
 	          text-shadow: 0 1px rgba(255,255,255, 0.6);

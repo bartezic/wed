@@ -66,10 +66,5 @@
         .row
           .col-lg-12
             = yield
-    #footer
-      .container
-        %p.text-muted.credit
-          Розробка:
-          %a{href: "http://www.linkedin.com/in/bartezic/en"} Олексин Віктор
-
+    = render 'shared/footer'
     = render 'shared/popups'

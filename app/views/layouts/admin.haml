@@ -41,12 +41,7 @@
                   %li
                     %a{href: "/"} На сайт
                   %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
-            /.nav-collapse
-      / Begin page content
       .container
+        = render 'shared/flash'
         = yield
-    #footer
-      .container
-        %p.text-muted.credit
-          Розробка:
-          %a{href: "http://martinbean.co.uk"} Олексин Віктор
+    = render 'shared/footer'

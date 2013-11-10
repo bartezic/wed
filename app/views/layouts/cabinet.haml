@@ -20,7 +20,7 @@
             %a.navbar-brand{href: "/cabinet"} Logo
           .navbar-collapse.collapse.nc2
             %ul.nav.navbar-nav
-              %li{class: request.path == [:cabinet, current_partner]  && 'active'}= link_to 'Profile',   [:cabinet, current_partner]
+              %li{class: request.path == cabinet_profile_path(:general) && 'active'}= link_to 'Profile',  cabinet_profile_path(:general)
               %li{class: request.path == cabinet_galleries_path       && 'active'}= link_to 'Galleries', cabinet_galleries_path
               %li{class: request.path == cabinet_photos_path          && 'active'}= link_to 'Photos',    cabinet_photos_path
               %li{class: request.path == cabinet_videos_path          && 'active'}= link_to 'Videos',    cabinet_videos_path
@@ -37,11 +37,6 @@
             /.nav-collapse
       / Begin page content
       .container
-        .row
-          .col-md-12
-            = yield
-    #footer
-      .container
-        %p.text-muted.credit
-          Розробка:
-          %a{href: "http://martinbean.co.uk"} Олексин Віктор
+        = render 'shared/flash'
+        = yield
+    = render 'shared/footer'

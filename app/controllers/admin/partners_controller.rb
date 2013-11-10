@@ -80,13 +80,17 @@ module Admin
       end
 
       def update_translations
-        params[:partner][:translations].values.each do |translation|
-          I18n.locale = translation['locale'].to_sym
-          @partner.update({
-            name: translation['name'],
-            description: translation['description'],
-            info: translation['info']
-          })
+        if params[:partner][:translations]
+          params[:partner][:translations].values.each do |translation|
+            I18n.locale = translation['locale'].to_sym
+            @partner.update({
+              name: translation['name'],
+              description: translation['description'],
+              info: translation['info']
+            })
+          end
+        else
+          true
         end
       end
   end

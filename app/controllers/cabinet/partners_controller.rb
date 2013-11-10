@@ -9,6 +9,7 @@ module Cabinet
 
     # GET /desks/1/edit
     def edit
+      @section = params[:section].try(:to_sym) || :general
     end
 
     # PATCH/PUT /desks/1
@@ -16,10 +17,10 @@ module Cabinet
     def update
       respond_to do |format|
         if @partner.update(partner_params) && update_translations
-          format.html { redirect_to [:cabinet, @partner], notice: 'Partner was successfully updated.' }
+          format.html { redirect_to :back, notice: 'Partner was successfully updated.' }
           format.json { head :no_content }
         else
-          format.html { render action: 'edit' }
+          format.html { redirect_to :back, alert: @partner.get_errors }
           format.json { render json: @partner.errors, status: :unprocessable_entity }
         end
       end
@@ -35,20 +36,24 @@ module Cabinet
       def partner_params
         params.require(:partner).permit(
           :name, :description, :info, :price, :location_id, 
-          :site, :email, :phone, :active, :premium, :premium_to, 
-          :avatar, :rating, :slug, :password, :password_confirmation,
-          :avatar_remote_url, :category_ids => [], :location_ids => []
+          :site, :phone, :active, :premium, :premium_to, :slug,
+          :rating, category_ids: [], location_ids: [], 
+          user_attributes: [:id, :email, :avatar, :avatar_remote_url, :password, :password_confirmation]
         )
       end
 
       def update_translations
-        params[:partner][:translations].values.each do |translation|
-          I18n.locale = translation['locale'].to_sym
-          @partner.update({
-            name: translation['name'],
-            description: translation['description'],
-            info: translation['info']
-          })
+        if params[:partner][:translations]
+          params[:partner][:translations].values.each do |translation|
+            I18n.locale = translation['locale'].to_sym
+            @partner.update({
+              name: translation['name'],
+              description: translation['description'],
+              info: translation['info']
+            })
+          end
+        else
+          true
         end
       end
   end

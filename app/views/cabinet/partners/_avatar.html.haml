@@ -1,0 +1,10 @@
+= simple_form_for [:cabinet, @partner] do |f|
+  = f.error_notification
+
+  = image_tag @partner.user.avatar(:thumb_220)
+
+  = f.simple_fields_for :user do |user|
+    = user.input :avatar,                input_html: { class: 'form-control' }
+    = user.input :avatar_remote_url,     input_html: { class: 'form-control', value: nil }
+
+  = f.button :submit, class: 'btn btn-default', value: 'Зберегти зміни'
