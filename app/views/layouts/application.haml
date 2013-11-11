@@ -11,20 +11,17 @@
     / Wrap all page content here
     #wrap
       / Fixed navbar
-      .navbar.navbar-default.navbar-fixed-top
-        .container.top-nav
-          .navbar-header
-            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
-              %span.icon-bar
-              %span.icon-bar
-              %span.icon-bar
-          .navbar-collapse.collapse
-            %ul.nav.navbar-nav
+      %nav.top
+        / gradient for navigation
+        .container
+          .row
+            .col-lg-9
 
-            %ul.nav.navbar-nav.navbar-right
-              %li.locale{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
-              %li.locale{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
-            /.nav-collapse
+            .col-lg-3
+              .pull-right
+                %button.btn.btn-default.navbar-btn{type: :button, data:{toggle: :modal, target: :'#modal-login'}}= t('login_form.submit')
+                %button.btn.btn-default.navbar-btn{type: :button, data:{toggle: :modal, target: :'#modal-signup'}}= t('signup_form.submit')
+      .navbar.navbar-default.navbar-static-top
         .container
           .navbar-header
             %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
@@ -46,6 +43,8 @@
                   %li
                     %a{href: "#"} Залишити заявку
             %ul.nav.navbar-nav.navbar-right
+              %li.locale{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
+              %li.locale{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
               - if user_signed_in?
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
@@ -58,8 +57,10 @@
                       %li= link_to 'Кабінет', [:cabinet, current_user.rolable]
                     %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
               - else
-                %button.btn.btn-default.navbar-btn{type: :button, data:{toggle: :modal, target: :'#modal-login'}}= t('login_form.submit')
-                %button.btn.btn-default.navbar-btn{type: :button, data:{toggle: :modal, target: :'#modal-signup'}}= t('signup_form.submit')
+                %li
+                  %button.btn.btn-default.navbar-btn{type: :button, data:{toggle: :modal, target: :'#modal-login'}}= t('login_form.submit')
+                %li
+                  %button.btn.btn-default.navbar-btn{type: :button, data:{toggle: :modal, target: :'#modal-signup'}}= t('signup_form.submit')
             /.nav-collapse
       / Begin page content
       .container
