@@ -40,10 +40,15 @@ nav {
           vertical-align: middle;
           cursor: pointer;
           &:hover {
+            background-color: #5fbed0;
             border: 1px solid white;
           } 
           a.dropdown-toggle {
             color: white;
+            .caret {
+              border-bottom-color: #FFFFFF;
+              border-top-color: #FFFFFF;
+            }
           }
         }
       }
