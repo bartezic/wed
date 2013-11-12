@@ -9,15 +9,44 @@ nav {
     background: linear-gradient(to right,  #5fbed0 0%,#5fbed0 50%,#2a8bb5 50%,#2a8bb5 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5fbed0', endColorstr='#2a8bb5',GradientType=1 );
     &> .container {
-      background: #5fbed0;
-      background: -moz-linear-gradient(left,  #5fbed0 0%, #5fbed0 66%, #2a8bb5 66%, #2a8bb5 100%);
-      background: -webkit-gradient(linear, left top, right top, color-stop(0%,#5fbed0), color-stop(50%,#5fbed0), color-stop(50%,#2a8bb5), color-stop(100%,#2a8bb5));
-      background: -webkit-linear-gradient(left,  #5fbed0 0%,#5fbed0 66%,#2a8bb5 66%,#2a8bb5 100%);
-      background: -o-linear-gradient(left,  #5fbed0 0%,#5fbed0 66%,#2a8bb5 66%,#2a8bb5 100%);
-      background: -ms-linear-gradient(left,  #5fbed0 0%,#5fbed0 66%,#2a8bb5 66%,#2a8bb5 100%);
-      background: linear-gradient(to right,  #5fbed0 0%,#5fbed0 66%,#2a8bb5 66%,#2a8bb5 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5fbed0', endColorstr='#2a8bb5',GradientType=1 );
-
+      .left {
+        color: white;
+        height: 82px;
+        background: #5fbed0;
+        .logo {
+          border-radius: 50px;
+          margin-top: 10px;
+          background: #2a8bb5 url(logo.png) no-repeat center center;
+          background-size: 100px 100px;
+          width: 100px;
+          height: 100px;
+        }
+        .locale {
+          margin: 31px 10px;
+          a {
+            color: white;
+          }
+        }
+      }
+      .right {
+        background: #2a8bb5;
+        .auth {
+          color: white;
+          background-color: #2a8bb5;
+          border: 1px solid #2a8bb5;
+          border-radius: 4px;
+          padding: 10px;
+          margin: 20px 0 20px 5px;
+          vertical-align: middle;
+          cursor: pointer;
+          &:hover {
+            border: 1px solid white;
+          } 
+          a.dropdown-toggle {
+            color: white;
+          }
+        }
+      }
     }
   }
 }
