@@ -8,7 +8,9 @@ nav {
     background: -ms-linear-gradient(left,  #5fbed0 0%,#5fbed0 50%,#2a8bb5 50%,#2a8bb5 100%);
     background: linear-gradient(to right,  #5fbed0 0%,#5fbed0 50%,#2a8bb5 50%,#2a8bb5 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5fbed0', endColorstr='#2a8bb5',GradientType=1 );
+    border-bottom: 1px solid #8EE8FF;
     &> .container {
+      position: relative;
       .left {
         color: white;
         height: 82px;
@@ -20,9 +22,11 @@ nav {
           background-size: 100px 100px;
           width: 100px;
           height: 100px;
+          position: absolute;
+          z-index: 10;
         }
         .top-nav {
-          margin: 31px 10px 31px 100px;
+          margin: 31px 10px 31px 200px;
           a {
             text-decoration: none;
             margin-left: 30px; 

@@ -1,0 +1,44 @@
+.banner { position: relative; overflow: auto; }
+.banner li { list-style: none; }
+.banner ul li { float: left; }
+
+.carousel {
+  max-width: 1400px;
+  margin: 0 auto;
+  .carousel-caption {
+    .pull-left {
+      .title {
+        background-color: rgba(0,0,0,0.4);
+        font-size: 35px;
+        font-weight: bold;
+        width: 400px;
+      }
+    } 
+    .pull-right {
+      .autor {
+        background-color: #5fbed0;
+        .pull-left {
+          position: relative;
+          .avatar {
+            border-radius: 50px;
+            margin-top: 10px;
+            background: #2a8bb5 url(logo.png) no-repeat center center;
+            background-size: 100px 100px;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            z-index: 10;
+          }
+        }
+        .pull-right {
+          .title {
+
+          }
+          .subtitle {
+
+          }
+        }            
+      }
+    }            
+  }
+}
