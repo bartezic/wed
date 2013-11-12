@@ -18,6 +18,10 @@
             .col-lg-8.left
               .pull-left
                 .logo
+              .pull-left.top-nav
+                = link_to 'ПОСЛУГИ', partners_path
+                = link_to 'ОГОЛОШЕННЯ', partners_path
+                = link_to 'НОВИНИ', partners_path
               .pull-right.locale
                 %span{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
                 |

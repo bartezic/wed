@@ -21,16 +21,33 @@ nav {
           width: 100px;
           height: 100px;
         }
+        .top-nav {
+          margin: 31px 10px 31px 100px;
+          a {
+            text-decoration: none;
+            margin-left: 30px; 
+            font-weight: bold;
+            color: white;
+            &:hover {
+              color: #2a8bb5;
+            }
+          }
+        }
         .locale {
           margin: 31px 10px;
           a {
+            text-decoration: none;
             color: white;
+            &:hover {
+              color: #2a8bb5;
+            }
           }
         }
       }
       .right {
         background: #2a8bb5;
         .auth {
+          text-decoration: none;
           color: white;
           background-color: #2a8bb5;
           border: 1px solid #2a8bb5;
@@ -45,6 +62,7 @@ nav {
           } 
           a.dropdown-toggle {
             color: white;
+            text-decoration: none;
             .caret {
               border-bottom-color: #FFFFFF;
               border-top-color: #FFFFFF;
