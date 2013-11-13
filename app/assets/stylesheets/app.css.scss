@@ -1,2 +1,67 @@
 .app {
+  .recent-users {
+    background: #2a8bb5;
+    color: white;
+    padding: 15px 0;
+    .container {
+      height: 85px;
+      overflow: hidden;
+      &> a:not(.add) {
+        float: left;
+        position: relative;
+        margin-left: 5px;
+        z-index: 10;
+        color: white;
+        text-decoration: none;
+        img {
+          border-radius: 50px;
+          width: 85px;
+          height: 85px;
+        }
+        .content {
+          display: none;
+          position: absolute;
+          top: 0px;
+          font-size: 12px;
+          text-align: center;
+          text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+          width: 85px;
+          height: 85px;
+          vertical-align: middle;
+          padding-top: 25px;
+          color: #FFF;
+          background: rgba(0, 0, 0, 0.4);
+          border-radius: 50px;
+        }
+        &:hover {
+          .content {
+            display: block;
+          }
+        }
+      }
+    }
+    .intro {
+      float: left;
+      padding: 20px 0;
+      .title {
+        font-size: 20px;
+      }
+      .subtitle {
+        font-size: 14px;
+      }
+    }
+    .add {
+      font-size: 56px;
+      float: left;
+      border-radius: 50px;
+      margin-left: 30px;
+      border: 3px solid white;
+      width: 85px;
+      height: 85px;
+      z-index: 10;
+      padding-left: 23px;
+      color: white;
+      text-decoration: none;
+    }
+  }
 }

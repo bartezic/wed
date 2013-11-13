@@ -6,12 +6,19 @@
   max-width: 1400px;
   margin: 0 auto;
   .carousel-caption {
+    left: 9%;
+    right: 9%;
     .pull-left {
-      .title {
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+      .title, .stitle {
+        float: left;
+        border-left: 5px solid #2a8bb5;
         background-color: rgba(0,0,0,0.4);
-        font-size: 35px;
+        font-size: 30px;
+        max-width: 500px;
         font-weight: bold;
-        width: 400px;
+        text-align: left;
+        padding: 0 10px;
       }
     } 
     .pull-right {
@@ -21,7 +28,8 @@
           position: relative;
           .avatar {
             border-radius: 50px;
-            margin-top: 10px;
+            border: 3px solid white;
+            margin: -20px 0 0 -50px;
             background: #2a8bb5 url(logo.png) no-repeat center center;
             background-size: 100px 100px;
             width: 100px;
@@ -31,14 +39,38 @@
           }
         }
         .pull-right {
+          padding: 10px 10px 10px 60px;
+          text-align: right;
+          text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
           .title {
-
+            font-size: 18px;
           }
           .subtitle {
-
+            font-size: 14px;
           }
         }            
       }
     }            
+  }
+  .carousel-control {
+    width: 13%;
+  }
+  .carousel-indicators {
+    right: 10%;
+    width: auto;
+    margin-left: 0;
+    left: inherit;
+    li {
+      width: 13px;
+      height: 13px;
+      border-color: #988;
+      background-color: #999;
+      &.active {
+        width: 15px;
+        height: 15px;
+        border-color: #2a8bb5;
+        background-color: #2a8bb5;
+      }
+    }
   }
 }
