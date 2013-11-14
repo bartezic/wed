@@ -6,7 +6,7 @@
   padding: 0 0 160px;
 }
 
-footer {
+body > footer {
   height: 160px;
   background-color: #145e8d;
   color: white;
@@ -24,6 +24,9 @@ footer {
             font-size: 12px;
             vertical-align: 2px;
           }
+        }
+        &:hover {
+          color: #2a8bb5;
         }
       }
     }

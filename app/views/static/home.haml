@@ -11,11 +11,12 @@
         .pull-left 
           .title КОЛОРИТНЕ ВЕСІЛЛЯ 
           .clearfix
-          .stitle ПРОКОПА ТА МАГДИЛИНИ
+          .subtitle ПРОКОПА ТА МАГДИЛИНИ
         .pull-right
-          .autor
+          %a.autor{href: "http://wedcity.pro/partners/marta"}
             .pull-left
               .avatar
+                %img{alt: "Валерія", src: "http://wedcity.pro/system/avatars/228/thumb_220/stringio.jpg?1381959415"}/
             .pull-right
               .title Андрій Кобрин
               .subtitle відеооператор
@@ -25,11 +26,14 @@
       %img{src: "/assets/slider/9.jpg"}
       .carousel-caption
         .pull-left 
-          .title КОЛОРИТНЕ ВЕСІЛЛЯ ПРОКОПА ТА МАГДИЛИНИ
+          .title ВЕСІЛЛЯ ФІАЛКИ ТА НАРЦИСА
+          .clearfix
+          .subtitle В БОТАНІЧНОМУ САДУ
         .pull-right
-          .autor
+          %a.autor{href: "http://wedcity.pro/partners/marta"}
             .pull-left
               .avatar
+                %img{alt: "Міла", src: "http://wedcity.pro/system/avatars/226/thumb_220/open-uri20131016-12013-1nfq0q1.jpg?1381959372"}/
             .pull-right
               .title Андрій Кобрин
               .subtitle відеооператор
@@ -38,11 +42,14 @@
       %img{src: "/assets/slider/8.jpg"}
       .carousel-caption
         .pull-left 
-          .title КОЛОРИТНЕ ВЕСІЛЛЯ ПРОКОПА ТА МАГДИЛИНИ
+          .title КОЛОРИТНЕ ВЕСІЛЛЯ 
+          .clearfix
+          .subtitle ПРОКОПА ТА МАГДИЛИНИ
         .pull-right
-          .autor
+          %a.autor{href: "http://wedcity.pro/partners/marta"}
             .pull-left
               .avatar
+                %img{alt: "Марта", src: "http://wedcity.pro/system/avatars/222/thumb_220/stringio.jpg?1381959265"}/
             .pull-right
               .title Андрій Кобрин
               .subtitle відеооператор
@@ -51,11 +58,30 @@
       %img{src: "/assets/slider/11.jpg"}
       .carousel-caption
         .pull-left 
-          .title КОЛОРИТНЕ ВЕСІЛЛЯ ПРОКОПА ТА МАГДИЛИНИ
+          .title ВЕСІЛЛЯ НА БЕРЕЗІ МОРЯ
+          .clearfix
+          .subtitle ЧИН ЗАНЬ ЦЮНЯ ТА НАСТІ
         .pull-right
-          .autor
+          %a.autor{href: "http://wedcity.pro/partners/marta"}
             .pull-left
               .avatar
+                %img{alt: "Тетяна", src: "http://wedcity.pro/system/avatars/231/thumb_220/open-uri20131016-12013-10z7qk1.jpg?1381959477"}/
+            .pull-right
+              .title Андрій Кобрин
+              .subtitle відеооператор
+            .clearfix
+    .item
+      %img{src: "/assets/slider/9.jpg"}
+      .carousel-caption
+        .pull-left 
+          .title ВЕСІЛЛЯ В КАРПАТАХ
+          .clearfix
+          .subtitle МАРНОЗАРА ТА ФІАЛОСТИНКИ
+        .pull-right
+          %a.autor{href: "http://wedcity.pro/partners/marta"}
+            .pull-left
+              .avatar
+                %img{alt: "Анна", src: "http://wedcity.pro/system/avatars/230/thumb_220/open-uri20131016-12013-1ao2g6o.jpg?1381959447"}/
             .pull-right
               .title Андрій Кобрин
               .subtitle відеооператор
@@ -65,8 +91,72 @@
   %a.right.carousel-control{"data-slide" => "next", href: "#carousel-example-generic"}
     %span.glyphicon.glyphicon-chevron-right
 
-.container(style="height: 300px;")
-  %h1 Home
+
+.container
+  .row
+    %section.col-lg-8.main-section
+      %article.about-us
+        %table
+          %tr
+            %td.title Про нас
+            %td.description 
+              %span WedCity.pro(Місто весільних професіоналів) 
+              = '- це своєрідна соціальна мережа яка об’єднує людей які працюють у галузі надання послуг для урочистих подій та людей яким необхідні ці послуги.'
+        .nav
+          = link_to 'Контакти', partners_path
+          = link_to 'Рекламодавцям', partners_path
+        .clearfix
+      %article.couple-ad
+        %header ТЕНДЕР ВІД НАРЕЧЕНИХ
+        .line
+        %table
+          %tr
+            %td.left
+              %figure
+                %img
+                %figurecaption
+              %figure
+                %img
+                %figurecaption
+            %td.right
+              .title Потрібен професійний фотограф на весілля
+              .subtitle
+                %span 19 квітня 2013
+                %span від 500$ до 1000$
+                %span Київ
+                %span Відеооператор
+              .description Треба дуже відповідальна людина яка фоткатиме компроматичний репортаж та буде пасти курей і котів немитих на вертольоті з сімома леприконами.
+              .links
+                .pull-left
+                  = link_to 'ЗАПРОПОНУВАТИ СВОЇ ПОСЛУГИ', partners_path
+                .pull-right
+                  = link_to 'Переглянути інші запити', partners_path
+                .clearfix
+      %article.profi-ad
+        %header ВИПАДКОВЕ ОГОЛОШЕННЯ
+        .line
+      %article.just-ad
+        %header РЕКЛАМА
+        .line
+    %aside.col-lg-4
+      %section.popular-news
+        %article
+          %header
+            %h1 Популярна новина
+          %figure
+            %img
+            %figurecaption
+          %footer
+      %section.recent-news
+        %article
+          %header
+            %h1 Останні новини
+          %section
+            %article
+            %article
+            %article
+            %article
+          %footer
 
 .recent-users
   .container

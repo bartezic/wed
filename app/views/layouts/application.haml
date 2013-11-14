@@ -7,83 +7,8 @@
     = csrf_meta_tags
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
   %body.app
-
-    / Wrap all page content here
     #wrap
-      / Fixed navbar
-      %nav.top
-        / gradient for navigation
-        .container
-          .row
-            .col-lg-8.left
-              .pull-left
-                .logo
-              .pull-left.top-nav
-                = link_to 'ПОСЛУГИ', partners_path
-                = link_to 'ОГОЛОШЕННЯ', partners_path
-                = link_to 'НОВИНИ', partners_path
-              .pull-right.locale
-                %span{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
-                |
-                %span{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
-            .col-lg-4.right
-              .pull-right
-                - if user_signed_in?
-                  .dropdown.auth
-                    %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                      = current_user.email 
-                      %b.caret
-                    %ul.dropdown-menu
-                      - if current_user.is_manager?
-                        %li= link_to 'Адмінка', admin_root_path
-                      - elsif current_user.is_partner?
-                        %li= link_to 'Кабінет', cabinet_profile_path(:general)
-                      %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
-                - else
-                  %button.auth{type: :button, data:{toggle: :modal, target: :'#modal-login'}} ВХІД
-                  %button.auth{type: :button, data:{toggle: :modal, target: :'#modal-signup'}} РЕЄСТРАЦІЯ
-
-      / .navbar.navbar-default.navbar-static-top
-      /   .container
-      /     .navbar-header
-      /       %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
-      /         %span.icon-bar
-      /         %span.icon-bar
-      /         %span.icon-bar
-      /       %a.navbar-brand{href: "/"} Logo
-      /     .navbar-collapse.collapse
-      /       %ul.nav.navbar-nav
-      /         %li.dropdown
-      /           %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-      /             Послуги
-      /             %b.caret
-      /           %ul.dropdown-menu
-      /             - Category.includes(:translations).each do |category|
-      /               %li= link_to raw("#{category.name} <span class='badge pull-right'>#{category.partners.count}</span>"), category
-      /             %li.divider
-      /             %li.dropdown-header Додатково
-      /             %li
-      /               %a{href: "#"} Залишити заявку
-      /       %ul.nav.navbar-nav.navbar-right
-      /         %li.locale{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
-      /         %li.locale{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
-      /         - if user_signed_in?
-      /           %li.dropdown
-      /             %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-      /               = current_user.email 
-      /               %b.caret
-      /             %ul.dropdown-menu
-      /               - if current_user.is_manager?
-      /                 %li= link_to 'Адмінка', admin_root_path
-      /               - elsif current_user.is_partner?
-      /                 %li= link_to 'Кабінет', [:cabinet, current_user.rolable]
-      /               %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
-      /         - else
-      /           %li
-      /             %button.btn.btn-default.navbar-btn{type: :button, data:{toggle: :modal, target: :'#modal-login'}}= t('login_form.submit')
-      /           %li
-      /             %button.btn.btn-default.navbar-btn{type: :button, data:{toggle: :modal, target: :'#modal-signup'}}= t('signup_form.submit')
-      / Begin page content
+      = render 'shared/nav'
       = yield
     = render 'shared/footer'
     = render 'shared/popups'

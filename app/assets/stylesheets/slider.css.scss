@@ -10,7 +10,7 @@
     right: 9%;
     .pull-left {
       text-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
-      .title, .stitle {
+      .title, .subtitle {
         float: left;
         border-left: 5px solid #2a8bb5;
         background-color: rgba(0,0,0,0.4);
@@ -23,19 +23,22 @@
     } 
     .pull-right {
       .autor {
+        display: block;
         background-color: #5fbed0;
+        color: white;
+        text-decoration: none;
         .pull-left {
           position: relative;
           .avatar {
-            border-radius: 50px;
-            border: 3px solid white;
             margin: -20px 0 0 -50px;
-            background: #2a8bb5 url(logo.png) no-repeat center center;
-            background-size: 100px 100px;
-            width: 100px;
-            height: 100px;
             position: absolute;
             z-index: 10;
+            img {
+              border: 3px solid white;
+              border-radius: 50px;
+              width: 100px;
+              height: 100px;
+            }
           }
         }
         .pull-right {

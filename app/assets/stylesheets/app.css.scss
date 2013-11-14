@@ -1,4 +1,111 @@
 .app {
+  section.main-section{
+    border-right: 2px dashed #ddd;
+    margin: 20px 0;
+    article {
+      &> .line {
+        margin: -20px 0 10px 0;
+        height: 10px;
+        background: #d9edf6;
+      }
+      &> header {
+        margin: 0 0 0 20px;
+        color: #2a8bb5;
+        font-size: 15px;
+        display: inline-block;
+        background: white;
+        padding: 5px;
+      }
+      &.about-us {
+        .title {
+          font-size: 23px;
+          font-weight: bold;
+          color: #2a8bb5;
+          padding: 20px 20px 20px 0;
+          white-space: nowrap;
+        }
+        .description {
+          padding: 20px;
+          font-size: 17px;
+          background: #d9edf6;
+          border-left: 5px solid #2a8bb5;
+          span {
+            color: #2a8bb5;
+            font-weight: bold;
+          }
+        }
+        .nav {
+          float: right;
+          margin: 5px 0;
+          a {
+            color: #2a8bb5;
+            font-size: 15px;
+            text-decoration: none;
+            &:not(:last-child){
+              &:after {
+                content: '|';
+                margin: 0 8px 0 12px;
+                font-size: 12px;
+                vertical-align: 2px;
+              }
+            }
+            &:hover {
+              color: #145E8D;
+            }
+          }
+        }
+      }
+      &.couple-ad {
+        margin: 10px 0;
+        table {
+          margin: 20px 0 10px;
+          .left {
+            width: 110px;
+          }
+          .right {
+            .title {
+              color: #145E8D;
+              font-size: 23px;
+            }
+            .subtitle {
+              color: #5fbed0;
+              span {
+                &:not(:last-child){
+                  &:after {
+                    content: '|';
+                    color: gray;
+                    margin: 0 8px 0 12px;
+                    font-size: 12px;
+                    vertical-align: 2px;
+                  }
+                }
+              }
+            }
+            .description {
+              padding: 15px 0;
+            }
+            .links {
+              a {
+                color: #2a8bb5;
+                font-size: 15px;
+                text-decoration: none;
+                &:hover {
+                  color: #145E8D;
+                }
+              }
+            }
+          }
+        }
+      }
+      &.profi-ad {
+        
+      }
+      &.just-ad {
+
+      }
+    }
+  }
+
   .recent-users {
     background: #2a8bb5;
     color: white;
