@@ -1,5 +1,31 @@
-#footer
+%footer
   .container
-    %p.text-muted.credit
-      Розробка:
-      %a{href: "http://ua.linkedin.com/in/bartezic/en"} Олексин Віктор
+    .top
+      .pull-left
+        = link_to 'ДОМАШНЯ', root_path
+        = link_to 'ПОСЛУГИ', partners_path
+        = link_to 'ОГОЛОШЕННЯ', partners_path
+        = link_to 'НОВИНИ', partners_path
+      .pull-right
+        = link_to 'ПРО НАС', root_path
+        = link_to 'ВАКАНСІЇ', partners_path
+        = link_to 'РЕКЛАМОДАВЦЯМ', partners_path
+        = link_to 'КОНТАКТИ', partners_path
+      .clearfix
+    .bottom
+      .pull-left
+        .logo
+        .copyright
+          .title © 2013. Місто весільних професіоналів.
+          .subtitle Всі права застережено. Будь-яке вкористання інформації без згоди адміністрації заборонено.
+      .pull-right
+        %table
+          %tr
+            %td Дизайн:
+            %td 
+              %a{href: "http://ua.linkedin.com/in/bartezic/en"} Viktor Gurniak
+          %tr
+            %td Розробка:
+            %td
+              %a{href: "http://ua.linkedin.com/in/bartezic/en"} Viktor Oleksyn
+      .clearfix
