@@ -98,10 +98,104 @@
         }
       }
       &.profi-ad {
-        
+        margin: 10px 0;
+        table {
+          margin: 20px 0 10px;
+          .left {
+            
+          }
+          .right {
+            padding-left: 20px;
+            vertical-align: top;
+            .title {
+              color: #145E8D;
+              font-size: 23px;
+            }
+            .description {
+              padding: 15px 0;
+            }
+            .links {
+              a {
+                color: #2a8bb5;
+                font-size: 15px;
+                text-decoration: none;
+                &:hover {
+                  color: #145E8D;
+                }
+              }
+            }
+          }
+        }
       }
       &.just-ad {
+        margin: 10px 0;
+        .row {
+          .col-lg-6 {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
 
+  aside {
+    margin: 20px 0;
+    section.popular-news {
+      article {
+        header {
+          background: #145e8d;
+          color: white;
+          padding: 10px 13px;
+          h3 {
+            margin: 0;
+          }
+        }
+        figure {
+          position: relative;
+          img {
+
+          }
+          figurecaption {
+            position: absolute;
+            bottom: 20px;
+            left: 13px;
+            text-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+            .title, .subtitle {
+              float: left;
+              border-left: 5px solid #2a8bb5;
+              background-color: rgba(0,0,0,0.4);
+              font-size: 20px;
+              max-width: 300px;
+              font-weight: bold;
+              text-align: left;
+              padding: 0 10px;
+              color: white;
+            }
+          }
+        }
+        footer {
+          background: #145e8d;
+          color: white;
+          padding: 10px 13px;
+        }
+      }
+    }
+    section.recent-news {
+      margin-top: 20px;
+      article {
+        header {
+          background: #145e8d;
+          color: white;
+          padding: 10px 13px;
+          h3 {
+            margin: 0;
+          }
+        }
+        section {
+          article {
+
+          }
+        }
       }
     }
   }

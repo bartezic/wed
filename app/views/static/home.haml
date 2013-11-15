@@ -19,6 +19,7 @@
     %li(data-target="#carousel-example-generic" data-slide-to="1")
     %li(data-target="#carousel-example-generic" data-slide-to="2")
     %li(data-target="#carousel-example-generic" data-slide-to="3")
+    %li(data-target="#carousel-example-generic" data-slide-to="4")
   .carousel-inner
     .item.active
       %img{src: "/assets/slider/10.jpg"}
@@ -150,22 +151,45 @@
       %article.profi-ad
         %header ВИПАДКОВЕ ОГОЛОШЕННЯ
         .line
+        %table
+          %tr
+            %td.left
+              %figure
+                %img{src: 'http://www.cameronhighlandsresort.com/weddings/images/img_signature_colonial_wedding.jpg'}
+            %td.right
+              .title Забацаю бомбезне LoveStory
+              .description Треба дуже відповідальна людина яка фоткатиме компроматичний репортаж та буде пасти курей і котів немитих на вертольоті з сімома леприконами.
+              .links
+                .pull-left
+                  = link_to 'Детальніше', partners_path
+                .pull-right
+                  = link_to 'Андрій Кобрин | відооператор', partners_path
+                .clearfix
       %article.just-ad
         %header РЕКЛАМА
         .line
+        .row
+          .col-lg-6
+            %figure
+              %img.img-responsive{src: 'http://baliwebcreator.com/bwp/wp-content/uploads/2012/09/impressions-thb.jpg'}
+          .col-lg-6
+            %figure
+              %img.img-responsive{src: 'http://pochemunelzya.ru/wp-content/uploads/2011/08/wedding_rings_009-360x150.jpg'}
     %aside.col-lg-4
       %section.popular-news
         %article
           %header
-            %h1 Популярна новина
+            %h3 Популярна новина
           %figure
-            %img
+            %img.img-responsive{ src: 'http://www.momentous-photography.com/burnham-beeches-low-res/Wedding-burnham-beeches0135.JPG' }
             %figurecaption
+              .title ОХ ФАЙНЕ ВІСІЛЛЬИ
+              .subtitle ТАК СІ ВСІ ПОНАПИВАЛИ
           %footer
       %section.recent-news
         %article
           %header
-            %h1 Останні новини
+            %h3 Останні новини
           %section
             %article
             %article
