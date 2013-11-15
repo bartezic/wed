@@ -5,6 +5,35 @@
 .carousel {
   max-width: 1400px;
   margin: 0 auto;
+  .search-form {
+    position: absolute;
+    top: 20px;
+    right: 9%;
+    z-index: 10;
+    &> div:not(.clearfix) {
+      float: right;
+      margin-right: 5px;
+      padding: 0 3px;
+      background-color: #d9edf6;
+      border-radius: 3px;
+      color: #2a8bb5; 
+      cursor: pointer;
+      .caret {
+        margin: 0;
+      }
+    }
+    &> button {
+      float: right;
+      padding: 0 0 0 3px;
+      background: transparent;
+      background-color: transparent;
+      border: 0;
+      margin: 0; 
+      font-size: 14px;
+      font-weight: bold;
+      color: #2a8bb5;
+    }
+  }
   .carousel-caption {
     left: 9%;
     right: 9%;
