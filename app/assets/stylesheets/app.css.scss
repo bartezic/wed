@@ -177,6 +177,13 @@
           background: #145e8d;
           color: white;
           padding: 10px 13px;
+          a {
+            text-decoration: none;
+            color: white;
+            &:hover {
+              color: #5fbed0;
+            }
+          }
         }
       }
     }
