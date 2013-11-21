@@ -9,6 +9,7 @@ class CreatePartners < ActiveRecord::Migration
       t.string      :site
       t.string      :phone
       t.hstore      :socials
+      t.boolean     :callendar, default: true
       t.boolean     :active,    default: false
       t.boolean     :premium,   default: false
       t.date        :premium_to
