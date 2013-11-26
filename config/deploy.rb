@@ -1,49 +1,40 @@
-require "bundler/capistrano"
-# require "capistrano-rbenv"
-# set :rbenv_ruby_version, "2.0.0-p0"
+set :application, 'my_app_name'
+set :repo_url, 'git@example.com:me/my_repo.git'
 
-load "config/recipes/base"
-load "config/recipes/nginx"
-load "config/recipes/unicorn"
-load "config/recipes/postgresql"
-load "config/recipes/nodejs"
-load "config/recipes/imagemagick"
-# load "config/recipes/rbenv"
-# load "config/recipes/check"
-load "config/recipes/git"
+# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-server "146.185.151.232", :web, :app, :db, primary: true
+# set :deploy_to, '/var/www/my_app'
+# set :scm, :git
 
-set :user, "deployer"
-set :application, "wed"
-set :deploy_to, "/home/#{user}/apps/#{application}"
-set :deploy_via, :remote_cache
-set :use_sudo, false
-set :rails_env, :production
+# set :format, :pretty
+# set :log_level, :debug
+# set :pty, true
 
-set :scm, "git"
-set :repository, "git@github.com:bartezic/wed.git"
-set :branch, "master"
+# set :linked_files, %w{config/database.yml}
+# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+# set :keep_releases, 5
 
-after "deploy", "deploy:cleanup"
+namespace :deploy do
 
-# sitemap generator
-# after "deploy", "deploy:refresh_sitemaps"
-# namespace :deploy do
-#   desc "Generate sitemap"
-#   task :refresh_sitemaps do
-#     run "cd #{latest_release} && RAILS_ENV=#{rails_env} rake sitemap:refresh CONFIG_FILE='config/sitemap_generator.rb'"
-#   end
-# end
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      # execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
 
-set :rvm_ruby_string, :local               # use the same ruby as used locally for deployment
-set :rvm_autolibs_flag, :enable        # more info: rvm help autolibs
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
+    end
+  end
 
-before 'deploy:setup', 'rvm:install_rvm'   # install RVM
-before 'deploy:setup', 'rvm:install_ruby'  # install Ruby and create gemset, OR:
-before 'deploy:setup', 'rvm:create_gemset' # only create gemset
+  after :finishing, 'deploy:cleanup'
 
-require "rvm/capistrano"
+end
