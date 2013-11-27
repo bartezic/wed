@@ -1,5 +1,18 @@
-set :application, 'my_app_name'
-set :repo_url, 'git@example.com:me/my_repo.git'
+load "config/recipes/base"
+load "config/recipes/nginx"
+load "config/recipes/unicorn"
+load "config/recipes/postgresql"
+load "config/recipes/nodejs"
+load "config/recipes/imagemagick"
+# load "config/recipes/rbenv"
+# load "config/recipes/check"
+load "config/recipes/git"
+
+set :user, "deployer"
+set :application, 'wed'
+set :deploy_to, "/home/#{user}/apps/#{application}"
+set :repo_url, 'git@github.com:bartezic/wed.git'
+set :branch, "master"
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 

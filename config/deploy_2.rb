@@ -12,7 +12,7 @@ load "config/recipes/imagemagick"
 # load "config/recipes/check"
 load "config/recipes/git"
 
-server "146.185.151.232", :web, :app, :db, primary: true
+server "162.243.120.43", :web, :app, :db, primary: true
 
 set :user, "deployer"
 set :application, "wed"
