@@ -1,73 +1,85 @@
-%p#notice= notice
+.container.partner
+  .row
+    %section.col-lg-12
+      %header
+        .row
+          .col-lg-5.name
+            .title= @partner.name
+            .subtitle= @partner.categories.map(&:name_sing).join(', ')
+          .col-lg-2.text-center.avatar
+            = image_tag @partner.user.avatar(:thumb_220), class: 'img-circle'
+          .col-lg-5.description
+            = raw @partner.description
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"data-toggle" => "tab", href: "#info"} Інформація
+          %li
+            %a{"data-toggle" => "tab", href: "#portfolio"} Портфоліо
+          %li
+            %a{"data-toggle" => "tab", href: "#calendar"} Календар
+          %li
+            %a{"data-toggle" => "tab", href: "#contacts"} Контакти
+      .tab-content
+        #info.tab-pane.fade.in.active=raw @partner.info
+        #portfolio.fade.tab-pane
+          %dl.partner
+            %dt Галареї
+            %dd  
+              - @partner.galleries.each do |gallery|
+                %div= gallery.name
+                %div.gallery
+                  - gallery.photos.each do |photo|
+                    = link_to image_tag(photo.asset(:thumb_150)), photo.asset(:original)
+            %dt Відео
+            %dd.gallery
+              - @partner.videos.each do |video|
+                - if video.link
+                  %span.video= link_to image_tag(get_video_cover(video), { alt: video.name }), get_video_link(video), {rel: 'video'}
+        #calendar.fade.tab-pane
+          - if @partner.days.any?
+            = raw full_year_callendar(@partner.calendar)
+        #contacts.fade.tab-pane
+          %dl.partner
+            %dt Ціна
+            %dd= "Від #{@partner.price} $"
 
-= image_tag @partner.user.avatar(:thumb_220)
+            - if @partner.categories.any?
+              %dt Категорія
+              %dd= raw @partner.categories.map{ |e| link_to(e.name, e) }.join(', ')
+            
+            - if @partner.location 
+              %dt Живе
+              %dd= link_to @partner.location.name, @partner.location
+            
+            - if @partner.locations.any?
+              %dt Працює
+              %dd= raw @partner.locations.map{ |e| link_to(e.name, e) }.join(', ')
 
-%dl.partner
-  %dt Ім'я
-  %dd= @partner.name
+            - if @partner.days.any?
+              %dt Календар зайнятості
+              %dd= raw full_year_callendar(@partner.calendar)
 
-  - if @partner.description
-    %dt Опис
-    %dd= raw @partner.description
-    
-  - if @partner.info
-    %dt Інформація
-    %dd= raw @partner.info
+            %dt Сайт
+            %dd= @partner.site
 
-  %dt Ціна
-  %dd= "Від #{@partner.price} $"
+            %dt Email
+            %dd= @partner.user.email
+            
+            %dt Телефон
+            %dd= @partner.phone
 
-  - if @partner.categories.any?
-    %dt Категорія
-    %dd= raw @partner.categories.map{ |e| link_to(e.name, e) }.join(', ')
-  
-  - if @partner.location 
-    %dt Живе
-    %dd= link_to @partner.location.name, @partner.location
-  
-  - if @partner.locations.any?
-    %dt Працює
-    %dd= raw @partner.locations.map{ |e| link_to(e.name, e) }.join(', ')
+            %dt Активний
+            %dd= @partner.active
+            
+            %dt Рейтинг
+            %dd= @partner.rating
+            
+            %dt Преміум
+            %dd= @partner.premium
 
-  - if @partner.days.any?
-    %dt Календар зайнятості
-    %dd= raw full_year_callendar(@partner.calendar)
+            - if @partner.premium
+              %dt Преміум до
+              %dd= @partner.premium_to
 
-  %dt Сайт
-  %dd= @partner.site
 
-  %dt Email
-  %dd= @partner.user.email
-  
-  %dt Телефон
-  %dd= @partner.phone
 
-  %dt Активний
-  %dd= @partner.active
-  
-  %dt Рейтинг
-  %dd= @partner.rating
-  
-  %dt Преміум
-  %dd= @partner.premium
-
-  - if @partner.premium
-    %dt Преміум до
-    %dd= @partner.premium_to
-
-  %dt Галареї
-  %dd  
-    - @partner.galleries.each do |gallery|
-      %div= gallery.name
-      %div.gallery
-        - gallery.photos.each do |photo|
-          = link_to image_tag(photo.asset(:thumb_150)), photo.asset(:original)
-  %dt Відео
-  %dd.gallery
-    - @partner.videos.each do |video|
-      - if video.link
-        %span.video= link_to image_tag(get_video_cover(video), { alt: video.name }), get_video_link(video), {rel: 'video'}
-
-= link_to 'Edit', edit_admin_partner_path(@partner)
-\|
-= link_to 'Back', admin_partners_path

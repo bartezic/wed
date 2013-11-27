@@ -4,7 +4,7 @@ class PartnersController < ApplicationController
   # GET /desks
   # GET /desks.json
   def index
-    @partners = Partner.all
+    @partners = Partner.includes(:translations).page params[:page]
   end
 
   # GET /desks/1

@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 20131001085051) do
     t.string   "site"
     t.string   "phone"
     t.hstore   "socials"
+    t.boolean  "callendar",   default: true
     t.boolean  "active",      default: false
     t.boolean  "premium",     default: false
     t.date     "premium_to"
