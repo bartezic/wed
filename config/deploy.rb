@@ -1,30 +1,30 @@
-load "config/recipes/base"
-load "config/recipes/nginx"
-load "config/recipes/unicorn"
-load "config/recipes/postgresql"
-load "config/recipes/nodejs"
-load "config/recipes/imagemagick"
-# load "config/recipes/rbenv"
-# load "config/recipes/check"
-load "config/recipes/git"
+# load "config/recipes/base"
+# load "config/recipes/nginx"
+# load "config/recipes/unicorn"
+# load "config/recipes/postgresql"
+# load "config/recipes/nodejs"
+# load "config/recipes/imagemagick"
+# # load "config/recipes/rbenv"
+# # load "config/recipes/check"
+# load "config/recipes/git"
 
-set :user, "deployer"
-set :application, 'wed'
-set :deploy_to, "/home/#{user}/apps/#{application}"
+# set :application, 'wed'
+set :deploy_to, "/home/deployer/apps/wed"
 set :repo_url, 'git@github.com:bartezic/wed.git'
 set :branch, "master"
+set :use_sudo, false
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 # set :deploy_to, '/var/www/my_app'
 # set :scm, :git
 
-# set :format, :pretty
-# set :log_level, :debug
-# set :pty, true
+set :format, :pretty
+set :log_level, :debug
+set :pty, true
 
-# set :linked_files, %w{config/database.yml}
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_files, %w{config/database.yml}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 # set :keep_releases, 5

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require calendar
 //= require twitter/bootstrap
 //= //require photobox
 

@@ -38,6 +38,14 @@
         #calendar.fade.tab-pane
           - if @partner.days.any?
             = raw full_year_callendar(@partner.calendar)
+          #calendar.calendar_modern
+          .time_list
+            %p
+              %b Click on day for select.
+            %p
+              %b Second click for unselect.
+            %p List of selected days:
+            %ul
         #contacts.fade.tab-pane
           %dl.partner
             %dt Ціна
