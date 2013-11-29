@@ -10,7 +10,7 @@ function new_ready () {
       },
       'day': {
         'name': [null, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        'abbr': [null, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        'abbr': ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         'part': {
           'night': 'night',
           'morning': 'morning',
@@ -22,7 +22,6 @@ function new_ready () {
   };
 
   function Moment(date) {
-    var l, n, _ref;
     var _size = function(obj) {
       var key, size;
       size = 0;
@@ -33,363 +32,276 @@ function new_ready () {
       }
       return size;
     };
-    if (_size(this.locales) === 0) {
-      _ref = [DefaultMomentLocale.localeName, DefaultMomentLocale.locale], n = _ref[0], l = _ref[1];
-      Moment.addLocale(n, l);
-      Moment.setDefaultLocale(n);
+    
+    this.locales = {};
+    this.localeName = null;
+    this.currentLocale = null;
+
+    if (Object.keys(this.locales).length === 0) {
+      this.locales[DefaultMomentLocale.localeName] = DefaultMomentLocale.locale;
+      this.localeName = DefaultMomentLocale.localeName;
+      this.currentLocale = DefaultMomentLocale.locale;
     }
+
     this.t = this.currentLocale;
     this.parse(date);
   };
 
-  Moment.prototype.locales = {};
-
-  Moment.prototype.localeName = null;
-
-  Moment.prototype.currentLocale = null;
-
-  Moment.addLocale = function(name, locale) {
-    Moment.prototype.locales[name] = locale;
-    return Moment.prototype.localeName = name;
-  };
-
-  Moment.setDefaultLocale = function(name) {
-    Moment.prototype.localeName = name;
-    return Moment.prototype.currentLocale = Moment.prototype.locales[name];
-  };
-
-  Moment.want = function(M) {
-    return M = M instanceof Moment ? M : new Moment(M);
-  };
-
-  Moment.addLocale(DefaultMomentLocale.localeName, DefaultMomentLocale.locale);
-
-  Moment.setDefaultLocale('en');
-
-
-  Moment.prototype.setLocale = function(name) {
-    this.localeName = name;
-    this.currentLocale = this.locales[name];
-    return this.t = this.currentLocale;
-  };
-
-
-  Moment.prototype.month_name = function() {
-    return this.t.month.name[this.month];
-  };
-
-  Moment.prototype.day_name = function() {
-    return this.t.day.name[this.day_of_week()];
-  };
-
-  Moment.prototype.day_of_week = function(date) {
-    var day;
-    if (date == null) {
-      date = this.date;
-    }
-    day = date.getDay();
-    return day = day === 0 ? 7 : day;
-  };
-
-  Moment.prototype.to_a = function() {
-    return [this.year, this.month, this.day, this.hours, this.mins, this.secs, this.ms, this.offset];
-  };
-
-  Moment.prototype.to_hash = function() {
-    return {
-      year: this.year,
-      month: this.month,
-      day: this.day,
-      hours: this.hours,
-      mins: this.mins,
-      secs: this.secs,
-      ms: this.ms,
-      offset: this.offset
-    };
-  };
-
-  Moment.prototype.toMonthString = function() {
-    return "" + this.year + "." + this.month;
-  };
-
-  Moment.prototype.toDayString = function() {
-    return "" + this.year + "." + this.month + "." + this.day;
-  };
-
-  Moment.prototype.set = function(d) {
-    return this.parse(d);
-  };
-
-  Moment.prototype.setYear = function(y) {
-    var d;
-    d = this.date;
-    d.setYear(y);
-    return this.parse(d);
-  };
-
-  Moment.prototype.setMonth = function(m) {
-    var d;
-    d = this.date;
-    d.setMonth(m - 1);
-    return this.parse(d);
-  };
-
-  Moment.prototype.setDay = function(_d) {
-    var d;
-    d = this.date;
-    d.setDate(_d);
-    return this.parse(d);
-  };
-
-  Moment.prototype.setHours = function(h) {
-    var d;
-    d = this.date;
-    d.setHours(h);
-    return this.parse(d);
-  };
-
-  Moment.prototype.setMins = function(m) {
-    var d;
-    d = this.date;
-    d.setMinutes(m);
-    return this.parse(d);
-  };
-
-  Moment.prototype.setSecs = function(s) {
-    var d;
-    d = this.date;
-    d.setSeconds(s);
-    return this.parse(d);
-  };
-
-  Moment.prototype.setMs = function(ms) {
-    var d;
-    d = this.date;
-    d.setMilliseconds(ms);
-    return this.parse(d);
-  };
-
-  Moment.prototype.setUnix = function(sec) {
-    return this.parse(sec);
-  };
-
-  Moment.prototype.setUnixMs = function(ms) {
-    return this.parseDate(new Date(ms));
-  };
-
-  Moment.prototype.setDateByInstances = function() {
-    var date, month;
-    date = new Date(0);
-    month = this.month > 0 ? this.month - 1 : this.month;
-    date.setFullYear(this.year);
-    date.setMonth(month);
-    date.setDate(this.day);
-    date.setHours(this.hours);
-    date.setMinutes(this.mins);
-    date.setSeconds(this.secs);
-    date.setMilliseconds(this.ms);
-    return this.date = date;
-  };
-
-  Moment.prototype._year = function(date) {
-    if (date == null) {
-      date = new Date;
-    }
-    return date.getFullYear();
-  };
-
-  Moment.prototype._month = function(date) {
-    if (date == null) {
-      date = new Date;
-    }
-    return date.getMonth() + 1;
-  };
-
-  Moment.prototype._day = function(date) {
-    if (date == null) {
-      date = new Date;
-    }
-    return date.getDate();
-  };
-
-  Moment.prototype._hours = function(date) {
-    if (date == null) {
-      date = new Date;
-    }
-    return date.getHours();
-  };
-
-  Moment.prototype._mins = function(date) {
-    if (date == null) {
-      date = new Date;
-    }
-    return date.getMinutes();
-  };
-
-  Moment.prototype._secs = function(date) {
-    if (date == null) {
-      date = new Date;
-    }
-    return date.getSeconds();
-  };
-
-  Moment.prototype._ms = function(date) {
-    if (date == null) {
-      date = new Date;
-    }
-    return date.getMilliseconds();
-  };
-
-  Moment.prototype._offset = function(date) {
-    if (date == null) {
-      date = new Date;
-    }
-    return -(date.getTimezoneOffset() / 60);
-  };
-
-  Moment.prototype._unix_ms = function(date) {
-    if (date == null) {
-      date = new Date;
-    }
-    return date.getTime();
-  };
-
-  Moment.prototype.parse = function(date) {
-    var empty;
-    if (!date) {
-      this.parseDate();
-    }
-    if (typeof date === 'string') {
-      empty = date === '';
-      if (empty) {
+  Moment.prototype = {
+    month_name: function() {
+      return this.t.month.name[this.month];
+    },
+    day_name: function() {
+      return this.t.day.name[this.day_of_week()];
+    },
+    day_of_week: function(date) {
+      var day;
+      if (date == null) {
+        date = this.date;
+      }
+      day = date.getDay();
+      return day = day === 0 ? 7 : day;
+    }, 
+    to_a: function() {
+      return [this.year, this.month, this.day, this.hours, this.mins, this.secs, this.ms, this.offset];
+    },
+    toMonthString: function() {
+      return "" + this.year + "." + this.month;
+    },
+    toDayString: function() {
+      return "" + this.year + "." + this.month + "." + this.day;
+    },
+    setYear: function(y) {
+      var d = this.date;
+      d.setYear(y);
+      return this.parse(d);
+    },
+    setMonth: function(m) {
+      var d = this.date;
+      d.setMonth(m - 1);
+      return this.parse(d);
+    },
+    setDay: function(_d) {
+      var d = this.date;
+      d.setDate(_d);
+      return this.parse(d);
+    },
+    setHours: function(h) {
+      var d = this.date;
+      d.setHours(h);
+      return this.parse(d);
+    },
+    setMins: function(m) {
+      var d = this.date;
+      d.setMinutes(m);
+      return this.parse(d);
+    },
+    setSecs: function(s) {
+      var d = this.date;
+      d.setSeconds(s);
+      return this.parse(d);
+    },
+    setMs: function(ms) {
+      var d = this.date;
+      d.setMilliseconds(ms);
+      return this.parse(d);
+    },
+    setUnix: function(sec) {
+      return this.parse(sec);
+    },
+    setUnixMs: function(ms) {
+      return this.parseDate(new Date(ms));
+    },
+    setDateByInstances: function() {
+      var date, month;
+      date = new Date(0);
+      month = this.month > 0 ? this.month - 1 : this.month;
+      date.setFullYear(this.year);
+      date.setMonth(month);
+      date.setDate(this.day);
+      date.setHours(this.hours);
+      date.setMinutes(this.mins);
+      date.setSeconds(this.secs);
+      date.setMilliseconds(this.ms);
+      return this.date = date;
+    },
+    _year: function(date) {
+      if (date == null) {
+        date = new Date;
+      }
+      return date.getFullYear();
+    },
+    _month: function(date) {
+      if (date == null) {
+        date = new Date;
+      }
+      return date.getMonth() + 1;
+    },
+    _day: function(date) {
+      if (date == null) {
+        date = new Date;
+      }
+      return date.getDate();
+    },
+    _hours: function(date) {
+      if (date == null) {
+        date = new Date;
+      }
+      return date.getHours();
+    },
+    _mins: function(date) {
+      if (date == null) {
+        date = new Date;
+      }
+      return date.getMinutes();
+    },
+    _secs: function(date) {
+      if (date == null) {
+        date = new Date;
+      }
+      return date.getSeconds();
+    },
+    _ms: function(date) {
+      if (date == null) {
+        date = new Date;
+      }
+      return date.getMilliseconds();
+    },
+    _offset: function(date) {
+      if (date == null) {
+        date = new Date;
+      }
+      return -(date.getTimezoneOffset() / 60);
+    },
+    _unix_ms: function(date) {
+      if (date == null) {
+        date = new Date;
+      }
+      return date.getTime();
+    },
+    parse: function(date) {
+      var empty;
+      if (!date) {
         this.parseDate();
       }
-      if (!empty) {
-        this.parseString(date);
+      if (typeof date === 'string') {
+        empty = date === '';
+        if (empty) {
+          this.parseDate();
+        }
+        if (!empty) {
+          this.parseString(date);
+        }
       }
-    }
-    if (typeof date === 'number') {
-      this.parseNumber(date * 1000);
-    }
-    if (typeof date === 'object') {
-      if (date instanceof Date) {
-        return this.parseDate(date);
+      if (typeof date === 'number') {
+        this.parseNumber(date * 1000);
       }
-      if (date instanceof Array) {
-        return this.parseArray(date);
+      if (typeof date === 'object') {
+        if (date instanceof Date) {
+          return this.parseDate(date);
+        }
+        if (date instanceof Array) {
+          return this.parseArray(date);
+        }
+        if (date instanceof Object) {
+          return this.parseHash(date);
+        }
+        if (date instanceof Moment) {
+          return new Moment(date.to_a());
+        }
       }
-      if (date instanceof Object) {
-        return this.parseHash(date);
+      return this;
+    },
+    parseDate: function(date) {
+      if (date == null) {
+        date = new Date;
       }
-      if (date instanceof Moment) {
-        return new Moment(date.to_a());
+      this.date = date;
+      this.year = this._year(this.date);
+      this.month = this._month(this.date);
+      this.day = this._day(this.date);
+      this.hours = this._hours(this.date);
+      this.mins = this._mins(this.date);
+      this.secs = this._secs(this.date);
+      this.ms = this._ms(this.date);
+      this.offset = this._offset(this.date);
+      this.unix_ms = this._unix_ms(this.date);
+      this.unix = Math.round(this.unix_ms / 1000);
+      return this;
+    },
+    parseArray: function(date) {
+      var _date;
+      if (date.length === 0) {
+        return this.parseDate();
       }
+      _date = new Date(0);
+      this.year = date[0] ? date[0] : this._year(_date);
+      this.month = date[1] ? date[1] : 1;
+      this.day = date[2] ? date[2] : 1;
+      this.hours = date[3] ? date[3] : 0;
+      this.mins = date[4] ? date[4] : 0;
+      this.secs = date[5] ? date[5] : 0;
+      this.ms = date[6] ? date[6] : 0;
+      this.offset = date[7] ? date[7] : this._offset(_date);
+      this.setDateByInstances();
+      return this.parseDate(this.date);
+    },
+    parseHash: function(date) {
+      var empty_hash, _date;
+      empty_hash = !date['year'] && !date['month'] && !date['day'] && !date['hours'] && !date['mins'] && !date['secs'] && !date['ms'];
+      if (empty_hash) {
+        return this.parseDate();
+      }
+      _date = new Date(0);
+      this.year = date['year'] ? date['year'] : this._year(_date);
+      this.month = date['month'] ? date['month'] : 1;
+      this.day = date['day'] ? date['day'] : 1;
+      this.hours = date['hours'] ? date['hours'] : 0;
+      this.mins = date['mins'] ? date['mins'] : 0;
+      this.secs = date['secs'] ? date['secs'] : 0;
+      this.ms = date['ms'] ? date['ms'] : 0;
+      this.offset = date['offset'] ? date['offset'] : this._offset(_date);
+      this.setDateByInstances();
+      return this.parseDate(this.date);
+    },
+    parseString: function(date) {
+      var _date;
+      if (date.match('-') && date.match(':') && !date.match('T')) {
+        date = date.replace(/-/g, '/');
+      }
+      if (date.match('\\.') && !date.match(':')) {
+        return this.parseArray(date.split('.'));
+      }
+      _date = new Date(Date.parse(date));
+      return this.parseDate(_date);
+    },
+    parseNumber: function(date) {
+      var _date = new Date(date);
+      return this.parseDate(_date);
+    },
+    max_days: 42,
+    shift_months: function(n) {
+      var shift;
+      shift = this.month + n;
+      shift = shift <= 0 ? shift - 1 : shift;
+      return new Moment([this.year, shift]);
+    },
+    today: function(M2) {
+      return this.year === M2.year && this.month === M2.month && this.day === M2.day;
+    },
+    month_length: function(year, month) {
+      if (year == null) {
+        year = this.year;
+      }
+      if (month == null) {
+        month = this.month;
+      }
+      return new Date(year, month, 0).getDate();
+    },
+    prev_month_length: function() {
+      return new Date(this.year, this.month - 1, 0).getDate();
     }
-    return this;
-  };
-
-  Moment.prototype.parseDate = function(date) {
-    if (date == null) {
-      date = new Date;
-    }
-    this.date = date;
-    this.year = this._year(this.date);
-    this.month = this._month(this.date);
-    this.day = this._day(this.date);
-    this.hours = this._hours(this.date);
-    this.mins = this._mins(this.date);
-    this.secs = this._secs(this.date);
-    this.ms = this._ms(this.date);
-    this.offset = this._offset(this.date);
-    this.unix_ms = this._unix_ms(this.date);
-    this.unix = Math.round(this.unix_ms / 1000);
-    return this;
-  };
-
-  Moment.prototype.parseArray = function(date) {
-    var _date;
-    if (date.length === 0) {
-      return this.parseDate();
-    }
-    _date = new Date(0);
-    this.year = date[0] ? date[0] : this._year(_date);
-    this.month = date[1] ? date[1] : 1;
-    this.day = date[2] ? date[2] : 1;
-    this.hours = date[3] ? date[3] : 0;
-    this.mins = date[4] ? date[4] : 0;
-    this.secs = date[5] ? date[5] : 0;
-    this.ms = date[6] ? date[6] : 0;
-    this.offset = date[7] ? date[7] : this._offset(_date);
-    this.setDateByInstances();
-    return this.parseDate(this.date);
-  };
-
-  Moment.prototype.parseHash = function(date) {
-    var empty_hash, _date;
-    empty_hash = !date['year'] && !date['month'] && !date['day'] && !date['hours'] && !date['mins'] && !date['secs'] && !date['ms'];
-    if (empty_hash) {
-      return this.parseDate();
-    }
-    _date = new Date(0);
-    this.year = date['year'] ? date['year'] : this._year(_date);
-    this.month = date['month'] ? date['month'] : 1;
-    this.day = date['day'] ? date['day'] : 1;
-    this.hours = date['hours'] ? date['hours'] : 0;
-    this.mins = date['mins'] ? date['mins'] : 0;
-    this.secs = date['secs'] ? date['secs'] : 0;
-    this.ms = date['ms'] ? date['ms'] : 0;
-    this.offset = date['offset'] ? date['offset'] : this._offset(_date);
-    this.setDateByInstances();
-    return this.parseDate(this.date);
-  };
-
-  Moment.prototype.parseString = function(date) {
-    var _date;
-    if (date.match('-') && date.match(':') && !date.match('T')) {
-      date = date.replace(/-/g, '/');
-    }
-    if (date.match('\\.') && !date.match(':')) {
-      return this.parseArray(date.split('.'));
-    }
-    _date = new Date(Date.parse(date));
-    return this.parseDate(_date);
-  };
-
-  Moment.prototype.parseNumber = function(date) {
-    var _date;
-    _date = new Date(date);
-    return this.parseDate(_date);
-  };
-
-  Moment.prototype.max_days = 42;
-
-  Moment.prototype.shift_months = function(n) {
-    var shift;
-    shift = this.month + n;
-    shift = shift <= 0 ? shift - 1 : shift;
-    return new Moment([this.year, shift]);
-  };
-
-  Moment.prototype.today = function(M2) {
-    var M1;
-    M1 = this;
-    M2 = Moment.want(M2);
-    return M1.year === M2.year && M1.month === M2.month && M1.day === M2.day;
-  };
-
-  Moment.prototype.month_length = function(year, month) {
-    if (year == null) {
-      year = this.year;
-    }
-    if (month == null) {
-      month = this.month;
-    }
-    return new Date(year, month, 0).getDate();
-  };
-
-  Moment.prototype.prev_month_length = function() {
-    return new Date(this.year, this.month - 1, 0).getDate();
-  };
+  }
 
   Moment.prototype.next_month_length = function() {
     return new Date(this.year, this.month + 1, 0).getDate();
@@ -420,8 +332,7 @@ function new_ready () {
 
 
   Moment.prototype.part_of_day = function() {
-    var part;
-    return part = this.is_night() ? this.t.day.part.night : this.is_morning() ? this.t.day.part.morning : this.is_day() ? this.t.day.part.day : this.t.day.part.evening;
+    return this.is_night() ? this.t.day.part.night : this.is_morning() ? this.t.day.part.morning : this.is_day() ? this.t.day.part.day : this.t.day.part.evening;
   };
 
   Moment.prototype.is_night = function() {
@@ -474,40 +385,11 @@ function new_ready () {
     return this.day_of_week() === 7;
   };
 
-  Moment.prototype.is_mon = function() {
-    return this.is_monday();
-  };
-
-  Moment.prototype.is_tue = function() {
-    return this.is_tuesday();
-  };
-
-  Moment.prototype.is_wed = function() {
-    return this.is_wednesday();
-  };
-
-  Moment.prototype.is_thu = function() {
-    return this.is_thursday();
-  };
-
-  Moment.prototype.is_fri = function() {
-    return this.is_friday();
-  };
-
-  Moment.prototype.is_sat = function() {
-    return this.is_saturday();
-  };
-
-  Moment.prototype.is_sun = function() {
-    return this.is_sunday();
-  };
-
 
   Moment.prototype.less = function(M) {
     if (M == null) {
       M = new Date;
     }
-    M = Moment.want(M);
     return this.unix_ms < M.unix_ms;
   };
 
@@ -515,7 +397,6 @@ function new_ready () {
     if (M == null) {
       M = new Date;
     }
-    M = Moment.want(M);
     return this.unix_ms <= M.unix_ms;
   };
 
@@ -523,7 +404,6 @@ function new_ready () {
     if (M == null) {
       M = new Date;
     }
-    M = Moment.want(M);
     return this.unix_ms === M.unix_ms;
   };
 
@@ -531,7 +411,6 @@ function new_ready () {
     if (M == null) {
       M = new Date;
     }
-    M = Moment.want(M);
     return this.unix_ms >= M.unix_ms;
   };
 
@@ -539,7 +418,6 @@ function new_ready () {
     if (M == null) {
       M = new Date;
     }
-    M = Moment.want(M);
     return this.unix_ms > M.unix_ms;
   };
 
@@ -731,9 +609,6 @@ function new_ready () {
     this.id = this.calendar.id;
     this.options = this.calendar.options;
     this.template = function(body) {
-      if (body == null) {
-        body = '';
-      }
       return "<div class='calendar'>\
                 <div class='nav left' title='prev month'>\
                   <span class='glyphicon glyphicon-chevron-left'></span>\
@@ -744,18 +619,14 @@ function new_ready () {
                   <span class='glyphicon glyphicon-chevron-right'></span>\
                 </div>\
                 <div class='viewport'>\
-                  <div class='months'>" + body + "</div>\
+                  <div class='months'>" + (body || '') + "</div>\
                 </div>\
               </div>";
     };
     this.days_names = function() {
-      var html, i, name, _i;
-      html = '';
-      for (i = _i = 1; _i <= 7; i = ++_i) {
-        name = this.calendar.options.locale.day.abbr[i];
-        html += "<i>" + name + "</i>";
-      }
-      return html;
+      return $.map(this.calendar.options.locale.day.abbr, function(n, i) {
+        return ('<i>'+ n + '</i>');
+      }).join('\n');
     };
     this.days = function(M) {
       var current_day, days, empty_after, empty_before, i, month_length, mstart, n, prev_length, stamp, today, weekend, _i, _j, _k, _ref, wk;
@@ -820,43 +691,19 @@ function new_ready () {
   };
 
   function Calendar(id, opts) {
-    var M, i, month, size, _i, _ref;
-    this.id = id != null ? id : '#calendar';
-    if (opts == null) {
-      opts = {};
-    }
-    this.init_time = new Moment;
-    this.options = {
-      size: 1,
-      locale: DefaultMomentLocale.locale,
-      init: this.init_time,
-      border: {
-        left: this.init_time.shift_months(-6),
-        right: this.init_time.shift_months(7).shift_days(-1)
-      }
-    };
-    $.extend(this.options, opts);
-    this.options.init = Moment.want(this.options.init);
-    if (this.options.border.left) {
-      this.options.border.left = Moment.want(this.options.border.left);
-    }
-    if (this.options.border.right) {
-      this.options.border.right = Moment.want(this.options.border.right);
-    }
-    this.block = $(this.id);
-    this.init_moment = new Moment;
+    var i, _i, _ref;
+    this.id = id;
+    this.options = opts;
+    this.block = $(id);
     this.items = new CalendarItems(this);
     this.view = new CalendarView(this);
-    size = this.options.size;
     this.block.append(this.view.template());
-    M = this.options.init;
-    for (i = _i = 0, _ref = size - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
-      month = M.shift_months(i);
-      this.items.months().append(this.view.month(month));
+    for (i = _i = 0, _ref = opts.size - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+      this.items.months().append(this.view.month(opts.init.shift_months(i)));
     }
-    this.items.box().css('width', this.items.box().width() * size);
-    this.items.viewport().css('width', this.items.viewport().width() * size);
-    this.items.months().css('width', this.items.months().width() * size);
+    // this.items.box().css('width', this.items.box().width() * opts.size);
+    this.items.viewport().css('width', this.items.box().width());
+    this.items.months().css('width', this.items.months().width() * opts.size);
     this.items.current_month = this.items.first_month();
   };
 
@@ -867,7 +714,7 @@ function new_ready () {
     this.items = this.calendar.items;
     this.view = this.calendar.view;
     this.animation_in_progress = false;
-    this.animation_speed = 400;
+    this.animation_speed = 200;
     this.options = this.calendar.options;
     month_width = this.items.month_width();
     this.items.left().click(function() {
@@ -953,11 +800,13 @@ function new_ready () {
     });
   };
 
-  var init_time = new Moment,
+  var init_time = new Moment(),
       calendar  = new Calendar('#calendar', {
         size: 4,
+        locale: DefaultMomentLocale.locale,
+        init: init_time,
         border: {
-          left: init_time.shift_months(0).shift_days(27),
+          left: init_time.shift_months(0).shift_days(new Date().getDate()),
           right: init_time.shift_months(0).shift_days()
         }
       });

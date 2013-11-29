@@ -1,11 +1,10 @@
 div{font-size:10px;padding:0;margin:0;}
 
 .calendar_modern {
-  padding: 50px;
+  padding: 50px 80px;
   .calendar {
     margin: auto;
-    width: 240px;
-    height: 290px;
+    width: 100%;
     position: relative;
     .nav {
       position: absolute;
@@ -37,7 +36,7 @@ div{font-size:10px;padding:0;margin:0;}
     }
     .day_names {
       position: absolute;
-      top: 0;
+      top: 30px;
       bottom: 0;
       width: 40px;
       font-size: 10px;
@@ -50,166 +49,136 @@ div{font-size:10px;padding:0;margin:0;}
       }
       i {
         display: block;
+        height: 33px;
+        padding-top: 10px;
       }
     }
-    .month .body .days {
-      w {
-        float: left;
+    .viewport {
+      overflow: hidden;
+      zoom: 1;
+      position: relative;
+      margin: auto;
+    }
+    .months { 
+      white-space: nowrap;
+      word-spacing: -2px;
+      letter-spacing: -2px;
+      .month {
+        display: -moz-inline-box;
+        -moz-box-orient: vertical;
+        display: inline-block;
+        vertical-align: middle;
+        *vertical-align: auto;
+        vertical-align: top;
+        letter-spacing: normal;
+        word-spacing: normal;
+        *display: inline;
         &:not(:last-child){
-          border-right: 1px solid #aaaaaa;
+          padding-right: 20px; 
         }
-        i, b, s, a {
-          display: block;
-          &:not(:last-child){
-            border-bottom: 1px solid #aaaaaa;
+        .header {
+          height: 30px;
+          position: relative;
+          font-family: Arial, Helvetica, sans-serif;
+          color: white;
+          line-height: 30px;
+          font-weight: bold;
+          font-size: 1.4em;
+          text-align: center;
+          background: #372f2c;
+        }
+        .body .days {
+          background: #e4e4e4;
+          w {
+            float: left;
+            &:not(:last-child){
+              border-right: 1px solid #aaaaaa;
+            }
+            i, b, s, a {
+              display: block;
+              font-family: Arial, Helvetica, sans-serif;
+              width: 33px;
+              height: 33px;
+              color: #8d8d8d;
+              font-size: 1.5em;
+              font-weight: bold;
+              line-height: 34px;
+              text-align: center;
+              font-style: normal;
+              background: #e4e4e4;
+              text-decoration: none;
+              &.weekend {
+                color: #444;
+                background: #FDD;
+              }
+              &:not(:last-child){
+                border-bottom: 1px solid #aaaaaa;
+              }
+            }
+            b, i, s {
+              color: #ccc;
+            }
+            b, s {
+              background: #eee;
+              border-color: #d5d5d5;
+            }
+            e {
+              display: block;
+              width: 33px;
+              height: 33px;
+            }
+            a {
+              color: #372f2d;
+              background: #d1d1d1;
+              text-shadow: 1px 1px 0px white;
+              background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #dadada), color-stop(100%, #cfcfcf));
+              background-image: -webkit-linear-gradient(bottom, #dadada, #cfcfcf);
+              background-image: -moz-linear-gradient(bottom, #dadada, #cfcfcf);
+              background-image: -o-linear-gradient(bottom, #dadada, #cfcfcf);
+              background-image: -ms-linear-gradient(bottom, #dadada, #cfcfcf);
+              background-image: linear-gradient(bottom, #dadada, #cfcfcf);
+              &.today {
+                color: white;
+                text-shadow: 1px 1px 2px teal;
+                -webkit-box-shadow: 0 0 18px teal inset;
+                -moz-box-shadow: 0 0 18px teal inset;
+                box-shadow: 0 0 18px teal inset;
+              }
+              &.selected {
+                color: white;
+                text-shadow: 1px 1px 2px blue;
+                -webkit-box-shadow: 0 0 18px #000066 inset;
+                -moz-box-shadow: 0 0 18px #000066 inset;
+                box-shadow: 0 0 18px #000066 inset;
+              }
+              &:hover {
+                color: white;
+                -webkit-transition-property: text-shadow;
+                -moz-transition-property: text-shadow;
+                -ms-transition-property: text-shadow;
+                -o-transition-property: text-shadow;
+                transition-property: text-shadow;
+                -webkit-transition-property: box-shadow;
+                -moz-transition-property: box-shadow;
+                -ms-transition-property: box-shadow;
+                -o-transition-property: box-shadow;
+                transition-property: box-shadow;
+                -webkit-transition-duration: 0.2s;
+                -moz-transition-duration: 0.2s;
+                -ms-transition-duration: 0.2s;
+                -o-transition-duration: 0.2s;
+                transition-duration: 0.2s;
+                text-shadow: 1px 1px 2px green;
+                -webkit-box-shadow: 0 0 18px #006600 inset;
+                -moz-box-shadow: 0 0 18px #006600 inset;
+                box-shadow: 0 0 18px #006600 inset;
+              }
+            }
           }
-        }
-        e {
-          display: block;
-          width: 33px;
-          height: 33px;
         }
       }
     }
   }
-}
-.calendar_modern .calendar .viewport {
-  overflow: hidden;
-  zoom: 1;
-  height: 260px;
-  width: 240px;
-  position: relative;
-}
-.calendar_modern .calendar .months {
-  white-space: nowrap;
-  word-spacing: -2px;
-  letter-spacing: -2px;
-  position: absolute;
-  height: 260px;
-}
-.calendar_modern .calendar .month {
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  vertical-align: top;
-  letter-spacing: normal;
-  word-spacing: normal;
-  width: 240px;
-  height: 260px;
-}
-.calendar_modern .calendar .month {
-  *display: inline;
-}
-.calendar_modern .calendar .month .header {
-  height: 30px;
-  position: relative;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
-  line-height: 30px;
-  font-weight: bold;
-  font-size: 1.4em;
-  text-align: center;
-  background: #372f2c;
-}
-.calendar_modern .calendar .month .body {
-  background: #e4e4e4;
-}
-.calendar_modern .calendar .month .body .day_names {
-  height: 25px;
-}
-.calendar_modern .calendar .month .body .day_names i {
-  font-family: Arial, Helvetica, sans-serif;
-  display: block;
-  height: 25px;
-  line-height: 25px;
-  text-align: center;
-  font-style: normal;
-  float: left;
-  width: 34px;
-}
-.calendar_modern .calendar .month .body .days i, .calendar_modern .calendar .month .body .days b, .calendar_modern .calendar .month .body .days s, .calendar_modern .calendar .month .body .days a {
-  font-family: Arial, Helvetica, sans-serif;
-  width: 33px;
-  height: 33px;
-  color: #8d8d8d;
-  font-size: 1.5em;
-  font-weight: bold;
-  line-height: 34px;
-  text-align: center;
-  font-style: normal;
-  background: #e4e4e4;
-  text-decoration: none;
-}
-.calendar_modern .calendar .month .body .days i.weekend, .calendar_modern .calendar .month .body .days b.weekend, .calendar_modern .calendar .month .body .days s.weekend, .calendar_modern .calendar .month .body .days a.weekend {
-  color: #444;
-  background: #FDD;
-}
-
-.calendar_modern .calendar .month .body .days a {
-  color: #372f2d;
-  background: #d1d1d1;
-  text-shadow: 1px 1px 0px white;
-  background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #dadada), color-stop(100%, #cfcfcf));
-  background-image: -webkit-linear-gradient(bottom, #dadada, #cfcfcf);
-  background-image: -moz-linear-gradient(bottom, #dadada, #cfcfcf);
-  background-image: -o-linear-gradient(bottom, #dadada, #cfcfcf);
-  background-image: -ms-linear-gradient(bottom, #dadada, #cfcfcf);
-  background-image: linear-gradient(bottom, #dadada, #cfcfcf);
-}
-.calendar_modern .calendar .month .body .days a.today {
-  color: white;
-  text-shadow: 1px 1px 2px teal;
-  -webkit-box-shadow: 0 0 18px teal inset;
-  -moz-box-shadow: 0 0 18px teal inset;
-  box-shadow: 0 0 18px teal inset;
-}
-.calendar_modern .calendar .month .body .days a.selected {
-  color: white;
-  text-shadow: 1px 1px 2px blue;
-  -webkit-box-shadow: 0 0 18px #000066 inset;
-  -moz-box-shadow: 0 0 18px #000066 inset;
-  box-shadow: 0 0 18px #000066 inset;
-}
-.calendar_modern .calendar .month .body .days a:hover {
-  color: white;
-  -webkit-transition-property: text-shadow;
-  -moz-transition-property: text-shadow;
-  -ms-transition-property: text-shadow;
-  -o-transition-property: text-shadow;
-  transition-property: text-shadow;
-  -webkit-transition-property: box-shadow;
-  -moz-transition-property: box-shadow;
-  -ms-transition-property: box-shadow;
-  -o-transition-property: box-shadow;
-  transition-property: box-shadow;
-  -webkit-transition-duration: 0.2s;
-  -moz-transition-duration: 0.2s;
-  -ms-transition-duration: 0.2s;
-  -o-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  text-shadow: 1px 1px 2px green;
-  -webkit-box-shadow: 0 0 18px #006600 inset;
-  -moz-box-shadow: 0 0 18px #006600 inset;
-  box-shadow: 0 0 18px #006600 inset;
-}
-.calendar_modern .calendar .month .body .days b, .calendar_modern .calendar .month .body .days i, .calendar_modern .calendar .month .body .days s {
-  color: #ccc;
-}
-.calendar_modern .calendar .month .body .days b, .calendar_modern .calendar .month .body .days s {
-  background: #eee;
-  border-color: #d5d5d5;
-}
-.calendar_modern .calendar .month .body .days b {
-  border-top: 1px solid #d5d5d5 !important;
-  border-bottom: 1px solid #aaaaaa !important;
-}
-.calendar_modern .calendar .month .body .days b:first-child {
-  border-left: 1px solid #d5d5d5 !important;
-}
-.calendar_modern .calendar .month .body .days b:last-of-type {
-  border-right: 1px solid #aaaaaa !important;
 }
 
 .time_list {
@@ -218,4 +187,182 @@ div{font-size:10px;padding:0;margin:0;}
   left: 30px;
   border: 1px solid gray;
   padding: 20px;
+}
+
+.rcalendar {
+  margin: auto;
+  width: 100%;
+  position: relative;
+  .nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    font-size: 30px;
+    color: #000;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    span {
+      position: absolute;
+      top: 46%;
+      z-index: 5;
+      display: inline-block;
+    }
+    &.left {
+      left: -80px;
+      span {
+        left: 0;
+      }
+    }
+    &.right {
+      right: -80px;
+      span {
+        right: 0;
+      }
+    }
+  }
+  .day_names {
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    width: 40px;
+    font-size: 10px;
+    text-align: center;
+    &.left {
+      left: -40px;
+    }
+    &.right {
+      right: -40px;
+    }
+    i {
+      display: block;
+      height: 33px;
+      padding-top: 10px;
+    }
+  }
+  .viewport {
+    overflow: hidden;
+    zoom: 1;
+    position: relative;
+    margin: auto;
+  }
+  .months { 
+    white-space: nowrap;
+    word-spacing: -2px;
+    letter-spacing: -2px;
+    .month {
+      display: -moz-inline-box;
+      -moz-box-orient: vertical;
+      display: inline-block;
+      vertical-align: middle;
+      *vertical-align: auto;
+      vertical-align: top;
+      letter-spacing: normal;
+      word-spacing: normal;
+      *display: inline;
+      &:not(:last-child){
+        padding-right: 20px; 
+      }
+      .header {
+        height: 30px;
+        position: relative;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        line-height: 30px;
+        font-weight: bold;
+        font-size: 1.4em;
+        text-align: center;
+        background: #372f2c;
+      }
+      .body .days {
+        background: #e4e4e4;
+        w {
+          float: left;
+          &:not(:last-child){
+            border-right: 1px solid #aaaaaa;
+          }
+          i, b, s, a {
+            display: block;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 33px;
+            height: 33px;
+            color: #8d8d8d;
+            font-size: 1.5em;
+            font-weight: bold;
+            line-height: 34px;
+            text-align: center;
+            font-style: normal;
+            background: #e4e4e4;
+            text-decoration: none;
+            &.weekend {
+              color: #444;
+              background: #FDD;
+            }
+            &:not(:last-child){
+              border-bottom: 1px solid #aaaaaa;
+            }
+          }
+          b, i, s {
+            color: #ccc;
+          }
+          b, s {
+            background: #eee;
+            border-color: #d5d5d5;
+          }
+          e {
+            display: block;
+            width: 33px;
+            height: 33px;
+          }
+          a {
+            color: #372f2d;
+            background: #d1d1d1;
+            text-shadow: 1px 1px 0px white;
+            background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #dadada), color-stop(100%, #cfcfcf));
+            background-image: -webkit-linear-gradient(bottom, #dadada, #cfcfcf);
+            background-image: -moz-linear-gradient(bottom, #dadada, #cfcfcf);
+            background-image: -o-linear-gradient(bottom, #dadada, #cfcfcf);
+            background-image: -ms-linear-gradient(bottom, #dadada, #cfcfcf);
+            background-image: linear-gradient(bottom, #dadada, #cfcfcf);
+            &.today {
+              color: white;
+              text-shadow: 1px 1px 2px teal;
+              -webkit-box-shadow: 0 0 18px teal inset;
+              -moz-box-shadow: 0 0 18px teal inset;
+              box-shadow: 0 0 18px teal inset;
+            }
+            &.selected {
+              color: white;
+              text-shadow: 1px 1px 2px blue;
+              -webkit-box-shadow: 0 0 18px #000066 inset;
+              -moz-box-shadow: 0 0 18px #000066 inset;
+              box-shadow: 0 0 18px #000066 inset;
+            }
+            &:hover {
+              color: white;
+              -webkit-transition-property: text-shadow;
+              -moz-transition-property: text-shadow;
+              -ms-transition-property: text-shadow;
+              -o-transition-property: text-shadow;
+              transition-property: text-shadow;
+              -webkit-transition-property: box-shadow;
+              -moz-transition-property: box-shadow;
+              -ms-transition-property: box-shadow;
+              -o-transition-property: box-shadow;
+              transition-property: box-shadow;
+              -webkit-transition-duration: 0.2s;
+              -moz-transition-duration: 0.2s;
+              -ms-transition-duration: 0.2s;
+              -o-transition-duration: 0.2s;
+              transition-duration: 0.2s;
+              text-shadow: 1px 1px 2px green;
+              -webkit-box-shadow: 0 0 18px #006600 inset;
+              -moz-box-shadow: 0 0 18px #006600 inset;
+              box-shadow: 0 0 18px #006600 inset;
+            }
+          }
+        }
+      }
+    }
+  }
 }

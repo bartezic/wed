@@ -13,7 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require calendar
+//= //require calendar
+//= require locale
+//= require calendar2
 //= require twitter/bootstrap
 //= //require photobox
 
