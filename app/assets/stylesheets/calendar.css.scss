@@ -1,6 +1,5 @@
-div{font-size:10px;padding:0;margin:0;}
-
 .calendar_modern {
+  div{font-size:10px;padding:0;margin:0;}
   padding: 50px 80px;
   .calendar {
     margin: auto;
@@ -190,8 +189,8 @@ div{font-size:10px;padding:0;margin:0;}
 }
 
 .rcalendar {
-  margin: auto;
-  width: 100%;
+  div{font-size:10px;padding:0;margin:0;}
+  margin: 20px 80px;
   position: relative;
   .nav {
     position: absolute;

@@ -38,7 +38,7 @@
         #calendar.fade.tab-pane
           - if @partner.days.any?
             = raw full_year_callendar(@partner.calendar)
-          #calendar.calendar_modern
+          .rcalendar
           .time_list
             %p
               %b Click on day for select.
