@@ -6,7 +6,11 @@ window.WedCity.ready = function() {
 
 window.WedCity.calendar = {
   configs: {
-    mainClass: '.rcalendar'
+    mainClass: '.rcalendar',
+    monthsMap: {
+      visible: [],
+      exist: []
+    }
   },
 
   weekDays: function() {
@@ -61,6 +65,8 @@ window.WedCity.calendar = {
     
     for (i = 0; i < self.configs.mSize; i++) {
       self.elems.months.append($(self.generateMonth(month, year)));
+      self.configs.monthsMap.visible.push({month: month, year: year});
+      self.configs.monthsMap.exist.push({month: month, year: year});
       if (month === 11) {
         month = 0;
         year++;
@@ -101,12 +107,61 @@ window.WedCity.calendar = {
     var self = this,
         mSize = Math.floor(($('.container').width()-160)/220);
   },
+
+  moveLeft: function(e) {
+    var self = this,
+        map = self.configs.monthsMap,
+        month = map.visible.first().month,
+        year = map.visible.first().year,
+        marginL = self.elems.months.css('margin-left').replace("px", "")*1;
+
+    if (month === 0) { month = 11; year--; } 
+    else { month--; };
+
+    if(Utils.equalsObjects(map.visible.first(), map.exist.first())) {
+      self.elems.months.prepend($(self.generateMonth(month, year)));
+      map.exist.unshift({month: month, year: year});
+    } else {
+      self.elems.months.animate({'margin-left': marginL+220+'px'});  
+    }
+
+    map.visible.unshift({month: month, year: year});
+    map.visible.pop();
+  },
+
+  moveRight: function(e) {
+    var self = this,
+        map = self.configs.monthsMap,
+        month = map.visible.last().month;
+        year = map.visible.last().year,
+        marginL = self.elems.months.css('margin-left').replace("px", "")*1;
+
+    if (month === 11) { month = 0; year++; } 
+    else { month++; };
+
+    if(Utils.equalsObjects(map.visible.last(), map.exist.last())) {
+      self.elems.months.append($(self.generateMonth(month, year)));
+      map.exist.push({month: month, year: year});
+    }
+
+    self.elems.months.animate({'margin-left': marginL-220+'px'});
+    map.visible.push({month: month, year: year});
+    map.visible.shift();
+  },
   
   initHandlers: function (){
     var self = this;
 
     $(window).resize(function() {
       self.resizeCalendar();
+    });
+
+    self.elems.navLeft.click(function(e) {
+      self.moveLeft(e);
+    });
+
+    self.elems.navRight.click(function(e) {
+      self.moveRight(e);
     });
   },
 

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require prototypes
 //= //require calendar
 //= require locale
 //= require calendar2
