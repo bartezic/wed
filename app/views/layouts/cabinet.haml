@@ -6,7 +6,7 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
     %link(rel="icon" href="/assets/favicon.ico")
-  %body.cabinet
+  %body.cabinet{ data: { user: @partner.slug } }
 
     / Wrap all page content here
     #wrap

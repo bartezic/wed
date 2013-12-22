@@ -55,12 +55,14 @@ gem 'simple_form'
 gem "haml-rails"
 gem 'paperclip'
 gem 'anjlab-bootstrap-rails', '~> 3.0.2.0', require: 'bootstrap-rails'
+gem 'bootstrap-datepicker-rails'
 gem 'globalize', '~> 4.0.0.alpha.2'
 gem 'friendly_id', '5.0.0.beta4'
 gem 'babosa'
 gem 'kaminari'
 gem 'letter_opener', group: :development
 gem 'bourbon'  
+
 
 # For importing
 gem 'rest-client'

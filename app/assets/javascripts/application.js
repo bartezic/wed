@@ -19,12 +19,17 @@
 //= require calendar2
 //= require twitter/bootstrap
 //= //require photobox
+//= require bootstrap-datepicker
 
 function ready () {
   $('#myTab a').click(function (e) {
     e.preventDefault()
     $(this).tab('show')
   })
+
+  $('input#datepicker').datepicker({
+    language: "uk"
+  });
   // var galleries = $('.gallery');
   // if(galleries.length !== 0){
   //   galleries.photobox('a');

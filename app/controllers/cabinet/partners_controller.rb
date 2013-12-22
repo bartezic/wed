@@ -1,6 +1,6 @@
 module Cabinet
   class PartnersController < BaseController
-    before_action :set_partner, only: [:show, :edit, :update]
+    before_action :set_partner, only: [:show, :edit, :update, :days]
 
     # GET /desks/1
     # GET /desks/1.json
@@ -26,6 +26,20 @@ module Cabinet
       end
     end
 
+    def days
+      day = Day.find_by(day_of_life: params[:day])
+      if day
+        if params[:add] == 'true'
+          @partner.days << day
+        else
+          @partner.days.delete(day)
+        end
+        render json: { success: true }
+      else
+        render json: { success: false }, status: 500
+      end
+    end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_partner
@@ -37,7 +51,7 @@ module Cabinet
         params.require(:partner).permit(
           :name, :description, :info, :price, :location_id, 
           :site, :phone, :active, :premium, :premium_to, :slug,
-          :rating, category_ids: [], location_ids: [], 
+          :rating, category_ids: [], location_ids: [], day_ids: [],
           user_attributes: [:id, :email, :avatar, :avatar_remote_url, :password, :password_confirmation]
         )
       end

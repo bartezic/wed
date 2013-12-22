@@ -27,8 +27,19 @@ window.WedCity.calendar = {
     return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
   },
 
+  dateToYMD: function (date) {
+    var d = date.getDate();
+    var m = date.getMonth() + 1;
+    var y = date.getFullYear();
+    return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+  },
+
   getDays: function(date) {
-    var date, days = '<w>', i, counter = 0;
+    var i, occupied, current,
+        days = '<w>', 
+        counter = 0,
+        month = date.getMonth(),
+        year = date.getFullYear();
 
     for (i = 1; i <= this.daysBefore(date); i++) {
       days += "<e></e>";
@@ -37,7 +48,9 @@ window.WedCity.calendar = {
 
     for (i = 1; i <= this.monthLenght(date); i++) {
       if (counter % 7 === 0){ days += '</w><w>' }
-      days += "<a href='#'>" + i + "</a>";
+      current = this.dateToYMD(new Date(year,month,i));
+      occupied = this.configs.days.indexOf(current) >= 0;
+      days += "<a data-day="+ current +" class="+ (occupied ? 'selected' : '') +" href='#'>" + i + "</a>";
       counter += 1;
     };
 
@@ -55,13 +68,21 @@ window.WedCity.calendar = {
             </div>";
   },
 
+  getContWidth: function() {
+    return (this.elems.cont.width() > 0 ? this.elems.cont.width() : $('.container').width());
+  },
+
+  getPanelWidth: function() {
+    return (this.configs.cabinet ? 0 : 160);
+  },
+
   createMonths: function() {
     var self = this, prevWidth, i,
         date = new Date(),
         month = date.getMonth(),
         year = date.getFullYear();
 
-    self.configs.mSize = Math.floor(($('.container').width()-160)/220);
+    self.configs.mSize = Math.floor((self.getContWidth()-self.getPanelWidth())/220);
     
     for (i = 0; i < self.configs.mSize; i++) {
       self.elems.months.append($(self.generateMonth(month, year)));
@@ -80,7 +101,7 @@ window.WedCity.calendar = {
 
   createElems: function(){
     var self = this,
-        navLeft = $("<div class='nav left' title='prev month'>\
+        navLeft = $("<div class='nav left "+ (self.configs.pastDisabled ? 'disabled' : '') +"' title='prev month'>\
                     <span class='glyphicon glyphicon-chevron-left'></span>\
                   </div>"),
         navRight = $("<div class='nav right' title='next month' >\
@@ -106,6 +127,18 @@ window.WedCity.calendar = {
   resizeCalendar: function() {
     var self = this,
         mSize = Math.floor(($('.container').width()-160)/220);
+  },
+
+  checkLeftNav: function() {
+    var self = this,
+        date = new Date(),
+        first = self.configs.monthsMap.visible.first(),
+        bool;
+
+    if(self.configs.pastDisabled){
+      bool = date.getMonth() === first.month && date.getFullYear() == first.year;
+      self.elems.navLeft.toggleClass('disabled', bool);
+    }
   },
 
   moveLeft: function(e) {
@@ -157,11 +190,42 @@ window.WedCity.calendar = {
     });
 
     self.elems.navLeft.click(function(e) {
-      self.moveLeft(e);
+      if(!$(e.currentTarget).hasClass('disabled')){
+        self.elems.months.finish();
+        self.moveLeft(e); 
+        self.checkLeftNav(); 
+      }
     });
 
     self.elems.navRight.click(function(e) {
+      self.elems.months.finish();
       self.moveRight(e);
+      self.checkLeftNav();
+    });
+
+    self.elems.months.on('click', '.days a', function(e) {
+      e.preventDefault();
+      if(self.configs.cabinet){
+        var btn = $(this),
+            selected = btn.hasClass('selected');
+
+        if(!btn.hasClass('wait')){
+          btn.addClass('wait');
+          $.ajax({
+            url: '/cabinet/partners/'+$('body').data('user')+'/days',
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+              day: btn.data('day'),
+              add: !selected
+            }
+          }).done(function(res) {
+            btn.toggleClass('selected', !selected);
+          }).always(function(res) {
+            btn.removeClass('wait');
+          });
+        }
+      }
     });
   },
 
@@ -172,10 +236,15 @@ window.WedCity.calendar = {
     this.elems = {
       cont: $(self.configs.mainClass)
     };
+    if(this.elems.cont.length > 0){
+      this.configs.days = this.elems.cont.data('days');
+      this.configs.cabinet = this.elems.cont.data('cabinet');
+      this.configs.pastDisabled = !this.elems.cont.data('cabinet');
 
-    this.createElems();
-    this.createMonths();
-    this.initHandlers();
+      this.createElems();
+      this.createMonths();
+      this.initHandlers();
+    }
   }
 };
 

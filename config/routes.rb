@@ -1,6 +1,8 @@
 Wed::Application.routes.draw do
   namespace :cabinet do
-    resources :partners, only: [:show, :edit, :update]
+    resources :partners, only: [:show, :edit, :update] do
+      post 'days', on: :member
+    end
     resources :photos
     resources :videos
     resources :galleries
