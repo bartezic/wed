@@ -11,6 +11,21 @@
           padding: 20px 15px 10px;
           background: #d9edf6;
           border-bottom: 7px solid #2a8bb5;
+          .date{
+            cursor: pointer;
+            span {
+              font-size: 11px;
+              color: #5FBED0;
+            }
+            input#datepicker{
+              border: 0;
+              height: 0;
+              width: 0;
+              margin: 0;
+              padding: 0;
+              display: block;
+            }
+          }
         }
         section.tender {
           margin-top: 20px;

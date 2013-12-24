@@ -20,6 +20,7 @@
 //= require twitter/bootstrap
 //= //require photobox
 //= require bootstrap-datepicker
+//= require jquery.mCustomScrollbar
 
 function ready () {
   $('#myTab a').click(function (e) {
@@ -28,7 +29,30 @@ function ready () {
   })
 
   $('input#datepicker').datepicker({
-    language: "uk"
+    startDate: "0d",
+    language: "uk",
+    autoclose: true
+  }).on('changeDate', function(e){
+    var d = e.date.getDate();
+    var m = e.date.getMonth() + 1;
+    var y = e.date.getFullYear();
+    var r = '(' + (d <= 9 ? '0' + d : d) + '/' + (m<=9 ? '0' + m : m) + '/' + y + ')';
+    $('.search-form .date span').text(r);
+  });
+
+  $('.search-form .date').click(function(e) {
+    $('input#datepicker').focus();
+  });
+
+  $('.locationpicker ul li').click(function(e) {
+    // $('input#locationpicker').val($(this).text());
+    $(this).siblings('li').removeClass('selected');
+    $(this).addClass('selected');
+    $('.search-form .location span').text('('+ $(this).text() +')');
+  });
+
+  $('.search-form .location').on('click', function(e) {
+    $('.locationpicker ul').toggleClass('hidden');
   });
   // var galleries = $('.gallery');
   // if(galleries.length !== 0){

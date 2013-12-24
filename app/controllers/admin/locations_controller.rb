@@ -74,9 +74,13 @@ module Admin
       end
 
       def update_translations
-        params[:location][:translations].values.each do |translation|
-          I18n.locale = translation['locale'].to_sym
-          @location.update( name: translation['name'] )
+        if params[:location][:translations]
+          params[:location][:translations].values.each do |translation|
+            I18n.locale = translation['locale'].to_sym
+            @location.update( name: translation['name'] )
+          end
+        else
+          true
         end
       end
   end

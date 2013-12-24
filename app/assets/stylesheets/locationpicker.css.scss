@@ -1,0 +1,73 @@
+.location{
+  cursor: pointer;
+  span {
+    font-size: 11px;
+    color: #5FBED0;
+  }
+  .locationpicker {
+    z-index: 100;
+    position: relative;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    input#locationpicker {
+      border: 0;
+      height: 0;
+      width: 0;
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+    ul {
+      height: 280px;
+      overflow-y: scroll;
+      border-radius: 5px;
+      background-color: #fff;  
+      position: absolute;  
+      list-style: none;
+      margin: 0;
+      padding: 5px;
+      -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      &:before {
+        content: '';
+        top: -7px;
+        left: 6px;
+        display: inline-block;
+        border-left: 7px solid rgba(0, 0, 0, 0);
+        border-right: 7px solid rgba(0, 0, 0, 0);
+        border-bottom: 7px solid #CCC;
+        border-top: 0;
+        border-bottom-color: rgba(0, 0, 0, 0.2);
+        position: absolute;
+      }
+      &:after {
+        content: '';
+        top: -6px;
+        left: 7px;
+        display: inline-block;
+        border-left: 6px solid rgba(0, 0, 0, 0);
+        border-right: 6px solid rgba(0, 0, 0, 0);
+        border-bottom: 6px solid #FFF;
+        border-top: 0;
+        position: absolute;
+      }
+      li {
+        white-space: nowrap;
+        cursor: pointer;
+        border-radius: 3px;
+        padding: 1px 3px;
+        &:hover {
+          background: #EEE;
+        }
+        &.selected {
+          background: #D9EDF6;
+        }
+      }
+    }
+  }
+}

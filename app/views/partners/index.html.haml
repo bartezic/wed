@@ -19,9 +19,19 @@
           = paginate @partners
     %aside.col-lg-4.col-md-4
       %section.search-form
-        .date Дата весілля
-        %input{id: 'datepicker', type: 'text'}
-        .location Область
+        .date 
+          Дата весілля
+          %span
+            %b.caret
+          %input#datepicker{type: 'text'}
+        .location
+          Область
+          %span
+            %b.caret
+          .locationpicker
+            %ul.hidden
+              - Location.all.each do |loc|
+                %li= loc.name
         .service 
           Послуга
           - Category.all.each do |cat|

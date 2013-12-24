@@ -34,6 +34,21 @@
       color: #2a8bb5;
       outline: none;
     }
+    .date{
+      cursor: pointer;
+      span {
+        font-size: 11px;
+        color: #5FBED0;
+      }
+      input#datepicker{
+        border: 0;
+        height: 0;
+        width: 0;
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+    }
   }
   .carousel-caption {
     left: 9%;

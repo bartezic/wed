@@ -9,10 +9,17 @@
       %b.caret
     .location 
       Область
-      %b.caret
+      %span
+        %b.caret
+      .locationpicker
+        %ul.hidden
+          - Location.all.each do |loc|
+            %li= loc.name
     .date 
       Дата весілля
-      %b.caret
+      %span
+        %b.caret
+      %input{id: 'datepicker', type: 'text'}
     .clearfix
   %ol.carousel-indicators
     %li.active(data-target="#carousel-example-generic" data-slide-to="0")
