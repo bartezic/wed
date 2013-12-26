@@ -32,6 +32,8 @@
             %ul.hidden
               - Location.all.each do |loc|
                 %li= loc.name
+        .location
+          = collection_select(:location, :id, Location.all, :id, :name, {prompt: 'Область'})
         .service 
           Послуга
           - Category.all.each do |cat|

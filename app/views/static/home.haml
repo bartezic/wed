@@ -7,14 +7,8 @@
     .posluga 
       Послуга
       %b.caret
-    .location 
-      Область
-      %span
-        %b.caret
-      .locationpicker
-        %ul.hidden
-          - Location.all.each do |loc|
-            %li= loc.name
+    .location
+      = collection_select(:location, :id, Location.all, :id, :name, {prompt: 'Область'})
     .date 
       Дата весілля
       %span

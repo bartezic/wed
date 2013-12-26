@@ -21,6 +21,7 @@
 //= //require photobox
 //= require bootstrap-datepicker
 //= require jquery.mCustomScrollbar
+//= require custom-select-menu.jquery
 
 function ready () {
   $('#myTab a').click(function (e) {
@@ -44,16 +45,23 @@ function ready () {
     $('input#datepicker').focus();
   });
 
-  $('.locationpicker ul li').click(function(e) {
-    // $('input#locationpicker').val($(this).text());
-    $(this).siblings('li').removeClass('selected');
-    $(this).addClass('selected');
-    $('.search-form .location span').text('('+ $(this).text() +')');
+  $('.location select').customSelectMenu({
+    menuClass : 'custom-select-menu',
+    openedClass : 'opened',
+    selectedClass : 'selected',
+    selectionMadeClass : 'selection-made'
   });
 
-  $('.search-form .location').on('click', function(e) {
-    $('.locationpicker ul').toggleClass('hidden');
-  });
+  // $('.locationpicker ul li').click(function(e) {
+  //   // $('input#locationpicker').val($(this).text());
+  //   $(this).siblings('li').removeClass('selected');
+  //   $(this).addClass('selected');
+  //   $('.search-form .location span').text('('+ $(this).text() +')');
+  // });
+
+  // $('.search-form .location').on('click', function(e) {
+  //   $('.locationpicker ul').toggleClass('hidden');
+  // });
   // var galleries = $('.gallery');
   // if(galleries.length !== 0){
   //   galleries.photobox('a');
