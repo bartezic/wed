@@ -1,1 +1,5 @@
+%ul
+  %li натисніть на день щоб зробити його зайнятим 
 .rcalendar{ data: { cabinet: 'true', days: @partner.days.map(&:day_of_life).to_json } }
+= simple_form_for [:cabinet, @partner], remote: true, html: { class: 'show-callendar' } do |f|
+  = f.input :callendar, label: 'Показувати календар'

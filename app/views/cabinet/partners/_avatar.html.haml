@@ -4,7 +4,7 @@
   = image_tag @partner.user.avatar(:thumb_220)
 
   = f.simple_fields_for :user do |user|
-    = user.input :avatar,                input_html: { class: 'form-control' }
-    = user.input :avatar_remote_url,     input_html: { class: 'form-control', value: nil }
+    = user.input :avatar,            input_html: { class: 'form-control' }, label: 'Фото з комп\'ютера'
+    = user.input :avatar_remote_url, input_html: { class: 'form-control', value: nil }, label: 'Фото посилання'
 
   = f.button :submit, class: 'btn btn-default', value: 'Зберегти зміни'

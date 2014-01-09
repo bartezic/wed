@@ -6,9 +6,11 @@
           = link_to root_path do 
             .logo
         .pull-left.top-nav
-          = link_to 'ПОСЛУГИ', partners_path
-          = link_to 'ОГОЛОШЕННЯ', partners_path
-          = link_to 'НОВИНИ', partners_path
+          - if part == :app
+            = link_to t('nav.partners'), partners_path
+            = link_to t('nav.ads'), partners_path
+            = link_to t('nav.news'), partners_path
+          - elsif part == :cabinet
         .pull-right.locale
           %span{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
           |
@@ -22,10 +24,10 @@
                 %b.caret
               %ul.dropdown-menu
                 - if current_user.is_manager?
-                  %li= link_to 'Адмінка', admin_root_path
+                  %li= link_to t('nav.admin'), admin_root_path
                 - elsif current_user.is_partner?
-                  %li= link_to 'Кабінет', cabinet_profile_path(:general)
-                %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
+                  %li= link_to t('nav.cabinet'), cabinet_profile_path(:general)
+                %li= link_to t('nav.logout'), destroy_user_session_path, { method: :delete }
           - else
-            %button.auth{type: :button, data:{toggle: :modal, target: :'#modal-login'}} ВХІД
-            %button.auth{type: :button, data:{toggle: :modal, target: :'#modal-signup'}} РЕЄСТРАЦІЯ
+            %button.auth{type: :button, data:{toggle: :modal, target: :'#modal-login'}}= t('nav.login')
+            %button.auth{type: :button, data:{toggle: :modal, target: :'#modal-signup'}}= t('nav.signup')

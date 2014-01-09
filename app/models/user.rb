@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   def upload_avatar_from_remote_url
     self.avatar = open(avatar_remote_url) if avatar_remote_url.present?
     # self.cover.clear if remove_cover == '1'
-  # rescue OpenURI::HTTPError
+  rescue
   end
 
   # def change_file_name

@@ -1,10 +1,16 @@
 class PartnersController < ApplicationController
+  include ApplicationHelper
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
 
   # GET /desks
   # GET /desks.json
   def index
-    @partners = Partner.includes(:translations).page params[:page]
+    @partners = Partner.search(search_params, order_by)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js { render :index, layout: false }
+      format.json { render json: @partners }
+    end
   end
 
   # GET /desks/1
@@ -63,6 +69,11 @@ class PartnersController < ApplicationController
     end
   end
 
+  def search
+    @partners = Partner.includes(:translations).order('name ASC').page(params[:page])
+    render 'search', layout: false
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_partner
@@ -76,6 +87,13 @@ class PartnersController < ApplicationController
         :site, :phone, category_ids: [], location_ids: [], 
         user_attributes: [:id, :email, :avatar, :avatar_remote_url, :password, :password_confirmation]
       )
+    end
+
+    def search_params
+      params.permit(:page, :date, category_ids: [], location_ids: []).inject({}){ |res, (k,v)|
+        res[k.to_sym] = v.is_a?(Array) ? v.select{|i| !i.empty?} : v
+        res
+      }
     end
 
     def update_translations

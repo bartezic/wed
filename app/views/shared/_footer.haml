@@ -2,30 +2,30 @@
   .container
     .top
       .pull-left
-        = link_to 'ДОМАШНЯ', root_path
-        = link_to 'ПОСЛУГИ', partners_path
-        = link_to 'ОГОЛОШЕННЯ', partners_path
-        = link_to 'НОВИНИ', partners_path
+        = link_to t('nav.home'), root_path
+        = link_to t('nav.partners'), partners_path
+        = link_to t('nav.ads'), partners_path
+        = link_to t('nav.news'), partners_path
       .pull-right
-        = link_to 'ПРО НАС', root_path
-        = link_to 'ВАКАНСІЇ', partners_path
-        = link_to 'РЕКЛАМОДАВЦЯМ', partners_path
-        = link_to 'КОНТАКТИ', partners_path
+        = link_to t('nav.about'), root_path
+        = link_to t('nav.carer'), partners_path
+        = link_to t('nav.sponsors'), partners_path
+        = link_to t('nav.contacts'), partners_path
       .clearfix
     .bottom
       .pull-left
         .logo
         .copyright
-          .title © 2013. Місто весільних професіоналів.
-          .subtitle Всі права застережено. Будь-яке вкористання інформації без згоди адміністрації заборонено.
+          .title= t('footer.copyright1')
+          .subtitle= t('footer.copyright2')
       .pull-right
         %table
           %tr
-            %td Дизайн:
+            %td= t('footer.design')
             %td 
               %a{href: "http://ua.linkedin.com/in/bartezic/en"} Viktor Gurniak
           %tr
-            %td Розробка:
+            %td= t('footer.development')
             %td
               %a{href: "http://ua.linkedin.com/in/bartezic/en"} Viktor Oleksyn
       .clearfix

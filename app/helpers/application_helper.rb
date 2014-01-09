@@ -61,6 +61,10 @@ module ApplicationHelper
   def current_partner
     current_user.rolable
   end
+
+  def order_by
+    ['id ASC', 'id DESC', 'price ASC', 'price DESC'].include?(cookies[:order]) ? cookies[:order] : 'id DESC';
+  end
 end
 
 module ActionView

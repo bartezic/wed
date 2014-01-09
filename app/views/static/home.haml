@@ -1,19 +1,16 @@
 #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
-  .search-form
-    %button ШУКАТИ
-    .price 
-      Ціна
-      %b.caret
+  = form_tag('/partners', method: :get, class: 'search-form') do
+    = submit_tag 'ШУКАТИ'
+    / .price 
+    /   Ціна
+    /   %b.caret
     .posluga 
-      Послуга
-      %b.caret
+      = collection_select(:category_ids, nil, Category.all, :id, :name, {prompt: 'Послуга'})
     .location
-      = collection_select(:location, :id, Location.all, :id, :name, {prompt: 'Область'})
-    .date 
-      Дата весілля
-      %span
-        %b.caret
-      %input{id: 'datepicker', type: 'text'}
+      = collection_select(:location_ids, nil, Location.all, :id, :name, {prompt: 'Область'})
+    .date
+      %label Дата весілля
+      %input#datepicker{name: :date, type: 'text'}
     .clearfix
   %ol.carousel-indicators
     %li.active(data-target="#carousel-example-generic" data-slide-to="0")

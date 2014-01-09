@@ -33,3 +33,22 @@ uk:
       previous: "&lsaquo; Попередня"
       next: "Наступна &rsaquo;"
       truncate: "..."
+  nav: 
+    partners: Послуги
+    ads: Оголошення
+    news: Новини
+    home: Домашня
+    about: Про нас
+    carer: Вакансії
+    sponsors: Рекламодавцям
+    contacts: Контакти
+    admin: Адмінка
+    cabinet: Кабінет
+    logout: Вийти
+    login: Вхід
+    signup: Реєстрація
+  footer:
+    copyright1: © 2013. Місто весільних професіоналів.
+    copyright2: Всі права застережено. Будь-яке вкористання інформації без згоди адміністрації заборонено.
+    design: 'Дизайн:'
+    development: 'Розробка:'

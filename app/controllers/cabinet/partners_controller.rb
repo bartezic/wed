@@ -19,9 +19,11 @@ module Cabinet
         if @partner.update(partner_params) && update_translations
           format.html { redirect_to :back, notice: 'Partner was successfully updated.' }
           format.json { head :no_content }
+          format.js { render json: { success: true } }
         else
           format.html { redirect_to :back, alert: @partner.get_errors }
           format.json { render json: @partner.errors, status: :unprocessable_entity }
+          format.js { render json: { success: false } }
         end
       end
     end
@@ -51,7 +53,7 @@ module Cabinet
         params.require(:partner).permit(
           :name, :description, :info, :price, :location_id, 
           :site, :phone, :active, :premium, :premium_to, :slug,
-          :rating, category_ids: [], location_ids: [], day_ids: [],
+          :rating, :callendar, category_ids: [], location_ids: [], day_ids: [],
           user_attributes: [:id, :email, :avatar, :avatar_remote_url, :password, :password_confirmation]
         )
       end

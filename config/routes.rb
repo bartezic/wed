@@ -23,7 +23,9 @@ Wed::Application.routes.draw do
   end
 
   resources :categories, path: :posluhy, only: [:show]
-  resources :partners
+  resources :partners do
+    get :search, on: :collection
+  end
   resources :photos
   resources :videos
   resources :galleries

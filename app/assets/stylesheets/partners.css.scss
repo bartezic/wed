@@ -3,6 +3,14 @@
     &> .row {
       &> section {
         margin-top: 30px;
+        .ordering {
+          .custom-select-menu {
+            display: inline-block;
+            ul {
+              overflow-y: auto;
+            }
+          }
+        }
       }
       &> aside {
         margin: 0;
@@ -13,9 +21,28 @@
           border-bottom: 7px solid #2a8bb5;
           .date{
             cursor: pointer;
-            span {
-              font-size: 11px;
-              color: #5FBED0;
+            label {
+              display: inline-block;
+              padding: 0px 15px 0px 0px;
+              position: relative;
+              /* Prevents text-selection on the label. */
+              -moz-user-select: none;
+              -ms-user-select: none;
+              -webkit-touch-callout: none;
+              -webkit-user-select: none;  
+              user-select: none;
+              margin: 0;
+              font-weight: normal;
+              color: #2A8BB5;
+              &:after {
+                border-top: 5px solid #2A8BB5;
+                border-right: 5px solid transparent;
+                border-left: 5px solid transparent;
+                content: '';
+                position: absolute;
+                right: 1px;
+                top: 8px;
+              }
             }
             input#datepicker{
               border: 0;

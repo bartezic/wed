@@ -1,9 +1,5 @@
 window.WedCity = window.WedCity || {};
 
-window.WedCity.ready = function() {
-  window.WedCity.calendar.init();
-};
-
 window.WedCity.calendar = {
   configs: {
     mainClass: '.rcalendar',
@@ -247,6 +243,3 @@ window.WedCity.calendar = {
     }
   }
 };
-
-$(document).ready(window.WedCity.ready);
-$(document).on('page:load', window.WedCity.ready);
