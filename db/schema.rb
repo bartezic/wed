@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131001085051) do
+ActiveRecord::Schema.define(version: 20140109173311) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -175,6 +175,22 @@ ActiveRecord::Schema.define(version: 20131001085051) do
   end
 
   add_index "photos", ["gallery_id"], name: "index_photos_on_gallery_id", using: :btree
+
+  create_table "slider_ads", force: true do |t|
+    t.integer  "partner_id"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.string   "asset_remote_url"
+    t.hstore   "text"
+    t.boolean  "active"
+    t.date     "active_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "slider_ads", ["partner_id"], name: "index_slider_ads_on_partner_id", using: :btree
 
   create_table "users", force: true do |t|
     t.integer  "rolable_id"

@@ -19,6 +19,7 @@ Wed::Application.routes.draw do
     resources :videos
     resources :galleries
     resources :managers
+    resources :slider_ads
     root 'static#home'
   end
 

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require prototypes
+//= require jquery.cookie
 //= //require calendar
 //= require locale
 //= require calendar2

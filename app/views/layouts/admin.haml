@@ -35,7 +35,9 @@
               %li{class: request.path == admin_photos_path && 'active'}
                 %a{href: admin_photos_path}= t 'admin.menu.photos'
               %li{class: request.path == admin_videos_path && 'active'}
-                %a{href: admin_videos_path}= t 'admin.menu.videos'
+                %a{href: admin_videos_path}= t 'admin.menu.videos'              
+              %li{class: request.path == admin_slider_ads_path && 'active'}
+                %a{href: admin_slider_ads_path}= t 'admin.menu.slider'
             %ul.nav.navbar-nav.navbar-right
               %li.locale{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
               %li.locale{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
@@ -48,6 +50,7 @@
                     %a{href: "/"} На сайт
                   %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
       .container
+        .push-30
         = render 'shared/flash'
         = yield
     = render 'shared/footer'
