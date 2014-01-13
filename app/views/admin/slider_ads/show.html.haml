@@ -1,0 +1,14 @@
+%dl
+  %dt Asset
+  %dd= image_tag @slider_ad.asset(:original), class: 'img-responsive'
+
+  %dt Active
+  %dd= @slider_ad.active
+  - if @slider_ad.text
+    %dt Title
+    %dd= @slider_ad.text["#{locale}_title"]
+    %dt Subtitle
+    %dd= @slider_ad.text["#{locale}_subtitle"]
+
+= link_to 'Edit', edit_admin_slider_ad_path(@slider_ad), class: 'btn btn-default'
+= link_to 'Back', admin_slider_ads_path, class: 'btn btn-default'

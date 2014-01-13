@@ -1,0 +1,37 @@
+%h1 Listing slider_ads
+
+.table-responsive
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Id
+        %th Asset
+        %th Partner
+        %th Text
+        %th Active
+        %th Active to
+        %th Actions
+    %tbody
+      - @slider_ads.each do |slider_ad|
+        %tr
+          %td= slider_ad.id
+          %td= image_tag slider_ad.asset(:thumb)
+          %td
+            - if slider_ad.partner
+              = link_to slider_ad.partner do
+                = image_tag(slider_ad.partner.user.avatar(:thumb_100), { alt: slider_ad.partner.name })
+                .title= slider_ad.partner.name
+          %td
+            - if slider_ad.text
+              .div= slider_ad.text["#{locale}_title"]
+              .div= slider_ad.text["#{locale}_subtitle"]
+          %td= slider_ad.active
+          %td= slider_ad.active_to
+          %td
+            = link_to 'Show', [:admin, slider_ad]
+            = link_to 'Edit', edit_admin_slider_ad_path(slider_ad)
+            = link_to 'Destroy', [:admin, slider_ad], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= paginate @slider_ads
+%br
+= link_to 'New Slider Ad', new_admin_slider_ad_path, class: 'btn btn-default'
