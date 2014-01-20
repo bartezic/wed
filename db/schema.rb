@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140109173311) do
+ActiveRecord::Schema.define(version: 20140115092533) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -126,6 +126,37 @@ ActiveRecord::Schema.define(version: 20140109173311) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "partner_ad_translations", force: true do |t|
+    t.integer  "partner_ad_id", null: false
+    t.string   "locale",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.text     "description"
+  end
+
+  add_index "partner_ad_translations", ["locale"], name: "index_partner_ad_translations_on_locale", using: :btree
+  add_index "partner_ad_translations", ["partner_ad_id"], name: "index_partner_ad_translations_on_partner_ad_id", using: :btree
+
+  create_table "partner_ads", force: true do |t|
+    t.integer  "partner_id"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.string   "asset_remote_url"
+    t.string   "title"
+    t.text     "descroption"
+    t.boolean  "active"
+    t.date     "active_to"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "partner_ads", ["partner_id"], name: "index_partner_ads_on_partner_id", using: :btree
+  add_index "partner_ads", ["slug"], name: "index_partner_ads_on_slug", unique: true, using: :btree
 
   create_table "partner_translations", force: true do |t|
     t.integer  "partner_id",  null: false

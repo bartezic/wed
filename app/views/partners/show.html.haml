@@ -19,6 +19,8 @@
             %a{"data-toggle" => "tab", href: "#calendar"} Календар
           %li
             %a{"data-toggle" => "tab", href: "#contacts"} Контакти
+          %li
+            %a{"data-toggle" => "tab", href: "#ads"} Оголошення
       .tab-content
         #info.tab-pane.fade.in.active=raw @partner.info
         #portfolio.fade.tab-pane
@@ -75,6 +77,20 @@
             - if @partner.premium
               %dt Преміум до
               %dd= @partner.premium_to
+        #ads.fade.tab-pane
+          .table-responsive
+            %table.table.table-bordered.table-striped
+              %tr
+                %th Asset
+                %th Title
+                %th Description
+
+              - @partner.partner_ads.each do |partner_ad|
+                %tr
+                  %td= image_tag partner_ad.asset(:thumb), { width: 100 }
+                  %td= partner_ad.title
+                  %td= partner_ad.description
+                  
 
 
 

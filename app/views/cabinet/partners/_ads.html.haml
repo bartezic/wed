@@ -1,0 +1,45 @@
+= simple_form_for [:cabinet, @partner.partner_ads.build] do |f|
+  = f.error_notification
+
+  %ul#myTab.nav.nav-tabs
+    %li.active= link_to t('translation.uk'), '#locale-uk'
+    %li= link_to t('translation.ru'), '#locale-ru'
+  .tab-content
+    #locale-uk.tab-pane.active
+      - f.globalize_fields_for :uk do |l|
+        = l.input :title,           input_html: { class: 'form-control' }
+        = l.input :description,     input_html: { class: 'form-control' }, as: :text
+    #locale-ru.tab-pane
+      - f.globalize_fields_for :ru do |l|
+        = l.input :title,           input_html: { class: 'form-control' }
+        = l.input :description,     input_html: { class: 'form-control' }, as: :text
+  
+  = f.input :asset,            input_html: { class: 'form-control' }, label: 'Фото з комп\'ютера'
+  = f.input :asset_remote_url, input_html: { class: 'form-control', value: nil }, label: 'Фото посилання'
+  = f.input :active
+  = f.input :active_to
+
+  = f.button :submit, class: 'btn btn-default', value: 'Зберегти зміни'
+
+%h1 Listing ads
+
+.table-responsive
+  %table.table.table-bordered.table-striped
+    %tr
+      %th Id
+      %th Asset
+      %th Title
+      %th Активне
+      %th Дійсне до
+      %th Actions
+
+    - @partner.partner_ads.each do |partner_ad|
+      - if partner_ad.id
+        %tr
+          %td= partner_ad.id
+          %td= image_tag partner_ad.asset(:thumb), { width: 100 }
+          %td= partner_ad.title
+          %td= partner_ad.active
+          %td= partner_ad.active_to
+          %td
+            = link_to 'Destroy', [:cabinet, partner_ad], :method => :delete, :data => { :confirm => 'Are you sure?' }

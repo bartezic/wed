@@ -1,0 +1,31 @@
+%h1 Listing ads
+
+.table-responsive
+  %table.table.table-bordered.table-striped
+    %tr
+      %th Id
+      %th Asset
+      %th Title
+      %th Активне
+      %th Дійсне до
+      %th Партнер
+      %th Slug
+      %th Actions
+
+    - @partner_ads.each do |partner_ad|
+      %tr
+        %td= partner_ad.id
+        %td= image_tag partner_ad.asset(:thumb), { width: 100 }
+        %td= partner_ad.title
+        %td= partner_ad.active
+        %td= partner_ad.active_to
+        %td= link_to(partner_ad.partner.name, [:admin, partner_ad.partner]) if partner_ad.partner
+        %td= partner_ad.slug
+        %td
+          = link_to 'Show', [:admin, partner_ad]
+          = link_to 'Edit', edit_admin_partner_ad_path(partner_ad)
+          = link_to 'Destroy', [:admin, partner_ad], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= paginate @partner_ads
+%br
+= link_to 'New partner_ad', new_admin_partner_ad_path, class: 'btn btn-default' 

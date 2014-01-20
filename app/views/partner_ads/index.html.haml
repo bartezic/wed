@@ -1,0 +1,20 @@
+.container.ads
+  .row
+    %h1 Оголошення
+
+    .table-responsive
+      %table.table.table-bordered.table-striped
+        %tr
+          %th Asset
+          %th Title
+          %th Опис
+          %th Партнер
+
+        - @partner_ads.each do |partner_ad|
+          %tr
+            %td= image_tag partner_ad.asset(:thumb), { width: 100 }
+            %td= partner_ad.title
+            %td= partner_ad.description
+            %td= link_to(partner_ad.partner.name, partner_ad.partner) if partner_ad.partner
+
+    = paginate @partner_ads

@@ -14,6 +14,6 @@
           %li= link_to 'Фото портфоліо',      cabinet_profile_path(:profile), class: ('active' if @section == :profile)
           %li= link_to 'Відео портфоліо',     cabinet_profile_path(:profile), class: ('active' if @section == :profile)
           %li= link_to 'Заявки молодят',      cabinet_profile_path(:profile), class: ('active' if @section == :profile)
-          %li= link_to 'Оголошення',          cabinet_profile_path(:profile), class: ('active' if @section == :profile)
+          %li= link_to 'Оголошення',          cabinet_profile_path(:ads), class: ('active' if @section == :ads)
     %section{ class: "settings-content #{@section}_settings" }
       = render @section.to_s

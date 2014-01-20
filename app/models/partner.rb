@@ -4,6 +4,8 @@ class Partner < ActiveRecord::Base
   has_one :user, as: :rolable, dependent: :destroy
   has_many :videos
   has_many :galleries
+  has_many :slider_ads
+  has_many :partner_ads
   has_and_belongs_to_many :locations,  join_table: :locations_partners
   has_and_belongs_to_many :categories, join_table: :categories_partners
   has_and_belongs_to_many :days,       join_table: :days_partners
