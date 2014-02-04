@@ -3,6 +3,7 @@ class Partner < ActiveRecord::Base
   belongs_to :location
   has_one :user, as: :rolable, dependent: :destroy
   has_many :videos
+  has_many :photos, through: :galleries
   has_many :galleries
   has_many :slider_ads
   has_many :partner_ads

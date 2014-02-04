@@ -11,8 +11,8 @@
           %li= link_to 'Контакти',            cabinet_profile_path(:contacts), class: ('active' if @section == :contacts)
           %li= link_to 'Календар',            cabinet_profile_path(:callendar), class: ('active' if @section == :callendar)
           %li= link_to 'Змінити пароль',      cabinet_profile_path(:password), class: ('active' if @section == :password)
-          %li= link_to 'Фото портфоліо',      cabinet_profile_path(:profile), class: ('active' if @section == :profile)
-          %li= link_to 'Відео портфоліо',     cabinet_profile_path(:profile), class: ('active' if @section == :profile)
+          %li= link_to 'Фото портфоліо',      cabinet_profile_path(:photo), class: ('active' if @section == :photo)
+          %li= link_to 'Відео портфоліо',     cabinet_profile_path(:video), class: ('active' if @section == :video)
           %li= link_to 'Заявки молодят',      cabinet_profile_path(:profile), class: ('active' if @section == :profile)
           %li= link_to 'Оголошення',          cabinet_profile_path(:ads), class: ('active' if @section == :ads)
     %section{ class: "settings-content #{@section}_settings" }

@@ -1,0 +1,6 @@
+<% if @photo.new_record? %>
+  alert("Failed to upload photo: <%= j @photo.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+  $(".photos").prepend("<%= j render(@photo) %>");
+  $(".last-photos .title span").text($(".photos .photo").size());
+<% end %>

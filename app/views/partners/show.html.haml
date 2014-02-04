@@ -54,7 +54,7 @@
             
             - if @partner.locations.any?
               %dt Працює
-              %dd= raw @partner.locations.map{ |e| link_to(e.name, e) }.join(', ')
+              %dd= raw @partner.locations.map{ |e| e.name }.join(', ')
 
             %dt Сайт
             %dd= @partner.site

@@ -5,7 +5,12 @@ module Cabinet
     # GET /photos
     # GET /photos.json
     def index
-      @photos = Photo.includes(gallery: :translations).where(gallery_id: current_partner.galleries.pluck(:id)).page(params[:page]).per(25)
+      @photos = Photo.includes(gallery: :translations).where(gallery_id: current_partner.galleries.pluck(:id))
+      
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @photos.map(&:to_jq_upload) }
+      end
     end
 
     # GET /photos/1
@@ -31,9 +36,11 @@ module Cabinet
         if @photo.save
           format.html { redirect_to [:cabinet, @photo], notice: 'Photo was successfully created.' }
           format.json { render action: 'show', status: :created, location: @photo }
+          format.js { render :layout => false }
         else
           format.html { render action: 'new' }
           format.json { render json: @photo.errors, status: :unprocessable_entity }
+          format.js { render :layout => false }
         end
       end
     end

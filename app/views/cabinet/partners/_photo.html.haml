@@ -1,0 +1,43 @@
+- if params[:gallery] && gallery = @partner.galleries.where(slug: params[:gallery]).first
+  .gallery-open
+    .title
+      = gallery.name
+    .description
+      = gallery.description
+
+
+  .last-photos 
+    .title
+      Фотографії галереї
+      %span.label.label-primary= gallery.photos.size
+    .upload-photos
+      = simple_form_for [:cabinet, Photo.new] do |f|
+        = f.input :gallery_id, as: :hidden, input_html: { value: gallery.id  }
+        = f.label :asset, 'Додати фото'
+        = f.input_field :asset, multiple: true, name: "photo[asset]"
+      .progress.progress-striped.hidden
+        .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "00", role: "progressbar", style: "width: 0%"}
+    .photos
+      - gallery.photos.each do |photo|
+        .photo= link_to image_tag(photo.asset(:thumb_150)), photo.asset(:original)
+- else
+  .galleries
+    .title 
+      Галареї
+      %span.label.label-primary= @partner.galleries.size
+    .galleries 
+      - @partner.galleries.each do |gallery|
+        = link_to "?gallery=#{gallery.slug}", class: :gallery do
+          = image_tag(gallery.photos.last.asset(:original))
+          .info
+            .top
+              .name= gallery.name
+              .size= gallery.photos.size
+            .bottom= gallery.description
+  .last-photos 
+    .title
+      Останні завантажені фотографії
+      %span.label.label-primary= @partner.photos.size
+    .photos
+      - @partner.photos.each do |photo|
+        .photo= link_to image_tag(photo.asset(:thumb_150)), photo.asset(:original)
