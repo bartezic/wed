@@ -1,0 +1,24 @@
+.galleries
+  .top
+    .title 
+      Галареї
+      %span.label.label-primary= @partner.galleries.size
+    .actions
+      %button.btn.btn-default.btn-xs.show-edit(type="button")
+        %span.glyphicon.glyphicon-plus
+      %button.btn.btn-default.btn-xs.hide-edit.hidden(type="button")
+        %span.glyphicon.glyphicon-remove
+    .clearfix
+  = render 'cabinet/galleries/form', gallery: Gallery.new
+  .galleries 
+    - @partner.galleries.each do |gallery|
+      = link_to "?gallery=#{gallery.slug}", class: :gallery do
+        - if gallery.photos.any? 
+          = image_tag(gallery.photos.last.asset(:original))
+        - else
+          .empty Галарея порожня
+        .info
+          .top
+            .name= gallery.name
+            .size= gallery.photos.size
+          .bottom= gallery.description

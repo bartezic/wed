@@ -1,0 +1,12 @@
+.gallery-open
+  .top
+    .title= gallery.name
+    .actions
+      %button.btn.btn-default.btn-xs.show-edit(type="button")
+        %span.glyphicon.glyphicon-edit
+      %button.btn.btn-default.btn-xs.hide-edit.hidden(type="button")
+        %span.glyphicon.glyphicon-remove
+    .clearfix
+  .description
+    = gallery.description
+  = render 'cabinet/galleries/form', gallery: gallery

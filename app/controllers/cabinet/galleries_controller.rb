@@ -30,10 +30,12 @@ module Cabinet
       respond_to do |format|
         if @gallery.save && update_translations
           format.html { redirect_to [:cabinet, @gallery], notice: 'Gallery was successfully created.' }
-          format.json { render action: 'show', status: :created, location: @gallery }
+          format.json { render action: 'show', status: :ok, location: @gallery }
+          format.js { render json: { type: :create, gallery: @gallery }, status: :ok }
         else
           format.html { render action: 'new' }
           format.json { render json: @gallery.errors, status: :unprocessable_entity }
+          format.js { render json: { type: :create, errors: @gallery.errors }, status: :unprocessable_entity }
         end
       end
     end
@@ -45,9 +47,11 @@ module Cabinet
         if @gallery.update(gallery_params) && update_translations
           format.html { redirect_to [:cabinet, @gallery], notice: 'Gallery was successfully updated.' }
           format.json { head :no_content }
+          format.js { render json: { type: :update, gallery: @gallery }, status: :ok }
         else
           format.html { render action: 'edit' }
           format.json { render json: @gallery.errors, status: :unprocessable_entity }
+          format.js { render json: { type: :update, errors: @gallery.errors }, status: :unprocessable_entity }
         end
       end
     end
@@ -74,12 +78,18 @@ module Cabinet
       end
 
       def update_translations
-        params[:gallery][:translations].values.each do |translation|
-          I18n.locale = translation['locale'].to_sym
-          @gallery.update({
-            name: translation['name'],
-            description: translation['description']
-          })
+        if params[:gallery][:translations]
+          current_locale = I18n.locale
+          params[:gallery][:translations].values.each do |translation|
+            I18n.locale = translation['locale'].to_sym
+            @gallery.update({
+              name: translation['name'],
+              description: translation['description']
+            })
+          end
+          I18n.locale = current_locale
+        else
+          true
         end
       end
     end

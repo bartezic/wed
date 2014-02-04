@@ -5,8 +5,17 @@ window.WedCity.cabinet = {
 
   },
 
-  callback: function() {
-  };
+  createCallback: function(res) {
+    window.location.search = 'gallery='+res.gallery.slug;
+  },
+
+  updateCallback: function(res) {
+    var self = this;
+
+    self.elems.title.text(res.gallery.name);
+    self.elems.description.text(res.gallery.description);
+    self.elems.hideEdit.click();
+  },
 
   initHandlers: function (){
     var self = this;
@@ -26,6 +35,11 @@ window.WedCity.cabinet = {
       self.elems.description.removeClass('hidden');
       self.elems.showEdit.removeClass('hidden');
     });
+
+    self.elems.galleryForm.bind('ajax:complete', function(event, xhr) {
+      var res = $.parseJSON(xhr.responseText);
+      self[res.type+'Callback'](res);
+    });
   
   },
 
@@ -34,10 +48,10 @@ window.WedCity.cabinet = {
 
     this.root = window.WedCity;
     this.elems = {
-      showEdit: $('.gallery-open .show-edit'),
-      hideEdit: $('.gallery-open .hide-edit'),
-      galleryFormWrap: $('.gallery-open .edit-gallery'),
-      galleryForm: $('.gallery-open .edit-gallery form'),
+      showEdit: $('.actions .show-edit'),
+      hideEdit: $('.actions .hide-edit'),
+      galleryFormWrap: $('.edit-gallery'),
+      galleryForm: $('.edit-gallery form'),
       title: $('.gallery-open .title'),
       description: $('.gallery-open .description')
     };
