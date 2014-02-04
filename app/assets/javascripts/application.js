@@ -24,6 +24,10 @@
 //= require jquery.mCustomScrollbar
 //= require custom-select-menu.jquery
 //= require search
+//= //require jquery-fileupload
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
+//= require cabinet
 
 function ready () {
   $('#myTab a').click(function (e) {
@@ -80,12 +84,104 @@ function ready () {
   // if(galleries.length !== 0){
   //   galleries.photobox('a');
   // }
+  // $('#fileupload').fileupload({
+  //   filesContainer: $('table.files'),
+  //   uploadTemplateId: null,
+  //   downloadTemplateId: null,
+  //   uploadTemplate: function (o) {
+  //        alert(4444);
+  //       var rows = $();
+  //       $.each(o.files, function (index, file) {
+  //           var row = $('<tr class="template-upload fade">' +
+  //               '<td><span class="preview"></span></td>' +
+  //               '<td><p class="name"></p>' +
+  //               (file.error ? '<div class="error"></div>' : '') +
+  //               '</td>' +
+  //               '<td><p class="size"></p>' +
+  //               (o.files.error ? '' : '<div class="progress"></div>') +
+  //               '</td>' +
+  //               '<td>' +
+  //               (!o.files.error && !index && !o.options.autoUpload ?
+  //                   '<button class="start">Start</button>' : '') +
+  //               (!index ? '<button class="cancel">Cancel</button>' : '') +
+  //               '</td>' +
+  //               '</tr>');
+  //           row.find('.name').text(file.name);
+  //           row.find('.size').text(o.formatFileSize(file.size));
+  //           if (file.error) {
+  //               row.find('.error').text(file.error);
+  //           }
+  //           rows = rows.add(row);
+  //       });
+  //       return rows;
+  //   },
+  //   downloadTemplate: function (o) {
+  //        alert(5555);
+  //       var rows = $();
+  //       $.each(o.files, function (index, file) {
+  //           var row = $('<tr class="template-download fade">' +
+  //               '<td><span class="preview"></span></td>' +
+  //               '<td><p class="name"></p>' +
+  //               (file.error ? '<div class="error"></div>' : '') +
+  //               '</td>' +
+  //               '<td><span class="size"></span></td>' +
+  //               '<td><button class="delete">Delete</button></td>' +
+  //               '</tr>');
+  //           row.find('.size').text(o.formatFileSize(file.size));
+  //           if (file.error) {
+  //               row.find('.name').text(file.name);
+  //               row.find('.error').text(file.error);
+  //           } else {
+  //               row.find('.name').append($('<a></a>').text(file.name));
+  //               if (file.thumbnailUrl) {
+  //                   row.find('.preview').append(
+  //                       $('<a></a>').append(
+  //                           $('<img>').prop('src', file.thumbnailUrl)
+  //                       )
+  //                   );
+  //               }
+  //               row.find('a')
+  //                   .attr('data-gallery', '')
+  //                   .prop('href', file.url);
+  //               row.find('.delete')
+  //                   .attr('data-type', file.delete_type)
+  //                   .attr('data-url', file.delete_url);
+  //           }
+  //           rows = rows.add(row);
+  //       });
+  //       return rows;
+  //     }
+  // });
+  jQuery(function() {
+    return $('#new_photo').fileupload({
+      dataType: "script",
+      add: function(e, data) {
+        var file, types;
+        types = /(\.|\/)(gif|jpe?g|png)$/i;
+        file = data.files[0];
+        if (types.test(file.type) || types.test(file.name)) {
+          $('.progress').removeClass('hidden');
+          return data.submit();
+        } else {
+          return alert("" + file.name + " is not a gif, jpeg, or png image file");
+        }
+      },
+      progressall: function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('.progress-bar')
+          .attr('aria-valuenow', progress)
+          .css('width', progress + '%');
+      }
+    });
+  });
+
 };
 
 window.WedCity.ready = function() {
   ready();
   window.WedCity.calendar.init();
   window.WedCity.search.init();
+  window.WedCity.cabinet.init();
 };
 
 $(document).ready(window.WedCity.ready);

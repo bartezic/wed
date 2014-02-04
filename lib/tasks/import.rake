@@ -57,6 +57,7 @@ namespace :import do
             price: price, 
             active: true, 
             day_ids: day_ids.flatten,
+            location_ids: Location.all.order("RANDOM()").limit(4).pluck(:id),
             category_ids: cats.map{ |i| i.id if i.name == key },
             user_attributes: {
               avatar_remote_url: avatar,

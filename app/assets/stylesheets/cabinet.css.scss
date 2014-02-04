@@ -414,6 +414,127 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
 	        }
 	      }
 	    }
+
+	    .last-photos, .galleries, .gallery-open {
+	    	margin-bottom: 20px;
+	    	&> .top {
+	    		margin-bottom: 10px;
+		    	border-bottom: 1px solid #5FBED0;
+	    		.title {
+		    		font-weight: bold;
+		    		font-size: 15px;
+		    		color: #2A8BB5;
+		    		padding: 5px 0;	
+		    	}
+	    	}
+	    }
+
+	    .galleries {
+	    	.gallery {
+	    		display: inline-block;
+	    		width: 309px;
+	    		height: 185px;
+					overflow: hidden;
+					position: relative;
+					margin-bottom: 6px;
+	    		&:nth-child(odd) {
+						margin-right: 6px; 
+					}
+	    		img {
+	    			vertical-align: top;
+						max-width: 100%;
+	    		}
+	    		.info {
+	    			width: 100%;
+	    			padding: 5px;
+	    			font-size: 13px;
+	    			position: absolute;
+	    			bottom: 0;
+	    			background: rgba(0, 0, 0, 0.6);
+	    			color: white;
+	    			.top{
+	    				font-weight: bold;
+	    				.name {
+		    				float: left;
+		    				width: 90%;
+		    			}
+		    			.size {
+		    				text-align: right;
+		    				float: right;
+		    				width: 10%;
+		    			}
+	    			}
+	    			.bottom {
+							opacity: 0;
+							max-height: 0;
+							transition: 500ms;
+							-webkit-transition: 500ms;
+	    			}
+	    			&:hover {
+	    				.bottom {
+		    				opacity: 1;
+								max-height: 500px;
+		    			}
+	    			}
+	    		}
+	    	}
+	    }
+
+	    .gallery-open {
+	    	.top {
+	    		.title{
+	    			float: left;
+	    		}
+	    		.actions {
+	    			float: right;
+	    			margin-bottom: 9px;
+	    		}
+	    	}
+	    	.edit-gallery {
+	    		background: #fff;
+	    		display: none;
+	    	}
+	    }
+
+	    .last-photos {
+  			.photos {
+  				.photo {
+  					display: inline-block;
+  					margin-bottom: 10px;
+  					&:not(:nth-child(4n)) {
+  						margin-right: 5px; 
+  					}
+  					a {
+	  					display: block;
+	  				}
+  				}
+  				
+  			}
+	    }
+
+	    .upload-photos {
+				label{
+				  width: 100%;
+				  margin: 10px auto;
+				  text-align: center;
+				  padding: 30px 0px 30px 0px;
+				  border-radius:10px;
+				  border: 3px dashed #5FBED0;
+				  color: #5FBED0;
+				  font-size: 30px; 
+	
+					&:hover {
+					  background: #5FBED0;
+					  color: #fff;
+					  cursor: pointer;
+					}
+				}
+				input {
+			    width: 0px;
+			    height: 0px;
+				}
+	    }
+  
 	  }
 	}
 }
