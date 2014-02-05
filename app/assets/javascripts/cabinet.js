@@ -50,8 +50,8 @@ window.WedCity.cabinet = {
     this.elems = {
       showEdit: $('.actions .show-edit'),
       hideEdit: $('.actions .hide-edit'),
-      galleryFormWrap: $('.edit-gallery'),
-      galleryForm: $('.edit-gallery form'),
+      galleryFormWrap: $('.edit-form'),
+      galleryForm: $('.edit-form form'),
       title: $('.gallery-open .title'),
       description: $('.gallery-open .description')
     };

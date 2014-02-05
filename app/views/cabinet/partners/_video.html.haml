@@ -1,6 +1,27 @@
-%dl.partner
-  %dt Відео
-  %dd.gallery
+.last-videos
+  .top
+    .title 
+      Останні завантажені відеозаписи
+      %span.label.label-primary= @partner.videos.size
+    .actions
+      %button.btn.btn-default.btn-xs.show-edit(type="button")
+        %span.glyphicon.glyphicon-plus
+      %button.btn.btn-default.btn-xs.hide-edit.hidden(type="button")
+        %span.glyphicon.glyphicon-remove
+    .clearfix
+  = render 'cabinet/videos/form', video: Video.new
+  .videos 
     - @partner.videos.each do |video|
       - if video.link
-        %span.video= link_to image_tag(get_video_cover(video), { alt: video.name }), get_video_link(video), {rel: 'video'}
+        .video
+          = link_to image_tag(video.cover), video.external_link, {rel: 'video'}
+          .info
+            .top
+              .name= video.title
+              .size= video.rating
+              .clearfix
+            - unless video.description.strip.empty?
+              .bottom= raw video.description
+          .actions
+            = link_to [:cabinet, video], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs" do
+              %span.glyphicon.glyphicon-trash

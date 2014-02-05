@@ -14,7 +14,7 @@
       - @videos.each do |video|
         %tr
           %td= video.id
-          %td= image_tag get_video_cover(video, :medium)
+          %td= image_tag video.cover(:medium)
           %td= video.rating
           %td= video.link
           %td= link_to(video.partner.name, [:admin, video.partner]) if video.partner

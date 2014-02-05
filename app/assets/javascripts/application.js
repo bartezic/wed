@@ -18,7 +18,7 @@
 //= //require calendar
 //= require locale
 //= require calendar2
-//= require twitter/bootstrap
+//= require bootstrap
 //= //require photobox
 //= require bootstrap-datepicker
 //= require jquery.mCustomScrollbar

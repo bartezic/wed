@@ -1,7 +1,6 @@
-= simple_form_for([:cabinet, @video]) do |f|
-  = f.error_notification
-  .row
-    .col-lg-6
-      = f.input :link,              input_html: { class: 'form-control' }
+.edit-form
+  = simple_form_for([:cabinet, video]) do |f|
+    = f.error_notification
+    = f.input :link,              input_html: { class: 'form-control' }
 
-      = f.button :submit, class: 'btn btn-default'
+    = f.button :submit, class: 'btn btn-default'

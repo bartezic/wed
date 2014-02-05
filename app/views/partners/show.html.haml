@@ -36,7 +36,7 @@
             %dd.gallery
               - @partner.videos.each do |video|
                 - if video.link
-                  %span.video= link_to image_tag(get_video_cover(video), { alt: video.name }), get_video_link(video), {rel: 'video'}
+                  %span.video= link_to image_tag(video.cover), video.external_link, {rel: 'video'}
         #calendar.fade.tab-pane
           .rcalendar{ data: { cabinet: 'false', days: @partner.days.map(&:day_of_life).to_json } }
         #contacts.fade.tab-pane

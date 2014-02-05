@@ -7,7 +7,7 @@
   %dt Video
   %dd
     - if @video.link
-      %iframe{ src: get_video_link(@video), width: 640, height: 430, frameborder: 0, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true, allowscriptaccess: :always, allowFullScreen: true, title: @video.name }
+      %iframe{ src: @video.external_link, width: 640, height: 430, frameborder: 0, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true, allowscriptaccess: :always, allowFullScreen: true, title: @video.name }
 
 %br
 

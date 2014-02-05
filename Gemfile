@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', "~> 4.0.2"
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -9,13 +9,13 @@ gem 'pg'
 gem 'mail'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 gem "jquery-fileupload-rails"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -28,7 +28,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -55,14 +55,14 @@ gem 'devise'
 gem 'simple_form'
 gem "haml-rails"
 gem 'paperclip'
-gem 'anjlab-bootstrap-rails', '~> 3.0.2.0', require: 'bootstrap-rails'
+gem 'bootstrap-sass', '~> 3.1.0'
 gem 'bootstrap-datepicker-rails'
 gem 'globalize', '~> 4.0.0.alpha.2'
 gem 'friendly_id', '5.0.0.beta4'
 gem 'babosa'
 gem 'kaminari'
 gem 'letter_opener', group: :development
-gem 'bourbon'  
+gem 'bourbon' 
 
 
 # For importing
