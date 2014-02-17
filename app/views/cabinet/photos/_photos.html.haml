@@ -3,6 +3,7 @@
     .title
       = title
       %span.label.label-primary= photos.size
+    .clearfix
   - if gallery && upload
     .upload-photos
       = simple_form_for [:cabinet, Photo.new] do |f|

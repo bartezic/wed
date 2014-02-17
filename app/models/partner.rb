@@ -1,5 +1,5 @@
 class Partner < ActiveRecord::Base
-  default_scope { order('partners.id DESC') }
+  # default_scope { order('partners.id DESC') }
   belongs_to :location
   has_one :user, as: :rolable, dependent: :destroy
   has_many :videos

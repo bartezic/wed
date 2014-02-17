@@ -15,6 +15,7 @@ class PartnerAd < ActiveRecord::Base
     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
     :url => "/system/:attachment/:id/:style/:filename"
 
+  validates_attachment_content_type :asset, :content_type => /\Aimage\/.*\Z/
   before_save :upload_asset_from_remote_url
   # before_save :change_file_name
 

@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
     :url => "/system/:attachment/:id/:style/:filename"
 
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   before_save :upload_avatar_from_remote_url
   # before_save :change_file_name
