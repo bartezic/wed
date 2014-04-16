@@ -25,9 +25,9 @@ Wed::Application.routes.draw do
     root 'static#home'
   end
 
-  resources :partner_ads, path: 'оголошення', only: [:index]
+  resources :partner_ads, only: [:index]
   resources :categories, path: :posluhy, only: [:show]
-  resources :partners, path: 'послуги' do
+  resources :partners do
     get :search, on: :collection
   end
   resources :photos
