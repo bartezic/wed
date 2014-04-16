@@ -1,4 +1,4 @@
-Wed::Application.routes.draw do
+Rails.application.routes.draw do
   namespace :cabinet do
     resources :partners, only: [:show, :edit, :update] do
       post 'days', on: :member
