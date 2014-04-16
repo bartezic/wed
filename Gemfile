@@ -61,10 +61,14 @@ gem 'globalize', '~> 4.0.1'
 gem 'friendly_id'
 gem 'babosa'
 gem 'kaminari'
-gem 'letter_opener', group: :development
 gem 'bourbon' 
 
 
 # For importing
 gem 'rest-client'
 gem 'nokogiri'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'letter_opener'
+end
