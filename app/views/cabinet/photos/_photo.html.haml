@@ -1,1 +1,6 @@
-.photo= link_to image_tag(photo.asset(:thumb_150)), photo.asset(:original)
+.photo{ data: { photoid: photo.id } }
+	.actions
+		= link_to [:cabinet, photo], method: :delete, remote: true, data: { confirm: 'Ви дійсно бажаєте видалити дане фото?' } do
+			%button.btn.btn-default.btn-xs(type="button")
+				%span.glyphicon.glyphicon-trash
+	= link_to image_tag(photo.asset(:thumb_150)), photo.asset(:original)

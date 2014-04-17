@@ -6,6 +6,9 @@
         %span.glyphicon.glyphicon-edit
       %button.btn.btn-default.btn-xs.hide-edit.hidden(type="button")
         %span.glyphicon.glyphicon-remove
+      = link_to [:cabinet, gallery], method: :delete, data: { confirm: 'Ви дійсно бажаєте видалити дану галарею зі всіма її фотографіями?' } do
+        %button.btn.btn-default.btn-xs(type="button")
+          %span.glyphicon.glyphicon-trash
     .clearfix
   .description
     = gallery.description

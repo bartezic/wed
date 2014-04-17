@@ -61,7 +61,7 @@ module Cabinet
     def destroy
       @gallery.destroy
       respond_to do |format|
-        format.html { redirect_to cabinet_galleries_url }
+        format.html { redirect_to cabinet_profile_path(:photo), notice: 'Gallery was successfully removed.' }
         format.json { head :no_content }
       end
     end

@@ -64,8 +64,9 @@ module Cabinet
     def destroy
       @photo.destroy
       respond_to do |format|
-        format.html { redirect_to cabinet_photos_url }
+        format.html { redirect_to :back }
         format.json { head :no_content }
+        format.js { render layout: false }
       end
     end
 
