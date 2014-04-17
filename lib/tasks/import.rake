@@ -1,6 +1,6 @@
 namespace :import do 
-  desc "Import partners from odnalubov.com"
-  task :partners => [:environment] do
+  task partners: :environment 
+    puts "Import partners from odnalubov.com"
     I18n.locale = :uk
     cats = Category.all
 
@@ -84,8 +84,8 @@ namespace :import do
     end
   end
 
-  desc "Import categories from odnalubov.com"
-  task :categories => [:environment] do
+  task categories: :environment do
+    puts "Import categories from odnalubov.com"
     res = RestClient.get('http://odnalubov.com/')
     Nokogiri::HTML.parse(res,nil,'windows-1251').xpath("//div[@id='navigation']/ul/li/a[@class='side']").each do |cat|
       slug = cat.attributes['href'].to_s
@@ -102,14 +102,14 @@ namespace :import do
 end
 
 namespace :add do 
-  desc "Add Days"
-  task :days => [:environment] do
+  task days: :environment do
+    puts "Add Days"
     Day.create!(day_of_life: Time.now.to_date)
     365.times {Day.create!(day_of_life: Day.order("day_of_life ASC").last.day_of_life + 1) }
   end
 
-  desc 'Add regions'
-  task :regions => [:environment] do
+  task regions: :environment do
+    puts 'Add regions'
     regions = [ ['Автономная Республика Крым',  'Автономна Республіка Крим'],
                 ['Винницкая область', 'Вінницька область'],
                 ['Волынская область', 'Волинська область'],
@@ -145,6 +145,16 @@ namespace :add do
     end
   end
 end
+
+task general_import_task: :environment do
+  puts 'General task for migrate data...'
+  Rake::Task['add:days'].invoke
+  Rake::Task['add:regions'].invoke
+  Rake::Task['import:categories'].invoke
+  Rake::Task['import:partners'].invoke
+  puts 'Finished general task.'
+end
+
 
 def translate_API(text, type = 'plain')
   res = RestClient.post('https://translate.yandex.net/api/v1.5/tr.json/translate', { 
