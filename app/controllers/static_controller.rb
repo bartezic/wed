@@ -8,4 +8,8 @@ class StaticController < ApplicationController
   def empty
     
   end
+
+  def widgets
+  	
+  end
 end
