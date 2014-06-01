@@ -1,0 +1,4 @@
+.nested-fields
+  = f.collection_select :category_id, Category.all, :id, :name, prompt: ''
+  = f.text_field :price
+  = link_to_remove_association 'Видалити', f

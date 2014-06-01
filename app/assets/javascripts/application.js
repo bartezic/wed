@@ -28,6 +28,7 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require cabinet
+//= require cocoon
 
 function ready () {
   $('#myTab a').click(function (e) {

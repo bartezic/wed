@@ -19,3 +19,4 @@ Ignore paperclip images
 /public/system
 
 /config/database.yml
+/coverage/index.html

@@ -14,9 +14,12 @@
         = l.input :name,            input_html: { class: 'form-control' }
         = l.input :description,     input_html: { class: 'form-control' }, as: :text
         = l.input :info,            input_html: { class: 'form-control' }, as: :text
-
-  = f.input :price,                 input_html: { class: 'form-control' }
+  %h3 Категорії
+  #involvings
+    = f.simple_fields_for :involvings do |involving|
+      = render 'cabinet/partners/involving_fields', f: involving
+    .links
+      = link_to_add_association 'Додати', f, :involvings
   = f.association :locations,       input_html: { class: 'form-control' }
-  = f.association :categories,      input_html: { class: 'form-control' }
 
   = f.button :submit, class: 'btn btn-default', value: 'Зберегти зміни'

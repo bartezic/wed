@@ -3,14 +3,16 @@ class Partner < ActiveRecord::Base
   belongs_to :location
   has_one :user, as: :rolable, dependent: :destroy
   has_many :videos
-  has_many :photos, through: :galleries
   has_many :galleries
   has_many :slider_ads
   has_many :partner_ads
+  has_many :involvings
+  has_many :categories, through: :involvings
+  has_many :photos,     through: :galleries
   has_and_belongs_to_many :locations,  join_table: :locations_partners
-  has_and_belongs_to_many :categories, join_table: :categories_partners
   has_and_belongs_to_many :days,       join_table: :days_partners
 
+  accepts_nested_attributes_for :involvings, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :galleries
   accepts_nested_attributes_for :user
 

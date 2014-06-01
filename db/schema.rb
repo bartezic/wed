@@ -27,14 +27,6 @@ ActiveRecord::Schema.define(version: 20140115092533) do
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
 
-  create_table "categories_partners", id: false, force: true do |t|
-    t.integer "partner_id",  null: false
-    t.integer "category_id", null: false
-  end
-
-  add_index "categories_partners", ["category_id", "partner_id"], name: "index_categories_partners_on_category_id_and_partner_id", using: :btree
-  add_index "categories_partners", ["partner_id", "category_id"], name: "index_categories_partners_on_partner_id_and_category_id", using: :btree
-
   create_table "category_translations", force: true do |t|
     t.integer  "category_id", null: false
     t.string   "locale",      null: false
@@ -85,6 +77,12 @@ ActiveRecord::Schema.define(version: 20140115092533) do
 
   add_index "gallery_translations", ["gallery_id"], name: "index_gallery_translations_on_gallery_id", using: :btree
   add_index "gallery_translations", ["locale"], name: "index_gallery_translations_on_locale", using: :btree
+
+  create_table "involvings", force: true do |t|
+    t.integer "price"
+    t.integer "partner_id"
+    t.integer "category_id"
+  end
 
   create_table "location_translations", force: true do |t|
     t.integer  "location_id", null: false

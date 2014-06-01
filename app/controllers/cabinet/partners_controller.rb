@@ -51,9 +51,10 @@ module Cabinet
       # Never trust parameters from the scary internet, only allow the white list through.
       def partner_params
         params.require(:partner).permit(
-          :name, :description, :info, :price, :location_id, 
+          :name, :description, :info, :location_id, 
           :site, :phone, :active, :premium, :premium_to, :slug,
-          :rating, :callendar, category_ids: [], location_ids: [], day_ids: [],
+          :rating, :callendar, location_ids: [], day_ids: [],
+          involvings_attributes: [:id, :category_id, :price, :_destroy],
           user_attributes: [:id, :email, :avatar, :avatar_remote_url, :password, :password_confirmation]
         )
       end

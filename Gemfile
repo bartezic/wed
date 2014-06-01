@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', "~> 4.1.0"
+gem 'rails', "~> 4.1.1"
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -62,6 +62,7 @@ gem 'friendly_id'
 gem 'babosa'
 gem 'kaminari'
 gem 'bourbon' 
+gem 'cocoon'
 
 
 # For importing
@@ -69,6 +70,9 @@ gem 'rest-client'
 gem 'nokogiri'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'factory_girl'
+  gem 'simplecov', require: false
   gem 'letter_opener'
 end

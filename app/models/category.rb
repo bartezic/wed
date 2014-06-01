@@ -3,7 +3,8 @@ class Category < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   translates :name, :name_sing
-  has_and_belongs_to_many :partners, :join_table => :categories_partners
+  has_many :involvings
+  has_many :partners, through: :involvings
 
   def normalize_friendly_id(input)
     input.to_s.to_slug.normalize(transliterations: :ukrainian).to_s

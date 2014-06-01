@@ -1,5 +1,5 @@
 namespace :import do 
-  task partners: :environment 
+  task partners: :environment do
     puts "Import partners from odnalubov.com"
     I18n.locale = :uk
     cats = Category.all
