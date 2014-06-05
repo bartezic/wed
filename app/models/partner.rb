@@ -1,11 +1,14 @@
 class Partner < ActiveRecord::Base
-  # default_scope { order('partners.id DESC') }
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
+  paginates_per 36
+
   belongs_to :location
   has_one :user, as: :rolable, dependent: :destroy
   has_many :videos
   has_many :galleries
   has_many :slider_ads
-  has_many :partner_ads
   has_many :involvings
   has_many :categories, through: :involvings
   has_many :photos,     through: :galleries
@@ -16,31 +19,12 @@ class Partner < ActiveRecord::Base
   accepts_nested_attributes_for :galleries
   accepts_nested_attributes_for :user
 
-  extend FriendlyId
-  friendly_id :name, use: :slugged
-  
-  paginates_per 36
-  translates :name, :description, :info
-
+  # default_scope { order('partners.id DESC') }  
   scope :active,          -> { where(active: true) }
   scope :with_category,   -> (ids) { joins(:categories).where("categories.id IN (?)", ids) unless ids.blank? }
   scope :with_location,   -> (ids) { joins(:locations).where("locations.id IN (?)", ids) unless ids.blank? }
   scope :with_ids,        -> (ids) { where('partners.id IN (?)', ids) unless ids.blank? }
   scope :without_ids,     -> (ids) { where('partners.id NOT IN (?)', ids) unless ids.blank? }
-
-  # scope :with_day,        -> (id) { includes(:days).where('days.id != ?', id) if id } 
-  # scope :recommended,     lambda { |i| where(recommended: true) if i }
-  # scope :with_days,       joins(:days)
-  # scope :with_from,       lambda { |ids| joins(:regions).where("regions.id IN (?)",           ids) unless ids.blank? }
-  # scope :with_transports, lambda { |ids| joins(:transports).where("transports.id IN (?)",     ids) unless ids.blank? }
-  # scope :with_tour_types, lambda { |ids| joins(:tour_types).where("tour_types.id IN (?)",     ids) unless ids.blank? }
-  # scope :with_countries,  lambda { |ids| with_regions(Region.where('country_id IN (?)', ids).map(&:id)) unless ids.blank? }
-  # scope :with_regions,    lambda { |ids| 
-  #   with_ids(Region.where('id IN (?)', ids).includes(&:tour_programs).map{ |region|
-  #     region.tour_programs.map(&:tour_id)
-  #   }.flatten) unless ids.blank?
-  # }
-  # scope :with_query,      lambda { |query| where("tours.title ilike ? or tours.description ilike ?", "%#{query}%", "%#{query}%") unless query.blank? }
 
   def self.search(params, order, ids = []) 
     includes(:translations).

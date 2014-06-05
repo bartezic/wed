@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     resources :photos
     resources :videos
     resources :galleries
-    resources :partner_ads
     get 'profile/:section' => 'partners#edit',   as: :profile
     # put 'profile/:section' => 'partners#update', as: :update_profile
     root 'partners#edit'
@@ -21,11 +20,9 @@ Rails.application.routes.draw do
     resources :galleries
     resources :managers
     resources :slider_ads
-    resources :partner_ads
     root 'static#home'
   end
 
-  resources :partner_ads, only: [:index]
   resources :categories, path: :posluhy, only: [:show]
   resources :partners do
     get :search, on: :collection

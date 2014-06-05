@@ -38,11 +38,7 @@
                 %a{href: admin_videos_path}= t 'admin.menu.videos'              
               %li{class: request.path == admin_slider_ads_path && 'active'}
                 %a{href: admin_slider_ads_path}= t 'admin.menu.slider'
-              %li{class: request.path == admin_partner_ads_path && 'active'}
-                %a{href: admin_partner_ads_path}= t 'admin.menu.partner_ads'
             %ul.nav.navbar-nav.navbar-right
-              %li.locale{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
-              %li.locale{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
                   = current_user.email 

@@ -8,13 +8,6 @@
         .pull-left.top-nav
           - if part == :app
             = link_to t('nav.partners'), partners_path
-            = link_to t('nav.ads'), partner_ads_path
-            = link_to t('nav.news'), partners_path
-          - elsif part == :cabinet
-        .pull-right.locale
-          %span{class: locale == :uk && 'active', data: { locale: :uk }}= link_to "Укр", "?locale=uk"
-          |
-          %span{class: locale == :ru && 'active', data: { locale: :ru }}= link_to "Рус", "?locale=ru"
       .col-lg-4.right
         .pull-right
           - if user_signed_in?

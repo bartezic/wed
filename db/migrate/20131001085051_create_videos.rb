@@ -1,5 +1,5 @@
 class CreateVideos < ActiveRecord::Migration
-  def up
+  def change
     create_table :videos do |t|
       t.string :link
       t.integer :rating, default: 0
@@ -7,9 +7,5 @@ class CreateVideos < ActiveRecord::Migration
 
       t.timestamps
     end
-  end
-
-  def down
-    drop_table :videos
   end
 end

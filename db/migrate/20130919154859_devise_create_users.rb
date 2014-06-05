@@ -1,5 +1,5 @@
 class DeviseCreateUsers < ActiveRecord::Migration
-  def up
+  def change
     create_table(:users) do |t|
       t.references  :rolable, polymorphic: true
       t.attachment  :avatar
@@ -29,8 +29,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime :confirmation_sent_at
       t.string   :unconfirmed_email # Only if using reconfirmable
 
-      ## Lockable
-      # t.integer  :failed_attempts, :default => 0, :null => false # Only if lock strategy is :failed_attempts
+      # Lockable
+      # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
@@ -41,13 +41,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
-    # add_index :users, :unlock_token,         :unique => true
-  end
-  
-  def down
-    remove_index :users, :email  
-    remove_index :users, :reset_password_token
-    remove_index :users, :confirmation_token
-    drop_table :users
+    # add_index :users, :unlock_token,         unique: true
   end
 end

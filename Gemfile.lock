@@ -84,9 +84,6 @@ GEM
       activesupport (>= 3.0.0)
     friendly_id (5.0.3)
       activerecord (>= 4.0.0)
-    globalize (4.0.1)
-      activemodel (>= 4.0.0, < 5)
-      activerecord (>= 4.0.0, < 5)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -251,7 +248,6 @@ DEPENDENCIES
   devise
   factory_girl
   friendly_id
-  globalize (~> 4.0.1)
   haml-rails
   jbuilder
   jquery-fileupload-rails

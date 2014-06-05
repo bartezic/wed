@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115092533) do
+ActiveRecord::Schema.define(version: 20140109173311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,23 +21,16 @@ ActiveRecord::Schema.define(version: 20140115092533) do
     t.string   "name"
     t.string   "name_sing"
     t.string   "slug"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "logo_remote_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
-
-  create_table "category_translations", force: true do |t|
-    t.integer  "category_id", null: false
-    t.string   "locale",      null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.string   "name_sing"
-  end
-
-  add_index "category_translations", ["category_id"], name: "index_category_translations_on_category_id", using: :btree
-  add_index "category_translations", ["locale"], name: "index_category_translations_on_locale", using: :btree
 
   create_table "days", force: true do |t|
     t.date     "day_of_life"
@@ -66,34 +59,11 @@ ActiveRecord::Schema.define(version: 20140115092533) do
   add_index "galleries", ["partner_id"], name: "index_galleries_on_partner_id", using: :btree
   add_index "galleries", ["slug"], name: "index_galleries_on_slug", unique: true, using: :btree
 
-  create_table "gallery_translations", force: true do |t|
-    t.integer  "gallery_id",  null: false
-    t.string   "locale",      null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.text     "description"
-  end
-
-  add_index "gallery_translations", ["gallery_id"], name: "index_gallery_translations_on_gallery_id", using: :btree
-  add_index "gallery_translations", ["locale"], name: "index_gallery_translations_on_locale", using: :btree
-
   create_table "involvings", force: true do |t|
     t.integer "price"
     t.integer "partner_id"
     t.integer "category_id"
   end
-
-  create_table "location_translations", force: true do |t|
-    t.integer  "location_id", null: false
-    t.string   "locale",      null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-  end
-
-  add_index "location_translations", ["locale"], name: "index_location_translations_on_locale", using: :btree
-  add_index "location_translations", ["location_id"], name: "index_location_translations_on_location_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.string   "name"
@@ -112,66 +82,11 @@ ActiveRecord::Schema.define(version: 20140115092533) do
   add_index "locations_partners", ["location_id", "partner_id"], name: "index_locations_partners_on_location_id_and_partner_id", using: :btree
   add_index "locations_partners", ["partner_id", "location_id"], name: "index_locations_partners_on_partner_id_and_location_id", using: :btree
 
-  create_table "manager_translations", force: true do |t|
-    t.integer  "manager_id", null: false
-    t.string   "locale",     null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-  end
-
-  add_index "manager_translations", ["locale"], name: "index_manager_translations_on_locale", using: :btree
-  add_index "manager_translations", ["manager_id"], name: "index_manager_translations_on_manager_id", using: :btree
-
   create_table "managers", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "partner_ad_translations", force: true do |t|
-    t.integer  "partner_ad_id", null: false
-    t.string   "locale",        null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "title"
-    t.text     "description"
-  end
-
-  add_index "partner_ad_translations", ["locale"], name: "index_partner_ad_translations_on_locale", using: :btree
-  add_index "partner_ad_translations", ["partner_ad_id"], name: "index_partner_ad_translations_on_partner_ad_id", using: :btree
-
-  create_table "partner_ads", force: true do |t|
-    t.integer  "partner_id"
-    t.string   "asset_file_name"
-    t.string   "asset_content_type"
-    t.integer  "asset_file_size"
-    t.datetime "asset_updated_at"
-    t.string   "asset_remote_url"
-    t.string   "title"
-    t.text     "descroption"
-    t.boolean  "active"
-    t.date     "active_to"
-    t.string   "slug"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "partner_ads", ["partner_id"], name: "index_partner_ads_on_partner_id", using: :btree
-  add_index "partner_ads", ["slug"], name: "index_partner_ads_on_slug", unique: true, using: :btree
-
-  create_table "partner_translations", force: true do |t|
-    t.integer  "partner_id",  null: false
-    t.string   "locale",      null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.text     "description"
-    t.text     "info"
-  end
-
-  add_index "partner_translations", ["locale"], name: "index_partner_translations_on_locale", using: :btree
-  add_index "partner_translations", ["partner_id"], name: "index_partner_translations_on_partner_id", using: :btree
 
   create_table "partners", force: true do |t|
     t.string   "name"

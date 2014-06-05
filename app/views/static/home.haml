@@ -88,27 +88,6 @@
                 .pull-right
                   = link_to 'Переглянути інші запити', partners_path
                 .clearfix
-      - if @partner_ad
-        %article.profi-ad
-          %header ВИПАДКОВЕ ОГОЛОШЕННЯ
-          .line
-          %table
-            %tr
-              %td.left
-                %figure
-                  = image_tag(@partner_ad.asset(:thumb))
-              %td.right
-                .title= @partner_ad.title
-                .description= @partner_ad.description
-                .links
-                  .pull-left
-                    = link_to 'Детальніше', partners_path
-                  .pull-right
-                    = link_to @partner_ad.partner do
-                      = @partner_ad.partner.name
-                      | 
-                      = @partner_ad.partner.categories.map(&:name_sing).join(', ')
-                  .clearfix
       %article.just-ad
         %header РЕКЛАМА
         .line

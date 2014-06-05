@@ -1,5 +1,5 @@
 class CreatePartners < ActiveRecord::Migration
-  def up
+  def change
     create_table :partners do |t|
       t.string      :name
       t.text        :description
@@ -20,16 +20,5 @@ class CreatePartners < ActiveRecord::Migration
     end
     
     add_index :partners, :slug, unique: true
-    
-    Partner.create_translation_table!({
-      name: :string,
-      description: :text,
-      info: :text
-    })
-  end
-  def down
-    remove_index :partners, :slug
-    drop_table :partners
-    Partner.drop_translation_table!
   end
 end
