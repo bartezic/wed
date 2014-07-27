@@ -3,11 +3,7 @@
   %head
     %title Wed
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    :javascript
-      window.WedCity = {
-        locale: '#{locale}'
-      }; 
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = javascript_include_tag "admin", "data-turbolinks-track" => true
     = csrf_meta_tags
     %link(rel="icon" href="/assets/favicon.ico")
 
@@ -16,37 +12,7 @@
     / Wrap all page content here
     #wrap
       / Fixed navbar
-      .navbar.navbar-default.navbar-fixed-top
-        .container
-          .navbar-header
-            %a.navbar-brand{href: "/admin"} Logo
-          .navbar-collapse
-            %ul.nav.navbar-nav
-              %li{class: request.path == admin_managers_path && 'active'}
-                %a{href: admin_managers_path}= t 'admin.menu.admins'
-              %li{class: request.path == admin_partners_path && 'active'}
-                %a{href: admin_partners_path}= t 'admin.menu.partners' 
-              %li{class: request.path == admin_categories_path && 'active'}
-                %a{href: admin_categories_path}= t 'admin.menu.categories'
-              %li{class: request.path == admin_locations_path && 'active'}
-                %a{href: admin_locations_path}= t 'admin.menu.locations'
-              %li{class: request.path == admin_galleries_path && 'active'}
-                %a{href: admin_galleries_path}= t 'admin.menu.galleries'
-              %li{class: request.path == admin_photos_path && 'active'}
-                %a{href: admin_photos_path}= t 'admin.menu.photos'
-              %li{class: request.path == admin_videos_path && 'active'}
-                %a{href: admin_videos_path}= t 'admin.menu.videos'              
-              %li{class: request.path == admin_slider_ads_path && 'active'}
-                %a{href: admin_slider_ads_path}= t 'admin.menu.slider'
-            %ul.nav.navbar-nav.navbar-right
-              %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                  = current_user.email 
-                  %b.caret
-                %ul.dropdown-menu
-                  %li
-                    %a{href: "/"} На сайт
-                  %li= link_to 'Вийти', destroy_user_session_path, { method: :delete }
+      = render 'shared/nav', part: :admin
       .container
         .push-30
         = render 'shared/flash'

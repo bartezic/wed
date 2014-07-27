@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories, path: :posluhy, only: [:show]
+  resources :locations
   resources :partners do
     get :search, on: :collection
   end

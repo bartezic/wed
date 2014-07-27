@@ -1,7 +1,7 @@
 namespace :import do 
   task partners: :environment do
     puts "Import partners from odnalubov.com"
-    I18n.locale = :uk
+    # I18n.locale = :uk
     cats = Category.all
 
     {
@@ -49,7 +49,7 @@ namespace :import do
           info = content.xpath("//td[@class='serch33']").first
           info = info.content.strip.gsub(/[\r\n]+/, '<br>') if info
           
-          I18n.locale = :uk
+          # I18n.locale = :uk
           temp = Partner.new(
             name: name, 
             description: description, 
@@ -73,12 +73,12 @@ namespace :import do
           temp.user.skip_confirmation!
           temp.save
 
-          I18n.locale = :ru
-          temp.update(
-            name: translate_API(name), 
-            description: translate_API(description, 'html'), 
-            info: translate_API(info,'html')
-          )
+          # I18n.locale = :ru
+          # temp.update(
+          #   name: translate_API(name), 
+          #   description: translate_API(description, 'html'), 
+          #   info: translate_API(info,'html')
+          # )
         end
       end
     end
@@ -90,13 +90,13 @@ namespace :import do
     Nokogiri::HTML.parse(res,nil,'windows-1251').xpath("//div[@id='navigation']/ul/li/a[@class='side']").each do |cat|
       slug = cat.attributes['href'].to_s
       uk = cat.search('span').last.content.to_s
-      ru = translate_API(uk.to_s)
+      # ru = translate_API(uk.to_s)
 
-      I18n.locale = :uk
+      # I18n.locale = :uk
       temp = Category.new(name: uk, name_sing: uk)
       temp.save
-      I18n.locale = :ru
-      temp.update(name: ru, name_sing: ru)
+      # I18n.locale = :ru
+      # temp.update(name: ru, name_sing: ru)
     end
   end
 end
@@ -136,12 +136,12 @@ namespace :add do
                 ['Черниговская область', 'Чернігівська область'],
                 ['Черновицкая область', 'Чернівецька область']]
     regions.each do |obl|
-      I18n.locale = :uk
+      # I18n.locale = :uk
       temp = Location.new(name: obl[1])
       temp.save
 
-      I18n.locale = :ru
-      temp.update(name: obl[0])
+      # I18n.locale = :ru
+      # temp.update(name: obl[0])
     end
   end
 end

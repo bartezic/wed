@@ -8,15 +8,7 @@
       = f.input :active
       = f.input :active_to
       = f.simple_fields_for :text do |d|
-        %ul#myTab.nav.nav-tabs
-          %li.active= link_to t('translation.uk'), '#locale-uk'
-          %li= link_to t('translation.ru'), '#locale-ru'
-        .tab-content
-          #locale-uk.tab-pane.active
-            = d.input :uk_title,         input_html: { class: 'form-control', value: f.object.text && f.object.text['uk_title'] }
-            = d.input :uk_subtitle,      input_html: { class: 'form-control', value: f.object.text && f.object.text['uk_subtitle'] }
-          #locale-ru.tab-pane
-            = d.input :ru_title,         input_html: { class: 'form-control', value: f.object.text && f.object.text['ru_title'] }
-            = d.input :ru_subtitle,      input_html: { class: 'form-control', value: f.object.text && f.object.text['ru_subtitle'] }
-
+        = d.input :title,   input_html: { class: 'form-control', value: f.object.text && f.object.text['title'] }
+        = d.input :subtitle,input_html: { class: 'form-control', value: f.object.text && f.object.text['subtitle'] }
+        
       = f.button :submit, class: 'btn btn-default'

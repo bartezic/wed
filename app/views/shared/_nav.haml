@@ -1,26 +1,368 @@
-%nav.top
-  .container
-    .row
-      .col-lg-8.left
-        .pull-left
-          = link_to root_path do 
-            .logo
-        .pull-left.top-nav
-          - if part == :app
-            = link_to t('nav.partners'), partners_path
-      .col-lg-4.right
-        .pull-right
-          - if user_signed_in?
-            .dropdown.auth
-              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                = current_user.email 
-                %b.caret
+%header#header
+  %header#topNav
+    / supported classes: translucent = translucent topNav , bordered = translucent border .  Example:  class="translucent bordered"
+    .container
+      / Logo
+      = link_to root_path, class: :logo do 
+        %img{alt: "", height: "60", src: "/assets/logo.png"}/
+        %span Місто весільних професіоналів
+      / Mobile Menu Button
+      %button.btn.btn-mobile{"data-target" => ".nav-main-collapse", "data-toggle" => "collapse"}
+        %i.fa.fa-bars
+      / Top Nav
+      .navbar-collapse.nav-main-collapse.collapse
+        %nav.nav-main
+          %ul#topMain.nav.nav-pills.nav-main.white
+            - if part == :app
+              %li.dropdown.mega-menu{class: request.path.include?('posluhy') && 'active'}
+                = link_to t('nav.partners'), partners_path, class: 'dropdown-toggle'
+                %ul.dropdown-menu
+                  %li
+                    .row
+                      .col-md-3
+                        %h3 За категоріями
+                        %ul
+                          - Category.all.each do |category|
+                            %li{class: request.path == category_path(category) && 'active'}
+                              = link_to category do
+                                %i.fa.fa-angle-right
+                                = category.name
+                      .col-md-3
+                        %h3 За категоріями
+                        %ul
+                          - Category.all.each do |category|
+                            %li{class: request.path == category_path(category) && 'active'}
+                              = link_to category do
+                                %i.fa.fa-angle-right
+                                = category.name
+                      .col-md-3
+                        %h3 За категоріями
+                        %ul
+                          - Category.all.each do |category|
+                            %li{class: request.path == category_path(category) && 'active'}
+                              = link_to category do
+                                %i.fa.fa-angle-right
+                                = category.name
+                      .col-md-3
+                        %h3 За категоріями
+                        %ul
+                          - Category.all.each do |category|
+                            %li{class: request.path == category_path(category) && 'active'}
+                              = link_to category do
+                                %i.fa.fa-angle-right
+                                = category.name
+            - if part == :admin
+              %li.dropdown
+                %a.dropdown-toggle{href: "#"} Компоненти
+                %ul.dropdown-menu
+                  %li{class: request.path == admin_managers_path && 'active'}
+                    %a{href: admin_managers_path}= t 'admin.menu.admins'
+                  %li{class: request.path == admin_partners_path && 'active'}
+                    %a{href: admin_partners_path}= t 'admin.menu.partners' 
+                  %li{class: request.path == admin_categories_path && 'active'}
+                    %a{href: admin_categories_path}= t 'admin.menu.categories'
+                  %li{class: request.path == admin_locations_path && 'active'}
+                    %a{href: admin_locations_path}= t 'admin.menu.locations'
+                  %li{class: request.path == admin_galleries_path && 'active'}
+                    %a{href: admin_galleries_path}= t 'admin.menu.galleries'
+                  %li{class: request.path == admin_photos_path && 'active'}
+                    %a{href: admin_photos_path}= t 'admin.menu.photos'
+                  %li{class: request.path == admin_videos_path && 'active'}
+                    %a{href: admin_videos_path}= t 'admin.menu.videos'              
+                  %li{class: request.path == admin_slider_ads_path && 'active'}
+                    %a{href: admin_slider_ads_path}= t 'admin.menu.slider'
+            %li.dropdown.active
+              %a.dropdown-toggle{href: "feature-header-transparent.html#"} Features
               %ul.dropdown-menu
-                - if current_user.is_manager?
-                  %li= link_to t('nav.admin'), admin_root_path
-                - elsif current_user.is_partner?
-                  %li= link_to t('nav.cabinet'), cabinet_profile_path(:general)
-                %li= link_to t('nav.logout'), destroy_user_session_path, { method: :delete }
-          - else
-            %button.auth{type: :button, data:{toggle: :modal, target: :'#modal-login'}}= t('nav.login')
-            %button.auth{type: :button, data:{toggle: :modal, target: :'#modal-signup'}}= t('nav.signup')
+                %li.active
+                  %a.dropdown-toggle{href: "feature-header-transparent.html#"}
+                    %i.fa.fa-heart-o
+                    Headers
+                  %ul.dropdown-menu
+                    %li.active
+                      %a{href: "feature-header-transparent.html"} Transparent Header
+                    %li
+                      %a{href: "feature-header-translucent.html"} Translucent Header
+                    %li
+                      %a{href: "feature-header-below-slider.html"} Header Below Slider
+                    %li
+                      %a{href: "feature-header-sticky.html"} Sticky Header
+                    %li
+                      %a{href: "feature-header-1.html"} Header #1 (default)
+                    %li
+                      %a{href: "feature-header-2.html"} Header #2
+                    %li
+                      %a{href: "feature-header-3.html"} Header #3
+                    %li
+                      %a{href: "feature-header-4.html"} Header #4
+                    %li
+                      %a{href: "feature-header-5.html"} Header #5
+                %li
+                  %a.dropdown-toggle{href: "feature-header-transparent.html#"}
+                    %i.fa.fa-heart-o
+                    Footers
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "feature-footer-1.html#footer"} Footer #1 (default)
+                    %li
+                      %a{href: "feature-footer-2.html#footer"} Footer #2
+                    %li
+                      %a{href: "feature-footer-3.html#footer"} Footer #3
+                    %li
+                      %a{href: "feature-footer-4.html#footer"} Footer #4
+                    %li
+                      %a{href: "feature-footer-5.html#footer"} Footer #5
+                %li
+                  %a.dropdown-toggle{href: "feature-header-transparent.html#"}
+                    %i.fa.fa-heart
+                    Sliders
+                  %ul.dropdown-menu
+                    %li
+                      %a.dropdown-toggle{href: "feature-header-transparent.html#"} Revolution Slider
+                      %ul.dropdown-menu
+                        %li
+                          %a{href: "slider-revolution-fixed-width.html"} Fixed Width
+                        %li
+                          %a{href: "slider-revolution-full-width.html"} Full Width
+                        %li
+                          %a{href: "slider-revolution-full-screen.html"} Full Screen
+                        %li
+                          %a{href: "slider-revolution-video-gallery.html"} Video Gallery
+                        %li
+                          %a{href: "slider-revolution-captions.html"} Captions
+                        %li
+                          %a{href: "slider-revolution-thumbnav-small.html"} Thumbnails Nav - Small
+                        %li
+                          %a{href: "slider-revolution-thumbnav-large.html"} Thumbnails Nav - Large
+                        %li
+                          %a{href: "../Documentation/Revolution_Slider/editor/00.Editor-Captions.html", rel: "nofollow", target: "_blank"}
+                            %i.fa.fa-pencil-square-o
+                            %em Captions Editor
+                        %li
+                          %a{href: "../Documentation/Revolution_Slider/editor/01.Editor-Transitions.html", rel: "nofollow", target: "_blank"}
+                            %i.fa.fa-pencil-square-o
+                            %em Transitions Editor
+                    %li
+                      %a.dropdown-toggle{href: "feature-header-transparent.html#"} Layer Slider
+                      %ul.dropdown-menu
+                        %li
+                          %a{href: "slider-layer-full-width.html"} Full Width
+                        %li
+                          %a{href: "slider-layer-fixed-width.html"} Fixed Width
+                        %li
+                          %a{href: "slider-layer-captions.html"} Captions
+                        %li
+                          %a{href: "slider-layer-video-gallery.html"} Video Gallery
+                        %li
+                          %a{href: "slider-layer-carousel.html"} Carousel
+                        %li
+                          %a{href: "slider-layer-3d-transitions.html"} 2D & 3D Transitions
+                        %li
+                          %a{href: "slider-layer-thumbnav.html"} Thumbnails Nav
+                    %li
+                      %a.dropdown-toggle{href: "feature-header-transparent.html#"} Flex Slider
+                      %ul.dropdown-menu
+                        %li
+                          %a{href: "slider-flex-fixed-width.html"} Fixed Width
+                        %li
+                          %a{href: "slider-flex-full-width.html"} Full Width
+                        %li
+                          %a{href: "slider-flex-carousel.html"} Carousel
+                        %li
+                          %a{href: "slider-flex-video-gallery.html"} Video Gallery
+                        %li
+                          %a{href: "slider-flex-thumbnav.html"} Thumbnails Nav
+                    %li
+                      %a.dropdown-toggle{href: "feature-header-transparent.html#"} OWL Carousel
+                      %ul.dropdown-menu
+                        %li
+                          %a{href: "slider-owl-full-width.html"} Full Width
+                        %li
+                          %a{href: "slider-owl-fixed-width.html"} Fixed Width
+                        %li
+                          %a{href: "slider-owl-fixed-progress.html"} Fixed Width + Progress
+                        %li
+                          %a{href: "slider-owl-carousel.html"} Carousel
+                        %li
+                          %a{href: "slider-owl-fade.html"} Effect: Fade
+                        %li
+                          %a{href: "slider-owl-backslide.html"} Effect: Back Slide
+                        %li
+                          %a{href: "slider-owl-godown.html"} Effect: Go Down
+                        %li
+                          %a{href: "slider-owl-fadeup.html"} Effect: Fade Up
+                %li
+                  %a.dropdown-toggle{href: "feature-header-transparent.html#"} Shortcodes
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "shortcodes-counters.html"} Counters
+                    %li
+                      %a{href: "shortcodes-toggles.html"} Toggles
+                    %li
+                      %a{href: "shortcodes-forms-bootstrap.html"} Forms
+                    %li
+                      %a{href: "shortcodes-buttons-default.html"} Buttons
+                    %li
+                      %a{href: "shortcodes-tabs-and-accordions.html"} Tabs & Accordions
+                    %li
+                      %a{href: "shortcodes-callouts.html"} Callouts
+                    %li
+                      %a{href: "shortcodes-dividers.html"} Dividers
+                    %li
+                      %a{href: "shortcodes-lightbox.html"} Lightbox
+                    %li
+                      %a{href: "shortcodes-icons-and-boxes.html"} Icons & Boxes
+                    %li
+                      %a{href: "shortcodes-carousel.html"} Carousel
+                    %li
+                      %a{href: "shortcodes-progress-bars.html"} Progress Bars
+                    %li
+                      %a{href: "shortcodes-alerts.html"} Alerts
+                    %li
+                      %a{href: "shortcodes-video.html"} Video & Audio
+                    %li
+                      %a{href: "shortcodes-tooltips-and-popover.html"} Tooltips & Popovers
+                    %li
+                      %a{href: "shortcodes-modals.html"} Modals
+                    %li
+                      %a{href: "shortcodes-thumbnails.html"} Thumbnails
+                    %li
+                      %a{href: "shortcodes-testimonials.html"} Testimonials
+                %li
+                  %a.dropdown-toggle{href: "feature-header-transparent.html#"} Icons
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "feature-icons-fontawsome.html"} Font Awsome
+                    %li
+                      %a{href: "feature-icons-glyphicons.html"} Glyphicons Icons
+                    %li
+                      %a{href: "feature-icons-weather.html"} Weather Icons
+                    %li
+                      %a{href: "feature-icons-linecons.html"} Linecons Icons
+                %li
+                  %a.dropdown-toggle{href: "feature-header-transparent.html#"} Maps
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "feature-maps-google.html"} Google Maps
+                    %li
+                      %a{href: "feature-maps-vectorial.html"} Vectorial Maps
+                %li
+                  %a{href: "feature-animations.html"} Animations
+                %li
+                  %a{href: "feature-grid.html"} Grid System
+                %li
+                  %a{href: "feature-typography.html"} Typography
+                %li
+                  %a.dropdown-toggle{href: "feature-header-transparent.html#"}
+                    %b Infinite Menu
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "feature-header-transparent.html#"} Menu Level 2
+                    %li
+                      %a.dropdown-toggle{href: "feature-header-transparent.html#"} Menu Level 2
+                      %ul.dropdown-menu
+                        %li
+                          %a{href: "feature-header-transparent.html#"} Menu Level 3
+                        %li
+                          %a.dropdown-toggle{href: "feature-header-transparent.html#"} Menu Level 3
+                          %ul.dropdown-menu
+                            %li
+                              %a{href: "feature-header-transparent.html#"} Menu Level 4
+                            %li
+                              %a.dropdown-toggle{href: "feature-header-transparent.html#"} Menu Level 4
+                              %ul.dropdown-menu
+                                %li
+                                  %a{href: "feature-header-transparent.html#"} Menu Level 5
+                                %li
+                                  %a{href: "feature-header-transparent.html#"} ! INFINITE LEVELS !
+            %li.dropdown.mega-menu
+              %a.dropdown-toggle{href: "feature-header-transparent.html#"} Shop
+              %ul.dropdown-menu
+                %li
+                  .row
+                    .col-md-4
+                      %h3 Shop Pages
+                      %ul
+                        %li
+                          %a{href: "shop-page-full.html"}
+                            %i.fa.fa-angle-right
+                            Shop Full Width
+                        %li
+                          %a{href: "shop-page-full-product.html"}
+                            %i.fa.fa-angle-right
+                            Shop Product Full Width
+                        %li
+                          %a{href: "shop-page-sidebar.html"}
+                            %i.fa.fa-angle-right
+                            Shop Sidebar
+                        %li
+                          %a{href: "shop-page-sidebar-product.html"}
+                            %i.fa.fa-angle-right
+                            Shop Product Sidebar
+                        %li
+                          %a{href: "shop-page-cart.html"}
+                            %i.fa.fa-angle-right
+                            Shop Cart
+                        %li
+                          %a{href: "shop-page-checkout.html"}
+                            %i.fa.fa-angle-right
+                            Shop Checkout
+                        %li
+                          %a{href: "shop-page-order-history.html"}
+                            %i.fa.fa-angle-right
+                            Order History
+                        %li
+                          %a{href: "shop-page-order-history-summary.html"}
+                            %i.fa.fa-angle-right
+                            Order History Summary
+                        %li
+                          %a{href: "page-invoice.html"}
+                            %i.fa.fa-angle-right
+                            Invoice
+                    .col-md-4
+                      %h3 Shop Components
+                      %ul
+                        %li
+                          %a{href: "shop-components-featured-slider.html"}
+                            %i.fa.fa-certificate
+                            Featured Slider
+                        %li
+                          %a{href: "shop-components-featured-products.html"}
+                            %i.fa.fa-trophy
+                            Featured Products
+                        %li
+                          %a{href: "shop-components-product-carousel.html"}
+                            %i.fa.fa-code
+                            Product Carousel
+                        %li
+                          %a{href: "shop-components-product-categories.html"}
+                            %i.fa.fa-tags
+                            Product Categories
+                        %li
+                          %a{href: "page-login.html"}
+                            %i.fa.fa-user
+                            Login/Register
+                        %li
+                          %a{href: "page-account-settings.html"}
+                            %i.fa.fa-key
+                            Account Settings
+                    .col-md-4
+                      %h3 Widgetized
+                      %img.img-responsive{alt: "", src: "assets/images/demo/desktop.png"}/
+                      %p Epona Megamenu can be 1-4 columns, full width, including widgetized images.
+            - if user_signed_in?
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                  = current_user.email 
+                  %b.caret
+                %ul.dropdown-menu
+                  - if part == :app
+                    - if current_user.is_manager?
+                      %li= link_to t('nav.admin'), admin_root_path
+                    - elsif current_user.is_partner?
+                      %li= link_to t('nav.cabinet'), cabinet_profile_path(:general)
+                  - else
+                    %li= link_to 'На сайт', root_path
+                  %li= link_to t('nav.logout'), destroy_user_session_path, { method: :delete }
+            - else
+              %li= link_to t('nav.login'), new_user_session_path 

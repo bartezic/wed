@@ -5,7 +5,7 @@ module Cabinet
     # GET /photos
     # GET /photos.json
     def index
-      @photos = Photo.includes(gallery: :translations).where(gallery_id: current_partner.galleries.pluck(:id))
+      @photos = Photo.includes(:gallery).where(gallery_id: current_partner.galleries.pluck(:id))
       
       respond_to do |format|
         format.html # index.html.erb

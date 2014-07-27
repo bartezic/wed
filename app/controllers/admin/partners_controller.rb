@@ -5,7 +5,7 @@ module Admin
     # GET /desks
     # GET /desks.json
     def index
-      @partners = Partner.includes(:translations).page(params[:page]).per(25)
+      @partners = Partner.page(params[:page]).per(25)
     end
 
     # GET /desks/1
@@ -29,7 +29,7 @@ module Admin
       @partner = Partner.new(partner_params)
 
       respond_to do |format|
-        if @partner.save && update_translations
+        if @partner.save
           format.html { redirect_to [:admin, @partner], notice: 'Partner was successfully created.' }
           format.json { render action: 'show', status: :created, location: @partner }
         else
@@ -43,7 +43,7 @@ module Admin
     # PATCH/PUT /desks/1.json
     def update
       respond_to do |format|
-        if @partner.update(partner_params) && update_translations
+        if @partner.update(partner_params)
           format.html { redirect_to [:admin, @partner], notice: 'Partner was successfully updated.' }
           format.json { head :no_content }
         else
@@ -77,21 +77,6 @@ module Admin
           :rating, category_ids: [], location_ids: [], 
           user_attributes: [:id, :email, :avatar, :avatar_remote_url, :password, :password_confirmation]
         )
-      end
-
-      def update_translations
-        if params[:partner][:translations]
-          params[:partner][:translations].values.each do |translation|
-            I18n.locale = translation['locale'].to_sym
-            @partner.update({
-              name: translation['name'],
-              description: translation['description'],
-              info: translation['info']
-            })
-          end
-        else
-          true
-        end
       end
   end
 end

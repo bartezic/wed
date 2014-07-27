@@ -27,8 +27,7 @@ class Partner < ActiveRecord::Base
   scope :without_ids,     -> (ids) { where('partners.id NOT IN (?)', ids) unless ids.blank? }
 
   def self.search(params, order, ids = []) 
-    includes(:translations).
-      active.
+    active.
       without_ids(day_partners(params)).
       with_category(params[:category_ids]).
       with_location(params[:location_ids]).

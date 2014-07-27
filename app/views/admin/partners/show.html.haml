@@ -65,7 +65,7 @@
   %dt Відео
   %dd
     - @partner.videos.each do |video|
-      = link_to(image_tag(video.cover)), [:admin, video]) if video.link
+      = link_to(image_tag(video.cover), [:admin, video]) if video.link
 
 
 = link_to 'Edit', edit_admin_partner_path(@partner), class: 'btn btn-default' 

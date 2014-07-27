@@ -2,12 +2,8 @@
 %html{ lang: locale, dir: :ltr }
   %head
     %title Wed
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    :javascript
-      window.WedCity = {
-        locale: '#{locale}'
-      }; 
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true 
+    = javascript_include_tag "cabinet", "data-turbolinks-track" => true
     = csrf_meta_tags
     %link(rel="icon" href="/assets/favicon.ico")
   

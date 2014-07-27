@@ -5,7 +5,7 @@ module Admin
     # GET /galleries
     # GET /galleries.json
     def index
-      @galleries = Gallery.includes(:translations).page(params[:page]).per(25)
+      @galleries = Gallery.page(params[:page]).per(25)
     end
 
     # GET /galleries/1
@@ -28,7 +28,7 @@ module Admin
       @gallery = Gallery.new(gallery_params)
 
       respond_to do |format|
-        if @gallery.save && update_translations
+        if @gallery.save
           format.html { redirect_to [:admin, @gallery], notice: 'Gallery was successfully created.' }
           format.json { render action: 'show', status: :created, location: @gallery }
         else
@@ -42,7 +42,7 @@ module Admin
     # PATCH/PUT /galleries/1.json
     def update
       respond_to do |format|
-        if @gallery.update(gallery_params) && update_translations
+        if @gallery.update(gallery_params)
           format.html { redirect_to [:admin, @gallery], notice: 'Gallery was successfully updated.' }
           format.json { head :no_content }
         else
@@ -71,20 +71,6 @@ module Admin
       # Never trust parameters from the scary internet, only allow the white list through.
       def gallery_params
         params.require(:gallery).permit(:name, :description, :partner_id, :slug)
-      end
-
-      def update_translations
-        if params[:gallery][:translations]
-          params[:gallery][:translations].values.each do |translation|
-            I18n.locale = translation['locale'].to_sym
-            @gallery.update({
-              name: translation['name'],
-              description: translation['description']
-            })
-          end
-        else
-          true
-        end
       end
     end
 end

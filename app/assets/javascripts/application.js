@@ -13,22 +13,23 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require prototypes
-//= require jquery.cookie
-//= //require calendar
-//= require locale
-//= require calendar2
 //= require bootstrap
-//= //require photobox
 //= require bootstrap-datepicker
-//= require jquery.mCustomScrollbar
-//= require custom-select-menu.jquery
-//= require search
-//= //require jquery-fileupload
-//= require jquery-fileupload/basic
-//= require jquery-fileupload/vendor/tmpl
-//= require cabinet
-//= require cocoon
+
+//= require external/jquery.cookie
+//= require external/jquery.mCustomScrollbar
+//= require external/custom-select-menu.jquery
+//= require external/revolution-slider/jquery.themepunch.plugins.min
+//= require external/revolution-slider/jquery.themepunch.revolution.min
+
+//= require epona/scripts
+//= require epona/revolution_slider
+
+//= require custom/utils
+//= require custom/locale
+//= require custom/calendar
+//= require custom/search
+
 
 function ready () {
   $('#myTab a').click(function (e) {
@@ -53,23 +54,12 @@ function ready () {
     $('input#datepicker').datepicker('show');
   });
 
-  $('.location select, .posluga select').customSelectMenu({
+  $('.location select, .posluga select, .ordering select').customSelectMenu({
     menuClass : 'custom-select-menu',
     openedClass : 'opened',
     selectedClass : 'selected',
     selectionMadeClass : 'selection-made'
   });
-
-  $('.ordering select').customSelectMenu({
-    menuClass : 'custom-select-menu',
-    openedClass : 'opened',
-    selectedClass : 'selected',
-    selectionMadeClass : 'selection-made'
-  });
-
-  $('form.show-callendar').change(function(e) {
-    $(this).submit();
-  })
 
   // $('.locationpicker ul li').click(function(e) {
   //   // $('input#locationpicker').val($(this).text());
@@ -153,28 +143,6 @@ function ready () {
   //       return rows;
   //     }
   // });
-  jQuery(function() {
-    return $('#new_photo').fileupload({
-      dataType: "script",
-      add: function(e, data) {
-        var file, types;
-        types = /(\.|\/)(gif|jpe?g|png)$/i;
-        file = data.files[0];
-        if (types.test(file.type) || types.test(file.name)) {
-          $('.progress').removeClass('hidden');
-          return data.submit();
-        } else {
-          return alert("" + file.name + " is not a gif, jpeg, or png image file");
-        }
-      },
-      progressall: function (e, data) {
-        var progress = parseInt(data.loaded / data.total * 100, 10);
-        $('.progress-bar')
-          .attr('aria-valuenow', progress)
-          .css('width', progress + '%');
-      }
-    });
-  });
 
 };
 
@@ -182,7 +150,6 @@ window.WedCity.ready = function() {
   ready();
   window.WedCity.calendar.init();
   window.WedCity.search.init();
-  window.WedCity.cabinet.init();
 };
 
 $(document).ready(window.WedCity.ready);

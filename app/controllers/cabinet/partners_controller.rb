@@ -16,7 +16,7 @@ module Cabinet
     # PATCH/PUT /desks/1.json
     def update
       respond_to do |format|
-        if @partner.update(partner_params) && update_translations
+        if @partner.update(partner_params)
           format.html { redirect_to :back, notice: 'Partner was successfully updated.' }
           format.json { head :no_content }
           format.js { render json: { success: true } }
@@ -57,21 +57,6 @@ module Cabinet
           involvings_attributes: [:id, :category_id, :price, :_destroy],
           user_attributes: [:id, :email, :avatar, :avatar_remote_url, :password, :password_confirmation]
         )
-      end
-
-      def update_translations
-        if params[:partner][:translations]
-          params[:partner][:translations].values.each do |translation|
-            I18n.locale = translation['locale'].to_sym
-            @partner.update({
-              name: translation['name'],
-              description: translation['description'],
-              info: translation['info']
-            })
-          end
-        else
-          true
-        end
       end
   end
 end

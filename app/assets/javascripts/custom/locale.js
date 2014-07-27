@@ -54,4 +54,4 @@ var locale = {
   }
 };
 
-window.WedCity.l = locale[window.WedCity.locale]
+window.WedCity.l = locale[window.WedCity.locale || 'uk']

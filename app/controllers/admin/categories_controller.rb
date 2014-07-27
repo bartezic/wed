@@ -5,7 +5,7 @@ module Admin
     # GET /desks
     # GET /desks.json
     def index
-      @categories = Category.includes(:translations).page(params[:page]).per(25)
+      @categories = Category.page(params[:page]).per(25)
     end
 
     # GET /desks/1
@@ -28,8 +28,8 @@ module Admin
       @category = Category.new(category_params)
 
       respond_to do |format|
-        if @category.save && update_translations
-          format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        if @category.save
+          format.html { redirect_to [:admin, @category], notice: 'Category was successfully created.' }
           format.json { render action: 'show', status: :created, location: @category }
         else
           format.html { render action: 'new' }
@@ -42,7 +42,7 @@ module Admin
     # PATCH/PUT /desks/1.json
     def update
       respond_to do |format|
-        if @category.update(category_params) && update_translations
+        if @category.update(category_params)
           format.html { redirect_to [:admin, @category], notice: 'Category was successfully updated.' }
           format.json { head :no_content }
         else
@@ -71,13 +71,6 @@ module Admin
       # Never trust parameters from the scary internet, only allow the white list through.
       def category_params
         params.require(:category).permit(:name, :name_sing, :slug)
-      end
-
-      def update_translations
-        params[:category][:translations].values.each do |translation|
-          I18n.locale = translation['locale'].to_sym
-          @category.update( name: translation['name'], name_sing: translation['name_sing'] )
-        end
       end
   end
 end

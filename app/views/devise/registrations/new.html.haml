@@ -1,0 +1,13 @@
+- partner = Partner.new
+- partner.user = User.new
+%h2 Sign up
+= simple_form_for partner do |f|
+  = f.error_notification
+  .form-inputs
+    = f.simple_fields_for :user do |user|
+      = user.input :email, required: true, autofocus: true
+      = user.input :password, required: true
+      = user.input :password_confirmation, required: true
+  .form-actions
+    = f.button :submit, class: 'btn btn-default', value: t('signup_form.submit')
+= render "devise/shared/links"

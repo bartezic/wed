@@ -5,7 +5,7 @@ module Admin
     # GET /manager_users
     # GET /manager_users.json
     def index
-      @managers = Manager.includes(:translations).page(params[:page]).per(25)
+      @managers = Manager.page(params[:page]).per(25)
     end
 
     # GET /manager_users/1
@@ -29,7 +29,7 @@ module Admin
       @manager = Manager.new(manager_params)
 
       respond_to do |format|
-        if @manager.save && update_translations
+        if @manager.save
           format.html { redirect_to [:admin, @manager], notice: 'manager user was successfully created.' }
           format.json { render action: 'show', status: :created, location: @manager }
         else
@@ -43,7 +43,7 @@ module Admin
     # PATCH/PUT /managers/1.json
     def update
       respond_to do |format|
-        if @manager.update(manager_params) && update_translations
+        if @manager.update(manager_params)
           format.html { redirect_to [:admin, @manager], notice: 'manager user was successfully updated.' }
           format.json { head :no_content }
         else
@@ -72,13 +72,6 @@ module Admin
       # Never trust parameters from the scary internet, only allow the white list through.
       def manager_params
         params.require(:manager).permit(:name, user_attributes: [:id, :email, :avatar, :avatar_remote_url, :password, :password_confirmation])
-      end
-
-      def update_translations
-        params[:manager][:translations].values.each do |translation|
-          I18n.locale = translation['locale'].to_sym
-          @manager.update( name: translation['name'] )
-        end
       end
   end
 end

@@ -10,8 +10,9 @@
  */
 
 @import "bourbon";
+@import "font-awesome";
+
 @import "bootstrap_and_overrides";
-@import "nav";
 @import "footer";
 @import "slider";
 @import "admin";
@@ -24,6 +25,11 @@
 @import "bootstrap-datepicker";
 @import "locationpicker";
 @import "jquery.mCustomScrollbar";
+@import "external/revolution-slider.css";
+@import "external/weather-icons.min.css";
+@import "epona/essentials.css";
+@import "epona/layout.css";
+@import "epona/header-transparent.css";
  
 html,
 body {

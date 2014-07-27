@@ -1,3 +1,14 @@
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require bootstrap
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
+//= require cocoon
+
+//= require custom/locale
+//= require custom/calendar
+
 window.WedCity = window.WedCity || {};
 
 window.WedCity.cabinet = {
@@ -40,6 +51,31 @@ window.WedCity.cabinet = {
       var res = $.parseJSON(xhr.responseText);
       self[res.type+'Callback'](res);
     });
+
+    $('form.show-callendar').change(function(e) {
+      $(this).submit();
+    });
+    
+    $('#new_photo').fileupload({
+      dataType: "script",
+      add: function(e, data) {
+        var file, types;
+        types = /(\.|\/)(gif|jpe?g|png)$/i;
+        file = data.files[0];
+        if (types.test(file.type) || types.test(file.name)) {
+          $('.progress').removeClass('hidden');
+          return data.submit();
+        } else {
+          return alert("" + file.name + " is not a gif, jpeg, or png image file");
+        }
+      },
+      progressall: function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('.progress-bar')
+          .attr('aria-valuenow', progress)
+          .css('width', progress + '%');
+      }
+    });
   
   },
 
@@ -59,3 +95,11 @@ window.WedCity.cabinet = {
     this.initHandlers();
   }
 };
+
+window.WedCity.ready = function() {
+  window.WedCity.cabinet.init();
+  window.WedCity.calendar.init();
+};
+
+$(document).ready(window.WedCity.ready);
+$(document).on('page:load', window.WedCity.ready);

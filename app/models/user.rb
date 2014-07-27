@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
+  belongs_to :rolable, polymorphic: true
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  belongs_to :rolable, polymorphic: true
-
-  devise :database_authenticatable, 
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_attached_file :avatar,

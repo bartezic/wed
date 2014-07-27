@@ -33,7 +33,7 @@ class PartnersController < ApplicationController
     @partner = Partner.new(partner_params)
 
     respond_to do |format|
-      if @partner.save && update_translations
+      if @partner.save
         sign_in(:user, @partner.user)
         format.html { redirect_to @partner, notice: 'Partner was successfully created.' }
         format.json { render action: 'show', status: :created, location: @partner }
@@ -48,7 +48,7 @@ class PartnersController < ApplicationController
   # PATCH/PUT /desks/1.json
   def update
     respond_to do |format|
-      if @partner.update(partner_params) && update_translations
+      if @partner.update(partner_params)
         sign_in(:user, @partner.user)
         format.html { redirect_to @partner, notice: 'Partner was successfully updated.' }
         format.json { head :no_content }
@@ -70,7 +70,7 @@ class PartnersController < ApplicationController
   end
 
   def search
-    @partners = Partner.includes(:translations).order('name ASC').page(params[:page])
+    @partners = Partner.order('name ASC').page(params[:page])
     render 'search', layout: false
   end
 
@@ -94,20 +94,5 @@ class PartnersController < ApplicationController
         res[k.to_sym] = v.is_a?(Array) ? v.select{|i| !i.empty?} : v
         res
       }
-    end
-
-    def update_translations
-      if params[:partner][:translations] 
-        params[:partner][:translations].values.each do |translation|
-          I18n.locale = translation['locale'].to_sym
-          @partner.update({
-            name: translation['name'],
-            description: translation['description'],
-            info: translation['info']
-          })
-        end
-      else
-        true
-      end
     end
 end

@@ -5,7 +5,7 @@ module Admin
     # GET /desks
     # GET /desks.json
     def index
-      @locations = Location.includes(:translations).page(params[:page]).per(25)
+      @locations = Location.page(params[:page]).per(25)
     end
 
     # GET /desks/1
@@ -28,7 +28,7 @@ module Admin
       @location = Location.new(location_params)
 
       respond_to do |format|
-        if @location.save && update_translations
+        if @location.save
           format.html { redirect_to [:admin, @location], notice: 'Location was successfully created.' }
           format.json { render action: 'show', status: :created, location: @location }
         else
@@ -42,7 +42,7 @@ module Admin
     # PATCH/PUT /desks/1.json
     def update
       respond_to do |format|
-        if @location.update(location_params) && update_translations
+        if @location.update(location_params)
           format.html { redirect_to [:admin, @location], notice: 'Location was successfully updated.' }
           format.json { head :no_content }
         else
@@ -71,17 +71,6 @@ module Admin
       # Never trust parameters from the scary internet, only allow the white list through.
       def location_params
         params.require(:location).permit(:name, :slug)
-      end
-
-      def update_translations
-        if params[:location][:translations]
-          params[:location][:translations].values.each do |translation|
-            I18n.locale = translation['locale'].to_sym
-            @location.update( name: translation['name'] )
-          end
-        else
-          true
-        end
       end
   end
 end

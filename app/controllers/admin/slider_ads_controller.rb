@@ -71,7 +71,7 @@ module Admin
       # Never trust parameters from the scary internet, only allow the white list through.
       def slider_ad_params
         params.require(:slider_ad).permit(:partner_id, :asset, :asset_remote_url, :active, :active_to, 
-                                          text: [:uk_title, :uk_subtitle, :ru_title, :ru_subtitle])
+                                          text: [:title, :subtitle])
       end
   end
 end

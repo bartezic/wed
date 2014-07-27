@@ -5,7 +5,7 @@ module Cabinet
     # GET /galleries
     # GET /galleries.json
     def index
-      @galleries = current_partner.galleries.includes(:translations).page(params[:page]).per(25)
+      @galleries = current_partner.galleries.page(params[:page]).per(25)
     end
 
     # GET /galleries/1
@@ -28,7 +28,7 @@ module Cabinet
       @gallery = current_partner.galleries.build(gallery_params)
 
       respond_to do |format|
-        if @gallery.save && update_translations
+        if @gallery.save
           format.html { redirect_to [:cabinet, @gallery], notice: 'Gallery was successfully created.' }
           format.json { render action: 'show', status: :ok, location: @gallery }
           format.js { render json: { type: :create, gallery: @gallery }, status: :ok }
@@ -44,7 +44,7 @@ module Cabinet
     # PATCH/PUT /galleries/1.json
     def update
       respond_to do |format|
-        if @gallery.update(gallery_params) && update_translations
+        if @gallery.update(gallery_params)
           format.html { redirect_to [:cabinet, @gallery], notice: 'Gallery was successfully updated.' }
           format.json { head :no_content }
           format.js { render json: { type: :update, gallery: @gallery }, status: :ok }
@@ -75,22 +75,6 @@ module Cabinet
       # Never trust parameters from the scary internet, only allow the white list through.
       def gallery_params
         params.require(:gallery).permit(:name, :description, :rating, :slug)
-      end
-
-      def update_translations
-        if params[:gallery][:translations]
-          current_locale = I18n.locale
-          params[:gallery][:translations].values.each do |translation|
-            I18n.locale = translation['locale'].to_sym
-            @gallery.update({
-              name: translation['name'],
-              description: translation['description']
-            })
-          end
-          I18n.locale = current_locale
-        else
-          true
-        end
       end
     end
 end

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', "~> 4.1.1"
+gem 'rails'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -9,7 +9,7 @@ gem 'pg'
 gem 'mail'
 
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem 'font-awesome-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
@@ -55,7 +55,8 @@ gem 'devise'
 gem 'simple_form'
 gem 'haml-rails'
 gem 'paperclip'
-gem 'bootstrap-sass', '~> 3.1.0'
+gem 'bootstrap-sass'
+gem 'sass-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'friendly_id'
 gem 'babosa'
