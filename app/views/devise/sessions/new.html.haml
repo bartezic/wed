@@ -1,9 +1,40 @@
-%h2 Sign in
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-inputs
-    = f.input :email, required: false, autofocus: true
-    = f.input :password, required: false
-    = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-  .form-actions
-    = f.button :submit, "Sign in"
-= render "devise/shared/links"
+%section.login
+  .container
+    .row
+      .col-md-4.col-sm-3
+      .col-md-4.col-sm-6
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'sky-form boxed'}) do |f|
+          %header Увійти
+          %fieldset
+            %section
+              %label.input
+                %i.icon-append.fa.fa-envelope
+                = f.input_field :email, required: true, autofocus: true, placeholder: 'Email'
+            %section
+              %label.input
+                %i.icon-append.fa.fa-lock
+                = f.input_field :password, required: true, placeholder: 'Пароль'
+            %section.remember-me
+              %label.checkbox
+                %input(type="checkbox" name="user['remember_me']")
+                %i
+                Запам'ятати мене
+              = link_to 'Забули пароль?', new_password_path(resource_name)
+          %footer
+            %button.button.btn-block(name="commit" type="submit") Вхід
+          .divider.half-margins
+            %i.fa.fa-chevron-down
+          %footer
+            = link_to new_registration_path(resource_name) do
+              %button.button.btn-block.sign-up Створити обліковий запис
+        - if devise_mapping.confirmable? && controller_name != 'confirmations'
+          = link_to 'Не отримали інструкції підтвердження?', new_confirmation_path(resource_name)
+          %br/
+        - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+          = link_to 'Не отримали інструкції розблокування?', new_unlock_path(resource_name)
+          %br/
+        - if devise_mapping.omniauthable?
+          - resource_class.omniauth_providers.each do |provider|
+            = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider)
+
+      .col-md-4.col-sm-3

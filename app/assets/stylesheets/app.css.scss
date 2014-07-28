@@ -273,4 +273,26 @@
       text-decoration: none;
     }
   }
+
+  .login {
+    .remember-me {
+      label {
+        float: left;
+        margin-top: 0;
+      }
+      a {
+        float: right;
+        margin-top: 4px;
+      }
+    }
+    .button {
+      margin: 0;
+    }
+    .sign-up {
+      background-color: #bbbbbb;
+      &.mt {
+        margin-top: 5px;
+      }
+    }
+  }
 }

@@ -1,11 +1,40 @@
-%h2 Change your password
-= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = f.error_notification
-  = f.input :reset_password_token, as: :hidden
-  = f.full_error :reset_password_token
-  .form-inputs
-    = f.input :password, label: "New password", required: true, autofocus: true
-    = f.input :password_confirmation, label: "Confirm your new password", required: true
-  .form-actions
-    = f.button :submit, "Change my password"
-= render "devise/shared/links"
+%section.login
+  .container
+    .row
+      .col-md-4.col-sm-3
+      .col-md-4.col-sm-6
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'sky-form boxed'}) do |f|
+          %header Cтворіть новий пароль
+          %fieldset
+            = f.error_notification
+            = f.input :reset_password_token, as: :hidden
+            = f.full_error :reset_password_token
+            %section
+              %label.input
+                %i.icon-append.fa.fa-lock
+                = f.input_field :password, required: true, autofocus: true, placeholder: 'New password'
+            %section
+              %label.input
+                %i.icon-append.fa.fa-lock
+                = f.input_field :password_confirmation, required: true, placeholder: 'Confirm your new password'
+          %footer
+            %button.button.btn-block(name="commit" type="submit") Змінити пароль
+          .divider.half-margins
+            %i.fa.fa-chevron-down
+          %footer
+            = link_to new_session_path(resource_name) do
+              %button.button.btn-block.sign-up Увійти
+            = link_to new_registration_path(resource_name) do
+              %button.button.btn-block.sign-up.mt Створити обліковий запис
+        - if devise_mapping.confirmable? && controller_name != 'confirmations'
+          = link_to 'Не отримали інструкції підтвердження?', new_confirmation_path(resource_name)
+          %br/
+        - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+          = link_to 'Не отримали інструкції розблокування?', new_unlock_path(resource_name)
+          %br/
+        - if devise_mapping.omniauthable?
+          - resource_class.omniauth_providers.each do |provider|
+            = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider)            
+
+      .col-md-4.col-sm-3
+
