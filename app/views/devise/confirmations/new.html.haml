@@ -22,13 +22,5 @@
               %button.button.btn-block.sign-up Увійти
             = link_to new_registration_path(resource_name) do
               %button.button.btn-block.sign-up.mt Створити обліковий запис
-        - if devise_mapping.confirmable? && controller_name != 'confirmations'
-          = link_to 'Не отримали інструкції підтвердження?', new_confirmation_path(resource_name)
-          %br/
-        - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
-          = link_to 'Не отримали інструкції розблокування?', new_unlock_path(resource_name)
-          %br/
-        - if devise_mapping.omniauthable?
-          - resource_class.omniauth_providers.each do |provider|
-            = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider)
+        = render 'devise/shared/links'
       .col-md-4.col-sm-3

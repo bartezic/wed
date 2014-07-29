@@ -32,7 +32,11 @@ Rails.application.routes.draw do
   resources :videos
   resources :galleries
 
-  devise_for :users
+  devise_for :users, :skip => [:registrations]                                          
+  as :user do
+    get 'users/sign_up' => 'devise/registrations#new', :as => 'new_user_registration'    
+    post 'users' => 'devise/registrations#create', :as => 'user_registration'            
+  end
   # devise_for :admins, path: :admin_auth
   # devise_for :partners, path: :auth
   # The priority is based upon order of creation: first created -> highest priority.

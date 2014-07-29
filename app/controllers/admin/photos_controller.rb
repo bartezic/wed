@@ -5,7 +5,7 @@ module Admin
     # GET /photos
     # GET /photos.json
     def index
-      @photos = Photo.includes(:gallery).page(params[:page]).per(25)
+      @photos = Photo.includes(:gallery).order(id: :desc).page(params[:page]).per(25)
     end
 
     # GET /photos/1

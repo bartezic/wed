@@ -1,9 +1,26 @@
-%h2 Resend unlock instructions
-= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
-  = f.error_notification
-  = f.full_error :unlock_token
-  .form-inputs
-    = f.input :email, required: true, autofocus: true
-  .form-actions
-    = f.button :submit, "Resend unlock instructions"
-= render "devise/shared/links"
+%section.login
+  .container
+    .row
+      .col-md-4.col-sm-3
+      .col-md-4.col-sm-6
+        = simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: 'sky-form boxed'}) do |f|
+          %header Інструкції розблокування
+          %fieldset
+            = f.error_notification
+            = f.full_error :unlock_token
+            %section
+              %label.input
+                %i.icon-append.fa.fa-envelope
+                = f.input_field :email, required: true, autofocus: true, placeholder: 'Email'
+                %b.tooltip.tooltip-bottom-right Введіть свій email, щоб надіслати інструкції
+          %footer
+            %button.button.btn-block(name="commit" type="submit") Відправити інструкції розблокування
+          .divider.half-margins
+            %i.fa.fa-chevron-down
+          %footer
+            = link_to new_session_path(resource_name) do
+              %button.button.btn-block.sign-up Увійти
+            = link_to new_registration_path(resource_name) do
+              %button.button.btn-block.sign-up.mt Створити обліковий запис
+        = render 'devise/shared/links'
+      .col-md-4.col-sm-3

@@ -5,7 +5,7 @@ module Admin
     # GET /desks
     # GET /desks.json
     def index
-      @categories = Category.page(params[:page]).per(25)
+      @categories = Category.order(id: :desc).page(params[:page]).per(25)
     end
 
     # GET /desks/1

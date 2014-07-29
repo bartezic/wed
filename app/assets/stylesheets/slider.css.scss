@@ -1,61 +1,74 @@
-.main-container {
-  .search-form {
-    &> div:not(.clearfix) {
-      float: right;
-      margin-right: 5px;
-      padding: 0 3px;
-      background-color: #d9edf6;
-      border-radius: 3px;
-      color: #2a8bb5; 
-      cursor: pointer;
-      .caret {
-        margin: 0;
+.carousel {
+  max-width: 1400px;
+  margin: 0 auto;
+  .carousel-caption {
+    left: 9%;
+    right: 9%;
+    .pull-left {
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+      .title, .subtitle {
+        float: left;
+        border-left: 5px solid #2a8bb5;
+        background-color: rgba(0,0,0,0.4);
+        font-size: 30px;
+        max-width: 600px;
+        font-weight: bold;
+        text-align: left;
+        padding: 0 10px;
       }
-    }
-    &> input {
-      float: right;
-      padding: 0 0 0 3px;
-      background: transparent;
-      background-color: transparent;
-      border: 0;
-      margin: 0; 
-      font-size: 14px;
-      font-weight: bold;
-      color: #2a8bb5;
-      outline: none;
-    }
-    .date{
-      cursor: pointer;
-      label {
-        display: inline-block;
-        padding: 0px 15px 0px 0px;
-        position: relative;
-        /* Prevents text-selection on the label. */
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;  
-        user-select: none;
-        margin: 0;
-        font-weight: normal;
-        color: #2A8BB5;
-        &:after {
-          border-top: 5px solid #2A8BB5;
-          border-right: 5px solid transparent;
-          border-left: 5px solid transparent;
-          content: '';
-          position: absolute;
-          right: 1px;
-          top: 8px;
-        }
-      }
-      input#datepicker{
-        border: 0;
-        height: 0;
-        width: 0;
-        margin: 0;
-        padding: 0;
+    } 
+    .pull-right {
+      .autor {
         display: block;
+        background-color: #5fbed0;
+        color: white;
+        text-decoration: none;
+        .pull-left {
+          position: relative;
+          .avatar {
+            margin: -20px 0 0 -50px;
+            position: absolute;
+            z-index: 10;
+            img {
+              border: 3px solid white;
+              border-radius: 50px;
+              width: 100px;
+              height: 100px;
+            }
+          }
+        }
+        .pull-right {
+          padding: 10px 10px 10px 60px;
+          text-align: right;
+          text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+          .title {
+            font-size: 18px;
+          }
+          .subtitle {
+            font-size: 14px;
+          }
+        }            
+      }
+    }            
+  }
+  .carousel-control {
+    width: 13%;
+  }
+  .carousel-indicators {
+    right: 10%;
+    width: auto;
+    margin-left: 0;
+    left: inherit;
+    li {
+      width: 13px;
+      height: 13px;
+      border-color: #988;
+      background-color: #999;
+      &.active {
+        width: 15px;
+        height: 15px;
+        border-color: #2a8bb5;
+        background-color: #2a8bb5;
       }
     }
   }

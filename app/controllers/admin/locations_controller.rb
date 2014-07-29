@@ -5,7 +5,7 @@ module Admin
     # GET /desks
     # GET /desks.json
     def index
-      @locations = Location.page(params[:page]).per(25)
+      @locations = Location.order(id: :desc).page(params[:page]).per(25)
     end
 
     # GET /desks/1

@@ -5,7 +5,7 @@ module Admin
     # GET /videos
     # GET /videos.json
     def index
-      @videos = Video.page(params[:page]).per(25)
+      @videos = Video.order(id: :desc).page(params[:page]).per(25)
     end
 
     # GET /videos/1

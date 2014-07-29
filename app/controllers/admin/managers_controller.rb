@@ -5,7 +5,7 @@ module Admin
     # GET /manager_users
     # GET /manager_users.json
     def index
-      @managers = Manager.page(params[:page]).per(25)
+      @managers = Manager.order(id: :desc).page(params[:page]).per(25)
     end
 
     # GET /manager_users/1

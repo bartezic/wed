@@ -5,7 +5,7 @@ module Admin
     # GET /photos
     # GET /photos.json
     def index
-      @slider_ads = SliderAd.page(params[:page]).per(25)
+      @slider_ads = SliderAd.order(id: :desc).page(params[:page]).per(25)
     end
 
     # GET /photos/1

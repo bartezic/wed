@@ -5,7 +5,7 @@ module Admin
     # GET /galleries
     # GET /galleries.json
     def index
-      @galleries = Gallery.page(params[:page]).per(25)
+      @galleries = Gallery.order(id: :desc).page(params[:page]).per(25)
     end
 
     # GET /galleries/1

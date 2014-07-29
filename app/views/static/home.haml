@@ -1,5 +1,5 @@
 .slider.fullwidthbanner-container.roundedcorners
-  .fullwidthbanner{"data-height" => "500"}
+  .fullwidthbanner{"data-height" => "600"}
     %ul.hide
       - if @slider_ads.any?
         - @slider_ads.each_with_index do |slider_ad, i|
@@ -20,12 +20,47 @@
                     .title= slider_ad.partner.name
                     .subtitle= slider_ad.partner.categories.map(&:name_sing).join(',')
                   .clearfix
-
-              
       - else
         %li{"data-link" => "http://www.bartezic.com/", "data-masterspeed" => "300", "data-saveperformance" => "off", "data-slotamount" => "7", "data-target" => "_blank", "data-transition" => "fade"}
           %img{alt: "", "data-bgfit" => "cover", "data-bgposition" => "center bottom", "data-bgrepeat" => "no-repeat", "data-lazyload" => 'http://placehold.it/1400x500', src: "/assets/1x1.png"}/
     .tp-bannertimer
+
+#carousel.carousel.slide{"data-ride" => "carousel"}
+  - if @slider_ads.any?
+    %ol.carousel-indicators
+      - @slider_ads.each_with_index do |slider_ad, i|
+        %li{ class: i==0 && 'active', data: { target: '#carousel', 'slide-to' => i } }
+    .carousel-inner
+      - @slider_ads.each_with_index do |slider_ad, i|
+        .item{ class: i==0 && 'active' }
+          = image_tag slider_ad.asset(:slide)
+          .carousel-caption
+            - if slider_ad.text
+              .pull-left 
+                .title= slider_ad.text["title"]
+                .clearfix
+                .subtitle= slider_ad.text["subtitle"]
+            - if slider_ad.partner
+              .pull-right
+                %a.autor{href: "http://wedcity.pro/partners/marta"}
+                = link_to slider_ad.partner, class: :autor do
+                  .pull-left
+                    .avatar
+                      = image_tag(slider_ad.partner.user.avatar(:thumb_100), { alt: slider_ad.partner.name })
+                  .pull-right
+                    .title= slider_ad.partner.name
+                    .subtitle= slider_ad.partner.categories.map(&:name_sing).join(',')
+                  .clearfix
+  - else
+    .carousel-inner
+      .item.active
+        %img{ src: 'http://placehold.it/1400x500' }
+
+  %a.left.carousel-control{"data-slide" => "prev", href: "#carousel"}
+    %span.glyphicon.glyphicon-chevron-left
+  %a.right.carousel-control{"data-slide" => "next", href: "#carousel"}
+    %span.glyphicon.glyphicon-chevron-right
+
 
 .container.main-container
   .row

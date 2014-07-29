@@ -1,4 +1,67 @@
 .app {
+  .main-container {
+    .search-form {
+      &> div:not(.clearfix) {
+        float: right;
+        margin-right: 5px;
+        padding: 0 3px;
+        background-color: #d9edf6;
+        border-radius: 3px;
+        color: #2a8bb5; 
+        cursor: pointer;
+        .caret {
+          margin: 0;
+        }
+      }
+      &> input {
+        float: right;
+        padding: 0 0 0 3px;
+        background: transparent;
+        background-color: transparent;
+        border: 0;
+        margin: 0; 
+        font-size: 14px;
+        font-weight: bold;
+        color: #2a8bb5;
+        outline: none;
+      }
+      .date{
+        cursor: pointer;
+        label {
+          display: inline-block;
+          padding: 0px 15px 0px 0px;
+          position: relative;
+          /* Prevents text-selection on the label. */
+          -moz-user-select: none;
+          -ms-user-select: none;
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;  
+          user-select: none;
+          margin: 0;
+          font-weight: normal;
+          color: #2A8BB5;
+          &:after {
+            border-top: 5px solid #2A8BB5;
+            border-right: 5px solid transparent;
+            border-left: 5px solid transparent;
+            content: '';
+            position: absolute;
+            right: 1px;
+            top: 8px;
+          }
+        }
+        input#datepicker{
+          border: 0;
+          height: 0;
+          width: 0;
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+      }
+    }
+  }
+
   section.main-section{
     border-right: 2px dashed #ddd;
     margin: 20px 0;

@@ -5,7 +5,7 @@ module Admin
     # GET /desks
     # GET /desks.json
     def index
-      @partners = Partner.page(params[:page]).per(25)
+      @partners = Partner.order(id: :desc).page(params[:page]).per(25)
     end
 
     # GET /desks/1

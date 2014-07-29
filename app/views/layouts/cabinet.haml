@@ -8,12 +8,8 @@
     %link(rel="icon" href="/assets/favicon.ico")
   
   %body.cabinet{ data: { user: @partner.slug } }
-
-    / Wrap all page content here
     #wrap
-      / Fixed navbar
       = render 'shared/nav', part: :cabinet
-      / Begin page content
       .container
         .push-30
         = render 'shared/flash'

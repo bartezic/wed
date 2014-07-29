@@ -1,13 +1,33 @@
-- partner = Partner.new
-- partner.user = User.new
-%h2 Sign up
-= simple_form_for partner do |f|
-  = f.error_notification
-  .form-inputs
-    = f.simple_fields_for :user do |user|
-      = user.input :email, required: true, autofocus: true
-      = user.input :password, required: true
-      = user.input :password_confirmation, required: true
-  .form-actions
-    = f.button :submit, class: 'btn btn-default', value: t('signup_form.submit')
-= render "devise/shared/links"
+%section.login
+  .container
+    .row
+      .col-md-4.col-sm-3
+      .col-md-4.col-sm-6
+        - partner = Partner.new
+        - partner.user = User.new
+        = simple_form_for(partner, html: {class: 'sky-form boxed'}) do |f|
+          %header Зареєструватися
+          %fieldset
+            = f.error_notification
+            = f.simple_fields_for :user do |user|
+              %section
+                %label.input
+                  %i.icon-append.fa.fa-envelope
+                  = user.input_field :email, required: true, autofocus: true, placeholder: 'Email'
+              %section
+                %label.input
+                  %i.icon-append.fa.fa-lock
+                  = user.input_field :password, required: true, placeholder: 'Пароль'
+              %section
+                %label.input
+                  %i.icon-append.fa.fa-lock
+                  = user.input_field :password_confirmation, required: true, placeholder: 'Підтвердіть пароль'
+          %footer
+            %button.button.btn-block(name="commit" type="submit")= t('signup_form.submit')
+          .divider.half-margins
+            %i.fa.fa-chevron-down
+          %footer
+            = link_to new_session_path(resource_name) do
+              %button.button.btn-block.sign-up Увійти
+        = render 'devise/shared/links'
+      .col-md-4.col-sm-3

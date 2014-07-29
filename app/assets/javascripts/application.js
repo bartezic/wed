@@ -22,7 +22,7 @@
 //= require external/revolution-slider/jquery.themepunch.plugins.min
 //= require external/revolution-slider/jquery.themepunch.revolution.min
 
-//= require epona/scripts
+//= /require epona/scripts
 //= require epona/revolution_slider
 
 //= require custom/utils
