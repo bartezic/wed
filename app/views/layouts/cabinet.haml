@@ -7,11 +7,9 @@
     = csrf_meta_tags
     %link(rel="icon" href="/assets/favicon.ico")
   
-  %body.cabinet{ data: { user: @partner.slug } }
+  %body.cabinet{ data: { user: @partner.slug || @partner.id } }
     #wrap
       = render 'shared/nav', part: :cabinet
-      .container
-        .push-30
-        = render 'shared/flash'
-        = yield
+      = render 'shared/flash'
+      = yield
     = render 'shared/footer'

@@ -16,8 +16,8 @@ class Photo < ActiveRecord::Base
 
   validates_attachment_content_type :asset, :content_type => /\Aimage\/.*\Z/
 
-  before_save :upload_asset_from_remote_url
-  before_save :change_file_name
+  before_validation :upload_asset_from_remote_url
+  before_validation :change_file_name
 
   include Rails.application.routes.url_helpers
 

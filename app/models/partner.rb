@@ -26,6 +26,11 @@ class Partner < ActiveRecord::Base
   scope :with_ids,        -> (ids) { where('partners.id IN (?)', ids) unless ids.blank? }
   scope :without_ids,     -> (ids) { where('partners.id NOT IN (?)', ids) unless ids.blank? }
 
+  before_save do |partner|
+    partner.active = partner.profile_filled?
+    true
+  end
+
   def self.search(params, order, ids = []) 
     active.
       without_ids(day_partners(params)).
@@ -56,5 +61,27 @@ class Partner < ActiveRecord::Base
     a.each {|i| b[i.year][i.mon] = []}
     a.each {|i| b[i.year][i.mon] << i.day}
     b if b.any?
+  end
+
+  def count_profile_filling
+    count = 0
+    count += 5 if self.name
+    count += 5 if self.description
+    count += 5 if self.info
+    count += 5 if self.categories.any?
+    count += 5 if self.locations.any?
+
+    count += 10 if self.user.avatar.exists?
+    count += 10 if self.user.email && self.user.confirmed?
+    count += 5 if self.location
+    count += 5 if self.site
+    count += 10 if self.phone
+    count += 10 if self.galleries.any? && self.photos.any?
+    count += 10 if self.videos.any?
+    count
+  end
+
+  def profile_filled?
+    self.count_profile_filling > 75
   end
 end

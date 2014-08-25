@@ -6,6 +6,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require cocoon
 
+//= require custom/utils
 //= require custom/locale
 //= require custom/calendar
 

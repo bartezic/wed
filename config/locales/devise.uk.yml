@@ -3,7 +3,7 @@
 uk:
   devise:
     confirmations:
-      confirmed: 'Ваша обліковий рахунок було успішно підтверджено. Ви успішно увійшли до системи.'
+      confirmed: 'Вашу електронну адресу було успішно підтверджено. Ви успішно увійшли до системи.'
       send_instructions: 'За кільки хвилин на Вашу електронну адресу буде надіслано лист з інструкціями щодо підтвердження Вашого облікового запису.'
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes."
     failure:

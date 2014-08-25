@@ -23,19 +23,22 @@ Rails.application.routes.draw do
     root 'static#home'
   end
 
-  resources :categories, path: :posluhy, only: [:show]
-  resources :locations
-  resources :partners do
-    get :search, on: :collection
+  scope module: 'app' do
+    resources :categories, path: :posluhy, only: [:show]
+    resources :locations
+    resources :partners, only: [:show, :index, :create] do
+      get :search, on: :collection
+    end
+    resources :photos
+    resources :videos
+    resources :galleries
+    root 'static#home'
+    get 'empty' => 'static#empty'
   end
-  resources :photos
-  resources :videos
-  resources :galleries
-
-  devise_for :users, :skip => [:registrations]                                          
+  
+  devise_for :users, skip: [:registrations], controllers: {confirmations: 'confirmations'}                                        
   as :user do
-    get 'users/sign_up' => 'devise/registrations#new', :as => 'new_user_registration'    
-    post 'users' => 'devise/registrations#create', :as => 'user_registration'            
+    get 'users/sign_up' => 'devise/registrations#new', as: 'new_user_registration'
   end
   # devise_for :admins, path: :admin_auth
   # devise_for :partners, path: :auth
@@ -43,10 +46,10 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static#home'
+  
 
   # Example of regular route:
-  get 'empty' => 'static#empty'
+  
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

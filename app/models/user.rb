@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-  before_save :upload_avatar_from_remote_url
+  before_validation :upload_avatar_from_remote_url
   # before_save :change_file_name
 
   def upload_avatar_from_remote_url

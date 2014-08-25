@@ -144,6 +144,25 @@ namespace :add do
       # temp.update(name: obl[0])
     end
   end
+
+  task local_categories: :environment do
+    {
+      'Фотографи' => 'photographer',
+      'Відеозйомка' => 'videos',
+      'Ведучі' => 'leading',
+      'Музиканти' => 'musicians',
+      'Артисти' => 'singersandbands',
+      'Шоу-програма' => 'showprogram',
+      'Візажисти' => 'makeup',
+      'Координатори' => 'coordinator',
+      'Флористика' => 'floral',
+      'Декорування' => 'decorators',
+      'Виїзна церемонія' => 'bceremony',
+      'Кейтерінг' => 'catering'
+    }.each do |key, val|
+      Category.create(name: key, name_sing: key)
+    end
+  end
 end
 
 task general_import_task: :environment do

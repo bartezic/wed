@@ -2,26 +2,21 @@ module Cabinet
   class PartnersController < BaseController
     before_action :set_partner, only: [:show, :edit, :update, :days]
 
-    # GET /desks/1
-    # GET /desks/1.json
     def show
     end
 
-    # GET /desks/1/edit
     def edit
       @section = params[:section].try(:to_sym) || :general
     end
 
-    # PATCH/PUT /desks/1
-    # PATCH/PUT /desks/1.json
     def update
       respond_to do |format|
         if @partner.update(partner_params)
-          format.html { redirect_to :back, notice: 'Partner was successfully updated.' }
+          format.html { redirect_to :back, notice: 'Профіль успішно оновлено.' }
           format.json { head :no_content }
           format.js { render json: { success: true } }
         else
-          format.html { redirect_to :back, alert: @partner.get_errors }
+          format.html { redirect_to :back, alert: @partner.errors.full_messages }
           format.json { render json: @partner.errors, status: :unprocessable_entity }
           format.js { render json: { success: false } }
         end
@@ -29,8 +24,7 @@ module Cabinet
     end
 
     def days
-      day = Day.find_by(day_of_life: params[:day])
-      if day
+      if day = Day.find_by(day_of_life: params[:day])
         if params[:add] == 'true'
           @partner.days << day
         else

@@ -8,12 +8,9 @@
     %link(rel="icon" href="/assets/favicon.ico")
 
   %body.admin
-
-    / Wrap all page content here
     #wrap
-      / Fixed navbar
       = render 'shared/nav', part: :admin
+      = render 'shared/flash'
       .container
-        = render 'shared/flash'
         = yield
     = render 'shared/footer'

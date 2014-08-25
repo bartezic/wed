@@ -35,10 +35,6 @@ body.grey { /* grey background - YT style */
 	background-color:#f1f2f7;
 }
 
-section {
-	padding-top:60px;
-	padding-bottom:60px;
-}
 	section.alternate .divider .fa,
 	section.alternate {
 		background-color:#F5F3F4;
@@ -57,7 +53,6 @@ section {
 
 section header {
 	display:block;
-	margin-bottom:60px;
 }
 	section header p {
 		margin:0;
@@ -576,11 +571,6 @@ section.brands {
 .tab-post small {
 	display:block;
 	font-size:10px;
-}
-
-/* sky-form */
-.sky-form {
-	margin-bottom:30px;
 }
 
 /* parallax */

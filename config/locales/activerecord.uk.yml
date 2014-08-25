@@ -1,0 +1,10 @@
+uk:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: Користувач з такою електронною адресою вже зареєстрований.
+            password_confirmation:
+              confirmation: Паролі не співпадають.

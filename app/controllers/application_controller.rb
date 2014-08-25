@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     case current_user.rolable_type
     when "Manager"
-      return admin_root_path
+      admin_root_path
     when "Partner"
-      return cabinet_root_path
+      cabinet_root_path
     end
   end
 

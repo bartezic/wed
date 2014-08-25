@@ -1,5 +1,19 @@
-- flash.each do |name, msg|
-  - if msg.is_a?(String)
-    .alert.alert-dismissable{ class: "alert-#{name.to_s == 'notice' ? 'success' : 'danger'}" }
-      %button.close{ type: :button, data: { dismiss: :alert, hidden: true } } &#215;
-      = msg
+- unless request.path == root_path
+  .container
+    .push-30
+    - flash.each do |name, msg|
+      - if msg.is_a?(String)
+        .alert.alert-dismissable{ class: "alert-#{name.to_s == 'notice' ? 'success' : 'danger'}" }
+          %button.close{ type: :button, data: { dismiss: :alert, hidden: true } } &#215;
+          = msg
+
+    // cabinet flashes
+    - if request.path.include?('cabinet') && @partner
+      - unless @partner.user.confirmed?
+        .alert.alert-dismissable{ class: "alert-danger" }
+          %button.close{ type: :button, data: { dismiss: :alert, hidden: true } } &#215;
+          %strong Увага!
+          = "Вашу електронну адресу #{@partner.user.email} не підтверджено."
+          = link_to 'Не отримали інструкції підтвердження?', new_confirmation_path(:user)
+- else
+  - flash.clear

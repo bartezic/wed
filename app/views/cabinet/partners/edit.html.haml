@@ -1,18 +1,19 @@
-%section.profile
-  %header
-    .user-avatar{style: "background-image:url(#{@partner.user.avatar(:thumb_100)})"}
-    %h2 Ваш кабінет
-  .inner-wrapper
-    %section.sidebar
-      %nav
-        %ol.sections
-          %li= link_to 'Загальна інформація', cabinet_profile_path(:general), class: ('active' if @section == :general)
-          %li= link_to 'Аватар',              cabinet_profile_path(:avatar),  class: ('active' if @section == :avatar)
-          %li= link_to 'Контакти',            cabinet_profile_path(:contacts), class: ('active' if @section == :contacts)
-          %li= link_to 'Календар',            cabinet_profile_path(:callendar), class: ('active' if @section == :callendar)
-          %li= link_to 'Змінити пароль',      cabinet_profile_path(:password), class: ('active' if @section == :password)
-          %li= link_to 'Фото портфоліо',      cabinet_profile_path(:photo), class: ('active' if @section == :photo)
-          %li= link_to 'Відео портфоліо',     cabinet_profile_path(:video), class: ('active' if @section == :video)
-          %li= link_to 'Заявки молодят',      cabinet_profile_path(:profile), class: ('active' if @section == :profile)
-    %section{ class: "settings-content #{@section}_settings" }
-      = render @section.to_s
+.container
+  %section.profile
+    %header
+      .user-avatar{style: "background-image:url(#{@partner.user.avatar(:thumb_100)})"}
+      %h2 Ваш кабінет
+    .inner-wrapper
+      %section.sidebar
+        %nav
+          %ol.sections
+            %li= link_to 'Загальна інформація', cabinet_profile_path(:general), class: ('active' if @section == :general)
+            %li= link_to 'Аватар',              cabinet_profile_path(:avatar),  class: ('active' if @section == :avatar)
+            %li= link_to 'Контакти',            cabinet_profile_path(:contacts), class: ('active' if @section == :contacts)
+            %li= link_to 'Календар',            cabinet_profile_path(:callendar), class: ('active' if @section == :callendar)
+            %li= link_to 'Змінити пароль',      cabinet_profile_path(:password), class: ('active' if @section == :password)
+            %li= link_to 'Фото портфоліо',      cabinet_profile_path(:photo), class: ('active' if @section == :photo)
+            %li= link_to 'Відео портфоліо',     cabinet_profile_path(:video), class: ('active' if @section == :video)
+            %li= link_to 'Заявки молодят',      cabinet_profile_path(:profile), class: ('active' if @section == :profile)
+      %section{ class: "settings-content #{@section}_settings" }
+        = render @section.to_s

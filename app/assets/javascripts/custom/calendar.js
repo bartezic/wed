@@ -161,7 +161,7 @@ window.WedCity.calendar = {
   moveRight: function(e) {
     var self = this,
         map = self.configs.monthsMap,
-        month = map.visible.last().month;
+        month = map.visible.last().month,
         year = map.visible.last().year,
         marginL = self.elems.months.css('margin-left').replace("px", "")*1;
 
