@@ -1,0 +1,26 @@
+.slider.fullwidthbanner-container.roundedcorners
+  .fullwidthbanner{"data-height" => "600"}
+    %ul.hide
+      - if @slider_ads.any?
+        - @slider_ads.each_with_index do |slider_ad, i|
+          %li{"data-link" => partner_path(slider_ad.partner), "data-masterspeed" => "300", "data-saveperformance" => "off", "data-slotamount" => "7", "data-target" => "_blank", "data-transition" => "fade"}
+            %img{alt: "", "data-bgfit" => "cover", "data-bgposition" => "center bottom", "data-bgrepeat" => "no-repeat", "data-lazyload" => slider_ad.asset(:slide), src: "/assets/1x1.png"}/
+            - if slider_ad.text
+              .tp-caption.sfl{"data-easing" => "easeOutExpo", "data-elementdelay" => "0.1", "data-endelementdelay" => "0.1", "data-endspeed" => "300", "data-speed" => "750", "data-splitin" => "none", "data-splitout" => "none", "data-start" => "100", "data-x" => "50", "data-y" => "320"}
+                .texts
+                  .title= slider_ad.text['title']
+                  .clearfix
+                  .subtitle= slider_ad.text['subtitle']
+            - if slider_ad.partner
+              .tp-caption.sfb{"data-easing" => "easeOutExpo", "data-elementdelay" => "0.1", "data-endelementdelay" => "0.1", "data-endspeed" => "300", "data-hoffset" => "-50", "data-speed" => "750", "data-splitin" => "none", "data-splitout" => "none", "data-start" => "400", "data-x" => "right", "data-y" => "340"}
+                = link_to slider_ad.partner, class: :autor do
+                  .pull-left
+                    .avatar{style: "background-image: url(#{slider_ad.partner.user.avatar(:thumb_100)})"}
+                  .pull-right
+                    .title= slider_ad.partner.name
+                    .subtitle= slider_ad.partner.categories.map(&:name_sing).join(',')
+                  .clearfix
+      - else
+        %li{"data-link" => "http://www.bartezic.com/", "data-masterspeed" => "300", "data-saveperformance" => "off", "data-slotamount" => "7", "data-target" => "_blank", "data-transition" => "fade"}
+          %img{alt: "", "data-bgfit" => "cover", "data-bgposition" => "center bottom", "data-bgrepeat" => "no-repeat", "data-lazyload" => 'http://placehold.it/1400x500', src: "/assets/1x1.png"}/
+    .tp-bannertimer
