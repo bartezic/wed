@@ -24,16 +24,15 @@ Rails.application.routes.draw do
   end
 
   scope module: 'app' do
-    resources :categories, path: :posluhy, only: [:show]
+    resources :categories, path: :posluhy, only: [:show, :index]
     resources :locations
-    resources :partners, only: [:show, :index, :create] do
-      get :search, on: :collection
-    end
+    resources :partners, only: [:show, :create]
     resources :photos
     resources :videos
     resources :galleries
     root 'static#home'
     get 'empty' => 'static#empty'
+    get 'about_us' => 'static#about_us'
   end
   
   devise_for :users, skip: [:registrations], controllers: {confirmations: 'confirmations'}                                        

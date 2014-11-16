@@ -15,6 +15,7 @@
         font-weight: bold;
         text-align: left;
         padding: 0 10px;
+        line-height: 41px;
       }
     } 
     .pull-right {
@@ -152,6 +153,40 @@
 }
 
 @media only screen and (max-width: 990px) {
+  .carousel {
+    .carousel-caption {
+      .pull-left {
+        .title, .subtitle {
+          font-size: 25px;
+          line-height: 35px;
+          max-width: 500px;
+        }
+      } 
+      .pull-right {
+        .autor {
+          .pull-left {
+            .avatar {
+              img {
+                width: 90px;
+                height: 90px;
+              }
+            }
+          }
+          .pull-right {
+            padding: 7px 7px 7px 50px;
+            line-height: 22px;
+            .title {
+              font-size: 16px;
+            }
+            .subtitle {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .tp-caption {
     .texts {
       .title, .subtitle {
@@ -182,6 +217,40 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .carousel {
+    .carousel-caption {
+      .pull-left {
+        .title, .subtitle {
+          font-size: 20px;
+          line-height: 28px;
+          max-width: 400px;
+        }
+      } 
+      .pull-right {
+        .autor {
+          .pull-left {
+            .avatar {
+              img {
+                width: 80px;
+                height: 80px;
+              }
+            }
+          }
+          .pull-right {
+            padding: 5px 5px 5px 35px;
+            line-height: 20px;
+            .title {
+              font-size: 15px;
+            }
+            .subtitle {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .tp-caption {
     .texts {
       .title, .subtitle {
@@ -212,6 +281,40 @@
 }
 
 @media only screen and (max-width: 480px) {
+  .carousel {
+    .carousel-caption {
+      .pull-left {
+        .title, .subtitle {
+          font-size: 15px;
+          line-height: 21px;
+          max-width: 300px;
+        }
+      } 
+      .pull-right {
+        .autor {
+          .pull-left {
+            .avatar {
+              img {
+                width: 70px;
+                height: 70px;
+              }
+            }
+          }
+          .pull-right {
+            padding: 3px 3px 3px 30px;
+            line-height: 18px;
+            .title {
+              font-size: 14px;
+            }
+            .subtitle {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .tp-caption {
     .texts {
       .title, .subtitle {

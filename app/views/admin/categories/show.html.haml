@@ -7,5 +7,8 @@
   %dt Name sing
   %dd= @category.name_sing
 
+  %dt Logo
+  %dd= image_tag @category.logo(:thumb)
+
 = link_to 'Edit', edit_admin_category_path(@category), class: 'btn btn-default'
 = link_to 'Back', admin_categories_path, class: 'btn btn-default'

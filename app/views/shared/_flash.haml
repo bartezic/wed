@@ -1,6 +1,5 @@
 - unless request.path == root_path
   .container
-    .push-30
     - flash.each do |name, msg|
       - if msg.is_a?(String)
         .alert.alert-dismissable{ class: "alert-#{name.to_s == 'notice' ? 'success' : 'danger'}" }
@@ -10,10 +9,27 @@
     // cabinet flashes
     - if request.path.include?('cabinet') && @partner
       - unless @partner.user.confirmed?
-        .alert.alert-dismissable{ class: "alert-danger" }
+        .alert.alert-dismissable.alert-danger
           %button.close{ type: :button, data: { dismiss: :alert, hidden: true } } &#215;
           %strong Увага!
           = "Вашу електронну адресу #{@partner.user.email} не підтверджено."
           = link_to 'Не отримали інструкції підтвердження?', new_confirmation_path(:user)
+      - unless @partner.categories.any?
+        .alert.alert-dismissable.alert-danger
+          %button.close{ type: :button, data: { dismiss: :alert, hidden: true } } &#215;
+          %strong Увага!
+          У вас відсутні категорії роботи. Додайте їх щоб з'явитись на сторінках каталогу.
+      - else
+        - unless @partner.active?
+          .alert.alert-dismissable.alert-danger
+            %button.close{ type: :button, data: { dismiss: :alert, hidden: true } } &#215;
+            %strong Увага!
+            На даний час ваш профіль не є активним. Його не буде видно на сторінках пошуку.
+            - unless @partner.profile_filled?
+              Профіль заповнено на #{@partner.count_profile_filling}% із потрібних 75%.
+              Заповніть більше інформації про себе, сформуйте портфоліо, після цього ви автоматично зявитесь в списках професіоналів.
+            - else
+              Зверніться до адміністратора за детальною інформацією.
+
 - else
   - flash.clear

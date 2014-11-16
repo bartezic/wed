@@ -1,99 +1,82 @@
-= render 'slider_revolution'
-= render 'slider_bootstrap'
+= render false ? 'slider_revolution' : 'slider_bootstrap'
+= render '/app/categories/row_list'
 
-.container.main-container
-  .row
-    %section.col-lg-12
-      = form_tag('/partners', method: :get, class: 'search-form') do
-        = submit_tag 'ШУКАТИ'
-        / .price 
-        /   Ціна
-        /   %b.caret
-        .posluga 
-          = collection_select(:category_ids, nil, Category.all, :id, :name, {prompt: 'Послуга'})
-        .location
-          = collection_select(:location_ids, nil, Location.all, :id, :name, {prompt: 'Область'})
-        .date
-          %label Дата весілля
-          %input#datepicker{name: :date, type: 'text'}
-        .clearfix
-
-.container
-  .row
-    %section.col-lg-8.main-section
-      %article.about-us
-        %table
-          %tr
-            %td.title Про нас
-            %td.description 
-              %span WedCity.pro(Місто весільних професіоналів) 
-              = '- це своєрідна соціальна мережа яка об’єднує людей які працюють у галузі надання послуг для урочистих подій та людей яким необхідні ці послуги.'
-        .nav
-          = link_to 'Контакти', partners_path
-          = link_to 'Рекламодавцям', partners_path
-        .clearfix
-      %article.couple-ad
-        %header ТЕНДЕР ВІД НАРЕЧЕНИХ
-        .line
-        %table
-          %tr
-            %td.left
-              %figure
-                %img
-                %figurecaption
-              %figure
-                %img
-                %figurecaption
-            %td.right
-              .title Потрібен професійний фотограф на весілля
-              .subtitle
-                %span 19 квітня 2013
-                %span від 500$ до 1000$
-                %span Київ
-                %span Відеооператор
-              .description Треба дуже відповідальна людина яка фоткатиме компроматичний репортаж та буде пасти курей і котів немитих на вертольоті з сімома леприконами.
-              .links
-                .pull-left
-                  = link_to 'ЗАПРОПОНУВАТИ СВОЇ ПОСЛУГИ', partners_path
-                .pull-right
-                  = link_to 'Переглянути інші запити', partners_path
-                .clearfix
-      %article.just-ad
-        %header РЕКЛАМА
-        .line
-        .row
-          .col-lg-6
-            %figure
-              %img.img-responsive{src: 'http://baliwebcreator.com/bwp/wp-content/uploads/2012/09/impressions-thb.jpg'}
-          .col-lg-6
-            %figure
-              %img.img-responsive{src: 'http://pochemunelzya.ru/wp-content/uploads/2011/08/wedding_rings_009-360x150.jpg'}
-    %aside.col-lg-4
-      %section.popular-news
-        %article
-          %header
-            %h3 Популярна новина
-          %figure
-            %img.img-responsive{ src: '/assets/side1.JPG' }
-            %figurecaption
-              .title ОХ ФАЙНЕ ВІСІЛЛЬИ
-              .subtitle ТАК СІ ВСІ ПОНАПИВАЛИ
-          %footer
-            .pull-left
-              = link_to 'Андрій Кобрин | відооператор', partners_path
-            .pull-right
-              21.12.2013
-            .clearfix
-      %section.recent-news
-        %article
-          %header
-            %h3 Останні новини
-          %section
-            %article
-            %article
-            %article
-            %article
-          %footer
+/ .container
+/   .row
+/     %section.col-lg-8.main-section
+/       %article.about-us
+/         %table
+/           %tr
+/             %td.title Про нас
+/             %td.description 
+/               %span WedCity.pro(Місто весільних професіоналів) 
+/               = '- це своєрідна соціальна мережа яка об’єднує людей які працюють у галузі надання послуг для урочистих подій та людей яким необхідні ці послуги.'
+/         .nav
+/           = link_to 'Контакти', about_us_path
+/           = link_to 'Рекламодавцям', about_us_path
+/         .clearfix
+/       %article.couple-ad.with-line-header
+/         %header ТЕНДЕР ВІД НАРЕЧЕНИХ
+/         .line
+/         %table
+/           %tr
+/             %td.left
+/               %figure
+/                 %img
+/                 %figurecaption
+/               %figure
+/                 %img
+/                 %figurecaption
+/             %td.right
+/               .title Потрібен професійний фотограф на весілля
+/               .subtitle
+/                 %span 19 квітня 2013
+/                 %span від 500$ до 1000$
+/                 %span Київ
+/                 %span Відеооператор
+/               .description Треба дуже відповідальна людина яка фоткатиме компроматичний репортаж та буде пасти курей і котів немитих на вертольоті з сімома леприконами.
+/               .links
+/                 .pull-left
+/                   = link_to 'ЗАПРОПОНУВАТИ СВОЇ ПОСЛУГИ', about_us_path
+/                 .pull-right
+/                   = link_to 'Переглянути інші запити', about_us_path
+/                 .clearfix
+/       %article.just-ad.with-line-header
+/         %header РЕКЛАМА
+/         .line
+/         .row
+/           .col-lg-6
+/             %figure
+/               %img.img-responsive{src: 'http://baliwebcreator.com/bwp/wp-content/uploads/2012/09/impressions-thb.jpg'}
+/           .col-lg-6
+/             %figure
+/               %img.img-responsive{src: 'http://pochemunelzya.ru/wp-content/uploads/2011/08/wedding_rings_009-360x150.jpg'}
+/     %aside.col-lg-4
+/       %section.popular-news
+/         %article
+/           %header
+/             %h3 Популярна новина
+/           %figure
+/             %img.img-responsive{ src: '/assets/side1.JPG' }
+/             %figurecaption
+/               .title ОХ ФАЙНЕ ВІСІЛЛЬИ
+/               .subtitle ТАК СІ ВСІ ПОНАПИВАЛИ
+/           %footer
+/             .pull-left
+/               = link_to 'Андрій Кобрин | відооператор', partners_path
+/             .pull-right
+/               21.12.2013
+/             .clearfix
+/       %section.recent-news
+/         %article
+/           %header
+/             %h3 Останні новини
+/           %section
+/             %article
+/             %article
+/             %article
+/             %article
+/           %footer
 
 .recent-users
   .container

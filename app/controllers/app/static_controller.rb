@@ -8,5 +8,9 @@ module App
     def empty
       
     end
+
+    def about_us
+      
+    end
   end
 end

@@ -1,16 +1,7 @@
 module App
   class PartnersController < BaseController
     before_action :set_partner, only: [:show]
-
-    def index
-      @partners = Partner.search(search_params, order_by)
-      respond_to do |format|
-        format.html # index.html.erb
-        format.js { render :index, layout: false }
-        format.json { render json: @partners }
-      end
-    end
-
+  
     def show
     end
 
@@ -32,11 +23,6 @@ module App
       end
     end
 
-    def search
-      @partners = Partner.order('name ASC').page(params[:page])
-      render 'search', layout: false
-    end
-
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_partner
@@ -50,13 +36,6 @@ module App
           :site, :phone, category_ids: [], location_ids: [], 
           user_attributes: [:id, :email, :avatar, :avatar_remote_url, :password, :password_confirmation]
         )
-      end
-
-      def search_params
-        params.permit(:page, :date, category_ids: [], location_ids: []).inject({}){ |res, (k,v)|
-          res[k.to_sym] = v.is_a?(Array) ? v.select{|i| !i.empty?} : v
-          res
-        }
       end
   end
 end

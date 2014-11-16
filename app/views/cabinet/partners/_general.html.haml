@@ -1,11 +1,14 @@
 = simple_form_for [:cabinet, @partner] do |f|
   = f.error_notification
 
-  = f.input :name,            input_html: { class: 'form-control' }
-  = f.input :description,     input_html: { class: 'form-control' }, as: :text
-  = f.input :info,            input_html: { class: 'form-control' }, as: :text
-  
-  %h3 Категорії
+  = f.input :name,            input_html: { class: 'form-control' }, label: 'Ваше повне ім\'я'
+  = f.input :description,     input_html: { class: 'form-control' }, label: 'Короткий опис вашої роботи', as: :text
+  = f.input :info,            input_html: { class: 'form-control' }, label: 'Детальний опис вашої роботи' , as: :text
+  .block
+  %h4
+    Категорії роботи
+    %small
+      %i (виберіть кілька та вкажіть мінімальну ціну в доларах)
   #involvings
     = f.simple_fields_for :involvings do |involving|
       = render 'cabinet/partners/involving_fields', f: involving

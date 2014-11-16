@@ -26,16 +26,15 @@ class Partner < ActiveRecord::Base
   scope :with_ids,        -> (ids) { where('partners.id IN (?)', ids) unless ids.blank? }
   scope :without_ids,     -> (ids) { where('partners.id NOT IN (?)', ids) unless ids.blank? }
 
-  before_save do |partner|
-    partner.active = partner.profile_filled?
-    true
+  after_save do |partner|
+    bool = partner.profile_filled? && partner.categories.any?
+    partner.update_column(:active, bool) unless partner.active? == bool
   end
 
   def self.search(params, order, ids = []) 
     active.
       without_ids(day_partners(params)).
-      with_category(params[:category_ids]).
-      with_location(params[:location_ids]).
+      with_location(params[:location_id]).
       order("partners.#{order}").
       uniq.
       page(params[:page] || 0)
@@ -65,23 +64,23 @@ class Partner < ActiveRecord::Base
 
   def count_profile_filling
     count = 0
-    count += 5 if self.name
-    count += 5 if self.description
-    count += 5 if self.info
+    count += 5 if self.name.present?
+    count += 5 if self.description.present?
+    count += 5 if self.info.present?
     count += 5 if self.categories.any?
     count += 5 if self.locations.any?
 
     count += 10 if self.user.avatar.exists?
     count += 10 if self.user.email && self.user.confirmed?
-    count += 5 if self.location
-    count += 5 if self.site
-    count += 10 if self.phone
+    count += 5 if self.location.present?
+    count += 5 if self.site.present?
+    count += 10 if self.phone.present?
     count += 10 if self.galleries.any? && self.photos.any?
     count += 10 if self.videos.any?
     count
   end
 
   def profile_filled?
-    self.count_profile_filling > 75
+    self.count_profile_filling >= 75
   end
 end

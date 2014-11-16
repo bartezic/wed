@@ -1,6 +1,11 @@
 class Video < ActiveRecord::Base
   belongs_to :partner
 
+  after_create do |video|
+    partner = video.partner
+    partner.update unless partner.active?
+  end
+
   def external_link
     get_link
   end

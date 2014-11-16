@@ -12,42 +12,47 @@
 @import "bourbon";
 @import "font-awesome";
 
-@import "bootstrap_and_overrides";
-@import "footer";
-@import "slider";
-@import "admin";
-@import "cabinet";
-@import "app";
-@import "calendar";
-@import "partners";
-@import "photobox";
-@import "photobox.ie";
+@import "custom/bootstrap_and_overrides";
+@import "custom/footer";
+@import "custom/slider";
+@import "custom/admin";
+@import "custom/cabinet";
+@import "custom/app";
+@import "custom/calendar";
+@import "custom/partners";
+@import "custom/navs";
+@import "custom/device";
+@import "external/photobox";
+@import "external/photobox.ie";
 @import "bootstrap-datepicker";
-@import "locationpicker";
-@import "jquery.mCustomScrollbar";
+@import "custom/locationpicker";
+@import "external/jquery.mCustomScrollbar";
 @import "external/revolution-slider.css";
 @import "external/weather-icons.min.css";
-@import "epona/essentials.css";
-@import "epona/layout.css";
-@import "epona/header-transparent.css";
+
 @import "epona/sky-forms.css";
  
 html,
 body {
   height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
 }
 
 body {
   overflow-y: scroll; 
+  font-family:'Open Sans', Arial, sans-serif !important;
+
+  font-size:14px;
+  line-height:23px;
+  margin:0; padding:0;
 }
 
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
 
 code {
   font-size: 80%;
+}
+
+.container {
+  position:relative;
 }
 
 .push-30 {

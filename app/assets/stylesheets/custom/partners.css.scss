@@ -1,17 +1,6 @@
 .app {
   .partners {
     &> .row {
-      &> section {
-        margin-top: 30px;
-        .ordering {
-          .custom-select-menu {
-            display: inline-block;
-            ul {
-              overflow-y: auto;
-            }
-          }
-        }
-      }
       &> aside {
         margin: 0;
         padding-left: 0; 
@@ -19,6 +8,15 @@
           padding: 20px 15px 10px;
           background: #d9edf6;
           border-bottom: 7px solid #2a8bb5;
+          .ordering {
+            .custom-select-menu {
+              display: inline-block;
+              z-index: 11;
+              ul {
+                overflow-y: auto;
+              }
+            }
+          }
           .date{
             cursor: pointer;
             label {

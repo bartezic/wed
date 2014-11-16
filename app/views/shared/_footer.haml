@@ -3,12 +3,12 @@
     .top
       .pull-left
         = link_to t('nav.home'), root_path
-        = link_to t('nav.partners'), partners_path
+        = link_to t('nav.partners'), categories_path
       .pull-right
-        = link_to t('nav.about'), root_path
-        = link_to t('nav.carer'), partners_path
-        = link_to t('nav.sponsors'), partners_path
-        = link_to t('nav.contacts'), partners_path
+        = link_to t('nav.about'), about_us_path
+        /= link_to t('nav.carer'), partners_path
+        /= link_to t('nav.sponsors'), partners_path
+        = link_to t('nav.contacts'), about_us_path
       .clearfix
     .bottom
       .pull-left

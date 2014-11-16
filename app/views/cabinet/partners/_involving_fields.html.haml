@@ -1,4 +1,7 @@
 .nested-fields
+  %span Працюю в категорії
   = f.collection_select :category_id, Category.all, :id, :name, prompt: ''
+  %span від
   = f.text_field :price
+  %span $
   = link_to_remove_association 'Видалити', f

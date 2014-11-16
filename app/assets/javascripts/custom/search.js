@@ -8,36 +8,26 @@ window.WedCity.search = {
   initHandlers: function (){
     var self = this;
 
-    self.elems.form.change(function(e){
-      self.elems.form.submit();
-    });
+    self.elems.lineForm.submit(function(e) {
+      if($(this).find('input[name=category_id]')[0].value === ''){
+        $(this).find('.posluga').addClass('invalid');
+        return false;
+      }
 
-    self.elems.sliderForm.submit(function(e) {
-      //e.preventDefault();
 
-      var elems = $(this).find('input, select');
-
-      $.each(elems, function(i) {
-        if((elems[i].value === '') || (['commit', 'utf8'].indexOf(elems[i].name) >= 0)){
-          elems[i].name = null;
+      $(this).find('input, select').each(function() {
+        if((this.value === '') || (['commit', 'utf8'].indexOf(this.name) >= 0)){
+          this.name = null;
         }
       });
 
       return true;
     });
 
-    self.elems.order.change(function(e) {
-      $.cookie('order', $(this).closest('.ordering').find('input').val());
+    self.elems.sideform.change(function(e) {
+      $.cookie('order', $(this).find('.ordering input').val());
       self.elems.form.submit();
     });
-    
-    // self.elems.resetBtn.click(function(){
-    //   self.elems.form[0].reset();
-    // });
-
-    // self.elems.location.change(function(){
-    //   self.elems.form.submit();
-    // });
   },
 
   init: function(){
@@ -45,13 +35,8 @@ window.WedCity.search = {
 
     this.root = window.WedCity;
     this.elems = {
-      sliderForm: $('form.search-form'),
-      form: $('.search-form form'),
-      // resetBtn: $('.search-form form .reset'),
-      category: $('.search-form .service input'),
-      location: $('.search-form .location input'),
-      date: $('.search-form .date input'),
-      order: $('.ordering select')
+      lineForm: $('form.search-form'),
+      sideform: $('.search-form form')
     };
     
     this.initHandlers();

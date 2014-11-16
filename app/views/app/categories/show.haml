@@ -1,21 +1,36 @@
-.container
+.container.partners
   .row
-    .col-lg-12
-      %h1= @category.name
-      .row
-        - @partners.each_with_index do |partner, i|
-          .col-xs-4.col-sm-4.col-md-3.col-lg-2
-            = link_to partner do
-              = image_tag(partner.user.avatar(:thumb_220), { class: :'img-circle img-responsive', alt: partner.name })
-              %div= partner.name
-              %div= raw "від <b>#{partner.price}</b>$"
-          - if (i+1)%6 == 0
-            .clearfix.visible-lg
-          - elsif (i+1)%4 == 0
-            .clearfix.visible-md
-          - elsif (i+1)%3 == 0
-            .clearfix.visible-xs.visible-sm
-          
-      .row
-        .col-lg-12
-          = paginate @partners
+    %section.col-lg-8.col-md-8
+      %h3= @category.name
+      .index
+        = render '/app/partners/partners'
+    %aside.col-lg-4.col-md-4
+      %section.search-form
+        = form_tag(category_path(@category), method: :get, remote: true) do
+          %table
+            %tr.ordering 
+              %td Спосіб сортування:&nbsp;
+              %td= select_tag 'order', options_for_select([['нові згори', 'id DESC'],['нові не згори', 'id ASC'],['дешеві згори', 'price ASC'],['дешеві не згори','price DESC']], order_by)
+            %tr.date 
+              %td Дата весілля:
+              %td
+                %label= params[:date] || 'оберіть дату'
+                %input#datepicker{name: :date, type: 'text', value: params[:date]}
+            %tr.location 
+              %td Область:
+              %td= select_tag 'location_id', content_tag(:option, 'оберіть область')+options_from_collection_for_select(Location.all, 'id', 'name', params[:location_id])
+          / .buttons
+          /   %button.reset.pull-right ОЧИСТИТИ
+          /   = submit_tag 'ШУКАТИ', class: 'pull-right'
+          /   .clearfix
+      / %section.tender
+      /   %article
+      /     %header
+      /       %h3 Створити заявку
+      /     %section
+      /       .date Дата весілля
+      /       .location Область
+      /       .service Послуга
+      /       .buttons
+      /         %button.pull-right СТВОРИТИ
+      /         .clearfix

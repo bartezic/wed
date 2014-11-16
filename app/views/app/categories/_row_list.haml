@@ -1,0 +1,34 @@
+.container.categories
+  .row
+    .col-lg-12.line-header
+      %header Скористайтесь швидким пошуком
+      .line
+  .row
+    %section.col-lg-12
+      = form_tag(categories_path, method: :get, class: 'search-form') do
+        .posluga
+          = select_tag 'category_id', content_tag(:option, 'Послуга')+options_from_collection_for_select(Category.all, 'id', 'name')
+        .location
+          = select_tag 'location_id', content_tag(:option, 'Область')+options_from_collection_for_select(Location.all, 'id', 'name')
+        .date
+          %label Дата весілля
+          %input#datepicker{name: :date, type: 'text'}
+        = submit_tag 'ШУКАТИ'
+        .clearfix
+
+  .row
+    .col-lg-12.line-header
+      %header Або оберіть категорію
+      .line
+  .row
+    - Category.all.each_with_index do |category, i|
+      .col-xs-4.col-sm-4.col-md-3.col-lg-3
+        = link_to category do
+          = image_tag(category.logo(:thumb), { class: :'img-responsive', alt: category.name })
+          %div= category.name
+      - if (i+1)%4 == 0
+        .clearfix.visible-lg
+      - elsif (i+1)%4 == 0
+        .clearfix.visible-md
+      - elsif (i+1)%3 == 0
+        .clearfix.visible-xs.visible-sm

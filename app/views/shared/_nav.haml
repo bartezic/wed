@@ -1,93 +1,94 @@
-%header#header
-  %header#topNav
-    / supported classes: translucent = translucent topNav , bordered = translucent border .  Example:  class="translucent bordered"
-    .container
+%header.navbar.navbar-default.navbar-static-top{:role => "navigation"}
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => "#navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
       / Logo
       = link_to root_path, class: :logo do 
         %img{alt: "", height: "60", src: "/assets/logo.png"}/
         %span Місто весільних професіоналів
-      / Mobile Menu Button
-      %button.btn.btn-mobile{"data-target" => ".nav-main-collapse", "data-toggle" => "collapse"}
-        %i.fa.fa-bars
-      / Top Nav
-      .navbar-collapse.nav-main-collapse.collapse
-        %nav.nav-main
-          %ul#topMain.nav.nav-pills.nav-main.white
-            - if part == :app
-              %li.dropdown.mega-menu{class: request.path.include?('posluhy') && 'active'}
-                = link_to partners_path, class: 'dropdown-toggle' do
-                  = t('nav.partners')
-                  %b.caret
-                %ul.dropdown-menu
-                  %li
-                    .row
-                      .col-md-3
-                        %h3 За категоріями
-                        %ul
-                          - Category.all.each do |category|
-                            %li{class: request.path == category_path(category) && 'active'}
-                              = link_to category do
-                                %i.fa.fa-angle-right
-                                = category.name
-                      .col-md-3
-                        %h3 За категоріями
-                        %ul
-                          - Category.all.each do |category|
-                            %li{class: request.path == category_path(category) && 'active'}
-                              = link_to category do
-                                %i.fa.fa-angle-right
-                                = category.name
-                      .col-md-3
-                        %h3 За категоріями
-                        %ul
-                          - Category.all.each do |category|
-                            %li{class: request.path == category_path(category) && 'active'}
-                              = link_to category do
-                                %i.fa.fa-angle-right
-                                = category.name
-                      .col-md-3
-                        %h3 За категоріями
-                        %ul
-                          - Category.all.each do |category|
-                            %li{class: request.path == category_path(category) && 'active'}
-                              = link_to category do
-                                %i.fa.fa-angle-right
-                                = category.name
-            - if part == :admin
-              %li.dropdown
-                %a.dropdown-toggle{href: "#"}
-                  Компоненти
-                  %b.caret
-                %ul.dropdown-menu
-                  %li{class: request.path == admin_managers_path && 'active'}
-                    %a{href: admin_managers_path}= t 'admin.menu.admins'
-                  %li{class: request.path == admin_partners_path && 'active'}
-                    %a{href: admin_partners_path}= t 'admin.menu.partners' 
-                  %li{class: request.path == admin_categories_path && 'active'}
-                    %a{href: admin_categories_path}= t 'admin.menu.categories'
-                  %li{class: request.path == admin_locations_path && 'active'}
-                    %a{href: admin_locations_path}= t 'admin.menu.locations'
-                  %li{class: request.path == admin_galleries_path && 'active'}
-                    %a{href: admin_galleries_path}= t 'admin.menu.galleries'
-                  %li{class: request.path == admin_photos_path && 'active'}
-                    %a{href: admin_photos_path}= t 'admin.menu.photos'
-                  %li{class: request.path == admin_videos_path && 'active'}
-                    %a{href: admin_videos_path}= t 'admin.menu.videos'              
-                  %li{class: request.path == admin_slider_ads_path && 'active'}
-                    %a{href: admin_slider_ads_path}= t 'admin.menu.slider'
-            - if user_signed_in?
-              %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                  = current_user.email 
-                  %b.caret
-                %ul.dropdown-menu
-                  - if part == :app
-                    - if current_user.is_manager?
-                      %li= link_to t('nav.admin'), admin_root_path
-                    - elsif current_user.is_partner?
-                      %li= link_to t('nav.cabinet'), cabinet_profile_path(:general)
-                  - else
-                    %li= link_to 'На сайт', root_path
-                  %li= link_to t('nav.logout'), destroy_user_session_path, { method: :delete }
-            - else
-              %li{class: request.path.include?('users') && 'active'}= link_to t('nav.login'), new_user_session_path 
+    / Collect the nav links, forms, and other content for toggling
+    %nav#navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right.white
+        - if part == :app
+          %li.dropdown.mega-menu{class: request.path.include?('posluhy') && 'active'}
+            = link_to categories_path, class: 'dropdown-toggle' do
+              = t('nav.partners')
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                .row
+                  .col-md-3
+                    %h3 За категоріями
+                    %ul
+                      - Category.all.each do |category|
+                        %li{class: request.path == category_path(category) && 'active'}
+                          = link_to category do
+                            %i.fa.fa-angle-right
+                            = category.name
+                  .col-md-3
+                    %h3 За категоріями
+                    %ul
+                      - Category.all.each do |category|
+                        %li{class: request.path == category_path(category) && 'active'}
+                          = link_to category do
+                            %i.fa.fa-angle-right
+                            = category.name
+                  .col-md-3
+                    %h3 За категоріями
+                    %ul
+                      - Category.all.each do |category|
+                        %li{class: request.path == category_path(category) && 'active'}
+                          = link_to category do
+                            %i.fa.fa-angle-right
+                            = category.name
+                  .col-md-3
+                    %h3 За категоріями
+                    %ul
+                      - Category.all.each do |category|
+                        %li{class: request.path == category_path(category) && 'active'}
+                          = link_to category do
+                            %i.fa.fa-angle-right
+                            = category.name
+        - if part == :admin
+          %li.dropdown
+            %a.dropdown-toggle{href: "#"}
+              Компоненти
+              %b.caret
+            %ul.dropdown-menu
+              %li{class: request.path == admin_managers_path && 'active'}
+                %a{href: admin_managers_path}= t 'admin.menu.admins'
+              %li{class: request.path == admin_partners_path && 'active'}
+                %a{href: admin_partners_path}= t 'admin.menu.partners' 
+              %li{class: request.path == admin_categories_path && 'active'}
+                %a{href: admin_categories_path}= t 'admin.menu.categories'
+              %li{class: request.path == admin_locations_path && 'active'}
+                %a{href: admin_locations_path}= t 'admin.menu.locations'
+              %li{class: request.path == admin_galleries_path && 'active'}
+                %a{href: admin_galleries_path}= t 'admin.menu.galleries'
+              %li{class: request.path == admin_photos_path && 'active'}
+                %a{href: admin_photos_path}= t 'admin.menu.photos'
+              %li{class: request.path == admin_videos_path && 'active'}
+                %a{href: admin_videos_path}= t 'admin.menu.videos'              
+              %li{class: request.path == admin_slider_ads_path && 'active'}
+                %a{href: admin_slider_ads_path}= t 'admin.menu.slider'
+        - if user_signed_in?
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+              = current_user.email 
+              %b.caret
+            %ul.dropdown-menu
+              - if part == :app
+                - if current_user.is_manager?
+                  %li= link_to t('nav.admin'), admin_root_path
+                - elsif current_user.is_partner?
+                  %li= link_to t('nav.cabinet'), cabinet_profile_path(:general)
+              - else
+                %li= link_to 'На сайт', root_path
+              %li= link_to t('nav.logout'), destroy_user_session_path, { method: :delete }
+        - else
+          %li{class: request.path.include?('users') && 'active'}= link_to t('nav.login'), new_user_session_path 

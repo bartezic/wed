@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
       :thumb_100 => "-interlace Plane",
       :thumb_220 => "-interlace Plane"
     },
-    :default_url => "/assets/ph/:attachment_:style.gif", 
+    :default_url => "ph/:attachment_:style.gif", 
     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
     :url => "/system/:attachment/:id/:style/:filename"
 

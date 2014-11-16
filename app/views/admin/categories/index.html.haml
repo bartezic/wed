@@ -6,6 +6,7 @@
       %th Id
       %th Name
       %th Name sing
+      %th Logo
       %th Actions
 
     - @categories.each do |category|
@@ -13,6 +14,7 @@
         %td= category.id
         %td= category.name
         %td= category.name_sing
+        %td= image_tag category.logo(:thumb)
         %td
           = link_to 'Show', [:admin, category]
           = link_to 'Edit', edit_admin_category_path(category)
