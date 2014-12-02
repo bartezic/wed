@@ -10,6 +10,7 @@
   %body.cabinet{ data: { user: @partner.slug || @partner.id } }
     #wrap
       = render 'shared/nav', part: :cabinet
+      .push20
       = render 'shared/flash'
       = yield
     = render 'shared/footer'

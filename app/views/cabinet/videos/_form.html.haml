@@ -1,6 +1,5 @@
 .edit-form
   = simple_form_for([:cabinet, video]) do |f|
     = f.error_notification
-    = f.input :link,              input_html: { class: 'form-control' }
-
-    = f.button :submit, class: 'btn btn-default'
+    = f.input :link, input_html: { class: 'form-control' }, label: 'Посилання на відео(підтримується: youtube,vimeo)'
+    = f.button :submit, class: 'btn btn-default', value: 'Додати відео'

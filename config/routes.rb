@@ -31,7 +31,6 @@ Rails.application.routes.draw do
     resources :videos
     resources :galleries
     root 'static#home'
-    get 'empty' => 'static#empty'
     get 'about_us' => 'static#about_us'
   end
   

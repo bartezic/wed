@@ -3,7 +3,7 @@ class Video < ActiveRecord::Base
 
   after_create do |video|
     partner = video.partner
-    partner.update unless partner.active?
+    partner.save unless partner.active?
   end
 
   def external_link

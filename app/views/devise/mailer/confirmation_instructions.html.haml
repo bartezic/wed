@@ -1,4 +1,7 @@
 %p
-  Welcome #{@email}!
-%p You can confirm your account email through the link below:
-%p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+  Вітаємо #{@email}!
+%p
+  Будь ласка підтвердіть ваш email перейшовши за
+  %span= link_to 'цим', confirmation_url(@resource, confirmation_token: @token)
+  посиланням
+%p Дякуємо, що ви з нами. Попереду багато цікавого!

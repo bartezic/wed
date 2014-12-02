@@ -39,8 +39,11 @@
           .rcalendar{ data: { cabinet: 'false', days: @partner.days.map(&:day_of_life).to_json } }
         #contacts.fade.tab-pane
           %dl.partner
-            %dt Ціна
-            %dd= "Від #{@partner.price} $"
+            %dt Ціни на послуги
+            %dd
+              %ul
+                - @partner.categories.each do |category|
+                  %li= "#{category.name_sing} від $#{@partner.price_for(category)}"
 
             - if @partner.categories.any?
               %dt Категорія
@@ -54,27 +57,17 @@
               %dt Працює
               %dd= raw @partner.locations.map{ |e| e.name }.join(', ')
 
-            %dt Сайт
-            %dd= @partner.site
+            - if @partner.site
+              %dt Сайт
+              %dd= @partner.site
 
-            %dt Email
-            %dd= @partner.user.email
+            - if @partner.user.email
+              %dt Email
+              %dd= @partner.user.email
             
-            %dt Телефон
-            %dd= @partner.phone
-
-            %dt Активний
-            %dd= @partner.active
-            
-            %dt Рейтинг
-            %dd= @partner.rating
-            
-            %dt Преміум
-            %dd= @partner.premium
-
-            - if @partner.premium
-              %dt Преміум до
-              %dd= @partner.premium_to
+            - if @partner.phone
+              %dt Телефон
+              %dd= @partner.phone
 
 
 

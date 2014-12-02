@@ -125,7 +125,9 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
     float: right;
   }
 
-
+  .push20 {
+    height: 20px;
+  }
 
   section.profile {
     @include box-shadow(0 3px 20px 0 rgba(0,0,0, 0.06));

@@ -15,45 +15,16 @@
     %nav#navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right.white
         - if part == :app
-          %li.dropdown.mega-menu{class: request.path.include?('posluhy') && 'active'}
+          %li.dropdown{class: request.path.include?('posluhy') && 'active'}
             = link_to categories_path, class: 'dropdown-toggle' do
               = t('nav.partners')
               %b.caret
             %ul.dropdown-menu
-              %li
-                .row
-                  .col-md-3
-                    %h3 За категоріями
-                    %ul
-                      - Category.all.each do |category|
-                        %li{class: request.path == category_path(category) && 'active'}
-                          = link_to category do
-                            %i.fa.fa-angle-right
-                            = category.name
-                  .col-md-3
-                    %h3 За категоріями
-                    %ul
-                      - Category.all.each do |category|
-                        %li{class: request.path == category_path(category) && 'active'}
-                          = link_to category do
-                            %i.fa.fa-angle-right
-                            = category.name
-                  .col-md-3
-                    %h3 За категоріями
-                    %ul
-                      - Category.all.each do |category|
-                        %li{class: request.path == category_path(category) && 'active'}
-                          = link_to category do
-                            %i.fa.fa-angle-right
-                            = category.name
-                  .col-md-3
-                    %h3 За категоріями
-                    %ul
-                      - Category.all.each do |category|
-                        %li{class: request.path == category_path(category) && 'active'}
-                          = link_to category do
-                            %i.fa.fa-angle-right
-                            = category.name
+              - Category.all.each do |category|
+                %li{class: request.path == category_path(category) && 'active'}
+                  = link_to category do
+                    %i.fa.fa-angle-right
+                    = category.name
         - if part == :admin
           %li.dropdown
             %a.dropdown-toggle{href: "#"}

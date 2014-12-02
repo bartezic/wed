@@ -47,6 +47,10 @@ class Partner < ActiveRecord::Base
     end
     partners_ids || []
   end
+
+  def price_for(category)
+    involvings.where(category_id: category.id).first.price
+  end
   
   def normalize_friendly_id(input)
     input.to_s.to_slug.normalize(transliterations: :ukrainian).to_s

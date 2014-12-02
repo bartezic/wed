@@ -1,17 +1,22 @@
 .app {
   .categories {
-    margin-bottom: 20px;
     .search-form {
       text-align: center;
       &> div:not(.clearfix) {
         text-align: left;
         display: inline-block;
         margin-right: 5px;
-        padding: 0 3px;
+        padding: 10px 15px;
         background-color: #d9edf6;
         border-radius: 3px;
         color: #2a8bb5; 
         cursor: pointer;
+        label {
+          font-size: 20px;
+          &:after {
+            top: 10px;
+          }
+        }
         .caret {
           margin: 0;
         }
@@ -25,7 +30,7 @@
         background-color: transparent;
         border: 0;
         margin: 0; 
-        font-size: 14px;
+        font-size: 20px;
         font-weight: bold;
         color: #2a8bb5;
         outline: none;
@@ -62,6 +67,21 @@
           margin: 0;
           padding: 0;
         }
+      }
+    }
+    .category-item {
+      margin-bottom: 20px;
+      a, a:hover {
+        color: #000;
+        text-shadow: none;
+        text-decoration: none;
+        font-family: 'Open Sans';
+        font-weight: 300;
+        font-size: 17px;
+      }
+      div {
+        background: #d9edf6;
+        padding: 10px 20px;
       }
     }
   }

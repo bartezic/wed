@@ -20,7 +20,7 @@ class Photo < ActiveRecord::Base
   before_validation :change_file_name
   after_create do |photo|
     partner = photo.gallery.partner
-    partner.update unless partner.active?
+    partner.save unless partner.active?
   end
 
   include Rails.application.routes.url_helpers

@@ -2,6 +2,8 @@ class Category < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  default_scope { order('id ASC') }
+
   has_many :involvings
   has_many :partners, through: :involvings
 
