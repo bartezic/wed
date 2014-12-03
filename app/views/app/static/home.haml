@@ -89,5 +89,5 @@
         = image_tag(partner.user.avatar(:thumb_100), { alt: partner.name })
         .content
           .title= partner.name
-          .subtitle= partner.categories.map(&:name_sing).join(',')
+          .subtitle= partner.categories.map(&:name_sing).join(', ')
     .clearfix

@@ -1,16 +1,19 @@
 .row
-  - @partners.each_with_index do |partner, i|
-    .col-xs-4.col-sm-4.col-md-3.col-lg-2
-      = link_to partner do
-        = image_tag(partner.user.avatar(:thumb_220), { class: :'img-circle img-responsive', alt: partner.name })
-        %div= partner.name
-        %div= raw "від $<b>#{partner.price_for(@category)}</b>"
-    - if (i+1)%6 == 0
-      .clearfix.visible-lg
-    - elsif (i+1)%4 == 0
-      .clearfix.visible-md
-    - elsif (i+1)%3 == 0
-      .clearfix.visible-xs.visible-sm
+  - if @partners.any?
+    - @partners.each_with_index do |partner, i|
+      .col-xs-4.col-sm-4.col-md-3.col-lg-2
+        = link_to partner do
+          = image_tag(partner.user.avatar(:thumb_220), { class: :'img-circle img-responsive', alt: partner.name })
+          %div= partner.name
+          %div= raw "від $<b>#{partner.price_for(@category)}</b>"
+      - if (i+1)%6 == 0
+        .clearfix.visible-lg
+      - elsif (i+1)%4 == 0
+        .clearfix.visible-md
+      - elsif (i+1)%3 == 0
+        .clearfix.visible-xs.visible-sm
+  - else
+    .col-lg-12.text-center Нажаль, на даний час, професіонали в даній категорії відсутні.
 .row
   .col-lg-12.text-center
     = paginate @partners, remote: true

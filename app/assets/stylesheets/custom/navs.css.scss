@@ -10,6 +10,18 @@ header.navbar {
     img {
       display: inline-block;
       vertical-align: top;
+      border-radius: 50px;
+      /* Mozilla Firefox */ 
+      background-image: -moz-linear-gradient(bottom, #F8C400 0%, #F8C400 50%, #007CC3 50%, #007CC3 100%);
+
+      /* Opera */ 
+      background-image: -o-linear-gradient(bottom, #F8C400 0%, #F8C400 50%, #007CC3 50%, #007CC3 100%);
+
+      /* Webkit (Safari/Chrome 10) */ 
+      background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #F8C400), color-stop(0.5, #F8C400), color-stop(0.5, #007CC3), color-stop(1, #007CC3));
+
+      /* Webkit (Chrome 11+) */ 
+      background-image: -webkit-linear-gradient(bottom, #F8C400 0%, #F8C400 50%, #007CC3 50%, #007CC3 100%);
     }
     span {
       display: inline-block;
@@ -21,6 +33,13 @@ header.navbar {
       line-height: 20px;
       font-style: italic;
       margin-top: 10px;
+    }
+    .beta {
+      position: absolute;
+      top: -10px;
+      left: 66px;
+      font-weight: bold;
+      font-size: 12px;
     }
   }
   .nav-pills>li>a, 
