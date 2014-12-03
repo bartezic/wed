@@ -19,6 +19,8 @@
             %a{"data-toggle" => "tab", href: "#calendar"} Календар
           %li
             %a{"data-toggle" => "tab", href: "#contacts"} Контакти
+          %li
+            %a{'data-toggle' => 'tab', href: '#comments'} Відгуки клієнтів
       .tab-content
         #info.tab-pane.fade.in.active=raw @partner.info
         #portfolio.fade.tab-pane
@@ -68,6 +70,28 @@
             - if @partner.phone
               %dt Телефон
               %dd= @partner.phone
+        #comments.fade.tab-pane
+          #disqus_thread
+          %noscript
+            Please enable JavaScript to view the 
+            %a{href: "http://disqus.com/?ref_noscript"} comments powered by Disqus
+          
+          - content_for :scripts do
+            :javascript
+              /* * * CONFIGURATION VARIABLES: THIS CODE IS ONLY AN EXAMPLE * * */
+     
+              var disqus_shortname = "wedcitypro#{'dev' if Rails.env.development?}";
+              var disqus_identifier = "#{@partner.slug}"
+              var disqus_title = "#{@partner.name} - #{@partner.categories.map(&:name_sing).join(', ')}";
+              /*var disqus_url = "#{url_for @partner}";*/
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+
 
 
 
