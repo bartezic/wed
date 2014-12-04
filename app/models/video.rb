@@ -26,7 +26,7 @@ class Video < ActiveRecord::Base
 
     def get_id
       @get_id ||= if link.include? 'youtube'
-        link.split('&').first.split('=').last
+        link.split(/&|#/).first.split('=').last
       elsif link.include? 'youtu.be'
         link.split('&').first.split('/').last
       elsif link.include? 'vimeo'
@@ -61,7 +61,8 @@ class Video < ActiveRecord::Base
       elsif link.include? 'vimeo'
         {
           small: :thumbnail_small,
-          medium: :thumbnail_medium,
+          medium: :thumbnail_large,
+          # medium: :thumbnail_medium,
           large: :thumbnail_large,
           big: :thumbnail_large
         }
@@ -70,11 +71,9 @@ class Video < ActiveRecord::Base
 
     def get_info
       @get_info ||= if link.include? 'youtu'
-        puts 'get_info'
         res = RestClient.get("https://gdata.youtube.com/feeds/api/videos/#{get_id}?v=2&alt=jsonc")
         JSON.parse(res)['data']
       elsif link.include? 'vimeo'
-        puts 'get_info'
         res = RestClient.get("http://vimeo.com/api/v2/video/#{get_id}.json")
         JSON.parse(res).first
       end

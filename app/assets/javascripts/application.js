@@ -21,6 +21,7 @@
 //= require external/custom-select-menu.jquery
 //= require external/revolution-slider/jquery.themepunch.plugins.min
 //= require external/revolution-slider/jquery.themepunch.revolution.min
+//= require external/photobox
 
 //= /require epona/scripts
 //= require epona/revolution_slider
@@ -71,10 +72,10 @@ function ready () {
   // $('.search-form .location').on('click', function(e) {
   //   $('.locationpicker ul').toggleClass('hidden');
   // });
-  // var galleries = $('.gallery');
-  // if(galleries.length !== 0){
-  //   galleries.photobox('a');
-  // }
+  var galleries = $('.gallery');
+  if(galleries.length !== 0){
+    galleries.photobox('a');
+  }
   // $('#fileupload').fileupload({
   //   filesContainer: $('table.files'),
   //   uploadTemplateId: null,

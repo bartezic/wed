@@ -2,7 +2,7 @@ class Partner < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  paginates_per 36
+  paginates_per 24
 
   belongs_to :location
   has_one :user, as: :rolable, dependent: :destroy

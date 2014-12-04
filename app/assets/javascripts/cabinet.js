@@ -5,6 +5,7 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require cocoon
+//= require external/photobox
 
 //= require custom/utils
 //= require custom/locale
@@ -80,6 +81,20 @@ window.WedCity.cabinet = {
   
   },
 
+  initVideosGallery: function() {
+    var galleries = $('.videos');
+    if(galleries.length !== 0){
+      galleries.photobox('.video > a');
+    }
+  },
+
+  initPhotosGallery: function() {
+    var galleries = $('.photos');
+    if(galleries.length !== 0){
+      galleries.photobox('.photo > a');
+    }
+  },
+
   init: function(){
     var self = this;
 
@@ -94,6 +109,8 @@ window.WedCity.cabinet = {
     };
     
     this.initHandlers();
+    this.initVideosGallery();
+    this.initPhotosGallery();
   }
 };
 

@@ -75,4 +75,5 @@ group :development, :test do
   gem 'factory_girl'
   gem 'simplecov', require: false
   gem 'letter_opener'
+  gem 'railroady'
 end

@@ -382,6 +382,10 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
             margin: 0px;
             width: auto;
           }
+
+          label small {
+            font-weight: normal;
+          }
         }
 
         &.avatar-setting {
@@ -413,6 +417,21 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
             > span {
               vertical-align: middle;
             }
+          }
+        }
+      }
+
+      form {
+        .input {
+          &:not(.partner_name):not(.partner_user_email):not(.partner_callendar):not(.partner_user_current_password):not(.gallery_name):not(.video_link){
+            margin-top: 25px;
+            border-top: 1px solid #8EE8FF;
+            padding-top: 20px;
+          }
+        }
+        label {
+          small {
+            font-weight: normal;
           }
         }
       }
@@ -467,6 +486,7 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
             width: 100%;
             padding: 5px;
             font-size: 13px;
+            line-height: 15px;
             position: absolute;
             bottom: 0;
             background: rgba(0, 0, 0, 0.6);
@@ -552,6 +572,7 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
               width: 100%;
               padding: 5px;
               font-size: 13px;
+              line-height: 15px;
               position: absolute;
               bottom: 0;
               background: rgba(0, 0, 0, 0.6);

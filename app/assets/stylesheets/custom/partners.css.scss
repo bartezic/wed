@@ -100,6 +100,11 @@
           .subtitle {
             font-size: 20px;
             font-style: italic;
+            color: white;
+            a {
+              color: white;
+              text-decoration: none;
+            }
           }
         }
         .nav-tabs {
@@ -118,6 +123,93 @@
             font-weight: bold; 
             &:hover, &:focus {
               background-color: #2a8bb5;
+            }
+          }
+        }
+      }
+      .tab-content {
+        h3 {
+          line-height: 40px;
+          border-bottom: 1px solid #8EE8FF;
+          margin: 0;
+        }
+        .gallery {
+          position: relative;
+          .video-wrap {
+            float: left;
+            width: 25%;
+            padding: 5px;
+            max-height: 155px;
+            overflow: hidden;
+            .video {
+              position: relative;
+              a {
+                display: block;
+                overflow: hidden;
+                img {
+                  vertical-align: middle;
+                  overflow: hidden;
+                }
+              }
+              .info {
+                width: 100%;
+                padding: 5px;
+                font-size: 13px;
+                line-height: 15px;
+                position: absolute;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.6);
+                color: white;
+                .top{
+                  font-weight: bold;
+                  .name {
+                    float: left;
+                    width: 90%;
+                  }
+                  .size {
+                    text-align: right;
+                    float: right;
+                    width: 10%;
+                  }
+                }
+                .bottom {
+                  opacity: 0;
+                  max-height: 0;
+                  transition: 500ms;
+                  -webkit-transition: 500ms;
+                }
+                &:hover {
+                  .bottom {
+                    border-top: 1px solid #5FBED0;
+                    opacity: 1;
+                    overflow: auto;
+                    max-height: 104px;
+                  }
+                }
+              }
+            }
+          }
+          &:not(:first-child) {
+            margin-top: 10px;
+          }
+          .header {
+            font-weight: 300;
+            font-family: 'Open Sans', Arial, sans-serif !important;
+            text-align: right;
+            .title {
+              font-size: 18px;
+            }
+            .subtitle {
+              font-size: 13px;
+            }
+          }
+          .photos {
+            border-left: 1px solid #8EE8FF;
+            position: relative;
+            .photo {
+              float: left;
+              width: 16.6666666667%;
+              padding: 3px;
             }
           }
         }

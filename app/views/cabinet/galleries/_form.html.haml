@@ -4,5 +4,5 @@
     
     = f.input :name,        input_html: { class: 'form-control' }, label: 'Назва галереї'
     = f.input :description, input_html: { class: 'form-control' }, label: 'Опис галереї', as: :text
-    
-    = f.button :submit, class: 'btn btn-default'
+    .input
+    = f.button :submit, class: 'btn btn-default', value: 'Додати галерею'

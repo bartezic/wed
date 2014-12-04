@@ -5,71 +5,91 @@
         .row
           .col-lg-5.name
             .title= @partner.name
-            .subtitle= @partner.categories.map(&:name_sing).join(', ')
+            .subtitle= raw @partner.categories.map{ |e| link_to(e.name_sing, e) }.join(', ')
           .col-lg-2.text-center.avatar
             = image_tag @partner.user.avatar(:thumb_220), class: 'img-circle'
           .col-lg-5.description
-            = raw @partner.description
+            = simple_format @partner.description
         %ul.nav.nav-tabs
           %li.active
-            %a{"data-toggle" => "tab", href: "#info"} Інформація
+            %a{"data-toggle" => "tab", href: "#info"} Інформація та контакти
           %li
-            %a{"data-toggle" => "tab", href: "#portfolio"} Портфоліо
+            %a{"data-toggle" => "tab", href: "#photo-portfolio"} Фото портфоліо
           %li
-            %a{"data-toggle" => "tab", href: "#calendar"} Календар
-          %li
-            %a{"data-toggle" => "tab", href: "#contacts"} Контакти
+            %a{"data-toggle" => "tab", href: "#video-portfolio"} Відео портфоліо
+          - if @partner.callendar
+            %li
+              %a{"data-toggle" => "tab", href: "#calendar"} Календар зайнятості
           %li
             %a{'data-toggle' => 'tab', href: '#comments'} Відгуки клієнтів
       .tab-content
-        #info.tab-pane.fade.in.active=raw @partner.info
-        #portfolio.fade.tab-pane
-          %dl.partner
-            %dt Галареї
-            %dd  
-              - @partner.galleries.each do |gallery|
-                %div= gallery.name
-                %div.gallery
+        #info.tab-pane.fade.in.active
+          .row
+            .col-lg-6
+              %dl.partner.dl-horizontal
+                - if @partner.categories.any?
+                  %dt Категорії:
+                  %dd= raw @partner.categories.map{ |e| link_to(e.name, e) }.join('<br>')
+                %dt Ціни:
+                %dd
+                  - @partner.categories.each do |category|
+                    = "#{category.name_sing} від $#{@partner.price_for(category)}"
+                    %br
+                
+                - if @partner.location 
+                  %dt Проживає/офіс:
+                  %dd= @partner.location.name
+                
+                - if @partner.locations.any?
+                  %dt Працює в:
+                  %dd= raw @partner.locations.map{ |e| e.name }.join('<br>')
+
+                - if @partner.site
+                  %dt Сайт:
+                  %dd= @partner.site
+
+                - if @partner.user.email
+                  %dt Email:
+                  %dd= @partner.user.email
+                
+                - if @partner.phone
+                  %dt Телефон:
+                  %dd= @partner.phone
+            .col-lg-6= simple_format @partner.info
+        #video-portfolio.fade.tab-pane
+          - if @partner.videos.any?
+            .row.gallery
+              .col-lg-12
+                - @partner.videos.each do |video|
+                  - if video.link
+                    .video-wrap
+                      .video
+                        = link_to image_tag(video.cover, { class: 'img-responsive' }), video.external_link, {rel: 'video'}
+                        .info
+                          .top
+                            .name= video.title
+                            .size= video.rating
+                            .clearfix
+                          - unless video.description.strip.empty?
+                            .bottom= raw video.description
+          - else
+            .text-center= raw "Нажаль, <b>#{@partner.name}</b>, поки не завантажив жодного відео."
+        #photo-portfolio.fade.tab-pane
+          - if @partner.galleries.any?
+            %h3.text-center Галареї фотографій
+            - @partner.galleries.each do |gallery|
+              .row.gallery
+                .col-lg-2.header
+                  .title= gallery.name
+                  .subtitle= gallery.description 
+                .col-lg-10.photos
                   - gallery.photos.each do |photo|
-                    = link_to image_tag(photo.asset(:thumb_150)), photo.asset(:original)
-            %dt Відео
-            %dd.gallery
-              - @partner.videos.each do |video|
-                - if video.link
-                  %span.video= link_to image_tag(video.cover), video.external_link, {rel: 'video'}
-        #calendar.fade.tab-pane
-          .rcalendar{ data: { cabinet: 'false', days: @partner.days.map(&:day_of_life).to_json } }
-        #contacts.fade.tab-pane
-          %dl.partner
-            %dt Ціни на послуги
-            %dd
-              %ul
-                - @partner.categories.each do |category|
-                  %li= "#{category.name_sing} від $#{@partner.price_for(category)}"
-
-            - if @partner.categories.any?
-              %dt Категорія
-              %dd= raw @partner.categories.map{ |e| link_to(e.name, e) }.join(', ')
-            
-            - if @partner.location 
-              %dt Живе
-              %dd= link_to @partner.location.name, @partner.location
-            
-            - if @partner.locations.any?
-              %dt Працює
-              %dd= raw @partner.locations.map{ |e| e.name }.join(', ')
-
-            - if @partner.site
-              %dt Сайт
-              %dd= @partner.site
-
-            - if @partner.user.email
-              %dt Email
-              %dd= @partner.user.email
-            
-            - if @partner.phone
-              %dt Телефон
-              %dd= @partner.phone
+                    .photo= link_to image_tag(photo.asset(:thumb_150), { class: 'img-responsive' }), photo.asset(:original)
+          - else
+            .text-center= raw "Нажаль, <b>#{@partner.name}</b>, поки не завантажив жодної фотографії."
+        - if @partner.callendar
+          #calendar.fade.tab-pane
+            .rcalendar{ data: { cabinet: 'false', days: @partner.days.map(&:day_of_life).to_json } }
         #comments.fade.tab-pane
           #disqus_thread
           %noscript

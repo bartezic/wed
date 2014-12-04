@@ -58,3 +58,10 @@ code {
 .push-30 {
   height: 30px;
 }
+#pbOverlay {
+  #pbCloseBtn, #pbAutoplayBtn, *, *:before, *:after {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;      
+  }
+} 

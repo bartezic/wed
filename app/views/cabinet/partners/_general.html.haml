@@ -2,18 +2,18 @@
   = f.error_notification
 
   = f.input :name,            input_html: { class: 'form-control' }, label: 'Ваше повне ім\'я'
-  = f.input :description,     input_html: { class: 'form-control' }, label: 'Короткий опис вашої роботи', as: :text
-  = f.input :info,            input_html: { class: 'form-control' }, label: 'Детальний опис вашої роботи' , as: :text
-  .block
-  %h4
-    Категорії роботи
-    %small
-      %i (виберіть кілька та вкажіть мінімальну ціну в доларах)
-  #involvings
-    = f.simple_fields_for :involvings do |involving|
-      = render 'cabinet/partners/involving_fields', f: involving
-    .links
-      = link_to_add_association 'Додати', f, :involvings
+  .input
+    %label
+      Категорії роботи
+      %small
+        %i (виберіть кілька та вкажіть мінімальну ціну в доларах)
+    #involvings
+      = f.simple_fields_for :involvings do |involving|
+        = render 'cabinet/partners/involving_fields', f: involving
+      .links
+        = link_to_add_association 'Додати', f, :involvings
+  = f.input :description,     input_html: { class: 'form-control', rows: 3 }, label: 'Короткий опис вашої роботи', as: :text
+  = f.input :info,            input_html: { class: 'form-control', rows: 10 }, label: 'Детальний опис вашої роботи' , as: :text
   = f.association :locations, input_html: { class: 'form-control' }, label: 'Виберіть області в яких працюєте'
-
+  .input
   = f.button :submit, class: 'btn btn-default', value: 'Зберегти зміни'
