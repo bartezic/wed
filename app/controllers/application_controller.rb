@@ -13,10 +13,25 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_partner
+    current_user.rolable
+  end
+
+  def current_manager
+    current_user.rolable
+  end
+
+  def authenticate_partner!
+    redirect_to root_path unless current_partner.is_a?(Partner)
+  end
+
+  def authenticate_manager!
+    redirect_to root_path unless current_manager.is_a?(Manager)
+  end
+
   protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit! }
   end
-
 end

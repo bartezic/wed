@@ -208,7 +208,7 @@ window.WedCity.calendar = {
         if(!btn.hasClass('wait')){
           btn.addClass('wait');
           $.ajax({
-            url: '/cabinet/partners/'+$('body').data('user')+'/days',
+            url: '/cabinet/partners/days',
             method: 'POST',
             dataType: 'JSON',
             data: {
