@@ -1,9 +1,6 @@
 module Cabinet
   class PartnersController < BaseController
-    before_action :set_partner, only: [:show, :edit, :update, :days]
-
-    def show
-    end
+    before_action :set_partner, only: [:edit, :update, :days]
 
     def edit
       @section = params[:section].try(:to_sym) || :general

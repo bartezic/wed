@@ -1,26 +1,6 @@
 module Cabinet
   class GalleriesController < BaseController
-    before_action :set_gallery, only: [:show, :edit, :update, :destroy]
-
-    # GET /galleries
-    # GET /galleries.json
-    def index
-      @galleries = current_partner.galleries.page(params[:page]).per(25)
-    end
-
-    # GET /galleries/1
-    # GET /galleries/1.json
-    def show
-    end
-
-    # GET /galleries/new
-    def new
-      @gallery = Gallery.new
-    end
-
-    # GET /galleries/1/edit
-    def edit
-    end
+    before_action :set_gallery, only: [:update, :destroy]
 
     # POST /galleries
     # POST /galleries.json

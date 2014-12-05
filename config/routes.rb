@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
   namespace :cabinet do
-    resources :partners, only: [:show, :edit, :update] do
-      post 'days', on: :member
+    resources :partners, only: [:edit, :update] do
+      post 'days', on: :collection
     end
-    resources :photos
-    resources :videos
-    resources :galleries
+    resources :photos, only: [:create, :destroy]
+    resources :videos, only: [:create, :destroy]
+    resources :galleries, only: [:create, :update, :destroy]
     get 'profile/:section' => 'partners#edit',   as: :profile
-    # put 'profile/:section' => 'partners#update', as: :update_profile
     root 'partners#edit'
   end
 
