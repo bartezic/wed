@@ -41,6 +41,8 @@ end
 # Use unicorn as the app server
 # gem 'unicorn'
 
+gem 'passenger'
+
 # Use Capistrano for deployment
 gem 'capistrano', '~> 3.3.0'
 gem 'capistrano-passenger'
