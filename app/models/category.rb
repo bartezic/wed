@@ -9,7 +9,11 @@ class Category < ActiveRecord::Base
 
   has_attached_file :logo,
     styles: {
-      thumb: '265x135#'
+      thumb: {
+        geometry: '265x135#',
+        quality: 100,
+        format: 'JPG'
+      }
     },
     default_url: "/assets/ph/category_:attachment_:style.gif"
 
@@ -19,7 +23,7 @@ class Category < ActiveRecord::Base
   # before_save :change_file_name
 
   def upload_logo_from_remote_url
-    self.logo = open(logo_remote_url) if logo_remote_url.present?
+    self.logo = URI.parse(logo_remote_url) if logo_remote_url.present?
   rescue
   end
 
