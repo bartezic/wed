@@ -110,7 +110,7 @@ namespace :add do
 
   task regions: :environment do
     puts 'Add regions'
-    regions = [ ['Автономная Республика Крым',  'Автономна Республіка Крим'],
+    regions = [ ['Автономная Республика Крым',  'АР Крим'],
                 ['Винницкая область', 'Вінницька область'],
                 ['Волынская область', 'Волинська область'],
                 ['Днепропетровская область', 'Дніпропетровська область'],
@@ -137,7 +137,7 @@ namespace :add do
                 ['Черновицкая область', 'Чернівецька область']]
     regions.each do |obl|
       # I18n.locale = :uk
-      temp = Location.new(name: obl[1])
+      temp = Location.new(name: obl[1].gsub('область', '').strip)
       temp.save
 
       # I18n.locale = :ru
