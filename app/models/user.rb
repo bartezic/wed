@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
       :thumb_220 => ['220x220#', :jpg]
     },
     :convert_options => { 
-      :thumb_100 => "-interlace Plane",
-      :thumb_220 => "-interlace Plane"
+      :thumb_100 => "-interlace Plane -quality 100",
+      :thumb_220 => "-interlace Plane -quality 100"
     },
     :default_url => "ph/:attachment_:style.gif", 
     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
