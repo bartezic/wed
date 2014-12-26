@@ -14,21 +14,12 @@ class Category < ActiveRecord::Base
 
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
 
-  attr_reader :logo_remote_url
-  # before_validation :upload_logo_from_remote_url
+  before_validation :upload_logo_from_remote_url
   # before_save :change_file_name
 
-  # def upload_logo_from_remote_url
-  #   self.logo = URI.parse(logo_remote_url) if logo_remote_url.present?
-  # rescue
-  # end
-
-  def logo_remote_url=(url_value)
-    self.logo = URI.parse(url_value)
-    # Assuming url_value is http://example.com/photos/face.png
-    # avatar_file_name == "face.png"
-    # avatar_content_type == "image/png"
-    @logo_remote_url = url_value
+  def upload_logo_from_remote_url
+    self.logo = URI.parse(logo_remote_url) if logo_remote_url.present?
+  rescue
   end
 
   def normalize_friendly_id(input)
