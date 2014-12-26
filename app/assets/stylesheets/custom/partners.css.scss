@@ -1,6 +1,11 @@
 .app {
   .partners {
     &> .row {
+      .index {
+        img.img-circle {
+          border: 1px solid #ddd;
+        }
+      }
       &> aside {
         margin: 0;
         padding-left: 0; 

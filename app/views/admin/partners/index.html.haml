@@ -7,15 +7,13 @@
         %th Id
         %th Name
         %th Cover
+        %th Categories
         %th Description
         %th Info
-        %th Price
         %th Location
-        %th Site
-        %th Email
-        %th Phone
+        %th Contacts
         %th Active
-        %th Rating
+        %th %
         %th Actions
     %tbody
       - @partners.each do |partner|
@@ -23,15 +21,21 @@
           %td= partner.id
           %td= partner.name
           %td= image_tag(partner.user.avatar(:thumb_100)) if partner.user
+          %td= raw partner.categories.map{ |e| link_to(e.name_sing, e) }.join(', ')
           %td= partner.description && partner.description.truncate(30)
           %td= partner.info && partner.info.truncate(30)
-          %td= partner.price
           %td= partner.location.try(:name)
-          %td= partner.site
-          %td= partner.user.try(:email)
-          %td= partner.phone
+          %td
+            %b site:
+            = partner.site
+            %br
+            %b email:
+            = partner.user.try(:email)
+            %br
+            %b phone
+            = partner.phone
           %td= partner.active
-          %td= partner.rating
+          %td= partner.count_profile_filling
           %td
             = link_to 'Show', [:admin, partner]
             = link_to 'Edit', edit_admin_partner_path(partner)
