@@ -1,3 +1,9 @@
+- content_for :title do
+  #{@partner.name} - #{@partner.categories.map(&:name_sing).join(',')} на весілля в #{@partner.location.try(:name)} область
+- content_for :seo_description do
+
+- content_for :seo_keywords do
+
 .container.partner
   .row
     %section.col-lg-12

@@ -45,3 +45,10 @@ module Wed
     authentication: :plain
   }
 end
+
+Wed::Application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[ERROR #{Rails.env.to_s.upcase}] ",
+    :sender_address => %{"Notifier" <notifier@wedcity.pro>},
+    :exception_recipients => %w{bartezic@gmail.com}
+  }

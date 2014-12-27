@@ -66,6 +66,7 @@ gem 'babosa', git: 'https://github.com/bartezic/babosa.git'
 gem 'kaminari'
 gem 'bourbon' 
 gem 'cocoon'
+gem 'exception_notification'
 
 
 # For importing
