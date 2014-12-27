@@ -7,10 +7,13 @@ header.navbar {
     min-height:50px;
     float:left;
     z-index: 10;
+    text-decoration: none;
     img {
       display: inline-block;
       vertical-align: top;
       border-radius: 50px;
+      height: 80px;
+      position: absolute;
       /* Mozilla Firefox */ 
       background-image: -moz-linear-gradient(bottom, #F8C400 0%, #F8C400 50%, #007CC3 50%, #007CC3 100%);
 
@@ -26,20 +29,35 @@ header.navbar {
     span {
       display: inline-block;
       font-size: 20px;
-      max-width: 160px;
+      max-width: 250px;
       color: #fff;
       font-weight: 300;
       font-family: 'Open Sans', Arial, sans-serif !important;
       line-height: 20px;
       font-style: italic;
       margin-top: 10px;
+      text-decoration: none;
+    }
+    .slug {
+      opacity: 0;
+      padding-left: 85px;
+      -webkit-transition: opacity 1s ease-in-out;
+      -moz-transition: opacity 1s ease-in-out;
+      -ms-transition: opacity 1s ease-in-out;
+      -o-transition: opacity 1s ease-in-out;
+      transition: opacity 1s ease-in-out;
     }
     .beta {
       position: absolute;
       top: -10px;
-      left: 66px;
+      left: 85px;
       font-weight: bold;
       font-size: 12px;
+    }
+    &:hover {
+      .slug {
+        opacity: 1;
+      }
     }
   }
   .nav-pills>li>a, 
@@ -282,5 +300,31 @@ header.navbar {
     border:rgba(0,0,0,0.01) 1px solid;
     margin:10px 0;
   }
+}
 
+@media only screen and (max-width: 768px) {
+  header.navbar {
+    a.logo {
+      img {
+        height: 70px;
+      }
+      .slug {
+        padding-left: 75px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  header.navbar {
+    a.logo {
+      margin: 0;
+      img {
+        height: 60px;
+      }
+      .slug {
+        padding-left: 65px;
+      }
+    }
+  }
 }
