@@ -9,7 +9,6 @@
           %table
             %tr.ordering 
               %td Сортувати за:&nbsp;
-              /%td= select_tag 'order', options_for_select([['назвою', 'name ASC'], ['популярністю', 'rating ASC'],['датою (спочатку нові)', 'id DESC'],['датою (спочатку старі)', 'id ASC'], ['ціною (спочатку дешеві)', 'price ASC'],['ціною (спочатку дорогі)', 'price DESC']], order_by)
               %td= select_tag 'order', options_for_select([['датою (спочатку нові)', 'id DESC'],['датою (спочатку старі)', 'id ASC']], order_by)
             %tr.date 
               %td Дата весілля:
@@ -19,21 +18,6 @@
             %tr.location 
               %td Область:
               %td= select_tag 'location_id', content_tag(:option, 'оберіть область')+options_from_collection_for_select(Location.all, 'id', 'name', params[:location_id])
-          / .buttons
-          /   %button.reset.pull-right ОЧИСТИТИ
-          /   = submit_tag 'ШУКАТИ', class: 'pull-right'
-          /   .clearfix
-      / %section.tender
-      /   %article
-      /     %header
-      /       %h3 Створити заявку
-      /     %section
-      /       .date Дата весілля
-      /       .location Область
-      /       .service Послуга
-      /       .buttons
-      /         %button.pull-right СТВОРИТИ
-      /         .clearfix
     %section.col-lg-8.col-md-8.col-md-pull-4.col-lg-pull-4
       %h3.text-center= @category.name
       .index
