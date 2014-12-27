@@ -1,14 +1,9 @@
 - content_for :title do
   #{@category.name}(#{@category.name_sing}) на весілля
 
-
 .container.partners
   .row
-    %section.col-lg-8.col-md-8
-      %h3.text-center= @category.name
-      .index
-        = render '/app/partners/partners'
-    %aside.col-lg-4.col-md-4
+    %aside.col-lg-4.col-md-4.col-md-push-8.col-lg-push-8
       %section.search-form
         = form_tag(category_path(@category), method: :get, remote: true) do
           %table
@@ -39,3 +34,7 @@
       /       .buttons
       /         %button.pull-right СТВОРИТИ
       /         .clearfix
+    %section.col-lg-8.col-md-8.col-md-pull-4.col-lg-pull-4
+      %h3.text-center= @category.name
+      .index
+        = render '/app/partners/partners'

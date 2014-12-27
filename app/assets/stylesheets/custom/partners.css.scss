@@ -5,10 +5,21 @@
         img.img-circle {
           border: 1px solid #ddd;
         }
+        .item {
+          &> a {
+            display: block;
+            background: #d9edf6;
+            padding: 13px;
+            border-radius: 5px;
+            font-size: 13px;
+            text-align: center;
+            line-height: 20px;
+            margin-bottom: 15px;
+          }
+        }
       }
       &> aside {
-        margin: 0;
-        padding-left: 0; 
+        margin: 0; 
         section.search-form {
           padding: 20px 15px 10px;
           background: #d9edf6;
