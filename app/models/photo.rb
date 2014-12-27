@@ -15,7 +15,7 @@ class Photo < ActiveRecord::Base
     },
     :convert_options => { 
       :thumb_150 => '-interlace Plane',
-      :huge => '-quality 100'
+      :huge => '-interlace Plane -quality 100'
     },
     :default_url => "/assets/ph/:attachment_:style.gif", 
     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",

@@ -4,15 +4,21 @@ class SliderAd < ActiveRecord::Base
   has_attached_file :asset,
     :styles => { 
       :thumb => ['140x50#', :jpg],
-      :slide => ['1400x500#', :jpg]
+      :slide => {
+        :geometry => '1400x500#',
+        :watermark_path => "#{Rails.root}/public/images/watermark.png",
+        :processors => [:watermark],
+        :position => 'SouthEast'
+      }
     },
     :convert_options => { 
       :thumb => "-interlace Plane",
-      :slide => "-interlace Plane"
+      :slide => "-interlace Plane -quality 100"
     },
     :default_url => "/assets/ph/:attachment_:style.gif", 
     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
-    :url => "/system/:attachment/:id/:style/:filename"
+    :url => "/system/:attachment/:id/:style/:filename",
+    :processors => [:watermark]
 
   validates_attachment_content_type :asset, :content_type => /\Aimage\/.*\Z/
 
