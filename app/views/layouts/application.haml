@@ -8,7 +8,7 @@
     %meta(name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0")
     %meta(name="Author" content="Viktor Oleksyn [www.bartezic.com]")
     %meta{ name: :description, content: content_for?(:seo_description) ? yield(:seo_description) : 'Каталог весільних послуг' }
-    %meta{ name: :keywords, content: content_for?(:seo_keywords) ? yield(:seo_keywords) : "весілля,послуги,каталог,#{@categories.map(&:name).join(',')}" }
+    %meta{ name: :keywords, content: content_for?(:seo_keywords) ? yield(:seo_keywords) : "весілля,послуги,каталог,#{@categories.map(&:name).join(',') if @categories}" }
     %link{rel: :icon, href: asset_path('favicon.ico')}
     %link(href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&subset=cyrillic-ext,cyrillic,latin-ext,latin" rel="stylesheet" type="text/css")
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
