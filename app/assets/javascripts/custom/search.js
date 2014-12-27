@@ -26,7 +26,7 @@ window.WedCity.search = {
 
     self.elems.sideform.change(function(e) {
       $.cookie('order', $(this).find('.ordering input').val());
-      self.elems.form.submit();
+      self.elems.sideform.submit();
     });
   },
 

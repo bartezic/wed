@@ -12,6 +12,7 @@
         %th Info
         %th Location
         %th Contacts
+        %th Confirmed
         %th Active
         %th %
         %th Actions
@@ -34,6 +35,7 @@
             %br
             %b phone
             = partner.phone
+          %td= partner.user.confirmed?
           %td= partner.active
           %td= partner.count_profile_filling
           %td
