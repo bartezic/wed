@@ -5,14 +5,22 @@ class Photo < ActiveRecord::Base
 
   has_attached_file :asset,
     :styles => { 
-      :thumb_150 => ['150x110#', :jpg]
+      :thumb_150 => ['150x110#', :jpg],
+      :huge => {
+        :geometry => '1200>',
+        :watermark_path => "#{Rails.root}/public/images/watermark.png",
+        :processors => [:watermark],
+        :position => 'SouthEast'
+      }
     },
     :convert_options => { 
-      :thumb_150 => "-interlace Plane"
+      :thumb_150 => '-interlace Plane',
+      :huge => '-quality 100'
     },
     :default_url => "/assets/ph/:attachment_:style.gif", 
     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
-    :url => "/system/:attachment/:id/:style/:filename"
+    :url => "/system/:attachment/:id/:style/:filename",
+    :processors => [:watermark]
 
   validates_attachment_content_type :asset, :content_type => /\Aimage\/.*\Z/
 

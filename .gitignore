@@ -21,3 +21,4 @@ Ignore paperclip images
 /config/database.yml
 /config/secrets.yml
 /coverage
+.DS_Store

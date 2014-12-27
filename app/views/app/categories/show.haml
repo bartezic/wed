@@ -11,7 +11,7 @@
             %tr.ordering 
               %td Сортувати за:&nbsp;
               /%td= select_tag 'order', options_for_select([['назвою', 'name ASC'], ['популярністю', 'rating ASC'],['датою (спочатку нові)', 'id DESC'],['датою (спочатку старі)', 'id ASC'], ['ціною (спочатку дешеві)', 'price ASC'],['ціною (спочатку дорогі)', 'price DESC']], order_by)
-              %td= select_tag 'order', options_for_select([['популярністю', 'rating ASC'],['датою (спочатку нові)', 'id DESC'],['датою (спочатку старі)', 'id ASC']], order_by)
+              %td= select_tag 'order', options_for_select([['датою (спочатку нові)', 'id DESC'],['датою (спочатку старі)', 'id ASC']], order_by)
             %tr.date 
               %td Дата весілля:
               %td

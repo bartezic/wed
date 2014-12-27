@@ -84,7 +84,7 @@
                   .subtitle= gallery.description 
                 .col-lg-10.photos
                   - gallery.photos.each do |photo|
-                    .photo= link_to image_tag(photo.asset(:thumb_150), { class: 'img-responsive' }), photo.asset(:original)
+                    .photo= link_to image_tag(photo.asset(:thumb_150), { class: 'img-responsive' }), photo.asset(:huge)
           - else
             .text-center= raw "Нажаль, <b>#{@partner.name}</b>, поки не завантажив жодної фотографії."
         - if @partner.callendar
