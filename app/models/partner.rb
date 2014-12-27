@@ -85,6 +85,6 @@ class Partner < ActiveRecord::Base
   end
 
   def profile_filled?
-    self.count_profile_filling >= 60
+    self.count_profile_filling >= 50
   end
 end

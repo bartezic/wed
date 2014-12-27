@@ -16,7 +16,7 @@ class Photo < ActiveRecord::Base
 
   validates_attachment_content_type :asset, :content_type => /\Aimage\/.*\Z/
 
-  before_validation :upload_asset_from_remote_url
+  # before_validation :upload_asset_from_remote_url
   before_validation :change_file_name
   after_create do |photo|
     partner = photo.gallery.partner
@@ -25,18 +25,16 @@ class Photo < ActiveRecord::Base
 
   include Rails.application.routes.url_helpers
 
-  def upload_asset_from_remote_url
-    self.asset = open(asset_remote_url) if asset_remote_url.present?
-    # self.cover.clear if remove_cover == '1'
-  rescue OpenURI::HTTPError
-  end
+  # def upload_asset_from_remote_url
+  #   self.asset = open(asset_remote_url) if asset_remote_url.present?
+  #   # self.cover.clear if remove_cover == '1'
+  # rescue OpenURI::HTTPError
+  # end
 
   def change_file_name
     gal = self.gallery
-    part = gal.partner
-    # p gal.inspect
-    # p part.inspect
-    extension = File.extname(asset_remote_url.present? ? asset_remote_url : asset_file_name).gsub(/^\.+/, '')
+    # extension = File.extname(asset_remote_url.present? ? asset_remote_url : asset_file_name).gsub(/^\.+/, '')
+    extension = File.extname(asset_file_name).gsub(/^\.+/, '')
     asset.instance_write(:file_name, "#{gal ? gal.slug : 'portfolio'}.#{extension}")
   end
 
