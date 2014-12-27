@@ -3,7 +3,7 @@ class Gallery < ActiveRecord::Base
   friendly_id :name, use: :slugged
   
   belongs_to :partner
-  has_many :photos
+  has_many :photos, dependent: :destroy
   
   accepts_nested_attributes_for :photos
 

@@ -7,7 +7,7 @@ class Photo < ActiveRecord::Base
     :styles => { 
       :thumb_150 => ['150x110#', :jpg],
       :huge => {
-        :geometry => '1200>',
+        :geometry => '1200x1000>',
         :watermark_path => "#{Rails.root}/public/images/watermark.png",
         :processors => [:watermark],
         :position => 'SouthEast'
