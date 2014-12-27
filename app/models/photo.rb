@@ -43,7 +43,7 @@ class Photo < ActiveRecord::Base
     gal = self.gallery
     # extension = File.extname(asset_remote_url.present? ? asset_remote_url : asset_file_name).gsub(/^\.+/, '')
     extension = File.extname(asset_file_name).gsub(/^\.+/, '')
-    asset.instance_write(:file_name, "#{gal ? gal.slug : 'portfolio'}.#{extension}")
+    asset.instance_write(:file_name, "#{(gal && gal.slug.present) ? gal.slug : 'portfolio'}.#{extension}")
   end
 
   def to_jq_upload

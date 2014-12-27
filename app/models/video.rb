@@ -6,6 +6,10 @@ class Video < ActiveRecord::Base
     partner.save unless partner.active?
   end
 
+  after_destroy do |video|
+    Rails.cache.delete("video_#{video.link}")
+  end
+
   def external_link
     get_link
   end
@@ -70,12 +74,14 @@ class Video < ActiveRecord::Base
     end
 
     def get_info
-      @get_info ||= if link.include? 'youtu'
-        res = RestClient.get("https://gdata.youtube.com/feeds/api/videos/#{get_id}?v=2&alt=jsonc")
-        JSON.parse(res)['data']
-      elsif link.include? 'vimeo'
-        res = RestClient.get("http://vimeo.com/api/v2/video/#{get_id}.json")
-        JSON.parse(res).first
+      @get_info ||= Rails.cache.fetch("video_#{link}", expires_in: 1.day) do 
+        if link.include? 'youtu'
+          res = RestClient.get("https://gdata.youtube.com/feeds/api/videos/#{get_id}?v=2&alt=jsonc")
+          JSON.parse(res)['data']
+        elsif link.include? 'vimeo'
+          res = RestClient.get("http://vimeo.com/api/v2/video/#{get_id}.json")
+          JSON.parse(res).first
+        end
       end
     end
 end
