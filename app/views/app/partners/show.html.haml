@@ -68,7 +68,7 @@
                     .video-wrap
                       .video
                         = link_to video.external_link, {rel: 'video'} do
-                          = image_tag(video.cover, { class: 'img-responsive' })
+                          = image_tag(video.cover, { class: 'img-responsive', alt: video.title })
                           .info
                             .top
                               .name= video.title
