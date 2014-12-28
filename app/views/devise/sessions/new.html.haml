@@ -3,7 +3,6 @@
     .row
       .col-md-4.col-sm-3
       .col-md-4.col-sm-6
-        - puts resource.errors.inspect
         = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'sky-form boxed'}) do |f|
           %header Увійти
           %fieldset
@@ -23,11 +22,11 @@
                 Запам'ятати мене
               = link_to 'Забули пароль?', new_password_path(resource_name)
           %footer
-            %button.button.btn-block(name="commit" type="submit") Вхід
+            %button.button.btn-block(name="commit" type="submit") Увійти
           .divider
             %i.fa.fa-chevron-down
           %footer
             = link_to new_registration_path(resource_name) do
-              %button.button.btn-block.sign-up Створити обліковий запис
+              %button.button.btn-block.sign-up Зареєструватись
         = render 'devise/shared/links'
       .col-md-4.col-sm-3

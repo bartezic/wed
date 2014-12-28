@@ -62,4 +62,5 @@
                 %li= link_to 'На сайт', root_path
               %li= link_to t('nav.logout'), destroy_user_session_path, { method: :delete }
         - else
-          %li{class: request.path.include?('users') && 'active'}= link_to t('nav.login'), new_user_session_path 
+          %li{class: request.path == new_user_session_path && 'active'}= link_to t('nav.login'), new_user_session_path
+          %li{class: request.path == new_registration_path(:user) && 'active'}= link_to 'Реєстрація', new_registration_path(:user)
