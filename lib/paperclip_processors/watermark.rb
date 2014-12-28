@@ -56,7 +56,7 @@ module Paperclip
       begin
         Paperclip.run(command, params.join(' '))
       rescue ArgumentError, Cocaine::CommandLineError
-        raise PaperclipError, "There was an error processing the watermark for #{@basename}" if @whiny
+        raise Paperclip::Error.new("There was an error processing the watermark for #{@basename}") if @whiny
       end
 
       dst
