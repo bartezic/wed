@@ -166,40 +166,41 @@
                   vertical-align: middle;
                   overflow: hidden;
                 }
-              }
-              .info {
-                width: 100%;
-                padding: 5px;
-                font-size: 13px;
-                line-height: 15px;
-                position: absolute;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.6);
-                color: white;
-                .top{
-                  font-weight: bold;
-                  .name {
-                    float: left;
-                    width: 90%;
+                .info {
+                  width: 100%;
+                  padding: 5px;
+                  line-height: 15px;
+                  position: absolute;
+                  bottom: 0;
+                  background: rgba(0, 0, 0, 0.6);
+                  color: white;
+                  .top{
+                    font-size: 12px;
+                    .name {
+                      float: left;
+                      width: 90%;
+                    }
+                    .size {
+                      text-align: right;
+                      float: right;
+                      width: 10%;
+                      display: none
+                    }
                   }
-                  .size {
-                    text-align: right;
-                    float: right;
-                    width: 10%;
-                  }
-                }
-                .bottom {
-                  opacity: 0;
-                  max-height: 0;
-                  transition: 500ms;
-                  -webkit-transition: 500ms;
-                }
-                &:hover {
                   .bottom {
-                    border-top: 1px solid #5FBED0;
-                    opacity: 1;
-                    overflow: auto;
-                    max-height: 104px;
+                    font-size: 11px;
+                    opacity: 0;
+                    max-height: 0;
+                    transition: 500ms;
+                    -webkit-transition: 500ms;
+                  }
+                  &:hover {
+                    .bottom {
+                      border-top: 1px solid #5FBED0;
+                      opacity: 1;
+                      overflow: auto;
+                      max-height: 104px;
+                    }
                   }
                 }
               }

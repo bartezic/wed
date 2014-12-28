@@ -67,14 +67,15 @@
                   - if video.link
                     .video-wrap
                       .video
-                        = link_to image_tag(video.cover, { class: 'img-responsive' }), video.external_link, {rel: 'video'}
-                        .info
-                          .top
-                            .name= video.title
-                            .size= video.rating
-                            .clearfix
-                          - unless video.description.strip.empty?
-                            .bottom= raw video.description
+                        = link_to video.external_link, {rel: 'video'} do
+                          = image_tag(video.cover, { class: 'img-responsive' })
+                          .info
+                            .top
+                              .name= video.title
+                              .size= video.rating
+                              .clearfix
+                            - unless video.description.strip.empty?
+                              .bottom= raw video.description
           - else
             .text-center= raw "Нажаль, <b>#{@partner.name}</b>, поки не завантажив жодного відео."
         #photo-portfolio.fade.tab-pane
