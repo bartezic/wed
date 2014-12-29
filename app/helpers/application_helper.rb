@@ -34,7 +34,7 @@ module ApplicationHelper
       title:       'Каталог весільних послуг',
       description: 'Cоціальна мережа - каталог, яка об’єднує людей що працюють у галузі надання послуг для урочистих подій та людей яким необхідні ці послуги',
       keywords:    "весілля,послуги,каталог,#{@categories.map(&:name).join(',') if @categories}",
-      separator:   "&mdash;".html_safe,
+      separator:   '|',
       og: {
         image: "#{request.protocol}#{request.host_with_port}#{asset_path('logo_bg.png')}"
       }
