@@ -212,6 +212,8 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    sitemap_generator (5.0.5)
+      builder
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -281,5 +283,6 @@ DEPENDENCIES
   sdoc
   simple_form
   simplecov
+  sitemap_generator
   turbolinks
   uglifier

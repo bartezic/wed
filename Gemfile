@@ -68,7 +68,7 @@ gem 'bourbon'
 gem 'cocoon'
 gem 'exception_notification'
 gem 'meta-tags'
-
+gem 'sitemap_generator'
 
 # For importing
 gem 'rest-client'
