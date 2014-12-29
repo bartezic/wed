@@ -22,3 +22,4 @@ Ignore paperclip images
 /config/secrets.yml
 /coverage
 .DS_Store
+.DS_Store?

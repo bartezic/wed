@@ -30,6 +30,7 @@
 //= require custom/locale
 //= require custom/calendar
 //= require custom/search
+//= require custom/feedback
 
 
 function ready () {
@@ -151,6 +152,7 @@ window.WedCity.ready = function() {
   ready();
   window.WedCity.calendar.init();
   window.WedCity.search.init();
+  window.WedCity.feedback.init();
 };
 
 $(document).ready(window.WedCity.ready);

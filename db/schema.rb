@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140109173311) do
+ActiveRecord::Schema.define(version: 20141228230859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 20140109173311) do
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
 
+  create_table "cooperations", force: true do |t|
+    t.integer  "partner_id"
+    t.integer  "co_id"
+    t.boolean  "confirmed"
+    t.datetime "confirmed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cooperations", ["partner_id"], name: "index_cooperations_on_partner_id", using: :btree
+
   create_table "days", force: true do |t|
     t.date     "day_of_life"
     t.datetime "created_at"
@@ -45,6 +56,18 @@ ActiveRecord::Schema.define(version: 20140109173311) do
 
   add_index "days_partners", ["day_id", "partner_id"], name: "index_days_partners_on_day_id_and_partner_id", using: :btree
   add_index "days_partners", ["partner_id", "day_id"], name: "index_days_partners_on_partner_id_and_day_id", using: :btree
+
+  create_table "feedbacks", force: true do |t|
+    t.integer  "partner_id"
+    t.string   "subject"
+    t.string   "name"
+    t.string   "email"
+    t.text     "msg"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "feedbacks", ["partner_id"], name: "index_feedbacks_on_partner_id", using: :btree
 
   create_table "galleries", force: true do |t|
     t.string   "name"

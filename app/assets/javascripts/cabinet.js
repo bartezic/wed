@@ -10,6 +10,7 @@
 //= require custom/utils
 //= require custom/locale
 //= require custom/calendar
+//= require custom/feedback
 
 window.WedCity = window.WedCity || {};
 
@@ -117,6 +118,7 @@ window.WedCity.cabinet = {
 window.WedCity.ready = function() {
   window.WedCity.cabinet.init();
   window.WedCity.calendar.init();
+  window.WedCity.feedback.init();
 };
 
 $(document).ready(window.WedCity.ready);

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Partner:
+  = @feedback.partner
+%p
+  %b Subject:
+  = @feedback.subject
+%p
+  %b Name:
+  = @feedback.name
+%p
+  %b Email:
+  = @feedback.email
+%p
+  %b Msg:
+  = @feedback.msg
+
+= link_to 'Edit', edit_admin_feedback_path(@feedback)
+\|
+= link_to 'Back', admin_feedbacks_path

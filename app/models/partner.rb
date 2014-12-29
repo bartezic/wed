@@ -26,6 +26,8 @@ class Partner < ActiveRecord::Base
   scope :with_ids,        -> (ids) { where('partners.id IN (?)', ids) unless ids.blank? }
   scope :without_ids,     -> (ids) { where('partners.id NOT IN (?)', ids) unless ids.blank? }
 
+  delegate :email, to: :user
+
   after_save do |partner|
     bool = partner.profile_filled? && partner.categories.any?
     partner.update_column(:active, bool) unless partner.active? == bool

@@ -47,6 +47,8 @@
                 %a{href: admin_videos_path}= t 'admin.menu.videos'              
               %li{class: request.path == admin_slider_ads_path && 'active'}
                 %a{href: admin_slider_ads_path}= t 'admin.menu.slider'
+              %li{class: request.path == admin_feedbacks_path && 'active'}
+                %a{href: admin_feedbacks_path}= 'Відгуки'
         - if user_signed_in?
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}

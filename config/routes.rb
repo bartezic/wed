@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :galleries
     resources :managers
     resources :slider_ads
+    resources :feedbacks
     root 'static#home'
   end
 
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
     resources :photos
     resources :videos
     resources :galleries
+    resources :feedbacks, only: [:create]
     root 'static#home'
     get 'about_us' => 'static#about_us'
   end

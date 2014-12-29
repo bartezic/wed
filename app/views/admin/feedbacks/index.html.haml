@@ -1,0 +1,31 @@
+%h1 Listing feedbacks
+
+.table-responsive
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Partner
+        %th Subject
+        %th Name
+        %th Email
+        %th Msg
+        %th
+        %th
+        %th
+    %tbody
+      - @feedbacks.each do |feedback|
+        %tr
+          %td
+            - if feedback.partner
+              = link_to feedback.partner.name, [:admin, feedback.partner]
+          %td= feedback.subject
+          %td= feedback.name
+          %td= feedback.email
+          %td= feedback.msg
+          %td= link_to 'Show', [:admin, feedback]
+          %td= link_to 'Edit', edit_admin_feedback_path(feedback)
+          %td= link_to 'Destroy', [:admin, feedback], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Feedback', new_admin_feedback_path

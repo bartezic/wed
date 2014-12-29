@@ -9,6 +9,7 @@
         /= link_to t('nav.carer'), partners_path
         /= link_to t('nav.sponsors'), partners_path
         = link_to t('nav.contacts'), about_us_path
+        = link_to 'Нам важлива ваша думка', 'javascript:void(0)', { data: {toggle: 'modal', target: '#feedback', email: (current_user && current_user.email), name: (current_user && current_partner && current_partner.name)} }
       .clearfix
     .bottom
       .pull-left
@@ -27,3 +28,47 @@
             %td
               %a{target: :_blank, href: "http://ua.linkedin.com/in/bartezic/en"} Віктор Олексин
       .clearfix
+
+#feedback.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#exampleModalLabel.modal-title Нам важлива ваша думка
+      = simple_form_for(Feedback.new, html: {class: 'sky-form'}, remote: true) do |f|
+        .modal-body
+          %p Для нас є дуже важливою думка користувачів. Ми обов’язково розглянемо будь-яку вашу пропозицію, зауваження або критику.
+          = f.hidden_field :partner_id, value: current_user && current_partner && current_partner.id
+          .row
+            %section.col.col-md-6.col-lg-6
+              %label.input
+                %i.icon-append.fa.fa-user
+                = f.input_field :name, required: true, autofocus: true, placeholder: 'Ваше ім\'я'
+            %section.col.col-md-6.col-lg-6
+              %label.input
+                %i.icon-append.fa.fa-envelope
+                = f.input_field :email, required: true, placeholder: 'Ваш email'
+          %section
+            %label.input
+              %i.icon-append.fa.fa-pencil
+              = f.input_field :subject, required: true, placeholder: 'Заголовок'
+          %label.textarea
+            %i.icon-append.fa.fa-pencil-square-o
+            = f.input_field :msg, rows: 3, placeholder: 'Повідомлення', as: :text
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Закрити
+          %button.btn.btn-primary{type: :submit} Відправити
+
+#feedback2.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#exampleModalLabel.modal-title Дякуємо
+      .modal-body
+        %p Ми скоро опрацюємо ваше повідомлення. Дякуємо, що Ви з нами.
+        %p Попереду багато цікавого...
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Закрити
