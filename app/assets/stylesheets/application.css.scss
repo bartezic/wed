@@ -31,7 +31,12 @@
 @import "external/weather-icons.min";
 
 @import "epona/sky-forms";
- 
+
+html.turbolinks-progress-bar::before {
+  background-color: rgba(255, 0, 0, 0.5) !important;
+  height: 5px !important;
+}
+
 html,
 body {
   height: 100%;

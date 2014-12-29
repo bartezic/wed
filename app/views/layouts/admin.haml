@@ -1,11 +1,13 @@
+- set_meta_tags noindex: true, nofollow: true
 !!!
 %html{ lang: locale, dir: :ltr }
   %head
-    %title Wed
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "admin", "data-turbolinks-track" => true
+    = display_meta_tags(default_meta_tags)
     = csrf_meta_tags
     %link{rel: :icon, href: asset_path('favicon.ico')}
+    %link(href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&subset=cyrillic-ext,cyrillic,latin-ext,latin" rel="stylesheet" type="text/css")
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "admin", "data-turbolinks-track" => true
 
   %body.admin
     #wrap

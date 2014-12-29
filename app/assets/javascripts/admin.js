@@ -6,6 +6,7 @@
 //= require custom/feedback
 
 function admin_ready() {
+  Turbolinks.enableProgressBar();
   window.WedCity.feedback.init();
 };
 

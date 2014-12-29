@@ -67,6 +67,7 @@ gem 'kaminari'
 gem 'bourbon' 
 gem 'cocoon'
 gem 'exception_notification'
+gem 'meta-tags'
 
 
 # For importing

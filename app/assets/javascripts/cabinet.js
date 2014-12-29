@@ -116,6 +116,7 @@ window.WedCity.cabinet = {
 };
 
 window.WedCity.ready = function() {
+  Turbolinks.enableProgressBar();
   window.WedCity.cabinet.init();
   window.WedCity.calendar.init();
   window.WedCity.feedback.init();

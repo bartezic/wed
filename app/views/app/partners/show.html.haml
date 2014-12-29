@@ -1,5 +1,19 @@
-- content_for :title do
-  #{@partner.name} - #{@partner.categories.map(&:name_sing).join(',')} на весілля в #{@partner.location.try(:name)} область
+:ruby
+  image_url = URI.join(request.url, @partner.user.avatar.url(:thumb_220))
+  title = "#{@partner.name} - #{@partner.categories.map(&:name_sing).join(',')} на весілля в #{@partner.location.try(:name)} область"
+  set_meta_tags title: title,
+                description: "",
+                keywords: "",
+                cannical: partner_url(@partner),
+                og: {
+                  title: title,
+                  site_name: default_meta_tags[:site],
+                  type: 'website',
+                  url: partner_url(@partner),
+                  locale: 'uk_UA',
+                  image: image_url,
+                  description: @partner.description
+                }
 
 .container.partner
   .row

@@ -1,5 +1,18 @@
-- content_for :title do
-  #{@category.name}(#{@category.name_sing}) на весілля
+:ruby
+  image_url = URI.join(request.url, @category.logo(:thumb))
+  title = "#{@category.name}(#{@category.name_sing}) на весілля"
+  set_meta_tags title: title,
+                description: "",
+                keywords: "",
+                cannical: category_url(@category),
+                og: {
+                  title: title,
+                  site_name: default_meta_tags[:site],
+                  type: 'website',
+                  url: category_url(@category),
+                  locale: 'uk_UA',
+                  image: image_url
+                }
 
 .container.partners
   .row

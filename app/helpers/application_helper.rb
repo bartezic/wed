@@ -27,4 +27,17 @@ module ApplicationHelper
   def order_by
     ['id ASC', 'id DESC', 'price ASC', 'price DESC', 'rating ASC', 'name ASC'].include?(cookies[:order]) ? cookies[:order] : 'id DESC';
   end
+
+  def default_meta_tags
+    {
+      site:        'Місто весільних професіоналів',
+      title:       'Каталог весільних послуг',
+      description: 'Cоціальна мережа - каталог, яка об’єднує людей що працюють у галузі надання послуг для урочистих подій та людей яким необхідні ці послуги',
+      keywords:    "весілля,послуги,каталог,#{@categories.map(&:name).join(',') if @categories}",
+      separator:   "&mdash;".html_safe,
+      og: {
+        image: "#{request.protocol}#{request.host_with_port}#{asset_path('logo.png')}"
+      }
+    }
+  end
 end

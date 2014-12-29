@@ -32,8 +32,9 @@
 //= require custom/search
 //= require custom/feedback
 
-
 function ready () {
+  Turbolinks.enableProgressBar();
+  
   $('#myTab a').click(function (e) {
     e.preventDefault()
     $(this).tab('show')
