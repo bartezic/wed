@@ -83,7 +83,8 @@
     .intro
       .title ОСТАННІ ЗАРЕЄСТРОВАНІ
       .subtitle Каталог професіоналів для організації весілля
-    %a.add{href: '#', data:{toggle: :modal, target: :'#modal-signup'}} +
+    - unless current_user
+      %a.add{href: new_registration_path(:user)} +
     - @last_partners.each do |partner|
       = link_to partner do
         = image_tag(partner.user.avatar(:thumb_100), { alt: partner.name })
