@@ -7,12 +7,8 @@ module Cabinet
 
       respond_to do |format|
         if @photo.save
-          format.html { redirect_to [:cabinet, @photo], notice: 'Photo was successfully created.' }
-          format.json { render action: 'show', status: :created, location: @photo }
           format.js { render :layout => false }
         else
-          format.html { render action: 'new' }
-          format.json { render json: @photo.errors, status: :unprocessable_entity }
           format.js { render :layout => false }
         end
       end
@@ -25,7 +21,7 @@ module Cabinet
 
       @photo.destroy
       respond_to do |format|
-        format.html { redirect_to :back }
+        format.html { redirect_to :back, notice: 'Фото успішно видалено.' }
         format.json { head :no_content }
         format.js { render layout: false }
       end

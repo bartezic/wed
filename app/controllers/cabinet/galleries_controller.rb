@@ -9,12 +9,8 @@ module Cabinet
 
       respond_to do |format|
         if @gallery.save
-          format.html { redirect_to [:cabinet, @gallery], notice: 'Gallery was successfully created.' }
-          format.json { render action: 'show', status: :ok, location: @gallery }
           format.js { render json: { type: :create, gallery: @gallery }, status: :ok }
         else
-          format.html { render action: 'new' }
-          format.json { render json: @gallery.errors, status: :unprocessable_entity }
           format.js { render json: { type: :create, errors: @gallery.errors }, status: :unprocessable_entity }
         end
       end
@@ -25,12 +21,8 @@ module Cabinet
     def update
       respond_to do |format|
         if @gallery.update(gallery_params)
-          format.html { redirect_to [:cabinet, @gallery], notice: 'Gallery was successfully updated.' }
-          format.json { head :no_content }
           format.js { render json: { type: :update, gallery: @gallery }, status: :ok }
         else
-          format.html { render action: 'edit' }
-          format.json { render json: @gallery.errors, status: :unprocessable_entity }
           format.js { render json: { type: :update, errors: @gallery.errors }, status: :unprocessable_entity }
         end
       end
@@ -41,7 +33,7 @@ module Cabinet
     def destroy
       @gallery.destroy
       respond_to do |format|
-        format.html { redirect_to cabinet_profile_path(:photo), notice: 'Gallery was successfully removed.' }
+        format.html { redirect_to cabinet_profile_path(:photo), notice: 'Галерею успішно видалено.' }
         format.json { head :no_content }
       end
     end

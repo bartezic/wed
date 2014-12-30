@@ -7,10 +7,10 @@ module Cabinet
 
       respond_to do |format|
         if @video.save
-          format.html { redirect_to :back, notice: 'Video was successfully created.' }
+          format.html { redirect_to :back, notice: 'Відео успішно додано.' }
           format.json { render json: { type: video, video: @video }, status: :ok }
         else
-          format.html { render action: 'new' }
+          format.html { redirect_to :back, alert: 'Нажаль не вдалось додати відео. Невірний формат посилання. Спробуйте ще раз.' }
           format.json { render json: { type: video, errors: @video.errors} , status: :unprocessable_entity }
         end
       end
@@ -23,7 +23,7 @@ module Cabinet
       
       @video.destroy
       respond_to do |format|
-        format.html { redirect_to :back }
+        format.html { redirect_to :back, notice: 'Відео успішно видалено.' }
         format.json { head :no_content }
       end
     end

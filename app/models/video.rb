@@ -1,6 +1,9 @@
 class Video < ActiveRecord::Base
   belongs_to :partner
 
+  validates :link, presence: true
+  validates :link, format: { with: /youtu\.be|youtube|vimeo/i }
+
   after_create do |video|
     partner = video.partner
     partner.save unless partner.active?
@@ -19,11 +22,11 @@ class Video < ActiveRecord::Base
   end
 
   def title
-    get_info['title']
+    get_info['title'] if get_info
   end
 
   def description
-    get_info['description']
+    get_info['description'] if get_info
   end
 
   private
@@ -50,7 +53,7 @@ class Video < ActiveRecord::Base
       @get_cover = if link.include? 'youtu'
         "http://img.youtube.com/vi/#{get_id}/#{get_cover_sizes[size]}.jpg"
       elsif link.include? 'vimeo'
-        get_info[get_cover_sizes[size].to_s]
+        get_info[get_cover_sizes[size].to_s] if get_info
       end
     end
 

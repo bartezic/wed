@@ -19,11 +19,19 @@ window.WedCity.cabinet = {
 
   },
 
-  createCallback: function(res) {
-    window.location.search = 'gallery='+res.gallery.slug;
+  createGalleryCallback: function(res) {
+    if (res.gallery) {
+      window.location.search = 'gallery='+res.gallery.slug;
+    } else if (res.errors) {
+      $('.flashes').append('\
+        <div class="alert alert-danger alert-dismissable">\
+          <button class="close" data-dismiss="alert" data-hidden="" type="button">×</button>\
+          Додайте назву галереї.\
+        </div>')
+    }
   },
 
-  updateCallback: function(res) {
+  updateGalleryCallback: function(res) {
     var self = this;
 
     self.elems.title.text(res.gallery.name);
@@ -52,7 +60,7 @@ window.WedCity.cabinet = {
 
     self.elems.galleryForm.bind('ajax:complete', function(event, xhr) {
       var res = $.parseJSON(xhr.responseText);
-      self[res.type+'Callback'](res);
+      self[res.type+'GalleryCallback'](res);
     });
 
     $('form.show-callendar').change(function(e) {

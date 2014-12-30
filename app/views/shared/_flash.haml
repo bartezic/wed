@@ -1,5 +1,5 @@
 - unless request.path == root_path
-  .container
+  .container.flashes
     - flash.each do |name, msg|
       - if msg.is_a?(String)
         .alert.alert-dismissable{ class: "alert-#{name.to_s == 'notice' ? 'success' : 'danger'}" }

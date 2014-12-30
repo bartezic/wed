@@ -78,7 +78,7 @@
             .row.gallery
               .col-lg-12
                 - @partner.videos.each do |video|
-                  - if video.link
+                  - if video.link && video.external_link
                     .video-wrap
                       .video
                         = link_to video.external_link, {rel: 'video'} do

@@ -13,15 +13,25 @@
   .videos 
     - @partner.videos.each do |video|
       - if video.link
-        .video
-          = link_to image_tag(video.cover), video.external_link, {rel: 'video'}
-          .info
-            .top
-              .name= video.title
-              .size= video.rating
-              .clearfix
-            - unless video.description.strip.empty?
-              .bottom= raw video.description
-          .actions
-            = link_to [:cabinet, video], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs" do
-              %span.glyphicon.glyphicon-trash
+        - if video.external_link
+          .video
+            = link_to image_tag(video.cover), video.external_link, {rel: 'video'}
+            .info
+              .top
+                .name= video.title
+                .size= video.rating
+                .clearfix
+              - unless video.description.strip.empty?
+                .bottom= raw video.description
+            .actions
+              = link_to [:cabinet, video], method: :delete, data: { confirm: 'Ви впевнені?' }, class: "btn btn-default btn-xs" do
+                %span.glyphicon.glyphicon-trash
+        - else
+          .video
+            = image_tag 'http://placehold.it/310x174&text=Error...'
+            .info
+              .top
+                .name Відео пошкоджено - будь ласка видаліть його.
+            .actions
+              = link_to [:cabinet, video], method: :delete, class: "btn btn-default btn-xs" do
+                %span.glyphicon.glyphicon-trash
