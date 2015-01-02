@@ -120,7 +120,7 @@ window.WedCity.calendar = {
                     <div class='busy'>- зайнятий</div>\
                   </div>");
 
-    if (this.configs.cabinet) { statuses.find('.past').addClass('hidden') };
+    if (this.configs.cabinet) { statuses.find('.past').addClass('hidden'); };
     viewport.append(months);
     self.elems.cont.append([navLeft, navRight, weekDays, viewport, statuses]);
 
