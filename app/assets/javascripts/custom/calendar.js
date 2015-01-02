@@ -38,7 +38,7 @@ window.WedCity.calendar = {
         month = date.getMonth(),
         year = date.getFullYear();
 
-    today.setHours(0,0,0,0)
+    today.setHours(0,0,0,0);
 
     for (i = 1; i <= this.daysBefore(date); i++) {
       days += "<e></e>";
@@ -57,7 +57,7 @@ window.WedCity.calendar = {
       counter += 1;
     };
 
-    days += '</w>'
+    days += '</w>';
 
     return days;
   },
@@ -120,7 +120,7 @@ window.WedCity.calendar = {
                     <div class='busy'>- зайнятий</div>\
                   </div>");
 
-    if (this.configs.cabinet) { statuses.find('.past').addClass('hidden'); }
+    if (this.configs.cabinet) { statuses.find('.past').addClass('hidden') };
     viewport.append(months);
     self.elems.cont.append([navLeft, navRight, weekDays, viewport, statuses]);
 
