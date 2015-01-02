@@ -31,11 +31,14 @@ window.WedCity.calendar = {
   },
 
   getDays: function(date) {
-    var i, occupied, current,
+    var i, occupied, current, cls, day, title,
+        today = new Date(),
         days = '<w>', 
         counter = 0,
         month = date.getMonth(),
         year = date.getFullYear();
+
+    today.setHours(0,0,0,0)
 
     for (i = 1; i <= this.daysBefore(date); i++) {
       days += "<e></e>";
@@ -43,10 +46,14 @@ window.WedCity.calendar = {
     };
 
     for (i = 1; i <= this.monthLenght(date); i++) {
-      if (counter % 7 === 0){ days += '</w><w>' }
-      current = this.dateToYMD(new Date(year,month,i));
+      if (counter % 7 === 0){ days += '</w><w>' };
+      day = new Date(year,month,i);
+      current = this.dateToYMD(day);
       occupied = this.configs.days.indexOf(current) >= 0;
-      days += "<a data-day="+ current +" class="+ (occupied ? 'selected' : '') +" href='#'>" + i + "</a>";
+      cls = (occupied ? 'selected' : '');
+      if (day < today) { cls += ' past' };
+      title = (occupied ? 'зайнятий' : 'вільний');
+      days += "<a data-day="+ current +" class=\""+ cls +"\" href='#' title="+ title +">" + i + "</a>";
       counter += 1;
     };
 
@@ -78,7 +85,7 @@ window.WedCity.calendar = {
         month = date.getMonth(),
         year = date.getFullYear();
 
-    self.configs.mSize = Math.floor((self.getContWidth()-self.getPanelWidth())/220);
+    self.configs.mSize = Math.max(1,Math.floor((self.getContWidth()-self.getPanelWidth())/220));
     
     for (i = 0; i < self.configs.mSize; i++) {
       self.elems.months.append($(self.generateMonth(month, year)));
@@ -106,17 +113,24 @@ window.WedCity.calendar = {
         weekDays = $("<div class='day_names left'>" + self.weekDays() + "</div>\
                     <div class='day_names right'>" + self.weekDays() + "</div>"),
         viewport = $("<div class='viewport'></div>"),
-        months = $("<div class='months'></div>");
+        months = $("<div class='months'></div>"),
+        statuses = $("<div class='statuses'>\
+                    <div class='past'>- пройдешній</div>\
+                    <div class='free'>- вільний</div>\
+                    <div class='busy'>- зайнятий</div>\
+                  </div>");
 
+    if (this.configs.cabinet) { statuses.find('.past').addClass('hidden'); }
     viewport.append(months);
-    self.elems.cont.append([navLeft, navRight, weekDays, viewport]);
+    self.elems.cont.append([navLeft, navRight, weekDays, viewport, statuses]);
 
     $.extend(self.elems, {
       navLeft: navLeft,
       navRight: navRight,
       weekDays: weekDays,
       viewport: viewport,
-      months: months
+      months: months,
+      statuses: statuses
     });
   },
 

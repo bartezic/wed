@@ -290,7 +290,7 @@
         w {
           float: left;
           &:not(:last-child){
-            border-right: 1px solid #aaaaaa;
+            border-right: 1px solid white;
           }
           i, b, s, a {
             display: block;
@@ -310,7 +310,7 @@
               background: #FDD;
             }
             &:not(:last-child){
-              border-bottom: 1px solid #aaaaaa;
+              border-bottom: 1px solid white;
             }
           }
           b, i, s {
@@ -327,54 +327,55 @@
           }
           a {
             cursor: pointer;
-            color: #372f2d;
-            background: #d1d1d1;
-            text-shadow: 1px 1px 0px white;
-            background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #dadada), color-stop(100%, #cfcfcf));
-            background-image: -webkit-linear-gradient(bottom, #dadada, #cfcfcf);
-            background-image: -moz-linear-gradient(bottom, #dadada, #cfcfcf);
-            background-image: -o-linear-gradient(bottom, #dadada, #cfcfcf);
-            background-image: -ms-linear-gradient(bottom, #dadada, #cfcfcf);
-            background-image: linear-gradient(bottom, #dadada, #cfcfcf);
-            &.today {
-              color: white;
-              text-shadow: 1px 1px 2px teal;
-              -webkit-box-shadow: 0 0 18px teal inset;
-              -moz-box-shadow: 0 0 18px teal inset;
-              box-shadow: 0 0 18px teal inset;
-            }
+            color: white;
+            background: #94D2DE;
+            text-shadow: 1px 1px 0px #555;
+            border-radius: 5px;
             &.selected {
-              color: white;
-              text-shadow: 1px 1px 2px blue;
-              -webkit-box-shadow: 0 0 18px #000066 inset;
-              -moz-box-shadow: 0 0 18px #000066 inset;
-              box-shadow: 0 0 18px #000066 inset;
-            }
-            &:hover {
-              color: white;
-              -webkit-transition-property: text-shadow;
-              -moz-transition-property: text-shadow;
-              -ms-transition-property: text-shadow;
-              -o-transition-property: text-shadow;
-              transition-property: text-shadow;
-              -webkit-transition-property: box-shadow;
-              -moz-transition-property: box-shadow;
-              -ms-transition-property: box-shadow;
-              -o-transition-property: box-shadow;
-              transition-property: box-shadow;
-              -webkit-transition-duration: 0.2s;
-              -moz-transition-duration: 0.2s;
-              -ms-transition-duration: 0.2s;
-              -o-transition-duration: 0.2s;
-              transition-duration: 0.2s;
-              text-shadow: 1px 1px 2px green;
-              -webkit-box-shadow: 0 0 18px #006600 inset;
-              -moz-box-shadow: 0 0 18px #006600 inset;
-              box-shadow: 0 0 18px #006600 inset;
+              background: rgb(42, 139, 181);
             }
           }
         }
       }
+    }
+  }
+  .statuses {
+    .free, .busy, .past {
+      font-size: 12px;
+      line-height: 12px;
+      margin-bottom: 2px;
+      &:before {
+        content: '';
+        border-radius: 5px;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+        margin: 0 5px 0 20px;
+      }
+    }
+    .free:before {
+      background: #94D2DE;
+    }
+    .busy:before {
+      background: rgb(42, 139, 181);
+    }
+    .past:before {
+      background: #bbb;
+    }
+  }
+}
+body {
+  &.app {
+    .rcalendar .months .month .days w a.past {
+      background: #bbb !important;
+      cursor: default;
+    }
+  }
+  &.cabinet {
+    .rcalendar .months .month .days w a:hover:not(.past) {
+      background: #145E8D;
+      transition: background 0.2s linear;
     }
   }
 }

@@ -108,6 +108,7 @@
         - if @partner.callendar
           #calendar.fade.tab-pane
             .rcalendar{ data: { cabinet: 'false', days: @partner.days.map(&:day_of_life).to_json } }
+
         #comments.fade.tab-pane
           #disqus_thread
           %noscript
