@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  default_scope { order('photos.id DESC') }
+  default_scope { order('position DESC, id DESC') }
 
   belongs_to :gallery
 

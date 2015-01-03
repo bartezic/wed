@@ -436,7 +436,7 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
         }
       }
 
-      .last-photos, .galleries, .gallery-open, .last-videos {
+      .last-photos, .galleries-wrap, .gallery-open, .last-videos {
         margin-bottom: 20px;
         &> .top {
           margin-bottom: 10px;
@@ -471,6 +471,10 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
           &:nth-child(odd) {
             margin-right: 6px; 
           }
+          &.drop {
+            opacity: 0.6;
+            border: 3px dashed #ddd;
+          }
           img {
             vertical-align: top;
             max-width: 100%;
@@ -481,6 +485,15 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
             padding: 75px 70px 80px;
             text-decoration: none;
             text-align: center;
+          }
+          .actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            .btn-xs.move {
+              cursor: move;
+              line-height: 1.43;
+            }
           }
           .info {
             width: 100%;
@@ -520,13 +533,19 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
       }
 
       .last-photos {
-        .photos {
+        .photos-no-sort button.move {
+          display: none;
+        }
+        .photos, .photos-no-sort {
           .photo {
             display: inline-block;
             margin-bottom: 10px;
             position: relative;
             &:not(:nth-child(4n)) {
               margin-right: 5px; 
+            }
+            &.drop {
+              opacity: 0.6;
             }
             a {
               display: block;
@@ -560,6 +579,10 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
             &:nth-child(odd) {
               margin-right: 4px; 
             }
+            &.drop {
+              opacity: 0.6;
+              border: 3px dashed #ddd;
+            }
             img {
               width: 310px;
             }
@@ -567,6 +590,10 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
               position: absolute;
               top: 10px;
               right: 10px;
+              .btn-xs.move {
+                cursor: move;
+                line-height: 1.43;
+              }
             }
             .info {
               width: 100%;

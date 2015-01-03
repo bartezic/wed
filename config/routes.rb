@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   namespace :cabinet do
     resources :partners, only: [:edit, :update] do
-      post 'days', on: :collection
+      post :days, on: :collection
+      post :sort, on: :collection
     end
     resources :photos, only: [:create, :destroy]
-    resources :videos, only: [:create, :destroy]
+    resources :videos, only: [:create, :destroy] 
     resources :galleries, only: [:create, :update, :destroy]
     get 'profile/:section' => 'partners#edit',   as: :profile
     root 'partners#edit'

@@ -3,4 +3,4 @@
   = render 'cabinet/photos/photos', photos: gallery.photos, title: 'Фотографії галереї', upload: true, gallery: gallery
 - else
   = render 'cabinet/galleries/galleries'
-  = render 'cabinet/photos/photos', photos: @partner.photos, title: 'Останні завантажені фотографії', upload: false, gallery: nil
+  = render 'cabinet/photos/photos', photos: @partner.photos.reorder('id DESC'), title: 'Останні завантажені фотографії', upload: false, gallery: nil

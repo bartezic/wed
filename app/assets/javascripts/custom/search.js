@@ -25,7 +25,7 @@ window.WedCity.search = {
     });
 
     self.elems.sideform.change(function(e) {
-      $.cookie('order', $(this).find('.ordering input').val());
+      $.cookie('order', $(this).find('.ordering input').val(), { path: '/' });
       self.elems.sideform.submit();
     });
   },

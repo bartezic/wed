@@ -6,6 +6,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require cocoon
 //= require external/photobox
+//= require external/Sortable.min
 
 //= require custom/utils
 //= require custom/locale
@@ -97,6 +98,47 @@ window.WedCity.cabinet = {
     }
   },
 
+  initSorting: function() {
+    var sortable, el, sortes = [{
+      wrap: 'photos',
+      item: '.photo'
+    },{
+      wrap: 'videos',
+      item: '.video'
+    },{
+      wrap: 'galleries',
+      item: '.gallery'
+    }];
+
+    for (i = 0; i < sortes.length; i++) {
+      (function(sorte){
+        el = document.getElementsByClassName(sorte.wrap)[0];
+        if (el) {
+          sortable = Sortable.create(el, {
+            handle: '.move',
+            draggable: sorte.item,
+            animation: 150,
+            ghostClass: 'drop',
+            onSort: function (evt) {
+              $(el).addClass('loadmask');
+              $.ajax({
+                url: '/cabinet/partners/sort',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                  type: sorte.wrap,
+                  ids: sortable.toArray()
+                }
+              }).always(function(res) {
+                $(el).removeClass('loadmask');
+              });
+            }
+          });
+        }
+      })(sortes[i]);
+    }
+  },
+
   initPhotosGallery: function() {
     var galleries = $('.photos');
     if(galleries.length !== 0){
@@ -120,6 +162,7 @@ window.WedCity.cabinet = {
     this.initHandlers();
     this.initVideosGallery();
     this.initPhotosGallery();
+    this.initSorting();
   }
 };
 

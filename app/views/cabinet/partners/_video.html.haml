@@ -10,11 +10,11 @@
         %span.glyphicon.glyphicon-remove
     .clearfix
   = render 'cabinet/videos/form', video: Video.new
-  .videos 
+  .videos
     - @partner.videos.each do |video|
       - if video.link
-        - if video.external_link
-          .video
+        .video{data: {id: video.id}}
+          - if video.external_link
             = link_to image_tag(video.cover), video.external_link, {rel: 'video'}
             .info
               .top
@@ -24,10 +24,11 @@
               - unless video.description.strip.empty?
                 .bottom= raw video.description
             .actions
+              %button.btn.btn-default.btn-xs.move
+                %span.glyphicon.glyphicon-move
               = link_to [:cabinet, video], method: :delete, data: { confirm: 'Ви впевнені?' }, class: "btn btn-default btn-xs" do
                 %span.glyphicon.glyphicon-trash
-        - else
-          .video
+          - else
             = image_tag 'http://placehold.it/310x174&text=Error...'
             .info
               .top

@@ -33,6 +33,15 @@ module Cabinet
       end
     end
 
+    def sort
+      items = current_partner.send(params[:type].to_sym)
+      params[:ids].reverse.each_with_index do |id, index|
+        item = items.detect{|i| i.id == id.to_i }
+        item.update_attribute(:position, index) if item.position != index
+      end
+      render json: { success: true }
+    end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_partner

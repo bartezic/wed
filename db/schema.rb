@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141228230859) do
+ActiveRecord::Schema.define(version: 20150103152745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20141228230859) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   add_index "galleries", ["partner_id"], name: "index_galleries_on_partner_id", using: :btree
@@ -143,6 +144,7 @@ ActiveRecord::Schema.define(version: 20141228230859) do
     t.integer  "gallery_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   add_index "photos", ["gallery_id"], name: "index_photos_on_gallery_id", using: :btree
@@ -203,6 +205,7 @@ ActiveRecord::Schema.define(version: 20141228230859) do
     t.integer  "partner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   add_index "videos", ["partner_id"], name: "index_videos_on_partner_id", using: :btree

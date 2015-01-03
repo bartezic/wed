@@ -36,7 +36,7 @@ body > footer {
         border-radius: 50px;
         border: 2px solid white;
         margin: 10px 20px 10px 0;
-        background: #2a8bb5 url(asset-path('logo.png')) no-repeat center center;
+        background: #2a8bb5 asset-url('logo.png') no-repeat center center;
         background-size: 70px 70px;
         width: 70px;
         height: 70px;

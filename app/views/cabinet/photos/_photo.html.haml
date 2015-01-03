@@ -1,6 +1,8 @@
-.photo{ data: { photoid: photo.id } }
-	.actions
-		= link_to [:cabinet, photo], method: :delete, remote: true, data: { confirm: 'Ви дійсно бажаєте видалити дане фото?' } do
-			%button.btn.btn-default.btn-xs(type="button")
-				%span.glyphicon.glyphicon-trash
-	= link_to image_tag(photo.asset(:thumb_150), { alt: photo.gallery.name }), photo.asset(:huge)
+.photo{ data: { id: photo.id } }
+  .actions
+    %button.btn.btn-default.btn-xs.move
+      %span.glyphicon.glyphicon-move
+    = link_to [:cabinet, photo], method: :delete, remote: true, data: { confirm: 'Ви дійсно бажаєте видалити дане фото?' } do
+      %button.btn.btn-default.btn-xs(type="button")
+        %span.glyphicon.glyphicon-trash
+  = link_to image_tag(photo.asset(:thumb_150), { alt: photo.gallery.name }), photo.asset(:huge)

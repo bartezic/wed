@@ -12,6 +12,6 @@
         = f.input_field :asset, multiple: true, name: "photo[asset]"
       .progress.progress-striped.hidden
         .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "00", role: "progressbar", style: "width: 0%"}
-  .photos
+  %div{ class: (gallery && upload ? 'photos' : 'photos-no-sort') }
     - photos.each do |photo|
       = render photo

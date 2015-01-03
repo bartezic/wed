@@ -1,4 +1,6 @@
 class Gallery < ActiveRecord::Base
+  default_scope { order('position DESC, id DESC') }
+  
   extend FriendlyId
   friendly_id :name, use: :slugged
   

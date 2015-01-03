@@ -1,4 +1,5 @@
 class Video < ActiveRecord::Base
+  default_scope { order('position DESC, id DESC') }
   belongs_to :partner
 
   validates :link, presence: true
