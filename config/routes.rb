@@ -96,4 +96,9 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  match '/posluhy/veduchi' => redirect('/posluhy/veduchi_tamada_na_vesillya')
+  match '/posluhy/muzykanty' => redirect('/posluhy/muzykanty_dj_na_vesillya')
+  match '/posluhy/kejterіng' => redirect('/posluhy/kejterіng_karvinh_na_vesillya')
+  match '/posluhy/vіzazhysty' => redirect('/posluhy/salony_krasy_vizazhysty_na_vesillya')
+  match '/posluhy/koordynatory' => redirect('/posluhy/orhanizaciya_vesillya_koordynatory_na_vesillya')
 end
