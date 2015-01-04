@@ -25,7 +25,9 @@
       .col-xs-4.col-sm-4.col-md-3.col-lg-3.category-item
         = link_to category do
           = image_tag(category.logo(:thumb), { class: :'img-responsive', alt: category.name })
-          %div= category.name
+          %div
+            = category.name
+            %span.badge= category.partners.count
       - if (i+1)%4 == 0
         .clearfix.visible-lg
       - elsif (i+1)%4 == 0

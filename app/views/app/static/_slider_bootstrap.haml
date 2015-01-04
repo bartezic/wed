@@ -22,7 +22,7 @@
                       = image_tag(slider_ad.partner.user.avatar(:thumb_100), { alt: slider_ad.partner.name })
                   .pull-right
                     .title= slider_ad.partner.name
-                    .subtitle= slider_ad.partner.categories.map(&:name_sing).join(',')
+                    .subtitle= slider_ad.partner.categories.map(&:name_sing).join(', ')
                   .clearfix
   - else
     .carousel-inner

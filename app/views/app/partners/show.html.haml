@@ -31,9 +31,13 @@
           %li.active
             %a{"data-toggle" => "tab", href: "#info"} Інформація та контакти
           %li
-            %a{"data-toggle" => "tab", href: "#photo-portfolio"} Фото портфоліо
+            %a{"data-toggle" => "tab", href: "#photo-portfolio"}
+              Фото портфоліо
+              %span.badge= @partner.photos.count
           %li
-            %a{"data-toggle" => "tab", href: "#video-portfolio"} Відео портфоліо
+            %a{"data-toggle" => "tab", href: "#video-portfolio"}
+              Відео портфоліо
+              %span.badge= @partner.videos.count
           - if @partner.callendar
             %li
               %a{"data-toggle" => "tab", href: "#calendar"} Календар зайнятості
