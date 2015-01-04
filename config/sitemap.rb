@@ -35,6 +35,8 @@ SitemapGenerator::Sitemap.create do
   end
 
   Partner.find_each do |partner|
-    add partner_path(partner), :changefreq => 'daily', :priority => 1, :lastmod => partner.updated_at
+    if partner.active
+      add partner_path(partner), :changefreq => 'daily', :priority => 1, :lastmod => partner.updated_at
+    end
   end
 end
