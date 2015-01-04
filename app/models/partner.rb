@@ -18,8 +18,7 @@ class Partner < ActiveRecord::Base
   accepts_nested_attributes_for :involvings, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :galleries
   accepts_nested_attributes_for :user
-
-  # default_scope { order('partners.id DESC') }  
+ 
   scope :active,          -> { where(active: true) }
   scope :with_category,   -> (ids) { joins(:categories).where("categories.id IN (?)", ids) unless ids.blank? }
   scope :with_location,   -> (ids) { joins(:locations).where("locations.id IN (?)", ids) unless ids.blank? }

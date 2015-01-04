@@ -14,7 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.uk.js
 
 //= require external/jquery.cookie
 //= require external/jquery.mCustomScrollbar
@@ -42,7 +43,7 @@ function ready () {
 
   $('input#datepicker').datepicker({
     startDate: "0d",
-    language: window.WedCity.locale,
+    language: 'uk',
     format: 'dd/mm/yyyy',
     autoclose: true
   }).on('changeDate', function(e){
