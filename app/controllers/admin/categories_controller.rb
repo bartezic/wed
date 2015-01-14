@@ -70,7 +70,7 @@ module Admin
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def category_params
-        params.require(:category).permit(:name, :name_sing, :meta_description, :meta_keywords :slug, :logo, :logo_remote_url)
+        params.require(:category).permit(:name, :name_sing, :meta_description, :meta_keywords, :slug, :logo, :logo_remote_url)
       end
   end
 end
