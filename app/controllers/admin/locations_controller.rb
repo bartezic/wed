@@ -70,7 +70,7 @@ module Admin
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def location_params
-        params.require(:location).permit(:name, :slug)
+        params.require(:location).permit(:name, :name_m, :slug)
       end
   end
 end
