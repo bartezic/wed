@@ -1,6 +1,6 @@
 :ruby
   image_url = URI.join(request.url, @partner.user.avatar.url(:thumb_220))
-  title = "#{@partner.name} - #{@partner.categories.map(&:name_sing).join(',')} на весілля в #{@partner.location.try(:name)} область"
+  title = "#{@partner.name} - #{@partner.categories.map(&:name_sing).join(',')} на весілля у #{@partner.location.try(:name_m)} область"
   set_meta_tags title: title,
                 description: "",
                 keywords: "",
@@ -58,12 +58,12 @@
                     %br
                 
                 - if @partner.location 
-                  %dt Проживає/офіс:
-                  %dd= @partner.location.name
+                  %dt Проживає/офіс у:
+                  %dd= @partner.location.name_m
                 
                 - if @partner.locations.any?
-                  %dt Працює в:
-                  %dd= raw @partner.locations.map{ |e| e.name }.join('<br>')
+                  %dt Працює у:
+                  %dd= raw @partner.locations.map{ |e| e.name_m }.join('<br>')
 
                 - if @partner.site
                   %dt Сайт:

@@ -5,6 +5,7 @@
     %tr
       %th Id
       %th Name
+      %th Name m
       %th Slug
       %th Actions
 
@@ -12,6 +13,7 @@
       %tr
         %td= location.id
         %td= location.name
+        %td= location.name_m
         %td= location.slug
         %td
           = link_to 'Show', [:admin, location]

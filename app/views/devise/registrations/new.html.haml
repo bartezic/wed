@@ -2,13 +2,14 @@
   .container
     .row
       .col-md-4.col-sm-3
+        = @partner.inspect
       .col-md-4.col-sm-6
-        - partner = Partner.new
-        - partner.user = User.new
+        - partner = @partner || Partner.new 
+        - partner.user ||= User.new
         = simple_form_for(partner, html: {class: 'sky-form boxed'}) do |f|
           %header Зареєструватися
           %fieldset
-            = f.error_notification
+            /= f.error_notification
             = f.simple_fields_for :user do |user|
               %section
                 %label.input

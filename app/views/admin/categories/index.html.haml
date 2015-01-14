@@ -4,16 +4,20 @@
   %table.table.table-bordered.table-striped
     %tr
       %th Id
-      %th Name
-      %th Name sing
+      %th Name(Name sing)
+      %th meta_description
+      %th meta_keywords
+      %th slug
       %th Logo
       %th Actions
 
     - @categories.each do |category|
       %tr
         %td= category.id
-        %td= category.name
-        %td= category.name_sing
+        %td= "#{category.name}(#{category.name_sing})"
+        %td= category.meta_description
+        %td= category.meta_keywords
+        %td= category.slug
         %td= image_tag category.logo(:thumb)
         %td
           = link_to 'Show', [:admin, category]

@@ -9,7 +9,7 @@
         .posluga
           = select_tag 'category_id', content_tag(:option, 'Послуга')+options_from_collection_for_select(@categories, 'id', 'name')
         .location
-          = select_tag 'location_id', content_tag(:option, 'Область')+options_from_collection_for_select(Location.all, 'id', 'name')
+          = select_tag 'location_id', content_tag(:option, 'Місто')+options_from_collection_for_select(Location.all, 'id', 'name')
         .date
           %label Дата весілля
           %input#datepicker{name: :date, type: 'text'}

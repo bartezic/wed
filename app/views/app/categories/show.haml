@@ -2,9 +2,9 @@
   image_url = URI.join(request.url, @category.logo(:thumb))
   title = "#{@category.name}(#{@category.name_sing}) на весілля"
   set_meta_tags title: title,
-                description: "",
-                keywords: "",
-                cannical: category_url(@category),
+                description: @category.meta_description,
+                keywords: @category.meta_keywords,
+                canonical: category_url(@category),
                 og: {
                   title: title,
                   site_name: default_meta_tags[:site],
@@ -29,8 +29,8 @@
                 %label= params[:date] || 'оберіть дату'
                 %input#datepicker{name: :date, type: 'text', value: params[:date]}
             %tr.location 
-              %td Область:
-              %td= select_tag 'location_id', content_tag(:option, 'оберіть область')+options_from_collection_for_select(Location.all, 'id', 'name', params[:location_id])
+              %td Місто:
+              %td= select_tag 'location_id', content_tag(:option, 'оберіть місто')+options_from_collection_for_select(Location.all, 'id', 'name', params[:location_id])
     %section.col-lg-8.col-md-8.col-md-pull-4.col-lg-pull-4
       %h3.text-center= @category.name
       .index

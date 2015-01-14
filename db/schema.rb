@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150103152745) do
+ActiveRecord::Schema.define(version: 20150106072739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20150103152745) do
     t.string   "logo_remote_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "meta_description"
+    t.string   "meta_keywords"
   end
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(version: 20150103152745) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name_m"
   end
 
   add_index "locations", ["slug"], name: "index_locations_on_slug", unique: true, using: :btree

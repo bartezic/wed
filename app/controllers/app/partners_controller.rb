@@ -15,8 +15,8 @@ module App
           format.json { render action: 'show', status: :created, location: @partner }
         else
           format.html {
-            puts @partner.errors.full_messages
-            redirect_to new_registration_path(:user), alert: "Помилка! #{@partner.errors.inject([]){|r, (k,v)| r << v}.join(' ')}"
+            flash[:alert] = "Помилка! #{@partner.errors.inject([]){|r, (k,v)| r << v}.join(' ')}"
+            render 'devise/registrations/new'
           }
           format.json { render json: @partner.errors, status: :unprocessable_entity }
         end
