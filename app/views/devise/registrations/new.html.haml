@@ -2,7 +2,6 @@
   .container
     .row
       .col-md-4.col-sm-3
-        = @partner.inspect
       .col-md-4.col-sm-6
         - partner = @partner || Partner.new 
         - partner.user ||= User.new
