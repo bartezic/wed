@@ -24,6 +24,7 @@
                 %li{class: request.path == category_path(category) && 'active'}
                   = link_to category do
                     %i.fa.fa-angle-right
+                    %span.badge= category.partners.active.count
                     = category.name
         - if part == :admin
           %li.dropdown
