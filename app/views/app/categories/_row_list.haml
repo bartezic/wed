@@ -27,7 +27,7 @@
           = image_tag(category.logo(:thumb), { class: :'img-responsive', alt: category.name })
           %div
             = category.name
-            %span.badge= category.partners.count
+            %span.badge= category.partners.active.count
       - if (i+1)%4 == 0
         .clearfix.visible-lg
       - elsif (i+1)%4 == 0
