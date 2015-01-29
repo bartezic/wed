@@ -55,6 +55,13 @@ gem 'capistrano-rails'
 # gem 'batch_translations'
 
 gem 'devise'
+gem 'omniauth'
+# gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+# gem 'omniauth-linkedin'
+gem 'omniauth-vkontakte'
+gem "omniauth-google-oauth2"
+
 gem 'simple_form'
 gem 'haml-rails'
 gem 'paperclip'

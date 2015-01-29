@@ -379,6 +379,15 @@
         font-weight: 300;
       }
     }
+    .socials-btns {
+      display: inline-block;
+      float: right;
+      margin-top: -12px;
+      margin-right: -16px;
+      a {
+        text-decoration: none;
+      }
+    }
     .remember-me {
       label {
         float: left;

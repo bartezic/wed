@@ -1,7 +1,13 @@
-%p
-  Вітаємо #{@email}!
-%p
-  Будь ласка підтвердіть ваш email перейшовши за
-  %span= link_to 'цим', confirmation_url(@resource, confirmation_token: @token)
-  посиланням
-%p Дякуємо, що ви з нами. Попереду багато цікавого!
+%p Вітаємо #{@email}!
+%p Тепер Ви в колах професіоналів.
+
+- if @resource.temp_password.present?
+  %p Так як Ви були зареєстровані через соціальні мережі, для Вас було згенеровано тимчасовий пароль: #{@resource.temp_password}, перейдіть за #{link_to 'цим', cabinet_profile_url(:password)} посиланням та замініть його.
+
+- unless @resource.confirmed?
+  %p
+    Будь ласка підтвердіть Ваш email перейшовши за
+    %span= link_to 'цим', confirmation_url(@resource, confirmation_token: @token)
+    посиланням
+
+%p Дякуємо, що Ви з нами. Попереду багато цікавого!

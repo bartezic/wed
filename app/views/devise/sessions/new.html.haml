@@ -4,9 +4,11 @@
       .col-md-4.col-sm-3
       .col-md-4.col-sm-6
         = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'sky-form boxed'}) do |f|
-          %header Увійти
+          %header
+            Увійти
+            .socials-btns
+              = render 'devise/shared/socials'
           %fieldset
-            = f.error_notification
             %section
               %label.input
                 %i.icon-append.fa.fa-envelope

@@ -6,7 +6,10 @@
         - partner = @partner || Partner.new 
         - partner.user ||= User.new
         = simple_form_for(partner, html: {class: 'sky-form boxed'}) do |f|
-          %header Зареєструватися
+          %header
+            Зареєструватися
+            .socials-btns
+              = render 'devise/shared/socials'
           %fieldset
             /= f.error_notification
             = f.simple_fields_for :user do |user|

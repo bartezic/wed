@@ -9,6 +9,7 @@ module Cabinet
     def update
       respond_to do |format|
         if @partner.update(partner_params)
+          sign_in(@partner.user, bypass: true) if @partner == current_partner
           format.html { redirect_to :back, notice: 'Профіль успішно оновлено.' }
           format.json { head :no_content }
           format.js { render json: { success: true } }
@@ -55,7 +56,7 @@ module Cabinet
           :site, :phone, :active, :premium, :premium_to, :slug,
           :rating, :callendar, location_ids: [], day_ids: [],
           involvings_attributes: [:id, :category_id, :price, :_destroy],
-          user_attributes: [:id, :email, :avatar, :avatar_remote_url, :password, :password_confirmation]
+          user_attributes: [:id, :email, :avatar, :avatar_remote_url, :password, :password_confirmation, :temp_password]
         )
       end
   end

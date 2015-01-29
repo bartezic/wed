@@ -2,7 +2,7 @@
   = f.error_notification
   
   = f.simple_fields_for :user do |user|
-    = user.input :email,                 input_html: { class: 'form-control' }
+    = user.input :email,            input_html: { class: 'form-control' }
 
   = f.association :location,        input_html: { class: 'form-control' }, label: 'Місце проживання(офісу)'
   = f.input :site,                  input_html: { class: 'form-control' }, label: 'Сайт'

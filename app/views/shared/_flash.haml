@@ -8,6 +8,13 @@
 
     // cabinet flashes
     - if request.path.include?('cabinet') && @partner
+      - if @partner.user.temp_password.present?
+        .alert.alert-dismissable.alert-danger
+          %button.close{ type: :button, data: { dismiss: :alert, hidden: true } } &#215;
+          %strong Увага!
+          = raw "Ви користуєтесь автоматично згенерованим паролем: <b>#{@partner.user.temp_password}</b>. Це може бути небезпечно."
+          %br
+          = raw "Будь ласка #{link_to 'замініть', cabinet_profile_url(:password)} його."
       - unless @partner.user.confirmed?
         .alert.alert-dismissable.alert-danger
           %button.close{ type: :button, data: { dismiss: :alert, hidden: true } } &#215;

@@ -24,6 +24,12 @@ Rails.application.routes.draw do
     root 'static#home'
   end
 
+  get '/posluhy/veduchi' => redirect('/posluhy/veduchi_tamada_na_vesillya')
+  get '/posluhy/muzykanty' => redirect('/posluhy/muzykanty_dj_na_vesillya')
+  get '/posluhy/kejterіng' => redirect('/posluhy/kejterіng_karvinh_na_vesillya')
+  get '/posluhy/vіzazhysty' => redirect('/posluhy/salony_krasy_vizazhysty_na_vesillya')
+  get '/posluhy/koordynatory' => redirect('/posluhy/orhanizaciya_vesillya_koordynatory_na_vesillya')
+
   scope module: 'app' do
     resources :categories, path: :posluhy, only: [:show, :index]
     resources :locations
@@ -36,7 +42,7 @@ Rails.application.routes.draw do
     get 'about_us' => 'static#about_us'
   end
   
-  devise_for :users, skip: [:registrations], controllers: {confirmations: 'confirmations'}                                        
+  devise_for :users, skip: [:registrations], controllers: {confirmations: 'confirmations', omniauth_callbacks: 'omniauth_callbacks' }
   as :user do
     get 'users/sign_up' => 'devise/registrations#new', as: 'new_user_registration'
   end
@@ -96,9 +102,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  get '/posluhy/veduchi' => redirect('/posluhy/veduchi_tamada_na_vesillya')
-  get '/posluhy/muzykanty' => redirect('/posluhy/muzykanty_dj_na_vesillya')
-  get '/posluhy/kejterіng' => redirect('/posluhy/kejterіng_karvinh_na_vesillya')
-  get '/posluhy/vіzazhysty' => redirect('/posluhy/salony_krasy_vizazhysty_na_vesillya')
-  get '/posluhy/koordynatory' => redirect('/posluhy/orhanizaciya_vesillya_koordynatory_na_vesillya')
 end
