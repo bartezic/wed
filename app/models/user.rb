@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
       end
     end
 
-    if partner = user.rolable
+    if (partner = user.rolable) && user.is_partner?
       partner.socials = (partner.socials || {}).merge({
         auth.provider => auth.info.urls.send(auth.provider.capitalize.to_sym)
       })
