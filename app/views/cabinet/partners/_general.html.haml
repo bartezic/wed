@@ -14,6 +14,18 @@
         = link_to_add_association 'Додати', f, :involvings
   = f.input :description,     input_html: { class: 'form-control', rows: 3 }, label: 'Короткий опис вашої роботи', as: :text
   = f.input :info,            input_html: { class: 'form-control', rows: 10 }, label: 'Детальний опис вашої роботи' , as: :text
-  = f.association :locations, input_html: { class: 'form-control' }, label: 'Виберіть області в яких працюєте'
+  .input
+    %label
+      Де ви працюєте
+      %small
+        %i (виберіть всю країну або вкажіть певні міста)
+
+    .location-groups
+      .full-ukraine
+        %label.checkbox
+          %input{ type: :checkbox, value: 1 }
+          %u По всій Україні
+      - Location.all.in_groups(3, false).each do |locations|
+        = f.association :locations, collection: locations, label: false, as: :check_boxes, label_method: :name, value_method: :id
   .input
   = f.button :submit, class: 'btn btn-default', value: 'Зберегти зміни'

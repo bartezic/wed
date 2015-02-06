@@ -146,6 +146,21 @@ window.WedCity.cabinet = {
     }
   },
 
+  initLocationsSelect: function() {
+    var selectAll = $('.location-groups .full-ukraine input'),
+        all = $('.location-groups .check_boxes input.check_boxes');
+    if(selectAll.length > 0) {
+      selectAll.on('change', function(e){
+        all.prop('checked', e.currentTarget.checked)
+      })
+      all.on('change', selectAllCheck)
+      function selectAllCheck(){
+        selectAll.prop('checked', all.filter(':not(:checked)').length === 0)
+      }
+      selectAllCheck()
+    }
+  },
+
   init: function(){
     var self = this;
 
@@ -163,6 +178,7 @@ window.WedCity.cabinet = {
     this.initVideosGallery();
     this.initPhotosGallery();
     this.initSorting();
+    this.initLocationsSelect();
   }
 };
 

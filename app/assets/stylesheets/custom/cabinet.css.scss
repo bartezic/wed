@@ -423,7 +423,7 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
 
       form {
         .input {
-          &:not(.partner_name):not(.partner_user_email):not(.partner_callendar):not(.partner_user_current_password):not(.gallery_name):not(.video_link){
+          &:not(.partner_name):not(.partner_user_email):not(.partner_callendar):not(.partner_user_current_password):not(.gallery_name):not(.video_link):not(.partner_locations){
             margin-top: 25px;
             border-top: 1px solid #8EE8FF;
             padding-top: 20px;
@@ -432,6 +432,24 @@ $dark-text-shadow: 0 -1px rgb(31, 46, 54);
         label {
           small {
             font-weight: normal;
+          }
+        }
+        .location-groups {
+          margin-left: 20px;
+          .full-ukraine {
+            label {
+              font-weight: normal;
+              margin: 0;
+            }
+          }
+          & > .input {
+            display: inline-block;
+            vertical-align: top;
+            width: 200px;
+            label {
+              font-weight: normal;
+              margin: 0;
+            }
           }
         }
       }

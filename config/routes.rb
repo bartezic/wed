@@ -24,9 +24,9 @@ Rails.application.routes.draw do
     root 'static#home'
   end
 
-  get '/posluhy/veduchi' => redirect('/posluhy/veduchi_tamada_na_vesillya')
+  get '/posluhy/veduch%D1%96' => redirect('/posluhy/veduchi_tamada_na_vesillya')
   get '/posluhy/muzykanty' => redirect('/posluhy/muzykanty_dj_na_vesillya')
-  get '/posluhy/kejterіng' => redirect('/posluhy/kejterіng_karvinh_na_vesillya')
+  get '/posluhy/kejterіng' => redirect('/posluhy/kejter%D1%96ng_karvinh_na_vesillya')
   get '/posluhy/vіzazhysty' => redirect('/posluhy/salony_krasy_vizazhysty_na_vesillya')
   get '/posluhy/koordynatory' => redirect('/posluhy/orhanizaciya_vesillya_koordynatory_na_vesillya')
 
