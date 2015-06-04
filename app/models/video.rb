@@ -80,8 +80,8 @@ class Video < ActiveRecord::Base
     def get_info
       @get_info ||= Rails.cache.fetch("video_#{link}", expires_in: 1.day) do 
         if link.include? 'youtu'
-          res = RestClient.get("https://gdata.youtube.com/feeds/api/videos/#{get_id}?v=2&alt=jsonc")
-          JSON.parse(res)['data']
+          res = RestClient.get("https://www.googleapis.com/youtube/v3/videos?id=#{get_id}&part=snippet,contentDetails,statistics,status&key=AIzaSyB9VXa_UnkLQJap2UmGuuJgNUMULRgSyms")
+          JSON.parse(res)['items'][0]['snippet']
         elsif link.include? 'vimeo'
           res = RestClient.get("http://vimeo.com/api/v2/video/#{get_id}.json")
           JSON.parse(res).first
