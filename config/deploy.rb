@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:bartezic/wed.git'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/home/deployer/apps/wed'
+set :deploy_to, '/home/deploy/apps/wed'
 
 # Default value for :scm is :git
 # set :scm, :git

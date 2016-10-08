@@ -18,8 +18,7 @@
 Ignore paperclip images
 /public/system
 
-/config/database.yml
-/config/secrets.yml
+/config/application.yml
 /coverage
 .DS_Store
 .DS_Store?

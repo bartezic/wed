@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://www.wedcity.pro"
+SitemapGenerator::Sitemap.default_host = "http://wedcity.pro"
 SitemapGenerator::Sitemap.sitemaps_path = 'system/'
 
 SitemapGenerator::Sitemap.create do
