@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
@@ -80,6 +80,7 @@ gem 'sitemap_generator'
 # For importing
 gem 'rest-client'
 gem 'nokogiri'
+gem 'figaro'
 
 group :development, :test do
   gem 'rspec-rails'
