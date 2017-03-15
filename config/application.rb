@@ -34,13 +34,12 @@ module Wed
   #   enable_starttls_auto: true
   # }
 
-  key = YAML.load(File.read(File.join(Rails.root, 'config', 'mandrill.yml')))[Rails.env.to_s]
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     port:           '587',
     address:        'smtp.mandrillapp.com',
-    user_name:      'bartezic@inbox.ru',
-    password:       key,
+    user_name:      'wedcity',
+    password:       ENV['MANDRILL_KEY'],
     domain:         'wedcity.pro',
     authentication: :plain
   }
