@@ -47,7 +47,7 @@ end
 
 Wed::Application.config.middleware.use ExceptionNotification::Rack,
   :email => {
-    :email_prefix => "[ERROR #{Rails.env.to_s.upcase}] ",
+    :email_prefix => "[WedCity ERROR #{Rails.env.to_s.upcase}] ",
     :sender_address => %{"Notifier" <notifier@wedcity.pro>},
-    :exception_recipients => %w{bartezic@gmail.com}
+    :exception_recipients => %w{viktor@wedcity.pro}
   }
