@@ -36,25 +36,25 @@ module Wed
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'gmail.com',
-    user_name:            ENV['GMAIL_USER'],
-    password:             ENV['GMAIL_PASS'],
-    authentication:       :plain,
-    enable_starttls_auto: true
-    # port:           '587',
-    # address:        'smtp.mandrillapp.com',
-    # user_name:      'wedcity',
-    # password:       ENV['MANDRILL_KEY'],
-    # domain:         'wedcity.pro',
-    # authentication: :plain
+    # address:              'smtp.gmail.com',
+    # port:                 587,
+    # domain:               'gmail.com',
+    # user_name:            ENV['GMAIL_USER'],
+    # password:             ENV['GMAIL_PASS'],
+    # authentication:       :plain,
+    # enable_starttls_auto: true
+    port:           '587',
+    address:        'smtp.mandrillapp.com',
+    user_name:      'wedcity',
+    password:       ENV['MANDRILL_KEY'],
+    domain:         'wedcity.pro',
+    authentication: :plain
   }
 end
 
 Wed::Application.config.middleware.use ExceptionNotification::Rack,
   :email => {
     :email_prefix => "[WedCity ERROR #{Rails.env.to_s.upcase}] ",
-    :sender_address => %{"Notifier" <wedcity.pro@gmail.com>},
+    :sender_address => %{"Notifier" <notifier@wedcity.pro>},
     :exception_recipients => %w{wedcity.pro@gmail.com}
   }
