@@ -36,12 +36,19 @@ module Wed
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    port:           '587',
-    address:        'smtp.mandrillapp.com',
-    user_name:      'wedcity',
-    password:       ENV['MANDRILL_KEY'],
-    domain:         'wedcity.pro',
-    authentication: :plain
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gmail.com',
+    user_name:            ENV['GMAIL_USER'],
+    password:             ENV['GMAIL_PASS'],
+    authentication:       :plain,
+    enable_starttls_auto: true
+    # port:           '587',
+    # address:        'smtp.mandrillapp.com',
+    # user_name:      'wedcity',
+    # password:       ENV['MANDRILL_KEY'],
+    # domain:         'wedcity.pro',
+    # authentication: :plain
   }
 end
 
