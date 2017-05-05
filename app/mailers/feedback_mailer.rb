@@ -1,5 +1,5 @@
 class FeedbackMailer < ActionMailer::Base
-  default from: "noreply@wedcity.pro"
+  default from: "notifier@wedcity.pro"
 
   def new_feedback(feedback)
     @feedback = feedback
