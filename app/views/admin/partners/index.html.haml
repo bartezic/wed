@@ -35,7 +35,7 @@
             %br
             %b phone
             = partner.phone
-          %td= partner.user.confirmed?
+          %td= partner.user.try(:confirmed?)
           %td= partner.active
           %td= partner.count_profile_filling
           %td
