@@ -17,3 +17,9 @@
       = render 'shared/flash'
       = yield
     = render 'shared/footer'
+
+
+- if session[:old_user_id]
+  #was_admin
+    %span Зараз ви переглядаєте сайт як <b>#{@partner.try(:name)}</b>
+    = link_to 'Повернутись в адмін панель', back_admin_users_path, method: :post

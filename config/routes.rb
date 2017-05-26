@@ -21,6 +21,12 @@ Rails.application.routes.draw do
     resources :managers
     resources :slider_ads
     resources :feedbacks
+    resources :users, only: [] do
+      post :back, on: :collection
+      member do
+        post :login_as
+      end
+    end
     root 'static#home'
   end
 

@@ -27,9 +27,10 @@ module Admin
     # POST /desks.json
     def create
       @partner = Partner.new(partner_params)
+      @partner.user.skip_confirmation_notification!
 
       respond_to do |format|
-        if @partner.save
+        if @partner.save!
           format.html { redirect_to [:admin, @partner], notice: 'Partner was successfully created.' }
           format.json { render action: 'show', status: :created, location: @partner }
         else

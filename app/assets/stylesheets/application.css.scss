@@ -102,3 +102,23 @@ code {
     background: rgba(255,255,255,0.5) asset-url('loading_big.gif') no-repeat center center;
   }
 }
+
+#was_admin {
+  width: 200px;
+  background-color: #efefef;
+  display: block;
+  padding: 7px;
+  position: fixed;
+  bottom: 20px;
+  left: 10px;
+  font-size: 12px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  text-align: left;
+  opacity: 0.95;
+  z-index: 20;
+  border: #cacaca;
+  a {
+    display: block;
+  }
+}

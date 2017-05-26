@@ -1,29 +1,41 @@
 = simple_form_for [:admin, @partner] do |f|
   = f.error_notification
-  .row
-    .col-xs-6
-      = f.input :name,             input_html: { class: 'form-control' }
-      = f.input :description,      input_html: { class: 'form-control' }, as: :text
-      = f.input :info,             input_html: { class: 'form-control' }, as: :text
-      = f.association :location,   input_html: { class: 'form-control' }
-      = f.association :locations,  input_html: { class: 'form-control' }
-      = f.association :categories, input_html: { class: 'form-control' }
-      = f.association :days,       input_html: { class: 'form-control' }
+  - if @partner.new_record?
+    .row
+      .col-xs-6
+        = f.input :name,             input_html: { class: 'form-control' }
+      .col-xs-6
+        = f.simple_fields_for :user do |user|
+          - if @partner.new_record?
+            = user.input :email,                 input_html: { class: 'form-control' }
+            = user.input :password,              input_html: { class: 'form-control' }
+            = user.input :password_confirmation, input_html: { class: 'form-control' }
+  - else
+    .row
+      .col-xs-6
+        = f.input :name,             input_html: { class: 'form-control' }
+        = f.input :description,      input_html: { class: 'form-control' }, as: :text
+        = f.input :info,             input_html: { class: 'form-control' }, as: :text
+        = f.association :location,   input_html: { class: 'form-control' }
+        = f.association :locations,  input_html: { class: 'form-control' }
+        = f.association :categories, input_html: { class: 'form-control' }
+        = f.association :days,       input_html: { class: 'form-control' }
 
-    .col-xs-6
-      = f.simple_fields_for :user do |user|
-        = user.input :avatar,                input_html: { class: 'form-control' }
-        = user.input :avatar_remote_url,     input_html: { class: 'form-control' } 
-        = user.input :email,                 input_html: { class: 'form-control' }
-        /= user.input :password,              input_html: { class: 'form-control' }
-        /= user.input :password_confirmation, input_html: { class: 'form-control' }
-      = f.input :slug,                  input_html: { class: 'form-control' }
-      = f.input :site,                  input_html: { class: 'form-control' }
-      = f.input :phone,                 input_html: { class: 'form-control' }
-      = f.input :rating,                input_html: { class: 'form-control' }
-      = f.input :price,                 input_html: { class: 'form-control' }
-      = f.input :active
-      = f.input :premium
-      = f.input :premium_to
+      .col-xs-6
+        = f.simple_fields_for :user do |user|
+          = user.input :avatar,                input_html: { class: 'form-control' }
+          = user.input :avatar_remote_url,     input_html: { class: 'form-control' } 
+          / - if @partner.new_record?
+          /   = user.input :email,                 input_html: { class: 'form-control' }
+          /   = user.input :password,              input_html: { class: 'form-control' }
+          /   = user.input :password_confirmation, input_html: { class: 'form-control' }
+        = f.input :slug,                  input_html: { class: 'form-control' }
+        = f.input :site,                  input_html: { class: 'form-control' }
+        = f.input :phone,                 input_html: { class: 'form-control' }
+        = f.input :rating,                input_html: { class: 'form-control' }
+        = f.input :price,                 input_html: { class: 'form-control' }
+        = f.input :active
+        = f.input :premium
+        = f.input :premium_to
 
   = f.button :submit, class: 'btn btn-default'

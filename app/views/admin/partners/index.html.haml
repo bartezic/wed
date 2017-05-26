@@ -42,6 +42,8 @@
             = link_to 'Show', [:admin, partner]
             = link_to 'Edit', edit_admin_partner_path(partner)
             = link_to 'Destroy', [:admin, partner], :method => :delete, :data => { :confirm => 'Are you sure?' }
+            = link_to 'Login as', login_as_admin_user_path(partner.user.id), method: :post, class: 'btn btn-default'
+
 
 = paginate @partners
 %br
